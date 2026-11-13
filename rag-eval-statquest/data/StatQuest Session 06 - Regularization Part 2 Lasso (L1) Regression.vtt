@@ -1,0 +1,587 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.830
+Lasso and Ridge regression are similar,
+
+00:00:05.840 --> 00:00:09.950
+but there's a big, important difference.
+
+00:00:09.960 --> 00:00:12.310
+We'll talk about it.
+
+00:00:12.320 --> 00:00:15.870
+StatQuest
+
+00:00:15.880 --> 00:00:18.230
+Hello, I'm Josh Starmer and welcome to
+
+00:00:18.240 --> 00:00:20.590
+StatQuest. Today, we're going to do part
+
+00:00:20.600 --> 00:00:23.270
+two of our series on regularization.
+
+00:00:23.280 --> 00:00:24.630
+We're going to talk about Lasso
+
+00:00:24.640 --> 00:00:26.630
+regression, and it's going to be clearly
+
+00:00:26.640 --> 00:00:28.470
+explained.
+
+00:00:28.480 --> 00:00:30.750
+This StatQuest follows up on the one on
+
+00:00:30.760 --> 00:00:32.710
+Ridge regression. So, if you aren't
+
+00:00:32.720 --> 00:00:34.590
+already familiar with that, check it
+
+00:00:34.600 --> 00:00:35.710
+out.
+
+00:00:35.720 --> 00:00:37.630
+Even if you are familiar with Ridge
+
+00:00:37.640 --> 00:00:39.390
+regression, you should seriously
+
+00:00:39.400 --> 00:00:41.790
+consider watching, or at least skimming,
+
+00:00:41.800 --> 00:00:44.070
+that StatQuest because the examples in
+
+00:00:44.080 --> 00:00:45.990
+this video are based on the ones in that
+
+00:00:46.000 --> 00:00:48.150
+video.
+
+00:00:48.160 --> 00:00:51.510
+Lasso regression is very, very similar
+
+00:00:51.520 --> 00:00:53.550
+to Ridge regression, but it has some
+
+00:00:53.560 --> 00:00:56.830
+very, very important differences.
+
+00:00:56.840 --> 00:00:58.830
+To understand those similarities and
+
+00:00:58.840 --> 00:01:00.990
+differences, let's first do a super
+
+00:01:01.000 --> 00:01:04.350
+quick review of Ridge regression.
+
+00:01:04.360 --> 00:01:06.990
+In the StatQuest on Ridge regression, we
+
+00:01:07.000 --> 00:01:08.830
+started out with weight and size
+
+00:01:08.840 --> 00:01:11.430
+measurements from a bunch of mice,
+
+00:01:11.440 --> 00:01:14.510
+and we split the data into two sets.
+
+00:01:14.520 --> 00:01:17.350
+The red dots were training data,
+
+00:01:17.360 --> 00:01:21.270
+and the green dots were testing data.
+
+00:01:21.280 --> 00:01:23.750
+Then we fit a line to the training data
+
+00:01:23.760 --> 00:01:26.470
+using least squares.
+
+00:01:26.480 --> 00:01:29.190
+In other words, we minimized the sum of
+
+00:01:29.200 --> 00:01:31.990
+the squared residuals.
+
+00:01:32.000 --> 00:01:34.190
+When we did this, we saw that even
+
+00:01:34.200 --> 00:01:35.910
+though the line fit the training data
+
+00:01:35.920 --> 00:01:38.750
+really well, that is to say, it had low
+
+00:01:38.760 --> 00:01:40.870
+bias,
+
+00:01:40.880 --> 00:01:42.910
+it did not fit the testing data very
+
+00:01:42.920 --> 00:01:45.870
+well at all. That is to say, it had high
+
+00:01:45.880 --> 00:01:48.190
+variance.
+
+00:01:48.200 --> 00:01:50.150
+Then we fit a line to the data using
+
+00:01:50.160 --> 00:01:52.110
+Ridge regression.
+
+00:01:52.120 --> 00:01:54.150
+We minimized the sum of the squared
+
+00:01:54.160 --> 00:01:56.870
+residuals plus lambda times the slope
+
+00:01:56.880 --> 00:01:58.790
+squared.
+
+00:01:58.800 --> 00:02:02.270
+Ridge regression is just least squares
+
+00:02:02.280 --> 00:02:05.270
+plus the ridge regression penalty.
+
+00:02:05.280 --> 00:02:08.029
+The blue ridge regression line did not
+
+00:02:08.039 --> 00:02:10.389
+fit the training data as well as the red
+
+00:02:10.399 --> 00:02:12.590
+least squares line.
+
+00:02:12.600 --> 00:02:15.030
+In other words, ridge regression had
+
+00:02:15.040 --> 00:02:18.270
+more bias than least squares.
+
+00:02:18.280 --> 00:02:20.390
+But in return for that small amount of
+
+00:02:20.400 --> 00:02:22.790
+bias, the ridge regression line had a
+
+00:02:22.800 --> 00:02:26.270
+significant drop in variance.
+
+00:02:26.280 --> 00:02:28.550
+The main idea was that by starting with
+
+00:02:28.560 --> 00:02:31.270
+a slightly worse fit, ridge regression
+
+00:02:31.280 --> 00:02:34.949
+provided better long-term predictions.
+
+00:02:34.959 --> 00:02:37.150
+Bam.
+
+00:02:37.160 --> 00:02:39.230
+Now, let's go back to the equation that
+
+00:02:39.240 --> 00:02:41.590
+ridge regression minimizes
+
+00:02:41.600 --> 00:02:43.350
+and focus on the ridge regression
+
+00:02:43.360 --> 00:02:44.830
+penalty.
+
+00:02:44.840 --> 00:02:48.190
+If, instead of squaring the slope,
+
+00:02:48.200 --> 00:02:50.790
+we take the absolute value,
+
+00:02:50.800 --> 00:02:53.870
+then we have lasso regression.
+
+00:02:53.880 --> 00:02:56.870
+Note, just like with ridge regression,
+
+00:02:56.880 --> 00:02:59.229
+lambda can be any value from zero to
+
+00:02:59.239 --> 00:03:01.670
+positive infinity and is determined
+
+00:03:01.680 --> 00:03:04.190
+using cross-validation.
+
+00:03:04.200 --> 00:03:07.350
+Like ridge regression, lasso regression,
+
+00:03:07.360 --> 00:03:09.870
+the orange line, results in a line with
+
+00:03:09.880 --> 00:03:11.870
+a little bit of bias,
+
+00:03:11.880 --> 00:03:15.470
+but less variance than least squares.
+
+00:03:15.480 --> 00:03:17.310
+Bam.
+
+00:03:17.320 --> 00:03:20.910
+Ridge regression and lasso regression
+
+00:03:20.920 --> 00:03:23.229
+look very similar.
+
+00:03:23.239 --> 00:03:25.870
+And they do similar things.
+
+00:03:25.880 --> 00:03:28.229
+In this case, they make our predictions
+
+00:03:28.239 --> 00:03:30.590
+of size less sensitive to this tiny
+
+00:03:30.600 --> 00:03:33.150
+training data set.
+
+00:03:33.160 --> 00:03:35.590
+Both ridge and lasso regression can be
+
+00:03:35.600 --> 00:03:38.030
+applied in the same context, like this
+
+00:03:38.040 --> 00:03:40.070
+situation where we are using two
+
+00:03:40.080 --> 00:03:43.350
+different diets to predict size.
+
+00:03:43.360 --> 00:03:45.430
+Or in a logistic regression setting
+
+00:03:45.440 --> 00:03:48.870
+where we use weight to predict obesity.
+
+00:03:48.880 --> 00:03:51.470
+And both ridge and lasso regression can
+
+00:03:51.480 --> 00:03:53.310
+be applied to complicated models that
+
+00:03:53.320 --> 00:03:56.550
+combine different types of data.
+
+00:03:56.560 --> 00:03:58.630
+In this case, we've combined the data
+
+00:03:58.640 --> 00:04:00.910
+from the first two examples. Weight,
+
+00:04:00.920 --> 00:04:03.430
+which is continuous, and high-fat diet,
+
+00:04:03.440 --> 00:04:06.030
+which is discrete.
+
+00:04:06.040 --> 00:04:08.310
+Just like the ridge regression penalty,
+
+00:04:08.320 --> 00:04:10.350
+the lasso regression penalty contains
+
+00:04:10.360 --> 00:04:12.790
+all of the estimated parameters except
+
+00:04:12.800 --> 00:04:15.270
+for the Y intercept.
+
+00:04:15.280 --> 00:04:17.069
+It's also worth mentioning that when
+
+00:04:17.079 --> 00:04:19.069
+ridge and lasso regression shrink
+
+00:04:19.079 --> 00:04:21.110
+parameters, they don't have to shrink
+
+00:04:21.120 --> 00:04:23.870
+them all equally.
+
+00:04:23.880 --> 00:04:26.110
+For example, if these were the training
+
+00:04:26.120 --> 00:04:27.590
+data,
+
+00:04:27.600 --> 00:04:30.630
+and these were the testing data,
+
+00:04:30.640 --> 00:04:33.030
+then when lambda equals zero, we would
+
+00:04:33.040 --> 00:04:35.390
+start with these least squares estimates
+
+00:04:35.400 --> 00:04:38.070
+for the slope and the offset for diet
+
+00:04:38.080 --> 00:04:40.190
+difference.
+
+00:04:40.200 --> 00:04:42.870
+But as we increase the value for lambda,
+
+00:04:42.880 --> 00:04:45.510
+ridge and lasso regression may shrink
+
+00:04:45.520 --> 00:04:47.510
+diet difference a lot more than they
+
+00:04:47.520 --> 00:04:50.670
+shrink the slope.
+
+00:04:50.680 --> 00:04:53.430
+Okay, we've seen how ridge and lasso
+
+00:04:53.440 --> 00:04:56.350
+regression are similar.
+
+00:04:56.360 --> 00:04:58.190
+Now let's talk about the big difference
+
+00:04:58.200 --> 00:05:00.670
+between them.
+
+00:05:00.680 --> 00:05:02.510
+To see what makes lasso regression
+
+00:05:02.520 --> 00:05:04.670
+different from ridge regression, let's
+
+00:05:04.680 --> 00:05:07.830
+go back to the two sample training data.
+
+00:05:07.840 --> 00:05:09.630
+And let's focus on what happens when we
+
+00:05:09.640 --> 00:05:12.909
+increase the value for lambda.
+
+00:05:12.919 --> 00:05:15.430
+When lambda equals zero, then the lasso
+
+00:05:15.440 --> 00:05:17.430
+regression line will be the same as the
+
+00:05:17.440 --> 00:05:20.310
+least squares line.
+
+00:05:20.320 --> 00:05:23.070
+As lambda increases in value, the slope
+
+00:05:23.080 --> 00:05:25.230
+gets smaller
+
+00:05:25.240 --> 00:05:28.830
+until the slope equals zero.
+
+00:05:28.840 --> 00:05:31.070
+Bam!
+
+00:05:31.080 --> 00:05:33.110
+The big difference between ridge and
+
+00:05:33.120 --> 00:05:35.190
+lasso regression is that ridge
+
+00:05:35.200 --> 00:05:37.390
+regression can only shrink the slope
+
+00:05:37.400 --> 00:05:39.870
+asymptotically close to zero, while
+
+00:05:39.880 --> 00:05:41.990
+lasso regression can shrink the slope
+
+00:05:42.000 --> 00:05:44.750
+all the way to zero.
+
+00:05:44.760 --> 00:05:47.230
+To appreciate this difference, let's
+
+00:05:47.240 --> 00:05:53.270
+look at a big, huge, crazy equation.
+
+00:05:53.280 --> 00:05:55.430
+The goal of this equation is to predict
+
+00:05:55.440 --> 00:05:57.350
+size.
+
+00:05:57.360 --> 00:05:59.910
+The terms for weight and high-fat diet
+
+00:05:59.920 --> 00:06:01.950
+are both reasonable things to use to
+
+00:06:01.960 --> 00:06:04.110
+predict size.
+
+00:06:04.120 --> 00:06:06.710
+But the astrological sign and the air
+
+00:06:06.720 --> 00:06:09.750
+speed of a swallow, African or European,
+
+00:06:09.760 --> 00:06:13.470
+are terrible ways to predict size.
+
+00:06:13.480 --> 00:06:15.110
+When we apply ridge regression to this
+
+00:06:15.120 --> 00:06:17.550
+equation, we find the minimal sum of the
+
+00:06:17.560 --> 00:06:19.550
+squared residuals plus the ridge
+
+00:06:19.560 --> 00:06:21.950
+regression penalty.
+
+00:06:21.960 --> 00:06:25.190
+And the larger we make lambda,
+
+00:06:25.200 --> 00:06:26.950
+these parameters might shrink a little
+
+00:06:26.960 --> 00:06:28.710
+bit,
+
+00:06:28.720 --> 00:06:31.110
+and these parameters might shrink a lot,
+
+00:06:31.120 --> 00:06:34.630
+but they will never be equal to zero.
+
+00:06:34.640 --> 00:06:38.710
+In contrast, with lasso regression,
+
+00:06:38.720 --> 00:06:41.909
+when we increase the value for lambda,
+
+00:06:41.919 --> 00:06:43.390
+then these parameters will shrink a
+
+00:06:43.400 --> 00:06:45.110
+little bit,
+
+00:06:45.120 --> 00:06:47.350
+and these parameters will go all the way
+
+00:06:47.360 --> 00:06:50.030
+to zero.
+
+00:06:50.040 --> 00:06:53.630
+And these terms go away.
+
+00:06:53.640 --> 00:06:55.310
+And we're left with a way to predict
+
+00:06:55.320 --> 00:06:59.950
+size that only includes weight and diet.
+
+00:06:59.960 --> 00:07:03.950
+And excludes all of the silly stuff.
+
+00:07:03.960 --> 00:07:06.070
+Since lasso regression can exclude
+
+00:07:06.080 --> 00:07:08.590
+useless variables from equations, it is
+
+00:07:08.600 --> 00:07:10.510
+a little better than ridge regression at
+
+00:07:10.520 --> 00:07:12.430
+reducing the variance in models that
+
+00:07:12.440 --> 00:07:15.870
+contain a lot of useless variables.
+
+00:07:15.880 --> 00:07:18.430
+In contrast, ridge regression tends to
+
+00:07:18.440 --> 00:07:20.510
+do a little better when most variables
+
+00:07:20.520 --> 00:07:22.510
+are useful.
+
+00:07:22.520 --> 00:07:25.470
+Double bam.
+
+00:07:25.480 --> 00:07:27.350
+In summary,
+
+00:07:27.360 --> 00:07:30.350
+ridge regression is very similar to
+
+00:07:30.360 --> 00:07:33.070
+lasso regression.
+
+00:07:33.080 --> 00:07:34.990
+And the superficial difference is that
+
+00:07:35.000 --> 00:07:37.710
+ridge regression squares the variables,
+
+00:07:37.720 --> 00:07:39.990
+and lasso regression takes the absolute
+
+00:07:40.000 --> 00:07:42.430
+value.
+
+00:07:42.440 --> 00:07:43.710
+But the big
+
+00:07:43.720 --> 00:07:45.990
+is that lasso regression can exclude
+
+00:07:46.000 --> 00:07:49.070
+useless variables from equations.
+
+00:07:49.080 --> 00:07:51.470
+This makes the final equation simpler
+
+00:07:51.480 --> 00:07:54.630
+and easier to interpret.
+
+00:07:54.640 --> 00:07:56.710
+Hooray! We've made it to the end of
+
+00:07:56.720 --> 00:07:59.310
+another exciting StatQuest. If you like
+
+00:07:59.320 --> 00:08:01.190
+this StatQuest and want to see more,
+
+00:08:01.200 --> 00:08:03.110
+please subscribe. And if you want to
+
+00:08:03.120 --> 00:08:05.990
+support StatQuest, well, please consider
+
+00:08:06.000 --> 00:08:08.550
+buying one or two of my original songs.
+
+00:08:08.560 --> 00:08:13.520
+All right. Until next time, quest on.
+

@@ -1,0 +1,171 @@
+[
+  {
+    "id": "f001",
+    "query": "why can adding more parameters to a linear regression never make R squared worse?",
+    "ideal_context": [
+      "the equation predicts this body length. Just like before, we can measure the residuals, square them, and then add them up to calculate R squared. Now, if the tail length, or the Z axis, is useless and doesn't make the sum of squares fit any smaller, then least squares will ignore it by making that parameter equal to zero. In this case, plugging the tail length into the equation would have no effect on predicting the mouse size. This means equations with more parameters will never make the sum of squares around the fit worse than equations with fewer parameters. In other words, this equation, mouse size = 0.3 + mouse weight + flip of a coin + favorite color + astrological sign + extra stuff, will never perform worse than this equation, mouse size = 0.3 + mouse weight. This is because least squares will cause any term that makes sum of squares around the fit worse to be multiplied by zero, and in a sense, no longer exist. Now, due to random chance, there is a small probability that the"
+    ],
+    "source_sessions": [
+      "1"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f002",
+    "query": "how does logistic regression find the best fitting curve?",
+    "ideal_context": [
+      "Wald's test to figure this out. We'll talk about that in another StatQuest. In this case, the astrological sign is totes useless. That's statistical jargon for not helping. That means we can save time and space in our study by leaving it out. Logistic regression's ability to provide probabilities and classify new samples using continuous and discrete measurements makes it a popular machine learning method. One big difference between linear regression and logistic regression is how the line is fit to the data. With linear regression, we fit the line using least squares. In other words, we find the line that minimizes the sum of the squares of these residuals. We also use the residuals to calculate R^2 and to compare simple models to complicated models. Logistic regression doesn't have the same concept of a residual, so it can't use least squares, and it can't calculate R^2. Instead, it uses something called maximum likelihood. There's a whole StatQuest on maximum likelihood, so see",
+      "squares, and it can't calculate R^2. Instead, it uses something called maximum likelihood. There's a whole StatQuest on maximum likelihood, so see that for details, but in a nutshell, you pick a probability scaled by weight of observing an obese mouse, just like this curve. And you use that to calculate the likelihood of observing a non-obese mouse that weighs this much. And then you calculate the likelihood of observing this mouse. And you do that for all of the mice. And lastly, you multiply all of those likelihoods together. That's the likelihood of the data given this line. Then you shift the line and calculate a new likelihood of the data. And then shift the line and calculate the likelihood again and again. Finally, the curve with the maximum value for the likelihood is selected. In summary, logistic regression can be used to classify samples and it can use different types of data like size and/or genotype to do that classification. And it can also be used to assess what"
+    ],
+    "source_sessions": [
+      "2"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f003",
+    "query": "why does the squiggly line have high variance even though it fits the training set perfectly?",
+    "ideal_context": [
+      "distances do not cancel out positive distances. Notice how the squiggly line fits the data so well that the distances between the line and the data are all zero. In the contest to see whether the straight line fits the training set better than the squiggly line, the squiggly line wins. But remember, so far we've only calculated the sums of squares for the training set. We also have a testing set. Now let's calculate the sums of squares for the testing set. In the contest to see whether the straight line fits the testing set better than the squiggly line, the straight line wins. Even though the squiggly line did a great job fitting the training set, it did a terrible job fitting the testing set. In machine learning lingo, the difference in fits between datasets is called variance. The squiggly line has low bias, since it is flexible and can adapt to the curve in the relationship between weight and height. But the squiggly line has high variability because it results in vastly different",
+      "adapt to the curve in the relationship between weight and height. But the squiggly line has high variability because it results in vastly different sums of squares for different datasets. In other words, it's hard to predict how well the squiggly line will perform with future datasets. It might do well sometimes and other times it might do terribly. In contrast, the straight line has relatively high bias, since it cannot capture the curve in the relationship between weight and height. But the straight line has relatively low variance because the sums of squares are very similar for different datasets. In other words, the straight line might only give good predictions and not great predictions, but they will be consistently good predictions. Bam. Oh, no. Terminology alert. Because the squiggly line fits the training set really well, but not the testing set, we say that the squiggly line is overfit. In machine learning, the ideal algorithm has low bias and can accurately model the true"
+    ],
+    "source_sessions": [
+      "3"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f004",
+    "query": "how does four-fold cross validation use the data?",
+    "ideal_context": [
+      "be best for testing cross-validation uses them all one at a time and summarizes the results at the end For example cross-validation would start by using the first three blocks to train the method and then use the last block to test the method and Then it keeps track of how well the method did with the test data then it uses this combination of blocks to train the method and this block is used for testing and Then it keeps track of how well the method did with the test data, etc Etc, etc in the end every block of data is used for testing and we can compare methods by seeing how well they performed in This case since the support vector machine did the best job classifying the test data sets. We'll use it BAM!!! Note: in this example, we divided the data into 4 blocks. This is called four-fold cross validation However, the number of blocks is arbitrary In an extreme case we could call each individual patient (or sample) a block This is called \"Leave One Out Cross Validation\" Each sample"
+    ],
+    "source_sessions": [
+      "4"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f005",
+    "query": "how does ridge regression work when the predictor is a discrete variable like diet?",
+    "ideal_context": [
+      "this term alone predicts the size of mice on the normal diet. And the sum of these two terms is the prediction for the size of mice on the high-fat diet. For the mice on the normal diet, the residuals are the distances between the mice and the normal diet mean. And for mice on the high-fat diet, the residuals are the distances between the mice and the high-fat diet mean. When least squares determines the values for the parameters in this equation, it minimizes the sum of the squared residuals. In other words, these distances between the data and the means are minimized. When ridge regression determines values for the parameters in this equation, it minimizes the sum of the squared residuals plus lambda times diet difference squared. Remember, diet difference simply refers to the distance between the mice on the normal diet and the mice on the high-fat diet. When lambda equals zero, this whole term ends up being zero. And we get the same equation that we got with least squares. But",
+      "on the high-fat diet. When lambda equals zero, this whole term ends up being zero. And we get the same equation that we got with least squares. But when lambda gets large, the only way to minimize the whole equation is to shrink diet distance down. In other words, as lambda gets larger, our prediction for the size of mice on the high-fat diet becomes less sensitive to the difference between the normal diet and the high-fat diet. And remember, the whole point of doing ridge regression is because small sample sizes like these can lead to poor least squares estimates that result in terrible machine learning predictions. Bam! Ridge regression can also be applied to logistic regression. In this example, we are using weight to predict if a mouse is obese or not. This is the equation for this logistic regression. And ridge regression would shrink the estimate for the slope, making our prediction about whether or not a mouse is obese less sensitive to weight. Note, when applied to logistic"
+    ],
+    "source_sessions": [
+      "5"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f006",
+    "query": "why isn't the y-intercept included in the ridge regression penalty?",
+    "ideal_context": [
+      "diets. In general, the ridge regression penalty contains all of the parameters except for the Y intercept. If we had a big, huge, crazy equation with terms for astrological sign, the air speed of a swallow, and other stuff, then the ridge regression penalty would have all those parameters squared except for the Y intercept. Every parameter except for the Y intercept is scaled by the measurements. And that's why the Y intercept is not included in the ridge regression penalty. Double bam. Okay. Now the next thing we're going to talk about is going to sound totally random, but trust me, it will lead to the coolest thing about ridge regression. It's so cool, it's almost like magic. We all know that this is the equation for a line. And in order for least squares to solve for the parameters, the Y intercept and slope, we need at least two data points. These data points result in these parameters and this specific line. If we only had one data point, then we wouldn't be able to solve for"
+    ],
+    "source_sessions": [
+      "5"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f007",
+    "query": "how does lasso regression get rid of useless variables like astrological sign?",
+    "ideal_context": [
+      "difference between ridge and lasso regression is that ridge regression can only shrink the slope asymptotically close to zero, while lasso regression can shrink the slope all the way to zero. To appreciate this difference, let's look at a big, huge, crazy equation. The goal of this equation is to predict size. The terms for weight and high-fat diet are both reasonable things to use to predict size. But the astrological sign and the air speed of a swallow, African or European, are terrible ways to predict size. When we apply ridge regression to this equation, we find the minimal sum of the squared residuals plus the ridge regression penalty. And the larger we make lambda, these parameters might shrink a little bit, and these parameters might shrink a lot, but they will never be equal to zero. In contrast, with lasso regression, when we increase the value for lambda, then these parameters will shrink a little bit, and these parameters will go all the way to zero. And these terms go"
+    ],
+    "source_sessions": [
+      "6"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f008",
+    "query": "how do you calculate Gini impurity for a numeric feature like age?",
+    "ideal_context": [
+      "Impurity, 0.375. Now we add the weighted impurity for the leaf on the right, which is the total number of people in the leaf, three, divided by the total number of people in both leaves, seven, times the associated Gini Impurity, 0.444. And when we do the math, we get 0.405. So the Gini Impurity for Loves Popcorn is 0.405. Likewise, the Gini Impurity for Loves Soda is 0.214. Now we need to calculate the Gini Impurity for Age. However, because age contains numeric data and not just yes/no values, calculating the Gini Impurity is a little more involved. The first thing we do is sort the rows by age from lowest value to highest value. Then we calculate the average age for all adjacent people. Lastly, we calculate the Gini Impurity values for each average age. For example, to calculate the Gini Impurity for the first value, we put age less than 9.5 in the Root and because the only person with age less than 9.5 does not love Cool As Ice, we put a zero under yes and a one under no. Then",
+      "than 9.5 in the Root and because the only person with age less than 9.5 does not love Cool As Ice, we put a zero under yes and a one under no. Then everyone with age greater than or equal to 9.5 goes to the leaf on the right. Now we calculate the Gini Impurity for the leaf on the left and get zero. And this makes sense because every single person in this leaf does not love Cool As Ice, so there is no impurity. Then we calculate the Gini Impurity for the leaf on the right and get 0.5. Now we calculate the weighted average of the two impurities to get the total Gini Impurity, and we get 0.429. Likewise, we calculate the Gini Impurities for all of the other candidate values. These two candidate thresholds, 15 and 44, are tied for the lowest impurity, 0.343, so we can pick either one. In this case, we'll pick 15. However, remember that we are comparing Gini Impurity values for Age, Loves Popcorn, and Loves Soda to decide which features should be at the very top of the tree. Earlier, we"
+    ],
+    "source_sessions": [
+      "7"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f009",
+    "query": "how do you create a bootstrapped dataset for a random forest?",
+    "ideal_context": [
+      "The good news is that random forests combine the simplicity of decision trees with flexibility, resulting in a vast improvement in accuracy. So let's make a random forest. Step 1, create a bootstrapped dataset. Imagine that these four samples are the entire dataset that we are going to build a tree from. I know it's crazy small, but just pretend for now. To create a bootstrapped data set that is the same size as the original, we just randomly select samples from the original dataset. The important detail is that we're allowed to pick the same sample more than once. This is the first sample that we randomly select, so it's the first sample in our bootstrapped dataset. This is the second randomly selected sample from the original dataset, so it's the second sample in our bootstrapped dataset. Here's the third randomly selected sample, so here it is in the bootstrapped dataset. Lastly, here's the fourth randomly selected sample. Note, it's the same as the third, and here it is. Bam,"
+    ],
+    "source_sessions": [
+      "8"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f010",
+    "query": "how does a forest of stumps made with AdaBoost classify a new patient?",
+    "ideal_context": [
+      "Now we go back to the beginning and try to find the stump that does the best job classifying the new collection of samples. So that is how the errors that the first tree makes influence how the second tree is made. And how the errors that the second tree makes influence how the third tree is made. Etcetera, etcetera, etcetera. Double bam! Now we need to talk about how a forest of stumps created by AdaBoost makes classifications. Imagine that these stumps classified a patient as has heart disease. And these stumps classified the patient as does not have heart disease. These are the amounts of say for these stumps. And these are the amounts of say for these stumps. Now we add up the amounts of say for this group of stumps and for this group of stumps. Ultimately, the patient is classified as has heart disease because this is the larger sum. Triple bam! To review, the three ideas behind AdaBoost are one, AdaBoost combines a lot of weak learners to make classifications. The weak learners"
+    ],
+    "source_sessions": [
+      "9"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f011",
+    "query": "what is a pseudo residual in gradient boost?",
+    "ideal_context": [
+      "So, let's start by plugging in 71.2 for the predicted weight. And then plug in the first observed weight. And do the math. And save the difference, which is called a pseudo residual, in a new column. Note, the term pseudo residual is based on linear regression, where the difference between the observed values and the predicted values results in residuals. The pseudo part of pseudo residual is a reminder that we are doing gradient boost, not linear regression, and is something I'll talk more about in part two of this series when we go through the math. Now, we do the same thing for the remaining weights. Now, we will build a tree using height, favorite color, and gender to predict the residuals. If it seems strange to predict the residuals instead of the original weights, just bear with me, and soon all will become clear. So, setting aside the reason why we are building a tree to predict the residuals for the time being, here's the tree. Remember, in this example, we are only allowing"
+    ],
+    "source_sessions": [
+      "10"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f012",
+    "query": "how does lambda change the output value of a leaf in an XGBoost tree?",
+    "ideal_context": [
+      "leaf, we plug in the residual, -10.5, the number of residuals in the leaf, one, and the value for the regularization parameter, lambda. If lambda equals zero, then there is no regularization, and the output value equals -10.5. On the other hand, if lambda equals one, the output value equals -5.25. In other words, when lambda is greater than zero, then it will reduce the amount that this individual observation adds to the overall prediction. Thus, lambda, the regularization parameter, will reduce the prediction sensitivity to this individual observation. For now, we'll keep things simple and let lambda equal zero, because this is the default value, and put -10.5 under the leaf, so we will remember it. Now, let's calculate the output value for this leaf. When lambda equals zero, the output value is seven. In other words, when lambda equals zero, the output value for a leaf is simply the average of the residuals in that leaf. So, we'll put the output value under the leaf so we will"
+    ],
+    "source_sessions": [
+      "11"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f013",
+    "query": "how does the radial kernel classify a new observation?",
+    "ideal_context": [
+      "In summary, the polynomial kernel systematically increases dimensions by setting D, the degree of the polynomial. And the relationships between each pair of observations are used to find a support vector classifier. Last but not least, we can find a good value for D with cross-validation. Double bam! Another very commonly used kernel is the radio kernel, also known as the radial basis function kernel. Unfortunately, the radio kernel finds support vector classifiers in infinite dimensions. So, I can't give you an example of what it does exactly. However, when using it on a new observation like this, the radio kernel behaves like a weighted nearest neighbor model. In other words, the closest observations, aka the nearest neighbors, have a lot of influence on how we classify the new observation. And observations that are further away have relatively little influence on the classification. So, since these observations are the closest to the new observation, the radio kernel uses their"
+    ],
+    "source_sessions": [
+      "12"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "f014",
+    "query": "how does the k-nearest neighbors algorithm choose the value of k?",
+    "ideal_context": [
+      "StatQuest Check it out talking about Machine-learning. Yeah StatQuest Check it out Talking about cross-validation StatQuest Hello, I'm Josh stormer and welcome to StatQuest today we're going to talk about cross validation and it's gonna be clearly explained Okay, let's start with some data We want to use the variables chest pain good blood circulation Etc To predict if someone has heart disease Then when a new patient shows up we can measure these variables and Predict if they have heart disease or not However, first we have to decide which machine learning method would be best we could use logistic regression or K nearest neighbors Or support vector machines and Many more machine learning methods. How do we decide which one to use? Cross-validation allows us to compare different machine learning methods and get a sense of how well they will work in practice Imagine that this blue column represented all of the data that we have collected about people with and without heart disease We"
+    ],
+    "source_sessions": [
+      "4"
+    ],
+    "answerable": false
+  },
+  {
+    "id": "f015",
+    "query": "how does gradient boost use log odds to classify whether someone loves Troll 2?",
+    "ideal_context": [
+      "we'll walk through, step-by-step, the most common way that gradient boost fits a model to this training data. Note, when gradient boost is used to predict a continuous value, like weight, we say that we are using gradient boost for regression. Using gradient boost for regression is different from doing linear regression. So, while the two methods are related, don't get them confused with each other. Part two in this series will dive deep into the math behind the gradient boost algorithm for regression, walking through it step-by-step and proving that what we covered today is correct. Part three in this series shows how gradient boost can be used for classification. Specifically, we'll walk through, step-by-step, the most common way gradient boost can classify someone as either loving the movie Troll 2 or not loving Troll 2. Part four will return to the math behind gradient boost, this time focusing on classification, walking through it step-by-step. Note, the gradient boost algorithm"
+    ],
+    "source_sessions": [
+      "10"
+    ],
+    "answerable": false
+  }
+]

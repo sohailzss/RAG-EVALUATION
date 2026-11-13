@@ -1,0 +1,4416 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:04.230 align:start position:0%
+ 
+XG<00:00:01.320><c> boost,</c><00:00:02.200><c> it's</c><00:00:02.560><c> extreme</c>
+
+00:00:04.230 --> 00:00:04.240 align:start position:0%
+XG boost, it's extreme
+ 
+
+00:00:04.240 --> 00:00:06.110 align:start position:0%
+XG boost, it's extreme
+and<00:00:04.400><c> it's</c><00:00:04.560><c> gradient</c><00:00:05.000><c> boost.</c>
+
+00:00:06.110 --> 00:00:06.120 align:start position:0%
+and it's gradient boost.
+ 
+
+00:00:06.120 --> 00:00:09.830 align:start position:0%
+and it's gradient boost.
+StatQuest
+
+00:00:09.830 --> 00:00:09.840 align:start position:0%
+ 
+ 
+
+00:00:09.840 --> 00:00:12.430 align:start position:0%
+ 
+Hello,<00:00:10.800><c> I'm</c><00:00:11.040><c> Josh</c><00:00:11.400><c> Starmer</c><00:00:11.800><c> and</c><00:00:12.000><c> welcome</c><00:00:12.320><c> to</c>
+
+00:00:12.430 --> 00:00:12.440 align:start position:0%
+Hello, I'm Josh Starmer and welcome to
+ 
+
+00:00:12.440 --> 00:00:14.590 align:start position:0%
+Hello, I'm Josh Starmer and welcome to
+StatQuest.<00:00:13.640><c> Today</c><00:00:14.000><c> we're</c><00:00:14.160><c> going</c><00:00:14.280><c> to</c><00:00:14.360><c> talk</c>
+
+00:00:14.590 --> 00:00:14.600 align:start position:0%
+StatQuest. Today we're going to talk
+ 
+
+00:00:14.600 --> 00:00:18.030 align:start position:0%
+StatQuest. Today we're going to talk
+about<00:00:15.040><c> XG</c><00:00:15.640><c> boost</c><00:00:16.240><c> part</c><00:00:16.720><c> one.</c><00:00:17.720><c> We're</c><00:00:17.840><c> going</c><00:00:17.960><c> to</c>
+
+00:00:18.030 --> 00:00:18.040 align:start position:0%
+about XG boost part one. We're going to
+ 
+
+00:00:18.040 --> 00:00:20.390 align:start position:0%
+about XG boost part one. We're going to
+talk<00:00:18.240><c> about</c><00:00:18.560><c> XG</c><00:00:19.040><c> boost</c><00:00:19.440><c> trees</c><00:00:20.080><c> and</c><00:00:20.240><c> how</c>
+
+00:00:20.390 --> 00:00:20.400 align:start position:0%
+talk about XG boost trees and how
+ 
+
+00:00:20.400 --> 00:00:23.430 align:start position:0%
+talk about XG boost trees and how
+they're<00:00:20.640><c> used</c><00:00:21.080><c> for</c><00:00:21.280><c> regression.</c>
+
+00:00:23.430 --> 00:00:23.440 align:start position:0%
+they're used for regression.
+ 
+
+00:00:23.440 --> 00:00:26.070 align:start position:0%
+they're used for regression.
+Note,<00:00:24.400><c> this</c><00:00:24.680><c> StatQuest</c><00:00:25.360><c> assumes</c><00:00:25.800><c> that</c><00:00:25.920><c> you</c>
+
+00:00:26.070 --> 00:00:26.080 align:start position:0%
+Note, this StatQuest assumes that you
+ 
+
+00:00:26.080 --> 00:00:27.950 align:start position:0%
+Note, this StatQuest assumes that you
+are<00:00:26.240><c> already</c><00:00:26.680><c> familiar</c><00:00:27.240><c> with</c><00:00:27.400><c> at</c><00:00:27.520><c> least</c><00:00:27.840><c> the</c>
+
+00:00:27.950 --> 00:00:27.960 align:start position:0%
+are already familiar with at least the
+ 
+
+00:00:27.960 --> 00:00:30.910 align:start position:0%
+are already familiar with at least the
+main<00:00:28.400><c> ideas</c><00:00:29.040><c> of</c><00:00:29.160><c> how</c><00:00:29.360><c> gradient</c><00:00:30.040><c> boost</c><00:00:30.640><c> does</c>
+
+00:00:30.910 --> 00:00:30.920 align:start position:0%
+main ideas of how gradient boost does
+ 
+
+00:00:30.920 --> 00:00:32.870 align:start position:0%
+main ideas of how gradient boost does
+regression.
+
+00:00:32.870 --> 00:00:32.880 align:start position:0%
+regression.
+ 
+
+00:00:32.880 --> 00:00:35.030 align:start position:0%
+regression.
+And<00:00:33.280><c> you</c><00:00:33.400><c> should</c><00:00:33.600><c> be</c><00:00:33.760><c> familiar</c><00:00:34.280><c> with</c><00:00:34.520><c> at</c><00:00:34.680><c> least</c>
+
+00:00:35.030 --> 00:00:35.040 align:start position:0%
+And you should be familiar with at least
+ 
+
+00:00:35.040 --> 00:00:37.990 align:start position:0%
+And you should be familiar with at least
+the<00:00:35.120><c> main</c><00:00:35.440><c> ideas</c><00:00:36.000><c> behind</c><00:00:36.440><c> regularization.</c>
+
+00:00:37.990 --> 00:00:38.000 align:start position:0%
+the main ideas behind regularization.
+ 
+
+00:00:38.000 --> 00:00:40.790 align:start position:0%
+the main ideas behind regularization.
+If<00:00:38.240><c> not,</c><00:00:38.840><c> check</c><00:00:39.080><c> out</c><00:00:39.160><c> the</c><00:00:39.280><c> quests.</c><00:00:40.200><c> The</c><00:00:40.320><c> links</c>
+
+00:00:40.790 --> 00:00:40.800 align:start position:0%
+If not, check out the quests. The links
+ 
+
+00:00:40.800 --> 00:00:44.030 align:start position:0%
+If not, check out the quests. The links
+are<00:00:40.920><c> in</c><00:00:41.000><c> the</c><00:00:41.080><c> description</c><00:00:41.680><c> below.</c>
+
+00:00:44.030 --> 00:00:44.040 align:start position:0%
+are in the description below.
+ 
+
+00:00:44.040 --> 00:00:47.590 align:start position:0%
+are in the description below.
+XG<00:00:44.680><c> boost</c><00:00:45.080><c> is</c><00:00:45.360><c> extreme</c>
+
+00:00:47.590 --> 00:00:47.600 align:start position:0%
+XG boost is extreme
+ 
+
+00:00:47.600 --> 00:00:49.710 align:start position:0%
+XG boost is extreme
+and<00:00:47.760><c> that</c><00:00:47.960><c> means</c><00:00:48.600><c> it's</c><00:00:48.800><c> a</c><00:00:48.840><c> big</c><00:00:49.240><c> machine</c>
+
+00:00:49.710 --> 00:00:49.720 align:start position:0%
+and that means it's a big machine
+ 
+
+00:00:49.720 --> 00:00:52.870 align:start position:0%
+and that means it's a big machine
+learning<00:00:50.040><c> algorithm</c><00:00:50.680><c> with</c><00:00:50.920><c> lots</c><00:00:51.200><c> of</c><00:00:51.320><c> parts.</c>
+
+00:00:52.870 --> 00:00:52.880 align:start position:0%
+learning algorithm with lots of parts.
+ 
+
+00:00:52.880 --> 00:00:54.790 align:start position:0%
+learning algorithm with lots of parts.
+The<00:00:53.080><c> good</c><00:00:53.320><c> news</c><00:00:53.680><c> is</c><00:00:53.840><c> that</c><00:00:54.080><c> each</c><00:00:54.320><c> part</c><00:00:54.640><c> is</c>
+
+00:00:54.790 --> 00:00:54.800 align:start position:0%
+The good news is that each part is
+ 
+
+00:00:54.800 --> 00:00:57.470 align:start position:0%
+The good news is that each part is
+pretty<00:00:55.080><c> simple</c><00:00:55.680><c> and</c><00:00:55.840><c> easy</c><00:00:56.040><c> to</c><00:00:56.160><c> understand</c><00:00:57.320><c> and</c>
+
+00:00:57.470 --> 00:00:57.480 align:start position:0%
+pretty simple and easy to understand and
+ 
+
+00:00:57.480 --> 00:00:59.270 align:start position:0%
+pretty simple and easy to understand and
+we'll<00:00:57.600><c> go</c><00:00:57.840><c> through</c><00:00:58.080><c> them</c><00:00:58.440><c> one</c><00:00:58.760><c> step</c><00:00:59.120><c> at</c><00:00:59.200><c> a</c>
+
+00:00:59.270 --> 00:00:59.280 align:start position:0%
+we'll go through them one step at a
+ 
+
+00:00:59.280 --> 00:01:01.310 align:start position:0%
+we'll go through them one step at a
+time.
+
+00:01:01.310 --> 00:01:01.320 align:start position:0%
+time.
+ 
+
+00:01:01.320 --> 00:01:03.830 align:start position:0%
+time.
+Actually,<00:01:02.560><c> I'm</c><00:01:02.720><c> assuming</c><00:01:03.320><c> that</c><00:01:03.520><c> you</c><00:01:03.640><c> are</c>
+
+00:01:03.830 --> 00:01:03.840 align:start position:0%
+Actually, I'm assuming that you are
+ 
+
+00:01:03.840 --> 00:01:06.270 align:start position:0%
+Actually, I'm assuming that you are
+already<00:01:04.160><c> familiar</c><00:01:04.760><c> with</c><00:01:05.000><c> gradient</c><00:01:05.519><c> boost</c><00:01:06.080><c> and</c>
+
+00:01:06.270 --> 00:01:06.280 align:start position:0%
+already familiar with gradient boost and
+ 
+
+00:01:06.280 --> 00:01:08.710 align:start position:0%
+already familiar with gradient boost and
+regularization.
+
+00:01:08.710 --> 00:01:08.720 align:start position:0%
+regularization.
+ 
+
+00:01:08.720 --> 00:01:11.110 align:start position:0%
+regularization.
+So<00:01:09.040><c> we'll</c><00:01:09.200><c> start</c><00:01:09.840><c> by</c><00:01:10.000><c> learning</c><00:01:10.320><c> about</c><00:01:10.680><c> XG</c>
+
+00:01:11.110 --> 00:01:11.120 align:start position:0%
+So we'll start by learning about XG
+ 
+
+00:01:11.120 --> 00:01:14.870 align:start position:0%
+So we'll start by learning about XG
+boost's<00:01:11.720><c> unique</c><00:01:12.360><c> regression</c><00:01:13.000><c> trees.</c>
+
+00:01:14.870 --> 00:01:14.880 align:start position:0%
+boost's unique regression trees.
+ 
+
+00:01:14.880 --> 00:01:17.590 align:start position:0%
+boost's unique regression trees.
+Because<00:01:15.440><c> this</c><00:01:15.640><c> is</c><00:01:15.800><c> a</c><00:01:15.880><c> big</c><00:01:16.240><c> topic,</c><00:01:17.040><c> we'll</c><00:01:17.200><c> spend</c>
+
+00:01:17.590 --> 00:01:17.600 align:start position:0%
+Because this is a big topic, we'll spend
+ 
+
+00:01:17.600 --> 00:01:20.990 align:start position:0%
+Because this is a big topic, we'll spend
+three<00:01:18.160><c> whole</c><00:01:18.520><c> StatQuests</c><00:01:19.480><c> on</c><00:01:19.680><c> it.</c>
+
+00:01:20.990 --> 00:01:21.000 align:start position:0%
+three whole StatQuests on it.
+ 
+
+00:01:21.000 --> 00:01:24.390 align:start position:0%
+three whole StatQuests on it.
+In<00:01:21.240><c> this</c><00:01:21.520><c> StatQuest,</c><00:01:22.520><c> part</c><00:01:22.880><c> one,</c><00:01:23.800><c> we'll</c><00:01:24.000><c> build</c>
+
+00:01:24.390 --> 00:01:24.400 align:start position:0%
+In this StatQuest, part one, we'll build
+ 
+
+00:01:24.400 --> 00:01:27.070 align:start position:0%
+In this StatQuest, part one, we'll build
+our<00:01:24.600><c> intuition</c><00:01:25.320><c> about</c><00:01:25.640><c> how</c><00:01:25.880><c> XG</c><00:01:26.400><c> boost</c><00:01:26.840><c> does</c>
+
+00:01:27.070 --> 00:01:27.080 align:start position:0%
+our intuition about how XG boost does
+ 
+
+00:01:27.080 --> 00:01:31.190 align:start position:0%
+our intuition about how XG boost does
+regression<00:01:28.000><c> with</c><00:01:28.160><c> its</c><00:01:28.400><c> unique</c><00:01:28.920><c> trees.</c>
+
+00:01:31.190 --> 00:01:31.200 align:start position:0%
+regression with its unique trees.
+ 
+
+00:01:31.200 --> 00:01:34.150 align:start position:0%
+regression with its unique trees.
+In<00:01:31.520><c> part</c><00:01:31.960><c> two,</c><00:01:32.760><c> we'll</c><00:01:33.000><c> build</c><00:01:33.320><c> our</c><00:01:33.480><c> intuition</c>
+
+00:01:34.150 --> 00:01:34.160 align:start position:0%
+In part two, we'll build our intuition
+ 
+
+00:01:34.160 --> 00:01:39.070 align:start position:0%
+In part two, we'll build our intuition
+about<00:01:34.480><c> how</c><00:01:34.720><c> XG</c><00:01:35.200><c> boost</c><00:01:35.720><c> does</c><00:01:36.000><c> classification.</c>
+
+00:01:39.070 --> 00:01:39.080 align:start position:0%
+ 
+ 
+
+00:01:39.080 --> 00:01:41.550 align:start position:0%
+ 
+And<00:01:39.360><c> in</c><00:01:39.480><c> part</c><00:01:39.840><c> three,</c><00:01:40.680><c> we'll</c><00:01:40.880><c> dive</c><00:01:41.240><c> into</c><00:01:41.440><c> the</c>
+
+00:01:41.550 --> 00:01:41.560 align:start position:0%
+And in part three, we'll dive into the
+ 
+
+00:01:41.560 --> 00:01:43.910 align:start position:0%
+And in part three, we'll dive into the
+mathematical<00:01:42.400><c> details</c><00:01:43.160><c> and</c><00:01:43.320><c> show</c><00:01:43.600><c> you</c><00:01:43.760><c> how</c>
+
+00:01:43.910 --> 00:01:43.920 align:start position:0%
+mathematical details and show you how
+ 
+
+00:01:43.920 --> 00:01:46.190 align:start position:0%
+mathematical details and show you how
+regression<00:01:44.760><c> and</c><00:01:44.920><c> classification</c><00:01:46.040><c> are</c>
+
+00:01:46.190 --> 00:01:46.200 align:start position:0%
+regression and classification are
+ 
+
+00:01:46.200 --> 00:01:48.910 align:start position:0%
+regression and classification are
+related<00:01:47.080><c> and</c><00:01:47.240><c> why</c><00:01:47.400><c> creating</c><00:01:47.920><c> unique</c><00:01:48.360><c> trees</c>
+
+00:01:48.910 --> 00:01:48.920 align:start position:0%
+related and why creating unique trees
+ 
+
+00:01:48.920 --> 00:01:51.710 align:start position:0%
+related and why creating unique trees
+makes<00:01:49.280><c> so</c><00:01:49.440><c> much</c><00:01:49.760><c> sense.</c>
+
+00:01:51.710 --> 00:01:51.720 align:start position:0%
+makes so much sense.
+ 
+
+00:01:51.720 --> 00:01:54.910 align:start position:0%
+makes so much sense.
+Note,<00:01:52.760><c> XG</c><00:01:53.200><c> boost</c><00:01:53.640><c> was</c><00:01:53.800><c> designed</c><00:01:54.360><c> to</c><00:01:54.440><c> be</c><00:01:54.600><c> used</c>
+
+00:01:54.910 --> 00:01:54.920 align:start position:0%
+Note, XG boost was designed to be used
+ 
+
+00:01:54.920 --> 00:01:58.990 align:start position:0%
+Note, XG boost was designed to be used
+with<00:01:55.160><c> large,</c><00:01:55.960><c> complicated</c><00:01:56.760><c> data</c><00:01:57.000><c> sets.</c>
+
+00:01:58.990 --> 00:01:59.000 align:start position:0%
+with large, complicated data sets.
+ 
+
+00:01:59.000 --> 00:02:01.190 align:start position:0%
+with large, complicated data sets.
+However,<00:01:59.840><c> to</c><00:02:00.000><c> keep</c><00:02:00.280><c> the</c><00:02:00.440><c> examples</c><00:02:01.040><c> from</c>
+
+00:02:01.190 --> 00:02:01.200 align:start position:0%
+However, to keep the examples from
+ 
+
+00:02:01.200 --> 00:02:03.390 align:start position:0%
+However, to keep the examples from
+getting<00:02:01.520><c> out</c><00:02:01.680><c> of</c><00:02:01.840><c> hand,</c><00:02:02.720><c> we'll</c><00:02:02.880><c> use</c><00:02:03.160><c> this</c>
+
+00:02:03.390 --> 00:02:03.400 align:start position:0%
+getting out of hand, we'll use this
+ 
+
+00:02:03.400 --> 00:02:06.670 align:start position:0%
+getting out of hand, we'll use this
+super<00:02:03.840><c> simple</c><00:02:04.320><c> training</c><00:02:04.800><c> data.</c>
+
+00:02:06.670 --> 00:02:06.680 align:start position:0%
+super simple training data.
+ 
+
+00:02:06.680 --> 00:02:09.190 align:start position:0%
+super simple training data.
+On<00:02:06.840><c> the</c><00:02:07.040><c> x-axis,</c><00:02:08.080><c> we</c><00:02:08.200><c> have</c><00:02:08.440><c> different</c><00:02:08.880><c> drug</c>
+
+00:02:09.190 --> 00:02:09.200 align:start position:0%
+On the x-axis, we have different drug
+ 
+
+00:02:09.200 --> 00:02:11.550 align:start position:0%
+On the x-axis, we have different drug
+dosages.
+
+00:02:11.550 --> 00:02:11.560 align:start position:0%
+dosages.
+ 
+
+00:02:11.560 --> 00:02:14.030 align:start position:0%
+dosages.
+And<00:02:11.680><c> on</c><00:02:11.800><c> the</c><00:02:11.920><c> y-axis,</c><00:02:13.080><c> we've</c><00:02:13.360><c> measured</c><00:02:13.760><c> drug</c>
+
+00:02:14.030 --> 00:02:14.040 align:start position:0%
+And on the y-axis, we've measured drug
+ 
+
+00:02:14.040 --> 00:02:16.670 align:start position:0%
+And on the y-axis, we've measured drug
+effectiveness.
+
+00:02:16.670 --> 00:02:16.680 align:start position:0%
+effectiveness.
+ 
+
+00:02:16.680 --> 00:02:18.870 align:start position:0%
+effectiveness.
+These<00:02:17.000><c> two</c><00:02:17.200><c> observations</c><00:02:18.000><c> have</c><00:02:18.280><c> relatively</c>
+
+00:02:18.870 --> 00:02:18.880 align:start position:0%
+These two observations have relatively
+ 
+
+00:02:18.880 --> 00:02:20.870 align:start position:0%
+These two observations have relatively
+large<00:02:19.360><c> positive</c><00:02:19.920><c> values</c><00:02:20.400><c> for</c><00:02:20.520><c> drug</c>
+
+00:02:20.870 --> 00:02:20.880 align:start position:0%
+large positive values for drug
+ 
+
+00:02:20.880 --> 00:02:22.990 align:start position:0%
+large positive values for drug
+effectiveness,<00:02:22.080><c> and</c><00:02:22.200><c> that</c><00:02:22.440><c> means</c><00:02:22.760><c> that</c><00:02:22.880><c> the</c>
+
+00:02:22.990 --> 00:02:23.000 align:start position:0%
+effectiveness, and that means that the
+ 
+
+00:02:23.000 --> 00:02:25.630 align:start position:0%
+effectiveness, and that means that the
+drug<00:02:23.360><c> was</c><00:02:23.560><c> helpful.</c>
+
+00:02:25.630 --> 00:02:25.640 align:start position:0%
+drug was helpful.
+ 
+
+00:02:25.640 --> 00:02:27.910 align:start position:0%
+drug was helpful.
+These<00:02:26.000><c> two</c><00:02:26.200><c> observations</c><00:02:27.120><c> have</c><00:02:27.360><c> relatively</c>
+
+00:02:27.910 --> 00:02:27.920 align:start position:0%
+These two observations have relatively
+ 
+
+00:02:27.920 --> 00:02:29.949 align:start position:0%
+These two observations have relatively
+large<00:02:28.520><c> negative</c><00:02:29.120><c> values</c><00:02:29.520><c> for</c><00:02:29.680><c> drug</c>
+
+00:02:29.949 --> 00:02:29.959 align:start position:0%
+large negative values for drug
+ 
+
+00:02:29.959 --> 00:02:32.070 align:start position:0%
+large negative values for drug
+effectiveness,<00:02:31.080><c> and</c><00:02:31.200><c> that</c><00:02:31.440><c> means</c><00:02:31.800><c> that</c><00:02:31.959><c> the</c>
+
+00:02:32.070 --> 00:02:32.080 align:start position:0%
+effectiveness, and that means that the
+ 
+
+00:02:32.080 --> 00:02:35.949 align:start position:0%
+effectiveness, and that means that the
+drug<00:02:32.400><c> did</c><00:02:32.640><c> more</c><00:02:32.959><c> harm</c><00:02:33.320><c> than</c><00:02:33.560><c> good.</c>
+
+00:02:35.949 --> 00:02:35.959 align:start position:0%
+drug did more harm than good.
+ 
+
+00:02:35.959 --> 00:02:38.830 align:start position:0%
+drug did more harm than good.
+The<00:02:36.080><c> very</c><00:02:36.440><c> first</c><00:02:36.760><c> step</c><00:02:37.200><c> in</c><00:02:37.400><c> fitting</c><00:02:37.840><c> XGBoost</c>
+
+00:02:38.830 --> 00:02:38.840 align:start position:0%
+The very first step in fitting XGBoost
+ 
+
+00:02:38.840 --> 00:02:40.830 align:start position:0%
+The very first step in fitting XGBoost
+to<00:02:38.959><c> the</c><00:02:39.080><c> training</c><00:02:39.520><c> data</c><00:02:40.200><c> is</c><00:02:40.360><c> to</c><00:02:40.480><c> make</c><00:02:40.720><c> an</c>
+
+00:02:40.830 --> 00:02:40.840 align:start position:0%
+to the training data is to make an
+ 
+
+00:02:40.840 --> 00:02:43.070 align:start position:0%
+to the training data is to make an
+initial<00:02:41.320><c> prediction.</c>
+
+00:02:43.070 --> 00:02:43.080 align:start position:0%
+initial prediction.
+ 
+
+00:02:43.080 --> 00:02:45.590 align:start position:0%
+initial prediction.
+This<00:02:43.320><c> prediction</c><00:02:43.959><c> can</c><00:02:44.160><c> be</c><00:02:44.320><c> anything,</c><00:02:45.280><c> but</c><00:02:45.480><c> by</c>
+
+00:02:45.590 --> 00:02:45.600 align:start position:0%
+This prediction can be anything, but by
+ 
+
+00:02:45.600 --> 00:02:48.430 align:start position:0%
+This prediction can be anything, but by
+default,<00:02:46.520><c> it</c><00:02:46.680><c> is</c><00:02:46.840><c> 0.5,</c>
+
+00:02:48.430 --> 00:02:48.440 align:start position:0%
+default, it is 0.5,
+ 
+
+00:02:48.440 --> 00:02:50.110 align:start position:0%
+default, it is 0.5,
+regardless<00:02:49.080><c> of</c><00:02:49.200><c> whether</c><00:02:49.440><c> you're</c><00:02:49.640><c> using</c>
+
+00:02:50.110 --> 00:02:50.120 align:start position:0%
+regardless of whether you're using
+ 
+
+00:02:50.120 --> 00:02:52.230 align:start position:0%
+regardless of whether you're using
+XGBoost<00:02:51.000><c> for</c><00:02:51.160><c> regression</c><00:02:52.120><c> or</c>
+
+00:02:52.230 --> 00:02:52.240 align:start position:0%
+XGBoost for regression or
+ 
+
+00:02:52.240 --> 00:02:54.910 align:start position:0%
+XGBoost for regression or
+classification.
+
+00:02:54.910 --> 00:02:54.920 align:start position:0%
+classification.
+ 
+
+00:02:54.920 --> 00:02:57.630 align:start position:0%
+classification.
+The<00:02:55.000><c> prediction,</c><00:02:55.959><c> 0.5,</c>
+
+00:02:57.630 --> 00:02:57.640 align:start position:0%
+The prediction, 0.5,
+ 
+
+00:02:57.640 --> 00:03:00.030 align:start position:0%
+The prediction, 0.5,
+corresponds<00:02:58.440><c> to</c><00:02:58.600><c> this</c><00:02:58.920><c> thick,</c><00:02:59.519><c> black,</c>
+
+00:03:00.030 --> 00:03:00.040 align:start position:0%
+corresponds to this thick, black,
+ 
+
+00:03:00.040 --> 00:03:02.750 align:start position:0%
+corresponds to this thick, black,
+horizontal<00:03:00.880><c> line.</c>
+
+00:03:02.750 --> 00:03:02.760 align:start position:0%
+horizontal line.
+ 
+
+00:03:02.760 --> 00:03:04.790 align:start position:0%
+horizontal line.
+And<00:03:02.880><c> the</c><00:03:02.959><c> residuals,</c><00:03:04.000><c> the</c><00:03:04.160><c> differences</c>
+
+00:03:04.790 --> 00:03:04.800 align:start position:0%
+And the residuals, the differences
+ 
+
+00:03:04.800 --> 00:03:06.710 align:start position:0%
+And the residuals, the differences
+between<00:03:05.120><c> the</c><00:03:05.239><c> observed</c><00:03:06.080><c> and</c><00:03:06.239><c> predicted</c>
+
+00:03:06.710 --> 00:03:06.720 align:start position:0%
+between the observed and predicted
+ 
+
+00:03:06.720 --> 00:03:09.190 align:start position:0%
+between the observed and predicted
+values,<00:03:07.640><c> show</c><00:03:07.920><c> us</c><00:03:08.080><c> how</c><00:03:08.280><c> good</c><00:03:08.640><c> the</c><00:03:08.800><c> initial</c>
+
+00:03:09.190 --> 00:03:09.200 align:start position:0%
+values, show us how good the initial
+ 
+
+00:03:09.200 --> 00:03:11.870 align:start position:0%
+values, show us how good the initial
+prediction<00:03:09.760><c> is.</c>
+
+00:03:11.870 --> 00:03:11.880 align:start position:0%
+prediction is.
+ 
+
+00:03:11.880 --> 00:03:15.710 align:start position:0%
+prediction is.
+Now,<00:03:12.640><c> just</c><00:03:13.000><c> like</c><00:03:13.360><c> unextreme</c><00:03:14.239><c> gradient</c><00:03:14.760><c> boost,</c>
+
+00:03:15.710 --> 00:03:15.720 align:start position:0%
+Now, just like unextreme gradient boost,
+ 
+
+00:03:15.720 --> 00:03:18.150 align:start position:0%
+Now, just like unextreme gradient boost,
+XGBoost<00:03:16.720><c> fits</c><00:03:17.000><c> a</c><00:03:17.040><c> regression</c><00:03:17.560><c> tree</c><00:03:17.880><c> to</c><00:03:18.040><c> the</c>
+
+00:03:18.150 --> 00:03:18.160 align:start position:0%
+XGBoost fits a regression tree to the
+ 
+
+00:03:18.160 --> 00:03:20.070 align:start position:0%
+XGBoost fits a regression tree to the
+residuals.
+
+00:03:20.070 --> 00:03:20.080 align:start position:0%
+residuals.
+ 
+
+00:03:20.080 --> 00:03:23.070 align:start position:0%
+residuals.
+However,<00:03:21.120><c> unlike</c><00:03:21.800><c> unextreme</c><00:03:22.600><c> gradient</c>
+
+00:03:23.070 --> 00:03:23.080 align:start position:0%
+However, unlike unextreme gradient
+ 
+
+00:03:23.080 --> 00:03:25.710 align:start position:0%
+However, unlike unextreme gradient
+boost,<00:03:23.880><c> which</c><00:03:24.080><c> typically</c><00:03:24.560><c> uses</c><00:03:25.000><c> regular,</c>
+
+00:03:25.710 --> 00:03:25.720 align:start position:0%
+boost, which typically uses regular,
+ 
+
+00:03:25.720 --> 00:03:28.550 align:start position:0%
+boost, which typically uses regular,
+off-the-shelf<00:03:26.480><c> regression</c><00:03:26.959><c> trees,</c>
+
+00:03:28.550 --> 00:03:28.560 align:start position:0%
+off-the-shelf regression trees,
+ 
+
+00:03:28.560 --> 00:03:31.830 align:start position:0%
+off-the-shelf regression trees,
+XGBoost<00:03:29.600><c> uses</c><00:03:30.000><c> a</c><00:03:30.120><c> unique</c><00:03:30.720><c> regression</c><00:03:31.239><c> tree</c>
+
+00:03:31.830 --> 00:03:31.840 align:start position:0%
+XGBoost uses a unique regression tree
+ 
+
+00:03:31.840 --> 00:03:35.750 align:start position:0%
+XGBoost uses a unique regression tree
+that<00:03:32.040><c> I</c><00:03:32.160><c> call</c><00:03:32.680><c> an</c><00:03:32.920><c> XGBoost</c><00:03:33.920><c> tree.</c>
+
+00:03:35.750 --> 00:03:35.760 align:start position:0%
+that I call an XGBoost tree.
+ 
+
+00:03:35.760 --> 00:03:37.509 align:start position:0%
+that I call an XGBoost tree.
+So,<00:03:35.920><c> let's</c><00:03:36.280><c> talk</c><00:03:36.560><c> about</c><00:03:36.800><c> how</c><00:03:36.920><c> to</c><00:03:37.040><c> build</c><00:03:37.320><c> an</c>
+
+00:03:37.509 --> 00:03:37.519 align:start position:0%
+So, let's talk about how to build an
+ 
+
+00:03:37.519 --> 00:03:41.190 align:start position:0%
+So, let's talk about how to build an
+XGBoost<00:03:38.400><c> tree</c><00:03:39.080><c> for</c><00:03:39.239><c> regression.</c>
+
+00:03:41.190 --> 00:03:41.200 align:start position:0%
+XGBoost tree for regression.
+ 
+
+00:03:41.200 --> 00:03:43.630 align:start position:0%
+XGBoost tree for regression.
+Note,<00:03:42.080><c> there</c><00:03:42.280><c> are</c><00:03:42.360><c> many</c><00:03:42.680><c> ways</c><00:03:43.160><c> to</c><00:03:43.280><c> build</c>
+
+00:03:43.630 --> 00:03:43.640 align:start position:0%
+Note, there are many ways to build
+ 
+
+00:03:43.640 --> 00:03:47.270 align:start position:0%
+Note, there are many ways to build
+XGBoost<00:03:44.560><c> trees.</c><00:03:45.600><c> This</c><00:03:45.880><c> video</c><00:03:46.360><c> focuses</c><00:03:47.000><c> on</c><00:03:47.200><c> the</c>
+
+00:03:47.270 --> 00:03:47.280 align:start position:0%
+XGBoost trees. This video focuses on the
+ 
+
+00:03:47.280 --> 00:03:49.190 align:start position:0%
+XGBoost trees. This video focuses on the
+most<00:03:47.680><c> common</c><00:03:48.160><c> way</c><00:03:48.400><c> to</c><00:03:48.560><c> build</c><00:03:48.800><c> them</c><00:03:48.959><c> for</c>
+
+00:03:49.190 --> 00:03:49.200 align:start position:0%
+most common way to build them for
+ 
+
+00:03:49.200 --> 00:03:51.870 align:start position:0%
+most common way to build them for
+regression.
+
+00:03:51.870 --> 00:03:51.880 align:start position:0%
+regression.
+ 
+
+00:03:51.880 --> 00:03:56.230 align:start position:0%
+regression.
+Each<00:03:52.200><c> tree</c><00:03:52.760><c> starts</c><00:03:53.200><c> out</c><00:03:53.480><c> as</c><00:03:53.640><c> a</c><00:03:53.720><c> single</c><00:03:54.200><c> leaf.</c>
+
+00:03:56.230 --> 00:03:56.240 align:start position:0%
+Each tree starts out as a single leaf.
+ 
+
+00:03:56.240 --> 00:04:00.590 align:start position:0%
+Each tree starts out as a single leaf.
+And<00:03:56.520><c> all</c><00:03:56.760><c> of</c><00:03:56.840><c> the</c><00:03:56.920><c> residuals</c><00:03:57.680><c> go</c><00:03:57.920><c> to</c><00:03:58.080><c> the</c><00:03:58.200><c> leaf.</c>
+
+00:04:00.590 --> 00:04:00.600 align:start position:0%
+And all of the residuals go to the leaf.
+ 
+
+00:04:00.600 --> 00:04:03.590 align:start position:0%
+And all of the residuals go to the leaf.
+Now<00:04:00.880><c> we</c><00:04:01.040><c> calculate</c><00:04:01.680><c> a</c><00:04:01.760><c> quality</c><00:04:02.440><c> score</c><00:04:03.440><c> or</c>
+
+00:04:03.590 --> 00:04:03.600 align:start position:0%
+Now we calculate a quality score or
+ 
+
+00:04:03.600 --> 00:04:07.870 align:start position:0%
+Now we calculate a quality score or
+similarity<00:04:04.360><c> score</c><00:04:05.240><c> for</c><00:04:05.360><c> the</c><00:04:05.480><c> residuals.</c>
+
+00:04:07.870 --> 00:04:07.880 align:start position:0%
+similarity score for the residuals.
+ 
+
+00:04:07.880 --> 00:04:11.150 align:start position:0%
+similarity score for the residuals.
+The<00:04:08.000><c> similarity</c><00:04:08.720><c> score</c><00:04:09.520><c> equals</c><00:04:10.600><c> the</c><00:04:10.720><c> sum</c><00:04:11.040><c> of</c>
+
+00:04:11.150 --> 00:04:11.160 align:start position:0%
+The similarity score equals the sum of
+ 
+
+00:04:11.160 --> 00:04:14.630 align:start position:0%
+The similarity score equals the sum of
+the<00:04:11.320><c> residuals</c><00:04:12.320><c> squared</c><00:04:13.640><c> over</c><00:04:13.920><c> the</c><00:04:14.040><c> number</c><00:04:14.520><c> of</c>
+
+00:04:14.630 --> 00:04:14.640 align:start position:0%
+the residuals squared over the number of
+ 
+
+00:04:14.640 --> 00:04:18.390 align:start position:0%
+the residuals squared over the number of
+residuals<00:04:15.720><c> plus</c><00:04:16.200><c> lambda.</c>
+
+00:04:18.390 --> 00:04:18.400 align:start position:0%
+residuals plus lambda.
+ 
+
+00:04:18.400 --> 00:04:21.270 align:start position:0%
+residuals plus lambda.
+Note,<00:04:19.320><c> lambda</c><00:04:20.079><c> is</c><00:04:20.239><c> a</c><00:04:20.320><c> regularization</c>
+
+00:04:21.270 --> 00:04:21.280 align:start position:0%
+Note, lambda is a regularization
+ 
+
+00:04:21.280 --> 00:04:23.630 align:start position:0%
+Note, lambda is a regularization
+parameter<00:04:22.200><c> and</c><00:04:22.360><c> we'll</c><00:04:22.520><c> talk</c><00:04:22.800><c> more</c><00:04:23.080><c> about</c><00:04:23.400><c> that</c>
+
+00:04:23.630 --> 00:04:23.640 align:start position:0%
+parameter and we'll talk more about that
+ 
+
+00:04:23.640 --> 00:04:25.310 align:start position:0%
+parameter and we'll talk more about that
+later.
+
+00:04:25.310 --> 00:04:25.320 align:start position:0%
+later.
+ 
+
+00:04:25.320 --> 00:04:29.750 align:start position:0%
+later.
+For<00:04:25.560><c> now,</c><00:04:26.320><c> let</c><00:04:26.640><c> lambda</c><00:04:27.280><c> equals</c><00:04:27.800><c> zero.</c>
+
+00:04:29.750 --> 00:04:29.760 align:start position:0%
+For now, let lambda equals zero.
+ 
+
+00:04:29.760 --> 00:04:32.230 align:start position:0%
+For now, let lambda equals zero.
+Now<00:04:30.040><c> we</c><00:04:30.200><c> plug</c><00:04:30.520><c> the</c><00:04:30.640><c> four</c><00:04:31.000><c> residuals</c><00:04:31.840><c> into</c><00:04:32.120><c> the</c>
+
+00:04:32.230 --> 00:04:32.240 align:start position:0%
+Now we plug the four residuals into the
+ 
+
+00:04:32.240 --> 00:04:34.510 align:start position:0%
+Now we plug the four residuals into the
+numerator.
+
+00:04:34.510 --> 00:04:34.520 align:start position:0%
+numerator.
+ 
+
+00:04:34.520 --> 00:04:36.430 align:start position:0%
+numerator.
+And<00:04:34.720><c> since</c><00:04:35.000><c> there</c><00:04:35.160><c> are</c><00:04:35.320><c> four</c><00:04:35.640><c> residuals</c><00:04:36.320><c> in</c>
+
+00:04:36.430 --> 00:04:36.440 align:start position:0%
+And since there are four residuals in
+ 
+
+00:04:36.440 --> 00:04:38.870 align:start position:0%
+And since there are four residuals in
+the<00:04:36.560><c> leaf,</c><00:04:37.360><c> we</c><00:04:37.560><c> put</c><00:04:37.800><c> a</c><00:04:37.880><c> four</c><00:04:38.600><c> in</c><00:04:38.760><c> the</c>
+
+00:04:38.870 --> 00:04:38.880 align:start position:0%
+the leaf, we put a four in the
+ 
+
+00:04:38.880 --> 00:04:41.110 align:start position:0%
+the leaf, we put a four in the
+denominator.
+
+00:04:41.110 --> 00:04:41.120 align:start position:0%
+denominator.
+ 
+
+00:04:41.120 --> 00:04:43.430 align:start position:0%
+denominator.
+Note,<00:04:41.960><c> because</c><00:04:42.360><c> we</c><00:04:42.480><c> do</c><00:04:42.640><c> not</c><00:04:42.919><c> square</c><00:04:43.320><c> the</c>
+
+00:04:43.430 --> 00:04:43.440 align:start position:0%
+Note, because we do not square the
+ 
+
+00:04:43.440 --> 00:04:45.909 align:start position:0%
+Note, because we do not square the
+residuals<00:04:44.080><c> before</c><00:04:44.760><c> we</c><00:04:44.960><c> add</c><00:04:45.200><c> them</c><00:04:45.360><c> together</c><00:04:45.800><c> in</c>
+
+00:04:45.909 --> 00:04:45.919 align:start position:0%
+residuals before we add them together in
+ 
+
+00:04:45.919 --> 00:04:50.710 align:start position:0%
+residuals before we add them together in
+the<00:04:46.000><c> numerator,</c><00:04:47.280><c> 7.5</c><00:04:48.720><c> and</c><00:04:48.919><c> -7.5</c>
+
+00:04:50.710 --> 00:04:50.720 align:start position:0%
+the numerator, 7.5 and -7.5
+ 
+
+00:04:50.720 --> 00:04:53.430 align:start position:0%
+the numerator, 7.5 and -7.5
+cancel<00:04:51.240><c> each</c><00:04:51.440><c> other</c><00:04:51.760><c> out.</c>
+
+00:04:53.430 --> 00:04:53.440 align:start position:0%
+cancel each other out.
+ 
+
+00:04:53.440 --> 00:04:55.430 align:start position:0%
+cancel each other out.
+In<00:04:53.640><c> other</c><00:04:53.919><c> words,</c><00:04:54.600><c> when</c><00:04:54.760><c> we</c><00:04:54.919><c> add</c><00:04:55.160><c> this</c>
+
+00:04:55.430 --> 00:04:55.440 align:start position:0%
+In other words, when we add this
+ 
+
+00:04:55.440 --> 00:04:56.790 align:start position:0%
+In other words, when we add this
+residual
+
+00:04:56.790 --> 00:04:56.800 align:start position:0%
+residual
+ 
+
+00:04:56.800 --> 00:04:58.990 align:start position:0%
+residual
+to<00:04:57.000><c> this</c><00:04:57.360><c> residual,</c>
+
+00:04:58.990 --> 00:04:59.000 align:start position:0%
+to this residual,
+ 
+
+00:04:59.000 --> 00:05:02.070 align:start position:0%
+to this residual,
+they<00:04:59.200><c> cancel</c><00:04:59.760><c> each</c><00:05:00.000><c> other</c><00:05:00.360><c> out.</c>
+
+00:05:02.070 --> 00:05:02.080 align:start position:0%
+they cancel each other out.
+ 
+
+00:05:02.080 --> 00:05:08.390 align:start position:0%
+they cancel each other out.
+Likewise,<00:05:03.280><c> 6.5</c><00:05:04.440><c> cancels</c><00:05:04.919><c> out</c><00:05:05.120><c> most</c><00:05:05.600><c> of</c><00:05:05.760><c> -10.5,</c>
+
+00:05:08.390 --> 00:05:08.400 align:start position:0%
+Likewise, 6.5 cancels out most of -10.5,
+ 
+
+00:05:08.400 --> 00:05:13.030 align:start position:0%
+Likewise, 6.5 cancels out most of -10.5,
+leaving<00:05:08.880><c> -4</c><00:05:09.680><c> squared</c><00:05:10.520><c> in</c><00:05:10.680><c> the</c><00:05:10.760><c> numerator.</c>
+
+00:05:13.030 --> 00:05:13.040 align:start position:0%
+leaving -4 squared in the numerator.
+ 
+
+00:05:13.040 --> 00:05:15.350 align:start position:0%
+leaving -4 squared in the numerator.
+Thus,<00:05:13.760><c> the</c><00:05:13.880><c> similarity</c><00:05:14.640><c> score</c><00:05:15.120><c> for</c><00:05:15.240><c> the</c>
+
+00:05:15.350 --> 00:05:15.360 align:start position:0%
+Thus, the similarity score for the
+ 
+
+00:05:15.360 --> 00:05:19.190 align:start position:0%
+Thus, the similarity score for the
+residuals<00:05:16.000><c> in</c><00:05:16.120><c> the</c><00:05:16.240><c> root</c><00:05:16.880><c> equals</c><00:05:17.360><c> four.</c>
+
+00:05:19.190 --> 00:05:19.200 align:start position:0%
+residuals in the root equals four.
+ 
+
+00:05:19.200 --> 00:05:22.190 align:start position:0%
+residuals in the root equals four.
+So<00:05:19.440><c> let's</c><00:05:19.760><c> put</c><00:05:20.120><c> similarity</c><00:05:20.919><c> equals</c><00:05:21.320><c> four</c><00:05:21.919><c> up</c>
+
+00:05:22.190 --> 00:05:22.200 align:start position:0%
+So let's put similarity equals four up
+ 
+
+00:05:22.200 --> 00:05:25.630 align:start position:0%
+So let's put similarity equals four up
+here<00:05:22.560><c> so</c><00:05:22.760><c> we</c><00:05:22.880><c> can</c><00:05:23.040><c> keep</c><00:05:23.280><c> track</c><00:05:23.600><c> of</c><00:05:23.760><c> it.</c>
+
+00:05:25.630 --> 00:05:25.640 align:start position:0%
+here so we can keep track of it.
+ 
+
+00:05:25.640 --> 00:05:27.990 align:start position:0%
+here so we can keep track of it.
+Now<00:05:25.960><c> the</c><00:05:26.080><c> question</c><00:05:26.800><c> is</c><00:05:27.080><c> whether</c><00:05:27.440><c> or</c><00:05:27.560><c> not</c><00:05:27.880><c> we</c>
+
+00:05:27.990 --> 00:05:28.000 align:start position:0%
+Now the question is whether or not we
+ 
+
+00:05:28.000 --> 00:05:30.430 align:start position:0%
+Now the question is whether or not we
+can<00:05:28.160><c> do</c><00:05:28.320><c> a</c><00:05:28.440><c> better</c><00:05:28.800><c> job</c><00:05:29.240><c> clustering</c><00:05:29.880><c> similar</c>
+
+00:05:30.430 --> 00:05:30.440 align:start position:0%
+can do a better job clustering similar
+ 
+
+00:05:30.440 --> 00:05:32.870 align:start position:0%
+can do a better job clustering similar
+residuals<00:05:31.360><c> if</c><00:05:31.560><c> we</c><00:05:31.680><c> split</c><00:05:32.040><c> them</c><00:05:32.360><c> into</c><00:05:32.640><c> two</c>
+
+00:05:32.870 --> 00:05:32.880 align:start position:0%
+residuals if we split them into two
+ 
+
+00:05:32.880 --> 00:05:34.870 align:start position:0%
+residuals if we split them into two
+groups.
+
+00:05:34.870 --> 00:05:34.880 align:start position:0%
+groups.
+ 
+
+00:05:34.880 --> 00:05:37.430 align:start position:0%
+groups.
+To<00:05:35.080><c> answer</c><00:05:35.440><c> this,</c><00:05:36.200><c> we</c><00:05:36.360><c> first</c><00:05:36.760><c> focus</c><00:05:37.200><c> on</c><00:05:37.320><c> the</c>
+
+00:05:37.430 --> 00:05:37.440 align:start position:0%
+To answer this, we first focus on the
+ 
+
+00:05:37.440 --> 00:05:39.550 align:start position:0%
+To answer this, we first focus on the
+two<00:05:37.720><c> observations</c><00:05:38.720><c> with</c><00:05:38.960><c> the</c><00:05:39.080><c> lowest</c>
+
+00:05:39.550 --> 00:05:39.560 align:start position:0%
+two observations with the lowest
+ 
+
+00:05:39.560 --> 00:05:41.990 align:start position:0%
+two observations with the lowest
+dosages.
+
+00:05:41.990 --> 00:05:42.000 align:start position:0%
+dosages.
+ 
+
+00:05:42.000 --> 00:05:44.909 align:start position:0%
+dosages.
+Their<00:05:42.280><c> average</c><00:05:42.720><c> dosage</c><00:05:43.280><c> is</c><00:05:43.520><c> 15</c><00:05:44.520><c> and</c><00:05:44.640><c> that</c>
+
+00:05:44.909 --> 00:05:44.919 align:start position:0%
+Their average dosage is 15 and that
+ 
+
+00:05:44.919 --> 00:05:49.350 align:start position:0%
+Their average dosage is 15 and that
+corresponds<00:05:45.760><c> to</c><00:05:45.919><c> this</c><00:05:46.320><c> dotted</c><00:05:46.880><c> red</c><00:05:47.200><c> line.</c>
+
+00:05:49.350 --> 00:05:49.360 align:start position:0%
+corresponds to this dotted red line.
+ 
+
+00:05:49.360 --> 00:05:51.670 align:start position:0%
+corresponds to this dotted red line.
+So,<00:05:49.560><c> we</c><00:05:49.680><c> split</c><00:05:50.080><c> the</c><00:05:50.280><c> observations</c><00:05:51.120><c> into</c><00:05:51.400><c> two</c>
+
+00:05:51.670 --> 00:05:51.680 align:start position:0%
+So, we split the observations into two
+ 
+
+00:05:51.680 --> 00:05:53.750 align:start position:0%
+So, we split the observations into two
+groups<00:05:52.400><c> based</c><00:05:52.760><c> on</c><00:05:52.920><c> whether</c><00:05:53.160><c> or</c><00:05:53.240><c> not</c><00:05:53.640><c> the</c>
+
+00:05:53.750 --> 00:05:53.760 align:start position:0%
+groups based on whether or not the
+ 
+
+00:05:53.760 --> 00:05:57.390 align:start position:0%
+groups based on whether or not the
+dosage<00:05:54.400><c> is</c><00:05:54.600><c> less</c><00:05:54.840><c> than</c><00:05:55.000><c> 15.</c>
+
+00:05:57.390 --> 00:05:57.400 align:start position:0%
+dosage is less than 15.
+ 
+
+00:05:57.400 --> 00:05:59.870 align:start position:0%
+dosage is less than 15.
+The<00:05:57.600><c> observation</c><00:05:58.400><c> on</c><00:05:58.520><c> the</c><00:05:58.640><c> far</c><00:05:59.000><c> left</c><00:05:59.520><c> is</c><00:05:59.680><c> the</c>
+
+00:05:59.870 --> 00:05:59.880 align:start position:0%
+The observation on the far left is the
+ 
+
+00:05:59.880 --> 00:06:03.230 align:start position:0%
+The observation on the far left is the
+only<00:06:00.200><c> one</c><00:06:00.520><c> with</c><00:06:00.760><c> dosage</c><00:06:01.280><c> less</c><00:06:01.520><c> than</c><00:06:01.720><c> 15.</c>
+
+00:06:03.230 --> 00:06:03.240 align:start position:0%
+only one with dosage less than 15.
+ 
+
+00:06:03.240 --> 00:06:05.670 align:start position:0%
+only one with dosage less than 15.
+So,<00:06:03.520><c> its</c><00:06:03.800><c> residual</c><00:06:04.520><c> goes</c><00:06:04.840><c> to</c><00:06:04.920><c> the</c><00:06:05.040><c> leaf</c><00:06:05.400><c> on</c><00:06:05.560><c> the</c>
+
+00:06:05.670 --> 00:06:05.680 align:start position:0%
+So, its residual goes to the leaf on the
+ 
+
+00:06:05.680 --> 00:06:07.630 align:start position:0%
+So, its residual goes to the leaf on the
+left.
+
+00:06:07.630 --> 00:06:07.640 align:start position:0%
+left.
+ 
+
+00:06:07.640 --> 00:06:09.710 align:start position:0%
+left.
+All<00:06:07.920><c> of</c><00:06:08.000><c> the</c><00:06:08.160><c> other</c><00:06:08.400><c> residuals</c><00:06:09.240><c> go</c><00:06:09.440><c> to</c><00:06:09.600><c> the</c>
+
+00:06:09.710 --> 00:06:09.720 align:start position:0%
+All of the other residuals go to the
+ 
+
+00:06:09.720 --> 00:06:12.830 align:start position:0%
+All of the other residuals go to the
+leaf<00:06:10.040><c> on</c><00:06:10.120><c> the</c><00:06:10.240><c> right.</c>
+
+00:06:12.830 --> 00:06:12.840 align:start position:0%
+leaf on the right.
+ 
+
+00:06:12.840 --> 00:06:15.030 align:start position:0%
+leaf on the right.
+Now,<00:06:13.200><c> we</c><00:06:13.320><c> calculate</c><00:06:13.840><c> the</c><00:06:13.960><c> similarity</c><00:06:14.680><c> score</c>
+
+00:06:15.030 --> 00:06:15.040 align:start position:0%
+Now, we calculate the similarity score
+ 
+
+00:06:15.040 --> 00:06:17.909 align:start position:0%
+Now, we calculate the similarity score
+for<00:06:15.200><c> the</c><00:06:15.320><c> leaf</c><00:06:15.640><c> on</c><00:06:15.720><c> the</c><00:06:15.840><c> left</c><00:06:17.080><c> by</c><00:06:17.280><c> plugging</c><00:06:17.760><c> the</c>
+
+00:06:17.909 --> 00:06:17.919 align:start position:0%
+for the leaf on the left by plugging the
+ 
+
+00:06:17.919 --> 00:06:21.510 align:start position:0%
+for the leaf on the left by plugging the
+one<00:06:18.240><c> residual</c><00:06:18.960><c> into</c><00:06:19.240><c> the</c><00:06:19.360><c> numerator.</c>
+
+00:06:21.510 --> 00:06:21.520 align:start position:0%
+one residual into the numerator.
+ 
+
+00:06:21.520 --> 00:06:23.670 align:start position:0%
+one residual into the numerator.
+And<00:06:21.720><c> since</c><00:06:21.960><c> only</c><00:06:22.240><c> one</c><00:06:22.560><c> residual</c><00:06:23.280><c> went</c><00:06:23.440><c> to</c><00:06:23.560><c> the</c>
+
+00:06:23.670 --> 00:06:23.680 align:start position:0%
+And since only one residual went to the
+ 
+
+00:06:23.680 --> 00:06:25.550 align:start position:0%
+And since only one residual went to the
+leaf<00:06:23.960><c> on</c><00:06:24.040><c> the</c><00:06:24.160><c> left,</c><00:06:24.919><c> the</c><00:06:25.040><c> number</c><00:06:25.440><c> of</c>
+
+00:06:25.550 --> 00:06:25.560 align:start position:0%
+leaf on the left, the number of
+ 
+
+00:06:25.560 --> 00:06:28.990 align:start position:0%
+leaf on the left, the number of
+residuals<00:06:26.440><c> equals</c><00:06:26.960><c> one.</c>
+
+00:06:28.990 --> 00:06:29.000 align:start position:0%
+residuals equals one.
+ 
+
+00:06:29.000 --> 00:06:31.550 align:start position:0%
+residuals equals one.
+And<00:06:29.200><c> just</c><00:06:29.480><c> like</c><00:06:29.640><c> before,</c><00:06:30.520><c> we</c><00:06:30.680><c> set</c><00:06:30.960><c> lambda</c>
+
+00:06:31.550 --> 00:06:31.560 align:start position:0%
+And just like before, we set lambda
+ 
+
+00:06:31.560 --> 00:06:34.070 align:start position:0%
+And just like before, we set lambda
+equal<00:06:31.840><c> to</c><00:06:32.000><c> zero.</c>
+
+00:06:34.070 --> 00:06:34.080 align:start position:0%
+equal to zero.
+ 
+
+00:06:34.080 --> 00:06:36.190 align:start position:0%
+equal to zero.
+And<00:06:34.240><c> the</c><00:06:34.320><c> similarity</c><00:06:35.040><c> score</c><00:06:35.480><c> for</c><00:06:35.640><c> the</c><00:06:35.760><c> leaf</c><00:06:36.080><c> on</c>
+
+00:06:36.190 --> 00:06:36.200 align:start position:0%
+And the similarity score for the leaf on
+ 
+
+00:06:36.200 --> 00:06:40.990 align:start position:0%
+And the similarity score for the leaf on
+the<00:06:36.320><c> left</c><00:06:36.960><c> equals</c><00:06:37.400><c> 110.25.</c>
+
+00:06:40.990 --> 00:06:41.000 align:start position:0%
+ 
+ 
+
+00:06:41.000 --> 00:06:45.630 align:start position:0%
+ 
+So,<00:06:41.240><c> let's</c><00:06:41.600><c> put</c><00:06:41.919><c> similarity</c><00:06:42.800><c> equals</c><00:06:43.200><c> 110.25</c>
+
+00:06:45.630 --> 00:06:45.640 align:start position:0%
+So, let's put similarity equals 110.25
+ 
+
+00:06:45.640 --> 00:06:47.710 align:start position:0%
+So, let's put similarity equals 110.25
+under<00:06:45.919><c> the</c><00:06:46.040><c> leaf</c><00:06:46.520><c> so</c><00:06:46.720><c> we</c><00:06:46.800><c> can</c><00:06:46.960><c> keep</c><00:06:47.200><c> track</c><00:06:47.560><c> of</c>
+
+00:06:47.710 --> 00:06:47.720 align:start position:0%
+under the leaf so we can keep track of
+ 
+
+00:06:47.720 --> 00:06:49.430 align:start position:0%
+under the leaf so we can keep track of
+it.
+
+00:06:49.430 --> 00:06:49.440 align:start position:0%
+it.
+ 
+
+00:06:49.440 --> 00:06:51.630 align:start position:0%
+it.
+And<00:06:49.600><c> calculate</c><00:06:50.120><c> the</c><00:06:50.240><c> similarity</c><00:06:50.960><c> score</c><00:06:51.480><c> for</c>
+
+00:06:51.630 --> 00:06:51.640 align:start position:0%
+And calculate the similarity score for
+ 
+
+00:06:51.640 --> 00:06:53.790 align:start position:0%
+And calculate the similarity score for
+the<00:06:51.760><c> residuals</c><00:06:52.480><c> that</c><00:06:52.640><c> go</c><00:06:52.760><c> to</c><00:06:52.919><c> the</c><00:06:53.040><c> leaf</c><00:06:53.520><c> on</c><00:06:53.680><c> the</c>
+
+00:06:53.790 --> 00:06:53.800 align:start position:0%
+the residuals that go to the leaf on the
+ 
+
+00:06:53.800 --> 00:06:55.790 align:start position:0%
+the residuals that go to the leaf on the
+right.
+
+00:06:55.790 --> 00:06:55.800 align:start position:0%
+right.
+ 
+
+00:06:55.800 --> 00:06:58.550 align:start position:0%
+right.
+We<00:06:55.960><c> plug</c><00:06:56.240><c> in</c><00:06:56.360><c> the</c><00:06:56.480><c> sum</c><00:06:56.840><c> of</c><00:06:56.960><c> residuals</c><00:06:57.760><c> squared</c>
+
+00:06:58.550 --> 00:06:58.560 align:start position:0%
+We plug in the sum of residuals squared
+ 
+
+00:06:58.560 --> 00:07:01.190 align:start position:0%
+We plug in the sum of residuals squared
+into<00:06:58.840><c> the</c><00:06:58.960><c> numerator.</c>
+
+00:07:01.190 --> 00:07:01.200 align:start position:0%
+into the numerator.
+ 
+
+00:07:01.200 --> 00:07:03.030 align:start position:0%
+into the numerator.
+And<00:07:01.400><c> since</c><00:07:01.680><c> there</c><00:07:01.880><c> are</c><00:07:01.960><c> three</c><00:07:02.320><c> residuals</c><00:07:02.960><c> in</c>
+
+00:07:03.030 --> 00:07:03.040 align:start position:0%
+And since there are three residuals in
+ 
+
+00:07:03.040 --> 00:07:05.630 align:start position:0%
+And since there are three residuals in
+the<00:07:03.160><c> leaf</c><00:07:03.520><c> on</c><00:07:03.640><c> the</c><00:07:03.760><c> right,</c><00:07:04.480><c> we</c><00:07:04.640><c> plug</c><00:07:05.000><c> three</c>
+
+00:07:05.630 --> 00:07:05.640 align:start position:0%
+the leaf on the right, we plug three
+ 
+
+00:07:05.640 --> 00:07:08.390 align:start position:0%
+the leaf on the right, we plug three
+into<00:07:05.960><c> the</c><00:07:06.080><c> denominator.</c>
+
+00:07:08.390 --> 00:07:08.400 align:start position:0%
+into the denominator.
+ 
+
+00:07:08.400 --> 00:07:11.190 align:start position:0%
+into the denominator.
+And<00:07:08.560><c> just</c><00:07:08.840><c> like</c><00:07:09.000><c> before,</c><00:07:10.000><c> let's</c><00:07:10.320><c> let</c><00:07:10.560><c> lambda</c>
+
+00:07:11.190 --> 00:07:11.200 align:start position:0%
+And just like before, let's let lambda
+ 
+
+00:07:11.200 --> 00:07:13.750 align:start position:0%
+And just like before, let's let lambda
+equal<00:07:11.640><c> zero.</c>
+
+00:07:13.750 --> 00:07:13.760 align:start position:0%
+equal zero.
+ 
+
+00:07:13.760 --> 00:07:16.990 align:start position:0%
+equal zero.
+Note,<00:07:14.800><c> like</c><00:07:15.040><c> we</c><00:07:15.160><c> saw</c><00:07:15.440><c> earlier,</c><00:07:16.320><c> because</c><00:07:16.720><c> we</c><00:07:16.840><c> do</c>
+
+00:07:16.990 --> 00:07:17.000 align:start position:0%
+Note, like we saw earlier, because we do
+ 
+
+00:07:17.000 --> 00:07:19.390 align:start position:0%
+Note, like we saw earlier, because we do
+not<00:07:17.240><c> square</c><00:07:17.680><c> the</c><00:07:17.800><c> residuals</c><00:07:18.400><c> before</c><00:07:18.960><c> we</c><00:07:19.160><c> add</c>
+
+00:07:19.390 --> 00:07:19.400 align:start position:0%
+not square the residuals before we add
+ 
+
+00:07:19.400 --> 00:07:23.990 align:start position:0%
+not square the residuals before we add
+them<00:07:19.560><c> together,</c><00:07:20.640><c> 7.5</c><00:07:22.080><c> and</c><00:07:22.240><c> -7.5</c>
+
+00:07:23.990 --> 00:07:24.000 align:start position:0%
+them together, 7.5 and -7.5
+ 
+
+00:07:24.000 --> 00:07:26.830 align:start position:0%
+them together, 7.5 and -7.5
+cancel<00:07:24.520><c> each</c><00:07:24.720><c> other</c><00:07:25.040><c> out.</c>
+
+00:07:26.830 --> 00:07:26.840 align:start position:0%
+cancel each other out.
+ 
+
+00:07:26.840 --> 00:07:30.110 align:start position:0%
+cancel each other out.
+Leaving<00:07:27.240><c> only</c><00:07:27.520><c> one</c><00:07:27.800><c> residual,</c><00:07:28.600><c> 6.5,</c><00:07:29.880><c> in</c><00:07:30.000><c> the</c>
+
+00:07:30.110 --> 00:07:30.120 align:start position:0%
+Leaving only one residual, 6.5, in the
+ 
+
+00:07:30.120 --> 00:07:32.750 align:start position:0%
+Leaving only one residual, 6.5, in the
+numerator.
+
+00:07:32.750 --> 00:07:32.760 align:start position:0%
+numerator.
+ 
+
+00:07:32.760 --> 00:07:35.070 align:start position:0%
+numerator.
+Thus,<00:07:33.520><c> the</c><00:07:33.640><c> similarity</c><00:07:34.400><c> score</c><00:07:34.840><c> for</c><00:07:34.960><c> the</c>
+
+00:07:35.070 --> 00:07:35.080 align:start position:0%
+Thus, the similarity score for the
+ 
+
+00:07:35.080 --> 00:07:37.510 align:start position:0%
+Thus, the similarity score for the
+residuals<00:07:35.919><c> in</c><00:07:36.080><c> the</c><00:07:36.200><c> leaf</c><00:07:36.520><c> on</c><00:07:36.640><c> the</c><00:07:36.760><c> right</c>
+
+00:07:37.510 --> 00:07:37.520 align:start position:0%
+residuals in the leaf on the right
+ 
+
+00:07:37.520 --> 00:07:41.550 align:start position:0%
+residuals in the leaf on the right
+equals<00:07:37.880><c> 14.08.</c>
+
+00:07:41.550 --> 00:07:41.560 align:start position:0%
+ 
+ 
+
+00:07:41.560 --> 00:07:45.630 align:start position:0%
+ 
+So,<00:07:41.800><c> let's</c><00:07:42.360><c> similarity</c><00:07:43.280><c> equals</c><00:07:43.640><c> 14.08</c>
+
+00:07:45.630 --> 00:07:45.640 align:start position:0%
+So, let's similarity equals 14.08
+ 
+
+00:07:45.640 --> 00:07:47.590 align:start position:0%
+So, let's similarity equals 14.08
+under<00:07:45.920><c> the</c><00:07:46.040><c> leaf</c><00:07:46.440><c> so</c><00:07:46.600><c> we</c><00:07:46.720><c> can</c><00:07:46.840><c> keep</c><00:07:47.080><c> track</c><00:07:47.440><c> of</c>
+
+00:07:47.590 --> 00:07:47.600 align:start position:0%
+under the leaf so we can keep track of
+ 
+
+00:07:47.600 --> 00:07:49.670 align:start position:0%
+under the leaf so we can keep track of
+it.
+
+00:07:49.670 --> 00:07:49.680 align:start position:0%
+it.
+ 
+
+00:07:49.680 --> 00:07:51.870 align:start position:0%
+it.
+Now<00:07:50.000><c> that</c><00:07:50.160><c> we</c><00:07:50.280><c> have</c><00:07:50.440><c> calculated</c><00:07:51.200><c> similarity</c>
+
+00:07:51.870 --> 00:07:51.880 align:start position:0%
+Now that we have calculated similarity
+ 
+
+00:07:51.880 --> 00:07:54.590 align:start position:0%
+Now that we have calculated similarity
+scores<00:07:52.400><c> for</c><00:07:52.640><c> each</c><00:07:52.920><c> node,</c>
+
+00:07:54.590 --> 00:07:54.600 align:start position:0%
+scores for each node,
+ 
+
+00:07:54.600 --> 00:07:56.870 align:start position:0%
+scores for each node,
+we<00:07:54.760><c> see</c><00:07:55.040><c> that</c><00:07:55.280><c> when</c><00:07:55.440><c> the</c><00:07:55.520><c> residuals</c><00:07:56.280><c> in</c><00:07:56.400><c> a</c><00:07:56.480><c> node</c>
+
+00:07:56.870 --> 00:07:56.880 align:start position:0%
+we see that when the residuals in a node
+ 
+
+00:07:56.880 --> 00:07:59.110 align:start position:0%
+we see that when the residuals in a node
+are<00:07:57.000><c> very</c><00:07:57.320><c> different,</c><00:07:58.240><c> they</c><00:07:58.400><c> cancel</c><00:07:58.920><c> each</c>
+
+00:07:59.110 --> 00:07:59.120 align:start position:0%
+are very different, they cancel each
+ 
+
+00:07:59.120 --> 00:08:01.390 align:start position:0%
+are very different, they cancel each
+other<00:07:59.400><c> out</c><00:07:59.840><c> and</c><00:07:59.960><c> the</c><00:08:00.040><c> similarity</c><00:08:00.760><c> score</c><00:08:01.200><c> is</c>
+
+00:08:01.390 --> 00:08:01.400 align:start position:0%
+other out and the similarity score is
+ 
+
+00:08:01.400 --> 00:08:04.110 align:start position:0%
+other out and the similarity score is
+relatively<00:08:02.040><c> small.</c>
+
+00:08:04.110 --> 00:08:04.120 align:start position:0%
+relatively small.
+ 
+
+00:08:04.120 --> 00:08:06.470 align:start position:0%
+relatively small.
+In<00:08:04.360><c> contrast,</c><00:08:05.520><c> when</c><00:08:05.640><c> the</c><00:08:05.720><c> residuals</c><00:08:06.360><c> are</c>
+
+00:08:06.470 --> 00:08:06.480 align:start position:0%
+In contrast, when the residuals are
+ 
+
+00:08:06.480 --> 00:08:09.350 align:start position:0%
+In contrast, when the residuals are
+similar<00:08:07.480><c> or</c><00:08:07.600><c> there</c><00:08:07.800><c> is</c><00:08:07.920><c> just</c><00:08:08.280><c> one</c><00:08:08.520><c> of</c><00:08:08.640><c> them,</c>
+
+00:08:09.350 --> 00:08:09.360 align:start position:0%
+similar or there is just one of them,
+ 
+
+00:08:09.360 --> 00:08:11.150 align:start position:0%
+similar or there is just one of them,
+they<00:08:09.480><c> do</c><00:08:09.680><c> not</c><00:08:10.000><c> cancel</c><00:08:10.480><c> out</c><00:08:10.960><c> and</c><00:08:11.080><c> the</c>
+
+00:08:11.150 --> 00:08:11.160 align:start position:0%
+they do not cancel out and the
+ 
+
+00:08:11.160 --> 00:08:15.830 align:start position:0%
+they do not cancel out and the
+similarity<00:08:11.920><c> score</c><00:08:12.400><c> is</c><00:08:12.600><c> relatively</c><00:08:13.320><c> large.</c>
+
+00:08:15.830 --> 00:08:15.840 align:start position:0%
+similarity score is relatively large.
+ 
+
+00:08:15.840 --> 00:08:18.150 align:start position:0%
+similarity score is relatively large.
+Now<00:08:16.160><c> we</c><00:08:16.280><c> need</c><00:08:16.480><c> to</c><00:08:16.600><c> quantify</c><00:08:17.360><c> how</c><00:08:17.560><c> much</c><00:08:17.840><c> better</c>
+
+00:08:18.150 --> 00:08:18.160 align:start position:0%
+Now we need to quantify how much better
+ 
+
+00:08:18.160 --> 00:08:20.710 align:start position:0%
+Now we need to quantify how much better
+the<00:08:18.360><c> leaves</c><00:08:18.720><c> cluster</c><00:08:19.240><c> similar</c><00:08:19.800><c> residuals</c>
+
+00:08:20.710 --> 00:08:20.720 align:start position:0%
+the leaves cluster similar residuals
+ 
+
+00:08:20.720 --> 00:08:23.350 align:start position:0%
+the leaves cluster similar residuals
+than<00:08:20.880><c> the</c><00:08:21.040><c> root.</c>
+
+00:08:23.350 --> 00:08:23.360 align:start position:0%
+than the root.
+ 
+
+00:08:23.360 --> 00:08:25.909 align:start position:0%
+than the root.
+We<00:08:23.520><c> do</c><00:08:23.800><c> this</c><00:08:24.160><c> by</c><00:08:24.360><c> calculating</c><00:08:25.160><c> the</c><00:08:25.280><c> gain</c><00:08:25.760><c> of</c>
+
+00:08:25.909 --> 00:08:25.919 align:start position:0%
+We do this by calculating the gain of
+ 
+
+00:08:25.919 --> 00:08:29.909 align:start position:0%
+We do this by calculating the gain of
+splitting<00:08:26.360><c> the</c><00:08:26.480><c> residuals</c><00:08:27.200><c> into</c><00:08:27.520><c> two</c><00:08:27.800><c> groups.</c>
+
+00:08:29.909 --> 00:08:29.919 align:start position:0%
+splitting the residuals into two groups.
+ 
+
+00:08:29.919 --> 00:08:32.510 align:start position:0%
+splitting the residuals into two groups.
+Gain<00:08:30.600><c> is</c><00:08:30.800><c> equal</c><00:08:31.080><c> to</c><00:08:31.200><c> the</c><00:08:31.320><c> similarity</c><00:08:32.080><c> score</c>
+
+00:08:32.510 --> 00:08:32.520 align:start position:0%
+Gain is equal to the similarity score
+ 
+
+00:08:32.520 --> 00:08:34.990 align:start position:0%
+Gain is equal to the similarity score
+for<00:08:32.680><c> the</c><00:08:32.840><c> leaf</c><00:08:33.120><c> on</c><00:08:33.240><c> the</c><00:08:33.360><c> left</c>
+
+00:08:34.990 --> 00:08:35.000 align:start position:0%
+for the leaf on the left
+ 
+
+00:08:35.000 --> 00:08:37.230 align:start position:0%
+for the leaf on the left
+plus<00:08:35.320><c> the</c><00:08:35.440><c> similarity</c><00:08:36.200><c> score</c><00:08:36.640><c> for</c><00:08:36.800><c> the</c><00:08:36.919><c> leaf</c>
+
+00:08:37.230 --> 00:08:37.240 align:start position:0%
+plus the similarity score for the leaf
+ 
+
+00:08:37.240 --> 00:08:38.990 align:start position:0%
+plus the similarity score for the leaf
+on<00:08:37.360><c> the</c><00:08:37.479><c> right</c>
+
+00:08:38.990 --> 00:08:39.000 align:start position:0%
+on the right
+ 
+
+00:08:39.000 --> 00:08:43.190 align:start position:0%
+on the right
+minus<00:08:39.560><c> the</c><00:08:39.680><c> similarity</c><00:08:40.400><c> score</c><00:08:40.840><c> for</c><00:08:41.039><c> the</c><00:08:41.200><c> root.</c>
+
+00:08:43.190 --> 00:08:43.200 align:start position:0%
+minus the similarity score for the root.
+ 
+
+00:08:43.200 --> 00:08:49.070 align:start position:0%
+minus the similarity score for the root.
+Pluging<00:08:43.680><c> in</c><00:08:43.800><c> the</c><00:08:43.919><c> numbers</c>
+
+00:08:49.070 --> 00:08:49.080 align:start position:0%
+ 
+ 
+
+00:08:49.080 --> 00:08:52.750 align:start position:0%
+ 
+gives<00:08:49.360><c> us</c><00:08:49.560><c> 120.33.</c>
+
+00:08:52.750 --> 00:08:52.760 align:start position:0%
+ 
+ 
+
+00:08:52.760 --> 00:08:55.470 align:start position:0%
+ 
+Small<00:08:53.280><c> bam.</c>
+
+00:08:55.470 --> 00:08:55.480 align:start position:0%
+Small bam.
+ 
+
+00:08:55.480 --> 00:08:57.670 align:start position:0%
+Small bam.
+Now<00:08:55.800><c> that</c><00:08:55.960><c> we</c><00:08:56.080><c> have</c><00:08:56.200><c> calculated</c><00:08:56.920><c> the</c><00:08:57.040><c> gain</c><00:08:57.520><c> for</c>
+
+00:08:57.670 --> 00:08:57.680 align:start position:0%
+Now that we have calculated the gain for
+ 
+
+00:08:57.680 --> 00:09:01.150 align:start position:0%
+Now that we have calculated the gain for
+the<00:08:57.800><c> threshold</c><00:08:58.560><c> of</c><00:08:58.720><c> dosage</c><00:08:59.320><c> less</c><00:08:59.560><c> than</c><00:08:59.720><c> 15,</c><00:09:01.040><c> we</c>
+
+00:09:01.150 --> 00:09:01.160 align:start position:0%
+the threshold of dosage less than 15, we
+ 
+
+00:09:01.160 --> 00:09:03.390 align:start position:0%
+the threshold of dosage less than 15, we
+can<00:09:01.320><c> compare</c><00:09:01.839><c> it</c><00:09:02.000><c> to</c><00:09:02.080><c> the</c><00:09:02.240><c> gain</c><00:09:02.640><c> calculated</c>
+
+00:09:03.390 --> 00:09:03.400 align:start position:0%
+can compare it to the gain calculated
+ 
+
+00:09:03.400 --> 00:09:06.070 align:start position:0%
+can compare it to the gain calculated
+for<00:09:03.600><c> other</c><00:09:03.839><c> thresholds.</c>
+
+00:09:06.070 --> 00:09:06.080 align:start position:0%
+for other thresholds.
+ 
+
+00:09:06.080 --> 00:09:08.710 align:start position:0%
+for other thresholds.
+So,<00:09:06.320><c> we</c><00:09:06.480><c> shift</c><00:09:06.880><c> the</c><00:09:07.000><c> threshold</c><00:09:07.600><c> over</c><00:09:08.240><c> so</c><00:09:08.440><c> that</c>
+
+00:09:08.710 --> 00:09:08.720 align:start position:0%
+So, we shift the threshold over so that
+ 
+
+00:09:08.720 --> 00:09:10.950 align:start position:0%
+So, we shift the threshold over so that
+it<00:09:08.839><c> is</c><00:09:09.040><c> the</c><00:09:09.280><c> average</c><00:09:10.000><c> of</c><00:09:10.120><c> the</c><00:09:10.240><c> next</c><00:09:10.680><c> two</c>
+
+00:09:10.950 --> 00:09:10.960 align:start position:0%
+it is the average of the next two
+ 
+
+00:09:10.960 --> 00:09:13.150 align:start position:0%
+it is the average of the next two
+observations
+
+00:09:13.150 --> 00:09:13.160 align:start position:0%
+observations
+ 
+
+00:09:13.160 --> 00:09:15.590 align:start position:0%
+observations
+and<00:09:13.360><c> build</c><00:09:13.680><c> a</c><00:09:13.720><c> simple</c><00:09:14.200><c> tree</c><00:09:14.760><c> that</c><00:09:14.960><c> divides</c><00:09:15.440><c> the</c>
+
+00:09:15.590 --> 00:09:15.600 align:start position:0%
+and build a simple tree that divides the
+ 
+
+00:09:15.600 --> 00:09:18.350 align:start position:0%
+and build a simple tree that divides the
+observations<00:09:16.520><c> using</c><00:09:16.880><c> the</c><00:09:17.000><c> new</c><00:09:17.240><c> threshold,</c>
+
+00:09:18.350 --> 00:09:18.360 align:start position:0%
+observations using the new threshold,
+ 
+
+00:09:18.360 --> 00:09:22.750 align:start position:0%
+observations using the new threshold,
+dosage<00:09:18.960><c> less</c><00:09:19.160><c> than</c><00:09:19.360><c> 22.5.</c>
+
+00:09:22.750 --> 00:09:22.760 align:start position:0%
+ 
+ 
+
+00:09:22.760 --> 00:09:25.190 align:start position:0%
+ 
+Now<00:09:23.080><c> we</c><00:09:23.240><c> calculate</c><00:09:23.839><c> the</c><00:09:23.960><c> similarity</c><00:09:24.680><c> scores</c>
+
+00:09:25.190 --> 00:09:25.200 align:start position:0%
+Now we calculate the similarity scores
+ 
+
+00:09:25.200 --> 00:09:27.430 align:start position:0%
+Now we calculate the similarity scores
+for<00:09:25.320><c> the</c><00:09:25.480><c> leaves</c>
+
+00:09:27.430 --> 00:09:27.440 align:start position:0%
+for the leaves
+ 
+
+00:09:27.440 --> 00:09:34.870 align:start position:0%
+for the leaves
+and<00:09:27.640><c> calculate</c><00:09:28.280><c> the</c><00:09:28.400><c> gain.</c>
+
+00:09:34.870 --> 00:09:34.880 align:start position:0%
+ 
+ 
+
+00:09:34.880 --> 00:09:38.510 align:start position:0%
+ 
+The<00:09:35.000><c> The</c><00:09:35.480><c> for</c><00:09:35.680><c> dosage</c><00:09:36.320><c> less</c><00:09:36.560><c> than</c><00:09:36.760><c> 22.5</c>
+
+00:09:38.510 --> 00:09:38.520 align:start position:0%
+The The for dosage less than 22.5
+ 
+
+00:09:38.520 --> 00:09:40.830 align:start position:0%
+The The for dosage less than 22.5
+is<00:09:38.800><c> four.</c>
+
+00:09:40.830 --> 00:09:40.840 align:start position:0%
+is four.
+ 
+
+00:09:40.840 --> 00:09:44.750 align:start position:0%
+is four.
+Since<00:09:41.160><c> the</c><00:09:41.280><c> gain</c><00:09:41.840><c> for</c><00:09:42.040><c> dosage</c><00:09:42.600><c> less</c><00:09:42.840><c> than</c><00:09:43.000><c> 22.5</c>
+
+00:09:44.750 --> 00:09:44.760 align:start position:0%
+Since the gain for dosage less than 22.5
+ 
+
+00:09:44.760 --> 00:09:47.030 align:start position:0%
+Since the gain for dosage less than 22.5
+is<00:09:45.000><c> less</c><00:09:45.320><c> than</c><00:09:45.520><c> the</c><00:09:45.640><c> gain</c><00:09:46.080><c> for</c><00:09:46.280><c> dosage</c><00:09:46.800><c> less</c>
+
+00:09:47.030 --> 00:09:47.040 align:start position:0%
+is less than the gain for dosage less
+ 
+
+00:09:47.040 --> 00:09:48.670 align:start position:0%
+is less than the gain for dosage less
+than<00:09:47.200><c> 15,</c>
+
+00:09:48.670 --> 00:09:48.680 align:start position:0%
+than 15,
+ 
+
+00:09:48.680 --> 00:09:51.230 align:start position:0%
+than 15,
+dosage<00:09:49.120><c> less</c><00:09:49.360><c> than</c><00:09:49.520><c> 15</c><00:09:50.520><c> is</c><00:09:50.760><c> better</c><00:09:51.120><c> at</c>
+
+00:09:51.230 --> 00:09:51.240 align:start position:0%
+dosage less than 15 is better at
+ 
+
+00:09:51.240 --> 00:09:53.510 align:start position:0%
+dosage less than 15 is better at
+splitting<00:09:51.680><c> the</c><00:09:51.800><c> residuals</c><00:09:52.440><c> into</c><00:09:52.680><c> clusters</c><00:09:53.360><c> of</c>
+
+00:09:53.510 --> 00:09:53.520 align:start position:0%
+splitting the residuals into clusters of
+ 
+
+00:09:53.520 --> 00:09:56.510 align:start position:0%
+splitting the residuals into clusters of
+similar<00:09:54.040><c> values.</c>
+
+00:09:56.510 --> 00:09:56.520 align:start position:0%
+similar values.
+ 
+
+00:09:56.520 --> 00:09:59.110 align:start position:0%
+similar values.
+Now<00:09:56.800><c> we</c><00:09:56.960><c> shift</c><00:09:57.400><c> the</c><00:09:57.520><c> threshold</c><00:09:58.120><c> over</c><00:09:58.720><c> so</c><00:09:58.920><c> that</c>
+
+00:09:59.110 --> 00:09:59.120 align:start position:0%
+Now we shift the threshold over so that
+ 
+
+00:09:59.120 --> 00:10:01.030 align:start position:0%
+Now we shift the threshold over so that
+it<00:09:59.240><c> is</c><00:09:59.400><c> the</c><00:09:59.600><c> average</c><00:10:00.200><c> of</c><00:10:00.320><c> the</c><00:10:00.440><c> last</c><00:10:00.800><c> two</c>
+
+00:10:01.030 --> 00:10:01.040 align:start position:0%
+it is the average of the last two
+ 
+
+00:10:01.040 --> 00:10:02.950 align:start position:0%
+it is the average of the last two
+observations
+
+00:10:02.950 --> 00:10:02.960 align:start position:0%
+observations
+ 
+
+00:10:02.960 --> 00:10:05.230 align:start position:0%
+observations
+and<00:10:03.120><c> build</c><00:10:03.400><c> a</c><00:10:03.440><c> simple</c><00:10:03.920><c> tree</c><00:10:04.400><c> that</c><00:10:04.560><c> divides</c><00:10:05.080><c> the</c>
+
+00:10:05.230 --> 00:10:05.240 align:start position:0%
+and build a simple tree that divides the
+ 
+
+00:10:05.240 --> 00:10:07.990 align:start position:0%
+and build a simple tree that divides the
+observations<00:10:06.240><c> using</c><00:10:06.600><c> the</c><00:10:06.720><c> new</c><00:10:06.960><c> threshold,</c>
+
+00:10:07.990 --> 00:10:08.000 align:start position:0%
+observations using the new threshold,
+ 
+
+00:10:08.000 --> 00:10:10.990 align:start position:0%
+observations using the new threshold,
+dosage<00:10:08.480><c> less</c><00:10:08.720><c> than</c><00:10:08.960><c> 30.</c>
+
+00:10:10.990 --> 00:10:11.000 align:start position:0%
+dosage less than 30.
+ 
+
+00:10:11.000 --> 00:10:13.430 align:start position:0%
+dosage less than 30.
+Then<00:10:11.320><c> we</c><00:10:11.440><c> calculate</c><00:10:12.040><c> the</c><00:10:12.160><c> similarity</c><00:10:12.880><c> scores</c>
+
+00:10:13.430 --> 00:10:13.440 align:start position:0%
+Then we calculate the similarity scores
+ 
+
+00:10:13.440 --> 00:10:15.430 align:start position:0%
+Then we calculate the similarity scores
+for<00:10:13.560><c> the</c><00:10:13.720><c> leaves</c>
+
+00:10:15.430 --> 00:10:15.440 align:start position:0%
+for the leaves
+ 
+
+00:10:15.440 --> 00:10:22.790 align:start position:0%
+for the leaves
+and<00:10:15.760><c> the</c><00:10:15.880><c> gain.</c>
+
+00:10:22.790 --> 00:10:22.800 align:start position:0%
+ 
+ 
+
+00:10:22.800 --> 00:10:25.870 align:start position:0%
+ 
+The<00:10:22.920><c> gain</c><00:10:23.520><c> for</c><00:10:23.720><c> dosage</c><00:10:24.240><c> less</c><00:10:24.480><c> than</c><00:10:24.680><c> 30</c><00:10:25.480><c> equals</c>
+
+00:10:25.870 --> 00:10:25.880 align:start position:0%
+The gain for dosage less than 30 equals
+ 
+
+00:10:25.880 --> 00:10:29.150 align:start position:0%
+The gain for dosage less than 30 equals
+56.33.
+
+00:10:29.150 --> 00:10:29.160 align:start position:0%
+ 
+ 
+
+00:10:29.160 --> 00:10:31.910 align:start position:0%
+ 
+Again,<00:10:30.120><c> since</c><00:10:30.440><c> the</c><00:10:30.560><c> gain</c><00:10:30.960><c> for</c><00:10:31.120><c> dosage</c><00:10:31.680><c> less</c>
+
+00:10:31.910 --> 00:10:31.920 align:start position:0%
+Again, since the gain for dosage less
+ 
+
+00:10:31.920 --> 00:10:34.750 align:start position:0%
+Again, since the gain for dosage less
+than<00:10:32.120><c> 30</c><00:10:32.800><c> is</c><00:10:33.040><c> less</c><00:10:33.400><c> than</c><00:10:33.560><c> the</c><00:10:33.680><c> gain</c><00:10:34.120><c> for</c><00:10:34.240><c> dosage</c>
+
+00:10:34.750 --> 00:10:34.760 align:start position:0%
+than 30 is less than the gain for dosage
+ 
+
+00:10:34.760 --> 00:10:36.710 align:start position:0%
+than 30 is less than the gain for dosage
+less<00:10:35.000><c> than</c><00:10:35.160><c> 15,</c>
+
+00:10:36.710 --> 00:10:36.720 align:start position:0%
+less than 15,
+ 
+
+00:10:36.720 --> 00:10:38.950 align:start position:0%
+less than 15,
+dosage<00:10:37.160><c> less</c><00:10:37.400><c> than</c><00:10:37.560><c> 15</c><00:10:38.280><c> is</c><00:10:38.520><c> better</c><00:10:38.840><c> at</c>
+
+00:10:38.950 --> 00:10:38.960 align:start position:0%
+dosage less than 15 is better at
+ 
+
+00:10:38.960 --> 00:10:41.870 align:start position:0%
+dosage less than 15 is better at
+splitting<00:10:39.400><c> the</c><00:10:39.600><c> observations.</c>
+
+00:10:41.870 --> 00:10:41.880 align:start position:0%
+splitting the observations.
+ 
+
+00:10:41.880 --> 00:10:43.870 align:start position:0%
+splitting the observations.
+And<00:10:42.080><c> since</c><00:10:42.320><c> we</c><00:10:42.480><c> can't</c><00:10:42.880><c> shift</c><00:10:43.160><c> the</c><00:10:43.280><c> threshold</c>
+
+00:10:43.870 --> 00:10:43.880 align:start position:0%
+And since we can't shift the threshold
+ 
+
+00:10:43.880 --> 00:10:46.110 align:start position:0%
+And since we can't shift the threshold
+over<00:10:44.240><c> any</c><00:10:44.480><c> further</c><00:10:44.880><c> to</c><00:10:45.040><c> the</c><00:10:45.160><c> right,</c><00:10:45.839><c> we</c><00:10:46.000><c> are</c>
+
+00:10:46.110 --> 00:10:46.120 align:start position:0%
+over any further to the right, we are
+ 
+
+00:10:46.120 --> 00:10:49.630 align:start position:0%
+over any further to the right, we are
+done<00:10:46.480><c> comparing</c><00:10:47.040><c> different</c><00:10:47.400><c> thresholds.</c>
+
+00:10:49.630 --> 00:10:49.640 align:start position:0%
+done comparing different thresholds.
+ 
+
+00:10:49.640 --> 00:10:51.630 align:start position:0%
+done comparing different thresholds.
+And<00:10:49.839><c> we</c><00:10:49.960><c> will</c><00:10:50.160><c> use</c><00:10:50.440><c> the</c><00:10:50.560><c> threshold</c><00:10:51.240><c> that</c><00:10:51.400><c> gave</c>
+
+00:10:51.630 --> 00:10:51.640 align:start position:0%
+And we will use the threshold that gave
+ 
+
+00:10:51.640 --> 00:10:54.190 align:start position:0%
+And we will use the threshold that gave
+us<00:10:51.760><c> the</c><00:10:51.920><c> largest</c><00:10:52.440><c> gain,</c><00:10:53.400><c> dosage</c><00:10:53.839><c> less</c><00:10:54.040><c> than</c>
+
+00:10:54.190 --> 00:10:54.200 align:start position:0%
+us the largest gain, dosage less than
+ 
+
+00:10:54.200 --> 00:10:58.710 align:start position:0%
+us the largest gain, dosage less than
+15,<00:10:55.360><c> for</c><00:10:55.520><c> the</c><00:10:55.680><c> first</c><00:10:56.160><c> branch</c><00:10:56.680><c> in</c><00:10:56.839><c> the</c><00:10:56.960><c> tree.</c>
+
+00:10:58.710 --> 00:10:58.720 align:start position:0%
+15, for the first branch in the tree.
+ 
+
+00:10:58.720 --> 00:11:01.750 align:start position:0%
+15, for the first branch in the tree.
+Bam!
+
+00:11:01.750 --> 00:11:01.760 align:start position:0%
+ 
+ 
+
+00:11:01.760 --> 00:11:04.630 align:start position:0%
+ 
+Now,<00:11:02.560><c> since</c><00:11:02.839><c> there</c><00:11:03.040><c> is</c><00:11:03.160><c> only</c><00:11:03.480><c> one</c><00:11:03.839><c> residual</c><00:11:04.520><c> in</c>
+
+00:11:04.630 --> 00:11:04.640 align:start position:0%
+Now, since there is only one residual in
+ 
+
+00:11:04.640 --> 00:11:07.070 align:start position:0%
+Now, since there is only one residual in
+the<00:11:04.760><c> leaf</c><00:11:05.040><c> on</c><00:11:05.160><c> the</c><00:11:05.240><c> left,</c><00:11:06.160><c> we</c><00:11:06.280><c> can't</c><00:11:06.600><c> split</c><00:11:06.920><c> it</c>
+
+00:11:07.070 --> 00:11:07.080 align:start position:0%
+the leaf on the left, we can't split it
+ 
+
+00:11:07.080 --> 00:11:08.829 align:start position:0%
+the leaf on the left, we can't split it
+any<00:11:07.280><c> further.</c>
+
+00:11:08.829 --> 00:11:08.839 align:start position:0%
+any further.
+ 
+
+00:11:08.839 --> 00:11:11.190 align:start position:0%
+any further.
+However,<00:11:09.839><c> we</c><00:11:10.040><c> can</c><00:11:10.400><c> split</c><00:11:10.760><c> the</c><00:11:10.880><c> three</c>
+
+00:11:11.190 --> 00:11:11.200 align:start position:0%
+However, we can split the three
+ 
+
+00:11:11.200 --> 00:11:14.350 align:start position:0%
+However, we can split the three
+residuals<00:11:11.839><c> in</c><00:11:11.960><c> the</c><00:11:12.080><c> leaf</c><00:11:12.360><c> on</c><00:11:12.480><c> the</c><00:11:12.600><c> right.</c>
+
+00:11:14.350 --> 00:11:14.360 align:start position:0%
+residuals in the leaf on the right.
+ 
+
+00:11:14.360 --> 00:11:17.990 align:start position:0%
+residuals in the leaf on the right.
+So<00:11:14.560><c> we</c><00:11:14.680><c> start</c><00:11:15.080><c> with</c><00:11:15.280><c> these</c><00:11:15.640><c> two</c><00:11:15.839><c> observations</c>
+
+00:11:17.990 --> 00:11:18.000 align:start position:0%
+So we start with these two observations
+ 
+
+00:11:18.000 --> 00:11:21.230 align:start position:0%
+So we start with these two observations
+and<00:11:18.120><c> their</c><00:11:18.320><c> average</c><00:11:18.760><c> dosage</c><00:11:19.400><c> is</c><00:11:19.560><c> 22.5,</c>
+
+00:11:21.230 --> 00:11:21.240 align:start position:0%
+and their average dosage is 22.5,
+ 
+
+00:11:21.240 --> 00:11:23.510 align:start position:0%
+and their average dosage is 22.5,
+which<00:11:21.480><c> corresponds</c><00:11:22.240><c> to</c><00:11:22.360><c> this</c><00:11:22.640><c> dotted</c><00:11:23.080><c> green</c>
+
+00:11:23.510 --> 00:11:23.520 align:start position:0%
+which corresponds to this dotted green
+ 
+
+00:11:23.520 --> 00:11:25.430 align:start position:0%
+which corresponds to this dotted green
+line.
+
+00:11:25.430 --> 00:11:25.440 align:start position:0%
+line.
+ 
+
+00:11:25.440 --> 00:11:27.790 align:start position:0%
+line.
+So<00:11:25.600><c> the</c><00:11:25.760><c> first</c><00:11:26.160><c> threshold</c><00:11:26.680><c> that</c><00:11:26.800><c> we</c><00:11:26.920><c> try</c><00:11:27.560><c> is</c>
+
+00:11:27.790 --> 00:11:27.800 align:start position:0%
+So the first threshold that we try is
+ 
+
+00:11:27.800 --> 00:11:31.630 align:start position:0%
+So the first threshold that we try is
+dosage<00:11:28.320><c> less</c><00:11:28.560><c> than</c><00:11:28.720><c> 22.5.</c>
+
+00:11:31.630 --> 00:11:31.640 align:start position:0%
+dosage less than 22.5.
+ 
+
+00:11:31.640 --> 00:11:34.590 align:start position:0%
+dosage less than 22.5.
+Now,<00:11:32.400><c> just</c><00:11:32.720><c> like</c><00:11:32.920><c> before,</c><00:11:33.760><c> we</c><00:11:33.920><c> calculate</c><00:11:34.520><c> the</c>
+
+00:11:34.590 --> 00:11:34.600 align:start position:0%
+Now, just like before, we calculate the
+ 
+
+00:11:34.600 --> 00:11:37.910 align:start position:0%
+Now, just like before, we calculate the
+similarity<00:11:35.360><c> scores</c><00:11:35.840><c> for</c><00:11:35.960><c> the</c><00:11:36.120><c> leaves.</c>
+
+00:11:37.910 --> 00:11:37.920 align:start position:0%
+similarity scores for the leaves.
+ 
+
+00:11:37.920 --> 00:11:40.790 align:start position:0%
+similarity scores for the leaves.
+Note,<00:11:38.720><c> we</c><00:11:38.920><c> calculated</c><00:11:39.640><c> the</c><00:11:39.720><c> similarity</c><00:11:40.440><c> score</c>
+
+00:11:40.790 --> 00:11:40.800 align:start position:0%
+Note, we calculated the similarity score
+ 
+
+00:11:40.800 --> 00:11:42.830 align:start position:0%
+Note, we calculated the similarity score
+for<00:11:40.960><c> this</c><00:11:41.280><c> node</c><00:11:41.680><c> when</c><00:11:41.840><c> we</c><00:11:42.000><c> figured</c><00:11:42.440><c> out</c><00:11:42.600><c> how</c><00:11:42.720><c> to</c>
+
+00:11:42.830 --> 00:11:42.840 align:start position:0%
+for this node when we figured out how to
+ 
+
+00:11:42.840 --> 00:11:45.550 align:start position:0%
+for this node when we figured out how to
+split<00:11:43.200><c> the</c><00:11:43.360><c> root.</c>
+
+00:11:45.550 --> 00:11:45.560 align:start position:0%
+split the root.
+ 
+
+00:11:45.560 --> 00:11:53.110 align:start position:0%
+split the root.
+So,<00:11:45.760><c> now</c><00:11:46.080><c> we</c><00:11:46.200><c> calculate</c><00:11:46.800><c> the</c><00:11:46.920><c> gain.</c>
+
+00:11:53.110 --> 00:11:53.120 align:start position:0%
+ 
+ 
+
+00:11:53.120 --> 00:11:56.710 align:start position:0%
+ 
+And<00:11:53.280><c> we</c><00:11:53.400><c> get</c><00:11:53.680><c> gain</c><00:11:54.240><c> equals</c><00:11:54.640><c> 28.17</c>
+
+00:11:56.710 --> 00:11:56.720 align:start position:0%
+And we get gain equals 28.17
+ 
+
+00:11:56.720 --> 00:11:58.950 align:start position:0%
+And we get gain equals 28.17
+for<00:11:56.880><c> when</c><00:11:57.040><c> the</c><00:11:57.160><c> threshold</c><00:11:57.880><c> is</c><00:11:58.120><c> dosage</c><00:11:58.720><c> less</c>
+
+00:11:58.950 --> 00:11:58.960 align:start position:0%
+for when the threshold is dosage less
+ 
+
+00:11:58.960 --> 00:12:02.670 align:start position:0%
+for when the threshold is dosage less
+than<00:11:59.200><c> 22.5.</c>
+
+00:12:02.670 --> 00:12:02.680 align:start position:0%
+ 
+ 
+
+00:12:02.680 --> 00:12:05.110 align:start position:0%
+ 
+Now,<00:12:02.960><c> we</c><00:12:03.120><c> shift</c><00:12:03.520><c> the</c><00:12:03.640><c> threshold</c><00:12:04.240><c> over</c><00:12:04.680><c> so</c><00:12:04.920><c> that</c>
+
+00:12:05.110 --> 00:12:05.120 align:start position:0%
+Now, we shift the threshold over so that
+ 
+
+00:12:05.120 --> 00:12:07.190 align:start position:0%
+Now, we shift the threshold over so that
+it<00:12:05.240><c> is</c><00:12:05.400><c> the</c><00:12:05.600><c> average</c><00:12:06.200><c> of</c><00:12:06.320><c> the</c><00:12:06.440><c> last</c><00:12:06.960><c> two</c>
+
+00:12:07.190 --> 00:12:07.200 align:start position:0%
+it is the average of the last two
+ 
+
+00:12:07.200 --> 00:12:09.150 align:start position:0%
+it is the average of the last two
+observations,
+
+00:12:09.150 --> 00:12:09.160 align:start position:0%
+observations,
+ 
+
+00:12:09.160 --> 00:12:11.470 align:start position:0%
+observations,
+calculate<00:12:09.800><c> the</c><00:12:09.920><c> similarity</c><00:12:10.720><c> scores</c><00:12:11.200><c> for</c><00:12:11.320><c> the</c>
+
+00:12:11.470 --> 00:12:11.480 align:start position:0%
+calculate the similarity scores for the
+ 
+
+00:12:11.480 --> 00:12:12.990 align:start position:0%
+calculate the similarity scores for the
+leaves,
+
+00:12:12.990 --> 00:12:13.000 align:start position:0%
+leaves,
+ 
+
+00:12:13.000 --> 00:12:17.310 align:start position:0%
+leaves,
+and<00:12:13.320><c> the</c><00:12:13.480><c> gain.</c>
+
+00:12:17.310 --> 00:12:17.320 align:start position:0%
+ 
+ 
+
+00:12:17.320 --> 00:12:21.430 align:start position:0%
+ 
+And<00:12:17.520><c> we</c><00:12:17.640><c> get</c><00:12:17.920><c> gain</c><00:12:18.520><c> equals</c><00:12:18.920><c> 140.17,</c>
+
+00:12:21.430 --> 00:12:21.440 align:start position:0%
+And we get gain equals 140.17,
+ 
+
+00:12:21.440 --> 00:12:24.710 align:start position:0%
+And we get gain equals 140.17,
+which<00:12:21.640><c> is</c><00:12:21.760><c> much</c><00:12:22.080><c> larger</c><00:12:22.520><c> than</c><00:12:22.760><c> 28.17</c>
+
+00:12:24.710 --> 00:12:24.720 align:start position:0%
+which is much larger than 28.17
+ 
+
+00:12:24.720 --> 00:12:26.710 align:start position:0%
+which is much larger than 28.17
+when<00:12:24.880><c> the</c><00:12:25.000><c> threshold</c><00:12:25.600><c> was</c><00:12:25.800><c> dosage</c><00:12:26.320><c> less</c><00:12:26.560><c> than</c>
+
+00:12:26.710 --> 00:12:26.720 align:start position:0%
+when the threshold was dosage less than
+ 
+
+00:12:26.720 --> 00:12:29.910 align:start position:0%
+when the threshold was dosage less than
+22.5.
+
+00:12:29.910 --> 00:12:29.920 align:start position:0%
+ 
+ 
+
+00:12:29.920 --> 00:12:32.590 align:start position:0%
+ 
+So,<00:12:30.120><c> we</c><00:12:30.280><c> will</c><00:12:30.440><c> use</c><00:12:30.720><c> dosage</c><00:12:31.240><c> less</c><00:12:31.480><c> than</c><00:12:31.680><c> 30</c><00:12:32.360><c> as</c>
+
+00:12:32.590 --> 00:12:32.600 align:start position:0%
+So, we will use dosage less than 30 as
+ 
+
+00:12:32.600 --> 00:12:36.070 align:start position:0%
+So, we will use dosage less than 30 as
+the<00:12:32.720><c> threshold</c><00:12:33.440><c> for</c><00:12:33.600><c> this</c><00:12:33.880><c> branch.</c>
+
+00:12:36.070 --> 00:12:36.080 align:start position:0%
+the threshold for this branch.
+ 
+
+00:12:36.080 --> 00:12:38.670 align:start position:0%
+the threshold for this branch.
+Note,<00:12:36.960><c> to</c><00:12:37.080><c> keep</c><00:12:37.360><c> this</c><00:12:37.560><c> example</c><00:12:38.120><c> from</c><00:12:38.360><c> getting</c>
+
+00:12:38.670 --> 00:12:38.680 align:start position:0%
+Note, to keep this example from getting
+ 
+
+00:12:38.680 --> 00:12:41.550 align:start position:0%
+Note, to keep this example from getting
+out<00:12:38.839><c> of</c><00:12:38.960><c> hand,</c><00:12:39.839><c> I've</c><00:12:40.080><c> limited</c><00:12:40.600><c> the</c><00:12:40.720><c> tree</c><00:12:41.080><c> depth</c>
+
+00:12:41.550 --> 00:12:41.560 align:start position:0%
+out of hand, I've limited the tree depth
+ 
+
+00:12:41.560 --> 00:12:43.750 align:start position:0%
+out of hand, I've limited the tree depth
+to<00:12:41.720><c> two</c><00:12:42.000><c> levels.</c>
+
+00:12:43.750 --> 00:12:43.760 align:start position:0%
+to two levels.
+ 
+
+00:12:43.760 --> 00:12:46.030 align:start position:0%
+to two levels.
+And<00:12:44.000><c> this</c><00:12:44.280><c> means</c><00:12:44.880><c> we</c><00:12:45.000><c> will</c><00:12:45.160><c> not</c><00:12:45.440><c> split</c><00:12:45.800><c> this</c>
+
+00:12:46.030 --> 00:12:46.040 align:start position:0%
+And this means we will not split this
+ 
+
+00:12:46.040 --> 00:12:48.110 align:start position:0%
+And this means we will not split this
+leaf<00:12:46.360><c> any</c><00:12:46.600><c> further,</c><00:12:47.360><c> and</c><00:12:47.480><c> we</c><00:12:47.640><c> are</c><00:12:47.760><c> done</c>
+
+00:12:48.110 --> 00:12:48.120 align:start position:0%
+leaf any further, and we are done
+ 
+
+00:12:48.120 --> 00:12:50.670 align:start position:0%
+leaf any further, and we are done
+building<00:12:48.480><c> this</c><00:12:48.720><c> tree.</c>
+
+00:12:50.670 --> 00:12:50.680 align:start position:0%
+building this tree.
+ 
+
+00:12:50.680 --> 00:12:53.670 align:start position:0%
+building this tree.
+However,<00:12:51.640><c> the</c><00:12:51.760><c> default</c><00:12:52.520><c> is</c><00:12:52.760><c> to</c><00:12:52.880><c> allow</c><00:12:53.400><c> up</c><00:12:53.560><c> to</c>
+
+00:12:53.670 --> 00:12:53.680 align:start position:0%
+However, the default is to allow up to
+ 
+
+00:12:53.680 --> 00:12:55.670 align:start position:0%
+However, the default is to allow up to
+six<00:12:54.160><c> levels.</c>
+
+00:12:55.670 --> 00:12:55.680 align:start position:0%
+six levels.
+ 
+
+00:12:55.680 --> 00:12:58.270 align:start position:0%
+six levels.
+Small<00:12:56.200><c> bam.</c>
+
+00:12:58.270 --> 00:12:58.280 align:start position:0%
+Small bam.
+ 
+
+00:12:58.280 --> 00:13:00.390 align:start position:0%
+Small bam.
+Now,<00:12:58.600><c> we</c><00:12:58.720><c> need</c><00:12:58.920><c> to</c><00:12:59.000><c> talk</c><00:12:59.320><c> about</c><00:12:59.560><c> how</c><00:12:59.760><c> to</c><00:12:59.960><c> prune</c>
+
+00:13:00.390 --> 00:13:00.400 align:start position:0%
+Now, we need to talk about how to prune
+ 
+
+00:13:00.400 --> 00:13:02.430 align:start position:0%
+Now, we need to talk about how to prune
+this<00:13:00.640><c> tree.</c>
+
+00:13:02.430 --> 00:13:02.440 align:start position:0%
+this tree.
+ 
+
+00:13:02.440 --> 00:13:05.430 align:start position:0%
+this tree.
+We<00:13:02.600><c> prune</c><00:13:03.000><c> an</c><00:13:03.200><c> XGBoost</c><00:13:04.080><c> tree</c><00:13:04.800><c> based</c><00:13:05.160><c> on</c><00:13:05.240><c> its</c>
+
+00:13:05.430 --> 00:13:05.440 align:start position:0%
+We prune an XGBoost tree based on its
+ 
+
+00:13:05.440 --> 00:13:07.790 align:start position:0%
+We prune an XGBoost tree based on its
+gain<00:13:05.800><c> values.</c>
+
+00:13:07.790 --> 00:13:07.800 align:start position:0%
+gain values.
+ 
+
+00:13:07.800 --> 00:13:10.150 align:start position:0%
+gain values.
+We<00:13:07.960><c> start</c><00:13:08.360><c> by</c><00:13:08.560><c> picking</c><00:13:08.960><c> a</c><00:13:09.040><c> number,</c><00:13:09.960><c> for</c>
+
+00:13:10.150 --> 00:13:10.160 align:start position:0%
+We start by picking a number, for
+ 
+
+00:13:10.160 --> 00:13:13.190 align:start position:0%
+We start by picking a number, for
+example,<00:13:11.000><c> 130.</c>
+
+00:13:13.190 --> 00:13:13.200 align:start position:0%
+example, 130.
+ 
+
+00:13:13.200 --> 00:13:15.750 align:start position:0%
+example, 130.
+Oh,<00:13:13.400><c> no!</c><00:13:14.120><c> It's</c><00:13:14.320><c> the</c><00:13:14.440><c> dreaded</c><00:13:14.880><c> terminology</c>
+
+00:13:15.750 --> 00:13:15.760 align:start position:0%
+Oh, no! It's the dreaded terminology
+ 
+
+00:13:15.760 --> 00:13:17.070 align:start position:0%
+Oh, no! It's the dreaded terminology
+alert.
+
+00:13:17.070 --> 00:13:17.080 align:start position:0%
+alert.
+ 
+
+00:13:17.080 --> 00:13:21.950 align:start position:0%
+alert.
+XGBoost<00:13:18.400><c> calls</c><00:13:18.760><c> this</c><00:13:19.040><c> number</c><00:13:19.800><c> gamma.</c>
+
+00:13:21.950 --> 00:13:21.960 align:start position:0%
+XGBoost calls this number gamma.
+ 
+
+00:13:21.960 --> 00:13:24.110 align:start position:0%
+XGBoost calls this number gamma.
+We<00:13:22.080><c> then</c><00:13:22.440><c> calculate</c><00:13:23.040><c> the</c><00:13:23.160><c> difference</c><00:13:23.760><c> between</c>
+
+00:13:24.110 --> 00:13:24.120 align:start position:0%
+We then calculate the difference between
+ 
+
+00:13:24.120 --> 00:13:26.230 align:start position:0%
+We then calculate the difference between
+the<00:13:24.240><c> gain</c><00:13:24.760><c> associated</c><00:13:25.480><c> with</c><00:13:25.600><c> the</c><00:13:25.720><c> lowest</c>
+
+00:13:26.230 --> 00:13:26.240 align:start position:0%
+the gain associated with the lowest
+ 
+
+00:13:26.240 --> 00:13:28.430 align:start position:0%
+the gain associated with the lowest
+branch<00:13:26.640><c> in</c><00:13:26.800><c> the</c><00:13:26.920><c> tree</c>
+
+00:13:28.430 --> 00:13:28.440 align:start position:0%
+branch in the tree
+ 
+
+00:13:28.440 --> 00:13:31.310 align:start position:0%
+branch in the tree
+and<00:13:28.600><c> the</c><00:13:28.720><c> value</c><00:13:29.200><c> for</c><00:13:29.400><c> gamma.</c>
+
+00:13:31.310 --> 00:13:31.320 align:start position:0%
+and the value for gamma.
+ 
+
+00:13:31.320 --> 00:13:33.670 align:start position:0%
+and the value for gamma.
+If<00:13:31.560><c> the</c><00:13:31.680><c> difference</c><00:13:32.280><c> between</c><00:13:32.640><c> the</c><00:13:32.800><c> gain</c><00:13:33.440><c> and</c>
+
+00:13:33.670 --> 00:13:33.680 align:start position:0%
+If the difference between the gain and
+ 
+
+00:13:33.680 --> 00:13:36.430 align:start position:0%
+If the difference between the gain and
+gamma<00:13:34.240><c> is</c><00:13:34.480><c> negative,</c><00:13:35.520><c> we</c><00:13:35.680><c> will</c><00:13:35.880><c> remove</c><00:13:36.320><c> the</c>
+
+00:13:36.430 --> 00:13:36.440 align:start position:0%
+gamma is negative, we will remove the
+ 
+
+00:13:36.440 --> 00:13:38.110 align:start position:0%
+gamma is negative, we will remove the
+branch.
+
+00:13:38.110 --> 00:13:38.120 align:start position:0%
+branch.
+ 
+
+00:13:38.120 --> 00:13:40.150 align:start position:0%
+branch.
+And<00:13:38.320><c> if</c><00:13:38.440><c> the</c><00:13:38.560><c> difference</c><00:13:39.040><c> between</c><00:13:39.400><c> the</c><00:13:39.520><c> gain</c>
+
+00:13:40.150 --> 00:13:40.160 align:start position:0%
+And if the difference between the gain
+ 
+
+00:13:40.160 --> 00:13:42.910 align:start position:0%
+And if the difference between the gain
+and<00:13:40.400><c> gamma</c><00:13:40.920><c> is</c><00:13:41.160><c> positive,</c><00:13:42.160><c> we</c><00:13:42.320><c> will</c><00:13:42.480><c> not</c>
+
+00:13:42.910 --> 00:13:42.920 align:start position:0%
+and gamma is positive, we will not
+ 
+
+00:13:42.920 --> 00:13:45.310 align:start position:0%
+and gamma is positive, we will not
+remove<00:13:43.280><c> the</c><00:13:43.400><c> branch.</c>
+
+00:13:45.310 --> 00:13:45.320 align:start position:0%
+remove the branch.
+ 
+
+00:13:45.320 --> 00:13:48.870 align:start position:0%
+remove the branch.
+In<00:13:45.520><c> this</c><00:13:45.760><c> case,</c><00:13:46.560><c> when</c><00:13:46.720><c> we</c><00:13:46.880><c> plug</c><00:13:47.200><c> in</c><00:13:47.280><c> the</c><00:13:47.400><c> gain</c>
+
+00:13:48.870 --> 00:13:48.880 align:start position:0%
+In this case, when we plug in the gain
+ 
+
+00:13:48.880 --> 00:13:52.990 align:start position:0%
+In this case, when we plug in the gain
+and<00:13:49.040><c> the</c><00:13:49.160><c> value</c><00:13:49.560><c> for</c><00:13:49.720><c> gamma,</c><00:13:50.560><c> 130,</c>
+
+00:13:52.990 --> 00:13:53.000 align:start position:0%
+and the value for gamma, 130,
+ 
+
+00:13:53.000 --> 00:13:55.430 align:start position:0%
+and the value for gamma, 130,
+we<00:13:53.160><c> get</c><00:13:53.360><c> a</c><00:13:53.440><c> positive</c><00:13:54.080><c> number.</c><00:13:54.920><c> So,</c><00:13:55.120><c> we</c><00:13:55.240><c> will</c>
+
+00:13:55.430 --> 00:13:55.440 align:start position:0%
+we get a positive number. So, we will
+ 
+
+00:13:55.440 --> 00:13:57.830 align:start position:0%
+we get a positive number. So, we will
+not<00:13:55.760><c> remove</c><00:13:56.080><c> this</c><00:13:56.320><c> branch</c><00:13:57.080><c> and</c><00:13:57.240><c> we</c><00:13:57.360><c> are</c><00:13:57.480><c> done</c>
+
+00:13:57.830 --> 00:13:57.840 align:start position:0%
+not remove this branch and we are done
+ 
+
+00:13:57.840 --> 00:14:00.430 align:start position:0%
+not remove this branch and we are done
+pruning.
+
+00:14:00.430 --> 00:14:00.440 align:start position:0%
+pruning.
+ 
+
+00:14:00.440 --> 00:14:04.710 align:start position:0%
+pruning.
+Note,<00:14:01.280><c> the</c><00:14:01.400><c> gain</c><00:14:01.760><c> for</c><00:14:01.920><c> the</c><00:14:02.040><c> root,</c><00:14:02.760><c> 120.3,</c>
+
+00:14:04.710 --> 00:14:04.720 align:start position:0%
+Note, the gain for the root, 120.3,
+ 
+
+00:14:04.720 --> 00:14:08.270 align:start position:0%
+Note, the gain for the root, 120.3,
+is<00:14:04.960><c> less</c><00:14:05.240><c> than</c><00:14:05.400><c> 130,</c><00:14:06.640><c> the</c><00:14:06.760><c> value</c><00:14:07.080><c> for</c><00:14:07.240><c> gamma,</c>
+
+00:14:08.270 --> 00:14:08.280 align:start position:0%
+is less than 130, the value for gamma,
+ 
+
+00:14:08.280 --> 00:14:11.270 align:start position:0%
+is less than 130, the value for gamma,
+so<00:14:08.440><c> the</c><00:14:08.560><c> difference</c><00:14:09.280><c> will</c><00:14:09.440><c> be</c><00:14:09.600><c> negative.</c>
+
+00:14:11.270 --> 00:14:11.280 align:start position:0%
+so the difference will be negative.
+ 
+
+00:14:11.280 --> 00:14:13.710 align:start position:0%
+so the difference will be negative.
+However,<00:14:12.280><c> because</c><00:14:12.720><c> we</c><00:14:12.840><c> did</c><00:14:13.040><c> not</c><00:14:13.280><c> remove</c><00:14:13.600><c> the</c>
+
+00:14:13.710 --> 00:14:13.720 align:start position:0%
+However, because we did not remove the
+ 
+
+00:14:13.720 --> 00:14:16.270 align:start position:0%
+However, because we did not remove the
+first<00:14:14.160><c> branch,</c><00:14:15.040><c> we</c><00:14:15.200><c> will</c><00:14:15.480><c> not</c><00:14:15.760><c> remove</c><00:14:16.120><c> the</c>
+
+00:14:16.270 --> 00:14:16.280 align:start position:0%
+first branch, we will not remove the
+ 
+
+00:14:16.280 --> 00:14:18.350 align:start position:0%
+first branch, we will not remove the
+root.
+
+00:14:18.350 --> 00:14:18.360 align:start position:0%
+root.
+ 
+
+00:14:18.360 --> 00:14:21.230 align:start position:0%
+root.
+In<00:14:18.600><c> contrast,</c><00:14:19.640><c> if</c><00:14:19.800><c> we</c><00:14:19.920><c> set</c><00:14:20.280><c> gamma</c><00:14:20.800><c> equal</c><00:14:21.080><c> to</c>
+
+00:14:21.230 --> 00:14:21.240 align:start position:0%
+In contrast, if we set gamma equal to
+ 
+
+00:14:21.240 --> 00:14:24.270 align:start position:0%
+In contrast, if we set gamma equal to
+150,<00:14:22.680><c> then</c><00:14:22.840><c> we</c><00:14:23.000><c> would</c><00:14:23.160><c> remove</c><00:14:23.560><c> this</c><00:14:23.800><c> branch</c>
+
+00:14:24.270 --> 00:14:24.280 align:start position:0%
+150, then we would remove this branch
+ 
+
+00:14:24.280 --> 00:14:25.950 align:start position:0%
+150, then we would remove this branch
+because
+
+00:14:25.950 --> 00:14:25.960 align:start position:0%
+because
+ 
+
+00:14:25.960 --> 00:14:28.470 align:start position:0%
+because
+140.17
+
+00:14:28.470 --> 00:14:28.480 align:start position:0%
+140.17
+ 
+
+00:14:28.480 --> 00:14:30.430 align:start position:0%
+140.17
+-<00:14:28.920><c> 150</c>
+
+00:14:30.430 --> 00:14:30.440 align:start position:0%
+- 150
+ 
+
+00:14:30.440 --> 00:14:33.430 align:start position:0%
+- 150
+equals<00:14:30.880><c> a</c><00:14:30.920><c> negative</c><00:14:31.600><c> number.</c>
+
+00:14:33.430 --> 00:14:33.440 align:start position:0%
+equals a negative number.
+ 
+
+00:14:33.440 --> 00:14:36.950 align:start position:0%
+equals a negative number.
+So,<00:14:33.640><c> let's</c><00:14:33.960><c> remove</c><00:14:34.320><c> this</c><00:14:34.560><c> branch.</c>
+
+00:14:36.950 --> 00:14:36.960 align:start position:0%
+So, let's remove this branch.
+ 
+
+00:14:36.960 --> 00:14:39.590 align:start position:0%
+So, let's remove this branch.
+Now,<00:14:37.400><c> we</c><00:14:37.520><c> subtract</c><00:14:38.120><c> gamma</c><00:14:38.640><c> from</c><00:14:38.880><c> the</c><00:14:39.000><c> gain</c><00:14:39.440><c> for</c>
+
+00:14:39.590 --> 00:14:39.600 align:start position:0%
+Now, we subtract gamma from the gain for
+ 
+
+00:14:39.600 --> 00:14:41.550 align:start position:0%
+Now, we subtract gamma from the gain for
+the<00:14:39.760><c> root.</c>
+
+00:14:41.550 --> 00:14:41.560 align:start position:0%
+the root.
+ 
+
+00:14:41.560 --> 00:14:44.470 align:start position:0%
+the root.
+Since<00:14:42.000><c> 120.33</c>
+
+00:14:44.470 --> 00:14:44.480 align:start position:0%
+Since 120.33
+ 
+
+00:14:44.480 --> 00:14:49.030 align:start position:0%
+Since 120.33
+-<00:14:44.880><c> 150</c><00:14:46.120><c> equals</c><00:14:46.520><c> a</c><00:14:46.600><c> negative</c><00:14:47.160><c> number,</c>
+
+00:14:49.030 --> 00:14:49.040 align:start position:0%
+- 150 equals a negative number,
+ 
+
+00:14:49.040 --> 00:14:51.990 align:start position:0%
+- 150 equals a negative number,
+we<00:14:49.200><c> will</c><00:14:49.400><c> remove</c><00:14:49.839><c> the</c><00:14:50.000><c> root.</c>
+
+00:14:51.990 --> 00:14:52.000 align:start position:0%
+we will remove the root.
+ 
+
+00:14:52.000 --> 00:14:54.030 align:start position:0%
+we will remove the root.
+And<00:14:52.240><c> all</c><00:14:52.520><c> we</c><00:14:52.640><c> would</c><00:14:52.839><c> be</c><00:14:53.000><c> left</c><00:14:53.400><c> with</c><00:14:53.720><c> is</c><00:14:53.920><c> the</c>
+
+00:14:54.030 --> 00:14:54.040 align:start position:0%
+And all we would be left with is the
+ 
+
+00:14:54.040 --> 00:14:56.190 align:start position:0%
+And all we would be left with is the
+original<00:14:54.520><c> prediction,</c><00:14:55.480><c> which</c><00:14:55.720><c> is</c><00:14:55.839><c> pretty</c>
+
+00:14:56.190 --> 00:14:56.200 align:start position:0%
+original prediction, which is pretty
+ 
+
+00:14:56.200 --> 00:14:59.070 align:start position:0%
+original prediction, which is pretty
+extreme<00:14:56.920><c> pruning.</c>
+
+00:14:59.070 --> 00:14:59.080 align:start position:0%
+extreme pruning.
+ 
+
+00:14:59.080 --> 00:15:01.990 align:start position:0%
+extreme pruning.
+So,<00:15:00.040><c> while</c><00:15:00.280><c> this</c><00:15:00.520><c> wasn't</c><00:15:00.880><c> the</c><00:15:00.960><c> most</c><00:15:01.360><c> nuanced</c>
+
+00:15:01.990 --> 00:15:02.000 align:start position:0%
+So, while this wasn't the most nuanced
+ 
+
+00:15:02.000 --> 00:15:04.510 align:start position:0%
+So, while this wasn't the most nuanced
+example<00:15:02.560><c> of</c><00:15:02.680><c> how</c><00:15:02.839><c> an</c><00:15:03.040><c> XGBoost</c><00:15:04.000><c> tree</c><00:15:04.280><c> is</c>
+
+00:15:04.510 --> 00:15:04.520 align:start position:0%
+example of how an XGBoost tree is
+ 
+
+00:15:04.520 --> 00:15:08.550 align:start position:0%
+example of how an XGBoost tree is
+pruned,<00:15:05.640><c> I</c><00:15:05.760><c> hope</c><00:15:06.040><c> you</c><00:15:06.160><c> get</c><00:15:06.320><c> the</c><00:15:06.520><c> idea.</c>
+
+00:15:08.550 --> 00:15:08.560 align:start position:0%
+pruned, I hope you get the idea.
+ 
+
+00:15:08.560 --> 00:15:10.390 align:start position:0%
+pruned, I hope you get the idea.
+Now,<00:15:08.920><c> let's</c><00:15:09.200><c> go</c><00:15:09.360><c> back</c><00:15:09.640><c> to</c><00:15:09.760><c> the</c><00:15:09.880><c> original</c>
+
+00:15:10.390 --> 00:15:10.400 align:start position:0%
+Now, let's go back to the original
+ 
+
+00:15:10.400 --> 00:15:12.110 align:start position:0%
+Now, let's go back to the original
+residuals
+
+00:15:12.110 --> 00:15:12.120 align:start position:0%
+residuals
+ 
+
+00:15:12.120 --> 00:15:15.590 align:start position:0%
+residuals
+and<00:15:12.280><c> build</c><00:15:12.560><c> a</c><00:15:12.640><c> tree</c><00:15:13.360><c> just</c><00:15:13.640><c> like</c><00:15:13.800><c> before,</c>
+
+00:15:15.590 --> 00:15:15.600 align:start position:0%
+and build a tree just like before,
+ 
+
+00:15:15.600 --> 00:15:18.030 align:start position:0%
+and build a tree just like before,
+only<00:15:15.920><c> this</c><00:15:16.240><c> time,</c><00:15:17.120><c> when</c><00:15:17.280><c> we</c><00:15:17.400><c> calculate</c>
+
+00:15:18.030 --> 00:15:18.040 align:start position:0%
+only this time, when we calculate
+ 
+
+00:15:18.040 --> 00:15:21.110 align:start position:0%
+only this time, when we calculate
+similarity<00:15:18.760><c> scores,</c><00:15:19.680><c> we</c><00:15:19.800><c> will</c><00:15:19.960><c> set</c><00:15:20.280><c> lambda</c>
+
+00:15:21.110 --> 00:15:21.120 align:start position:0%
+similarity scores, we will set lambda
+ 
+
+00:15:21.120 --> 00:15:23.790 align:start position:0%
+similarity scores, we will set lambda
+equal<00:15:21.520><c> to</c><00:15:21.720><c> 1.</c>
+
+00:15:23.790 --> 00:15:23.800 align:start position:0%
+equal to 1.
+ 
+
+00:15:23.800 --> 00:15:26.630 align:start position:0%
+equal to 1.
+Remember,<00:15:24.760><c> lambda</c><00:15:25.320><c> is</c><00:15:25.520><c> a</c><00:15:25.600><c> regularization</c>
+
+00:15:26.630 --> 00:15:26.640 align:start position:0%
+Remember, lambda is a regularization
+ 
+
+00:15:26.640 --> 00:15:28.630 align:start position:0%
+Remember, lambda is a regularization
+parameter,<00:15:27.520><c> which</c><00:15:27.760><c> means</c><00:15:28.160><c> that</c><00:15:28.360><c> it</c><00:15:28.480><c> is</c>
+
+00:15:28.630 --> 00:15:28.640 align:start position:0%
+parameter, which means that it is
+ 
+
+00:15:28.640 --> 00:15:30.630 align:start position:0%
+parameter, which means that it is
+intended<00:15:29.400><c> to</c><00:15:29.520><c> reduce</c><00:15:29.920><c> the</c><00:15:30.040><c> prediction</c>
+
+00:15:30.630 --> 00:15:30.640 align:start position:0%
+intended to reduce the prediction
+ 
+
+00:15:30.640 --> 00:15:34.910 align:start position:0%
+intended to reduce the prediction
+sensitivity<00:15:31.680><c> to</c><00:15:31.840><c> individual</c><00:15:32.560><c> observations.</c>
+
+00:15:34.910 --> 00:15:34.920 align:start position:0%
+sensitivity to individual observations.
+ 
+
+00:15:34.920 --> 00:15:37.430 align:start position:0%
+sensitivity to individual observations.
+Now,<00:15:35.280><c> the</c><00:15:35.440><c> similarity</c><00:15:36.280><c> score</c><00:15:36.680><c> for</c><00:15:36.840><c> the</c><00:15:37.000><c> root</c>
+
+00:15:37.430 --> 00:15:37.440 align:start position:0%
+Now, the similarity score for the root
+ 
+
+00:15:37.440 --> 00:15:38.910 align:start position:0%
+Now, the similarity score for the root
+is
+
+00:15:38.910 --> 00:15:38.920 align:start position:0%
+is
+ 
+
+00:15:38.920 --> 00:15:40.750 align:start position:0%
+is
+3.2,
+
+00:15:40.750 --> 00:15:40.760 align:start position:0%
+3.2,
+ 
+
+00:15:40.760 --> 00:15:43.830 align:start position:0%
+3.2,
+which<00:15:40.920><c> is</c><00:15:41.120><c> 8/10</c><00:15:42.120><c> of</c><00:15:42.280><c> what</c><00:15:42.440><c> we</c><00:15:42.560><c> got</c><00:15:43.160><c> when</c><00:15:43.360><c> lambda</c>
+
+00:15:43.830 --> 00:15:43.840 align:start position:0%
+which is 8/10 of what we got when lambda
+ 
+
+00:15:43.840 --> 00:15:46.270 align:start position:0%
+which is 8/10 of what we got when lambda
+equals<00:15:44.240><c> 0.</c>
+
+00:15:46.270 --> 00:15:46.280 align:start position:0%
+equals 0.
+ 
+
+00:15:46.280 --> 00:15:48.470 align:start position:0%
+equals 0.
+When<00:15:46.440><c> we</c><00:15:46.600><c> calculate</c><00:15:47.160><c> the</c><00:15:47.280><c> similarity</c><00:15:48.040><c> score</c>
+
+00:15:48.470 --> 00:15:48.480 align:start position:0%
+When we calculate the similarity score
+ 
+
+00:15:48.480 --> 00:15:50.910 align:start position:0%
+When we calculate the similarity score
+for<00:15:48.600><c> the</c><00:15:48.760><c> leaf</c><00:15:49.080><c> on</c><00:15:49.200><c> the</c><00:15:49.320><c> left,</c>
+
+00:15:50.910 --> 00:15:50.920 align:start position:0%
+for the leaf on the left,
+ 
+
+00:15:50.920 --> 00:15:53.670 align:start position:0%
+for the leaf on the left,
+we<00:15:51.040><c> get</c><00:15:51.280><c> 55.12,</c>
+
+00:15:53.670 --> 00:15:53.680 align:start position:0%
+we get 55.12,
+ 
+
+00:15:53.680 --> 00:15:55.790 align:start position:0%
+we get 55.12,
+which<00:15:53.840><c> is</c><00:15:54.000><c> half</c><00:15:54.400><c> of</c><00:15:54.480><c> what</c><00:15:54.680><c> we</c><00:15:54.800><c> got</c><00:15:55.240><c> when</c><00:15:55.440><c> lambda</c>
+
+00:15:55.790 --> 00:15:55.800 align:start position:0%
+which is half of what we got when lambda
+ 
+
+00:15:55.800 --> 00:15:58.310 align:start position:0%
+which is half of what we got when lambda
+equals<00:15:56.200><c> 0.</c>
+
+00:15:58.310 --> 00:15:58.320 align:start position:0%
+equals 0.
+ 
+
+00:15:58.320 --> 00:16:00.230 align:start position:0%
+equals 0.
+And<00:15:58.520><c> when</c><00:15:58.680><c> we</c><00:15:58.800><c> calculate</c><00:15:59.400><c> the</c><00:15:59.520><c> similarity</c>
+
+00:16:00.230 --> 00:16:00.240 align:start position:0%
+And when we calculate the similarity
+ 
+
+00:16:00.240 --> 00:16:02.910 align:start position:0%
+And when we calculate the similarity
+score<00:16:00.680><c> for</c><00:16:00.840><c> the</c><00:16:01.000><c> leaf</c><00:16:01.320><c> on</c><00:16:01.440><c> the</c><00:16:01.560><c> right,</c>
+
+00:16:02.910 --> 00:16:02.920 align:start position:0%
+score for the leaf on the right,
+ 
+
+00:16:02.920 --> 00:16:05.150 align:start position:0%
+score for the leaf on the right,
+we<00:16:03.040><c> get</c><00:16:03.280><c> 10.56,</c>
+
+00:16:05.150 --> 00:16:05.160 align:start position:0%
+we get 10.56,
+ 
+
+00:16:05.160 --> 00:16:07.870 align:start position:0%
+we get 10.56,
+which<00:16:05.360><c> is</c><00:16:05.480><c> 3/4</c><00:16:06.360><c> of</c><00:16:06.520><c> what</c><00:16:06.720><c> we</c><00:16:06.840><c> got</c><00:16:07.200><c> when</c><00:16:07.400><c> lambda</c>
+
+00:16:07.870 --> 00:16:07.880 align:start position:0%
+which is 3/4 of what we got when lambda
+ 
+
+00:16:07.880 --> 00:16:10.390 align:start position:0%
+which is 3/4 of what we got when lambda
+equals<00:16:08.280><c> 0.</c>
+
+00:16:10.390 --> 00:16:10.400 align:start position:0%
+equals 0.
+ 
+
+00:16:10.400 --> 00:16:13.430 align:start position:0%
+equals 0.
+So,<00:16:11.320><c> one</c><00:16:11.640><c> thing</c><00:16:11.880><c> we</c><00:16:12.040><c> see</c><00:16:12.480><c> is</c><00:16:12.680><c> that</c><00:16:12.840><c> when</c><00:16:13.040><c> lambda</c>
+
+00:16:13.430 --> 00:16:13.440 align:start position:0%
+So, one thing we see is that when lambda
+ 
+
+00:16:13.440 --> 00:16:16.470 align:start position:0%
+So, one thing we see is that when lambda
+is<00:16:13.600><c> greater</c><00:16:14.000><c> than</c><00:16:14.160><c> 0,</c><00:16:15.080><c> the</c><00:16:15.200><c> similarity</c><00:16:16.000><c> scores</c>
+
+00:16:16.470 --> 00:16:16.480 align:start position:0%
+is greater than 0, the similarity scores
+ 
+
+00:16:16.480 --> 00:16:18.230 align:start position:0%
+is greater than 0, the similarity scores
+are<00:16:16.600><c> smaller.</c>
+
+00:16:18.230 --> 00:16:18.240 align:start position:0%
+are smaller.
+ 
+
+00:16:18.240 --> 00:16:20.830 align:start position:0%
+are smaller.
+And<00:16:18.400><c> the</c><00:16:18.520><c> amount</c><00:16:18.960><c> of</c><00:16:19.080><c> decrease</c><00:16:19.920><c> is</c><00:16:20.160><c> inversely</c>
+
+00:16:20.830 --> 00:16:20.840 align:start position:0%
+And the amount of decrease is inversely
+ 
+
+00:16:20.840 --> 00:16:23.270 align:start position:0%
+And the amount of decrease is inversely
+proportional<00:16:21.760><c> to</c><00:16:21.880><c> the</c><00:16:22.000><c> number</c><00:16:22.360><c> of</c><00:16:22.480><c> residuals</c>
+
+00:16:23.270 --> 00:16:23.280 align:start position:0%
+proportional to the number of residuals
+ 
+
+00:16:23.280 --> 00:16:25.430 align:start position:0%
+proportional to the number of residuals
+in<00:16:23.400><c> the</c><00:16:23.520><c> node.</c>
+
+00:16:25.430 --> 00:16:25.440 align:start position:0%
+in the node.
+ 
+
+00:16:25.440 --> 00:16:28.110 align:start position:0%
+in the node.
+In<00:16:25.600><c> other</c><00:16:25.880><c> words,</c><00:16:26.600><c> the</c><00:16:26.760><c> leaf</c><00:16:27.120><c> on</c><00:16:27.240><c> the</c><00:16:27.360><c> left</c><00:16:27.920><c> had</c>
+
+00:16:28.110 --> 00:16:28.120 align:start position:0%
+In other words, the leaf on the left had
+ 
+
+00:16:28.120 --> 00:16:30.310 align:start position:0%
+In other words, the leaf on the left had
+only<00:16:28.400><c> one</c><00:16:28.680><c> residual,</c><00:16:29.720><c> and</c><00:16:29.880><c> it</c><00:16:30.000><c> had</c><00:16:30.200><c> the</c>
+
+00:16:30.310 --> 00:16:30.320 align:start position:0%
+only one residual, and it had the
+ 
+
+00:16:30.320 --> 00:16:32.990 align:start position:0%
+only one residual, and it had the
+largest<00:16:30.839><c> decrease</c><00:16:31.360><c> in</c><00:16:31.480><c> similarity</c><00:16:32.200><c> score,</c>
+
+00:16:32.990 --> 00:16:33.000 align:start position:0%
+largest decrease in similarity score,
+ 
+
+00:16:33.000 --> 00:16:35.310 align:start position:0%
+largest decrease in similarity score,
+50%.
+
+00:16:35.310 --> 00:16:35.320 align:start position:0%
+50%.
+ 
+
+00:16:35.320 --> 00:16:38.030 align:start position:0%
+50%.
+In<00:16:35.560><c> contrast,</c><00:16:36.760><c> the</c><00:16:36.920><c> root</c><00:16:37.280><c> had</c><00:16:37.520><c> all</c><00:16:37.760><c> four</c>
+
+00:16:38.030 --> 00:16:38.040 align:start position:0%
+In contrast, the root had all four
+ 
+
+00:16:38.040 --> 00:16:40.950 align:start position:0%
+In contrast, the root had all four
+residuals<00:16:38.880><c> and</c><00:16:39.040><c> the</c><00:16:39.160><c> smallest</c><00:16:39.920><c> decrease,</c>
+
+00:16:40.950 --> 00:16:40.960 align:start position:0%
+residuals and the smallest decrease,
+ 
+
+00:16:40.960 --> 00:16:43.510 align:start position:0%
+residuals and the smallest decrease,
+20%.
+
+00:16:43.510 --> 00:16:43.520 align:start position:0%
+20%.
+ 
+
+00:16:43.520 --> 00:16:46.790 align:start position:0%
+20%.
+Now,<00:16:43.880><c> when</c><00:16:44.040><c> we</c><00:16:44.160><c> calculate</c><00:16:44.760><c> the</c><00:16:44.880><c> gain,</c>
+
+00:16:46.790 --> 00:16:46.800 align:start position:0%
+Now, when we calculate the gain,
+ 
+
+00:16:46.800 --> 00:16:49.710 align:start position:0%
+Now, when we calculate the gain,
+we<00:16:46.920><c> get</c><00:16:47.160><c> 66,</c><00:16:48.400><c> which</c><00:16:48.600><c> is</c><00:16:48.720><c> a</c><00:16:48.800><c> lot</c><00:16:49.160><c> less</c><00:16:49.480><c> than</c>
+
+00:16:49.710 --> 00:16:49.720 align:start position:0%
+we get 66, which is a lot less than
+ 
+
+00:16:49.720 --> 00:16:52.030 align:start position:0%
+we get 66, which is a lot less than
+120.33,
+
+00:16:52.030 --> 00:16:52.040 align:start position:0%
+120.33,
+ 
+
+00:16:52.040 --> 00:16:56.230 align:start position:0%
+120.33,
+the<00:16:52.200><c> value</c><00:16:52.560><c> we</c><00:16:52.720><c> got</c><00:16:53.120><c> when</c><00:16:53.320><c> lambda</c><00:16:53.800><c> equals</c><00:16:54.200><c> 0.</c>
+
+00:16:56.230 --> 00:16:56.240 align:start position:0%
+the value we got when lambda equals 0.
+ 
+
+00:16:56.240 --> 00:16:59.710 align:start position:0%
+the value we got when lambda equals 0.
+Similarly,<00:16:57.640><c> when</c><00:16:57.880><c> lambda</c><00:16:58.320><c> equals</c><00:16:58.760><c> 1,</c><00:16:59.600><c> the</c>
+
+00:16:59.710 --> 00:16:59.720 align:start position:0%
+Similarly, when lambda equals 1, the
+ 
+
+00:16:59.720 --> 00:17:02.190 align:start position:0%
+Similarly, when lambda equals 1, the
+gain<00:17:00.160><c> for</c><00:17:00.280><c> the</c><00:17:00.400><c> next</c><00:17:00.880><c> branch</c><00:17:01.400><c> is</c><00:17:01.560><c> smaller</c><00:17:02.000><c> than</c>
+
+00:17:02.190 --> 00:17:02.200 align:start position:0%
+gain for the next branch is smaller than
+ 
+
+00:17:02.200 --> 00:17:04.390 align:start position:0%
+gain for the next branch is smaller than
+before.
+
+00:17:04.390 --> 00:17:04.400 align:start position:0%
+before.
+ 
+
+00:17:04.400 --> 00:17:07.630 align:start position:0%
+before.
+Now,<00:17:05.240><c> just</c><00:17:05.560><c> for</c><00:17:05.720><c> comparison,</c><00:17:07.079><c> these</c><00:17:07.400><c> were</c><00:17:07.480><c> the</c>
+
+00:17:07.630 --> 00:17:07.640 align:start position:0%
+Now, just for comparison, these were the
+ 
+
+00:17:07.640 --> 00:17:11.550 align:start position:0%
+Now, just for comparison, these were the
+gain<00:17:08.000><c> values</c><00:17:08.520><c> when</c><00:17:08.720><c> lambda</c><00:17:09.240><c> equals</c><00:17:09.680><c> 0.</c>
+
+00:17:11.550 --> 00:17:11.560 align:start position:0%
+gain values when lambda equals 0.
+ 
+
+00:17:11.560 --> 00:17:13.270 align:start position:0%
+gain values when lambda equals 0.
+When<00:17:11.760><c> we</c><00:17:11.880><c> first</c><00:17:12.280><c> talked</c><00:17:12.600><c> about</c><00:17:12.920><c> pruning</c>
+
+00:17:13.270 --> 00:17:13.280 align:start position:0%
+When we first talked about pruning
+ 
+
+00:17:13.280 --> 00:17:17.870 align:start position:0%
+When we first talked about pruning
+trees,<00:17:14.199><c> we</c><00:17:14.360><c> set</c><00:17:14.680><c> gamma</c><00:17:15.240><c> equal</c><00:17:15.560><c> to</c><00:17:15.720><c> 130.</c>
+
+00:17:17.870 --> 00:17:17.880 align:start position:0%
+trees, we set gamma equal to 130.
+ 
+
+00:17:17.880 --> 00:17:20.510 align:start position:0%
+trees, we set gamma equal to 130.
+And<00:17:18.120><c> because</c><00:17:19.040><c> for</c><00:17:19.199><c> the</c><00:17:19.319><c> lowest</c><00:17:19.800><c> branch</c><00:17:20.319><c> in</c><00:17:20.400><c> the</c>
+
+00:17:20.510 --> 00:17:20.520 align:start position:0%
+And because for the lowest branch in the
+ 
+
+00:17:20.520 --> 00:17:23.870 align:start position:0%
+And because for the lowest branch in the
+first<00:17:21.000><c> tree,</c><00:17:21.920><c> gain</c><00:17:22.280><c> minus</c><00:17:22.640><c> gamma</c><00:17:23.400><c> equal</c><00:17:23.720><c> to</c>
+
+00:17:23.870 --> 00:17:23.880 align:start position:0%
+first tree, gain minus gamma equal to
+ 
+
+00:17:23.880 --> 00:17:26.470 align:start position:0%
+first tree, gain minus gamma equal to
+positive<00:17:24.439><c> number,</c><00:17:25.280><c> so</c><00:17:25.480><c> we</c><00:17:25.600><c> did</c><00:17:25.839><c> not</c><00:17:26.079><c> prune</c><00:17:26.360><c> it</c>
+
+00:17:26.470 --> 00:17:26.480 align:start position:0%
+positive number, so we did not prune it
+ 
+
+00:17:26.480 --> 00:17:28.510 align:start position:0%
+positive number, so we did not prune it
+all.
+
+00:17:28.510 --> 00:17:28.520 align:start position:0%
+all.
+ 
+
+00:17:28.520 --> 00:17:32.070 align:start position:0%
+all.
+Now,<00:17:29.280><c> with</c><00:17:29.520><c> lambda</c><00:17:30.000><c> equals</c><00:17:30.520><c> 1,</c><00:17:31.520><c> the</c><00:17:31.640><c> values</c>
+
+00:17:32.070 --> 00:17:32.080 align:start position:0%
+Now, with lambda equals 1, the values
+ 
+
+00:17:32.080 --> 00:17:35.950 align:start position:0%
+Now, with lambda equals 1, the values
+for<00:17:32.240><c> gain</c><00:17:32.680><c> are</c><00:17:32.880><c> both</c><00:17:33.440><c> less</c><00:17:33.680><c> than</c><00:17:33.920><c> 130.</c>
+
+00:17:35.950 --> 00:17:35.960 align:start position:0%
+for gain are both less than 130.
+ 
+
+00:17:35.960 --> 00:17:40.510 align:start position:0%
+for gain are both less than 130.
+So,<00:17:36.200><c> we</c><00:17:36.360><c> would</c><00:17:36.560><c> prune</c><00:17:37.040><c> the</c><00:17:37.200><c> whole</c><00:17:37.560><c> tree</c><00:17:38.040><c> away.</c>
+
+00:17:40.510 --> 00:17:40.520 align:start position:0%
+So, we would prune the whole tree away.
+ 
+
+00:17:40.520 --> 00:17:43.750 align:start position:0%
+So, we would prune the whole tree away.
+So,<00:17:41.360><c> when</c><00:17:41.560><c> lambda</c><00:17:41.960><c> is</c><00:17:42.120><c> greater</c><00:17:42.480><c> than</c><00:17:42.640><c> zero,</c><00:17:43.640><c> it</c>
+
+00:17:43.750 --> 00:17:43.760 align:start position:0%
+So, when lambda is greater than zero, it
+ 
+
+00:17:43.760 --> 00:17:45.750 align:start position:0%
+So, when lambda is greater than zero, it
+is<00:17:43.960><c> easier</c><00:17:44.320><c> to</c><00:17:44.440><c> prune</c><00:17:44.800><c> leaves</c><00:17:45.320><c> because</c><00:17:45.680><c> the</c>
+
+00:17:45.750 --> 00:17:45.760 align:start position:0%
+is easier to prune leaves because the
+ 
+
+00:17:45.760 --> 00:17:49.670 align:start position:0%
+is easier to prune leaves because the
+values<00:17:46.240><c> for</c><00:17:46.400><c> gain</c><00:17:47.200><c> are</c><00:17:47.360><c> smaller.</c>
+
+00:17:49.670 --> 00:17:49.680 align:start position:0%
+values for gain are smaller.
+ 
+
+00:17:49.680 --> 00:17:52.510 align:start position:0%
+values for gain are smaller.
+Note,<00:17:50.520><c> before</c><00:17:50.920><c> we</c><00:17:51.040><c> move</c><00:17:51.360><c> on,</c><00:17:52.080><c> I</c><00:17:52.200><c> want</c><00:17:52.400><c> to</c>
+
+00:17:52.510 --> 00:17:52.520 align:start position:0%
+Note, before we move on, I want to
+ 
+
+00:17:52.520 --> 00:17:56.550 align:start position:0%
+Note, before we move on, I want to
+illustrate<00:17:53.160><c> one</c><00:17:53.440><c> last</c><00:17:53.800><c> feature</c><00:17:54.320><c> of</c><00:17:54.560><c> lambda.</c>
+
+00:17:56.550 --> 00:17:56.560 align:start position:0%
+illustrate one last feature of lambda.
+ 
+
+00:17:56.560 --> 00:17:59.110 align:start position:0%
+illustrate one last feature of lambda.
+For<00:17:56.720><c> this</c><00:17:56.960><c> example,</c><00:17:57.960><c> imagine</c><00:17:58.480><c> we</c><00:17:58.600><c> split</c><00:17:58.920><c> this</c>
+
+00:17:59.110 --> 00:17:59.120 align:start position:0%
+For this example, imagine we split this
+ 
+
+00:17:59.120 --> 00:18:02.190 align:start position:0%
+For this example, imagine we split this
+node<00:17:59.680><c> into</c><00:17:59.960><c> two</c><00:18:00.240><c> leaves.</c>
+
+00:18:02.190 --> 00:18:02.200 align:start position:0%
+node into two leaves.
+ 
+
+00:18:02.200 --> 00:18:04.150 align:start position:0%
+node into two leaves.
+Now,<00:18:02.480><c> let's</c><00:18:02.760><c> calculate</c><00:18:03.320><c> the</c><00:18:03.440><c> similarity</c>
+
+00:18:04.150 --> 00:18:04.160 align:start position:0%
+Now, let's calculate the similarity
+ 
+
+00:18:04.160 --> 00:18:08.350 align:start position:0%
+Now, let's calculate the similarity
+scores<00:18:05.000><c> with</c><00:18:05.240><c> lambda</c><00:18:06.040><c> equal</c><00:18:06.360><c> to</c><00:18:06.520><c> 1.</c>
+
+00:18:08.350 --> 00:18:08.360 align:start position:0%
+scores with lambda equal to 1.
+ 
+
+00:18:08.360 --> 00:18:10.790 align:start position:0%
+scores with lambda equal to 1.
+For<00:18:08.480><c> the</c><00:18:08.600><c> branch,</c><00:18:09.440><c> we</c><00:18:09.600><c> get</c>
+
+00:18:10.790 --> 00:18:10.800 align:start position:0%
+For the branch, we get
+ 
+
+00:18:10.800 --> 00:18:13.910 align:start position:0%
+For the branch, we get
+65.3.
+
+00:18:13.910 --> 00:18:13.920 align:start position:0%
+ 
+ 
+
+00:18:13.920 --> 00:18:19.710 align:start position:0%
+ 
+For<00:18:14.040><c> the</c><00:18:14.200><c> left</c><00:18:14.720><c> leaf,</c><00:18:15.120><c> we</c><00:18:15.280><c> get</c><00:18:16.200><c> 21.12.</c>
+
+00:18:19.710 --> 00:18:19.720 align:start position:0%
+ 
+ 
+
+00:18:19.720 --> 00:18:22.310 align:start position:0%
+ 
+And<00:18:19.880><c> for</c><00:18:20.040><c> the</c><00:18:20.200><c> right</c><00:18:20.560><c> leaf,</c><00:18:21.040><c> we</c><00:18:21.240><c> get</c>
+
+00:18:22.310 --> 00:18:22.320 align:start position:0%
+And for the right leaf, we get
+ 
+
+00:18:22.320 --> 00:18:25.830 align:start position:0%
+And for the right leaf, we get
+28.12.
+
+00:18:25.830 --> 00:18:25.840 align:start position:0%
+ 
+ 
+
+00:18:25.840 --> 00:18:29.150 align:start position:0%
+ 
+That<00:18:26.040><c> means</c><00:18:26.400><c> the</c><00:18:26.520><c> gain</c><00:18:27.080><c> is</c>
+
+00:18:29.150 --> 00:18:29.160 align:start position:0%
+That means the gain is
+ 
+
+00:18:29.160 --> 00:18:33.430 align:start position:0%
+That means the gain is
+-16.06.
+
+00:18:33.430 --> 00:18:33.440 align:start position:0%
+ 
+ 
+
+00:18:33.440 --> 00:18:35.950 align:start position:0%
+ 
+Now,<00:18:34.320><c> when</c><00:18:34.480><c> we</c><00:18:34.600><c> decide</c><00:18:35.120><c> if</c><00:18:35.240><c> we</c><00:18:35.360><c> should</c><00:18:35.600><c> prune</c>
+
+00:18:35.950 --> 00:18:35.960 align:start position:0%
+Now, when we decide if we should prune
+ 
+
+00:18:35.960 --> 00:18:39.030 align:start position:0%
+Now, when we decide if we should prune
+this<00:18:36.200><c> branch,</c><00:18:37.040><c> we</c><00:18:37.200><c> plug</c><00:18:37.480><c> in</c><00:18:37.600><c> the</c><00:18:37.720><c> gain</c>
+
+00:18:39.030 --> 00:18:39.040 align:start position:0%
+this branch, we plug in the gain
+ 
+
+00:18:39.040 --> 00:18:41.870 align:start position:0%
+this branch, we plug in the gain
+and<00:18:39.160><c> we</c><00:18:39.320><c> plug</c><00:18:39.640><c> in</c><00:18:39.720><c> a</c><00:18:39.800><c> value</c><00:18:40.160><c> for</c><00:18:40.320><c> gamma.</c>
+
+00:18:41.870 --> 00:18:41.880 align:start position:0%
+and we plug in a value for gamma.
+ 
+
+00:18:41.880 --> 00:18:45.870 align:start position:0%
+and we plug in a value for gamma.
+Note,<00:18:42.600><c> if</c><00:18:42.800><c> we</c><00:18:42.920><c> set</c><00:18:43.280><c> gamma</c><00:18:43.800><c> equal</c><00:18:44.080><c> to</c><00:18:44.240><c> zero,</c>
+
+00:18:45.870 --> 00:18:45.880 align:start position:0%
+Note, if we set gamma equal to zero,
+ 
+
+00:18:45.880 --> 00:18:49.150 align:start position:0%
+Note, if we set gamma equal to zero,
+then<00:18:46.000><c> we</c><00:18:46.160><c> will</c><00:18:46.320><c> get</c><00:18:46.560><c> a</c><00:18:46.640><c> negative</c><00:18:47.240><c> number.</c>
+
+00:18:49.150 --> 00:18:49.160 align:start position:0%
+then we will get a negative number.
+ 
+
+00:18:49.160 --> 00:18:51.510 align:start position:0%
+then we will get a negative number.
+And<00:18:49.320><c> we</c><00:18:49.480><c> will</c><00:18:49.640><c> prune</c><00:18:50.080><c> this</c><00:18:50.320><c> branch</c><00:18:51.160><c> even</c>
+
+00:18:51.510 --> 00:18:51.520 align:start position:0%
+And we will prune this branch even
+ 
+
+00:18:51.520 --> 00:18:54.750 align:start position:0%
+And we will prune this branch even
+though<00:18:51.720><c> gamma</c><00:18:52.440><c> equals</c><00:18:52.920><c> zero.</c>
+
+00:18:54.750 --> 00:18:54.760 align:start position:0%
+though gamma equals zero.
+ 
+
+00:18:54.760 --> 00:18:57.350 align:start position:0%
+though gamma equals zero.
+In<00:18:54.960><c> other</c><00:18:55.240><c> words,</c><00:18:55.960><c> setting</c><00:18:56.440><c> gamma</c><00:18:56.920><c> equal</c><00:18:57.200><c> to</c>
+
+00:18:57.350 --> 00:18:57.360 align:start position:0%
+In other words, setting gamma equal to
+ 
+
+00:18:57.360 --> 00:19:01.230 align:start position:0%
+In other words, setting gamma equal to
+zero<00:18:58.080><c> does</c><00:18:58.320><c> not</c><00:18:58.680><c> turn</c><00:18:59.000><c> off</c><00:18:59.280><c> pruning.</c>
+
+00:19:01.230 --> 00:19:01.240 align:start position:0%
+zero does not turn off pruning.
+ 
+
+00:19:01.240 --> 00:19:04.510 align:start position:0%
+zero does not turn off pruning.
+Dang.
+
+00:19:04.510 --> 00:19:04.520 align:start position:0%
+ 
+ 
+
+00:19:04.520 --> 00:19:07.190 align:start position:0%
+ 
+On<00:19:04.680><c> the</c><00:19:04.840><c> other</c><00:19:05.120><c> hand,</c><00:19:05.960><c> by</c><00:19:06.120><c> setting</c><00:19:06.600><c> lambda</c>
+
+00:19:07.190 --> 00:19:07.200 align:start position:0%
+On the other hand, by setting lambda
+ 
+
+00:19:07.200 --> 00:19:09.790 align:start position:0%
+On the other hand, by setting lambda
+equal<00:19:07.520><c> to</c><00:19:07.680><c> 1,</c><00:19:08.720><c> lambda</c><00:19:09.160><c> did</c><00:19:09.440><c> what</c><00:19:09.560><c> it</c><00:19:09.640><c> was</c>
+
+00:19:09.790 --> 00:19:09.800 align:start position:0%
+equal to 1, lambda did what it was
+ 
+
+00:19:09.800 --> 00:19:12.670 align:start position:0%
+equal to 1, lambda did what it was
+supposed<00:19:10.320><c> to</c><00:19:10.440><c> do.</c><00:19:11.120><c> It</c><00:19:11.320><c> prevented</c><00:19:12.000><c> overfitting</c>
+
+00:19:12.670 --> 00:19:12.680 align:start position:0%
+supposed to do. It prevented overfitting
+ 
+
+00:19:12.680 --> 00:19:14.630 align:start position:0%
+supposed to do. It prevented overfitting
+the<00:19:12.800><c> training</c><00:19:13.280><c> data.</c>
+
+00:19:14.630 --> 00:19:14.640 align:start position:0%
+the training data.
+ 
+
+00:19:14.640 --> 00:19:17.230 align:start position:0%
+the training data.
+Awesome.
+
+00:19:17.230 --> 00:19:17.240 align:start position:0%
+Awesome.
+ 
+
+00:19:17.240 --> 00:19:20.830 align:start position:0%
+Awesome.
+For<00:19:17.440><c> now,</c><00:19:18.320><c> regardless</c><00:19:18.960><c> of</c><00:19:19.160><c> lambda</c><00:19:19.680><c> and</c><00:19:19.920><c> gamma,</c>
+
+00:19:20.830 --> 00:19:20.840 align:start position:0%
+For now, regardless of lambda and gamma,
+ 
+
+00:19:20.840 --> 00:19:22.910 align:start position:0%
+For now, regardless of lambda and gamma,
+let's<00:19:21.120><c> assume</c><00:19:21.680><c> that</c><00:19:21.880><c> this</c><00:19:22.080><c> is</c><00:19:22.240><c> the</c><00:19:22.360><c> tree</c><00:19:22.720><c> we</c>
+
+00:19:22.910 --> 00:19:22.920 align:start position:0%
+let's assume that this is the tree we
+ 
+
+00:19:22.920 --> 00:19:24.710 align:start position:0%
+let's assume that this is the tree we
+are<00:19:23.040><c> working</c><00:19:23.440><c> with</c>
+
+00:19:24.710 --> 00:19:24.720 align:start position:0%
+are working with
+ 
+
+00:19:24.720 --> 00:19:26.990 align:start position:0%
+are working with
+and<00:19:24.840><c> determine</c><00:19:25.360><c> the</c><00:19:25.600><c> output</c><00:19:26.080><c> values</c><00:19:26.680><c> for</c><00:19:26.840><c> the</c>
+
+00:19:26.990 --> 00:19:27.000 align:start position:0%
+and determine the output values for the
+ 
+
+00:19:27.000 --> 00:19:29.030 align:start position:0%
+and determine the output values for the
+leaves.
+
+00:19:29.030 --> 00:19:29.040 align:start position:0%
+leaves.
+ 
+
+00:19:29.040 --> 00:19:32.550 align:start position:0%
+leaves.
+The<00:19:29.240><c> output</c><00:19:29.720><c> value</c><00:19:30.520><c> equals</c><00:19:31.840><c> the</c><00:19:32.000><c> sum</c><00:19:32.320><c> of</c><00:19:32.440><c> the</c>
+
+00:19:32.550 --> 00:19:32.560 align:start position:0%
+The output value equals the sum of the
+ 
+
+00:19:32.560 --> 00:19:35.830 align:start position:0%
+The output value equals the sum of the
+residuals<00:19:33.760><c> divided</c><00:19:34.320><c> by</c><00:19:35.120><c> the</c><00:19:35.280><c> number</c><00:19:35.720><c> of</c>
+
+00:19:35.830 --> 00:19:35.840 align:start position:0%
+residuals divided by the number of
+ 
+
+00:19:35.840 --> 00:19:39.110 align:start position:0%
+residuals divided by the number of
+residuals<00:19:36.800><c> plus</c><00:19:37.200><c> lambda.</c>
+
+00:19:39.110 --> 00:19:39.120 align:start position:0%
+residuals plus lambda.
+ 
+
+00:19:39.120 --> 00:19:42.470 align:start position:0%
+residuals plus lambda.
+Note,<00:19:40.040><c> the</c><00:19:40.280><c> output</c><00:19:40.720><c> value</c><00:19:41.120><c> equation</c><00:19:41.960><c> is</c><00:19:42.200><c> like</c>
+
+00:19:42.470 --> 00:19:42.480 align:start position:0%
+Note, the output value equation is like
+ 
+
+00:19:42.480 --> 00:19:45.230 align:start position:0%
+Note, the output value equation is like
+the<00:19:42.600><c> similarity</c><00:19:43.400><c> score,</c><00:19:44.120><c> except</c><00:19:44.600><c> we</c><00:19:44.720><c> do</c><00:19:44.960><c> not</c>
+
+00:19:45.230 --> 00:19:45.240 align:start position:0%
+the similarity score, except we do not
+ 
+
+00:19:45.240 --> 00:19:48.510 align:start position:0%
+the similarity score, except we do not
+square<00:19:45.600><c> the</c><00:19:45.720><c> sum</c><00:19:46.040><c> of</c><00:19:46.160><c> the</c><00:19:46.280><c> residuals.</c>
+
+00:19:48.510 --> 00:19:48.520 align:start position:0%
+square the sum of the residuals.
+ 
+
+00:19:48.520 --> 00:19:51.070 align:start position:0%
+square the sum of the residuals.
+So,<00:19:49.080><c> for</c><00:19:49.320><c> this</c><00:19:49.640><c> leaf,</c>
+
+00:19:51.070 --> 00:19:51.080 align:start position:0%
+So, for this leaf,
+ 
+
+00:19:51.080 --> 00:19:55.550 align:start position:0%
+So, for this leaf,
+we<00:19:51.240><c> plug</c><00:19:51.560><c> in</c><00:19:51.680><c> the</c><00:19:51.760><c> residual,</c><00:19:52.680><c> -10.5,</c>
+
+00:19:55.550 --> 00:19:55.560 align:start position:0%
+we plug in the residual, -10.5,
+ 
+
+00:19:55.560 --> 00:19:57.910 align:start position:0%
+we plug in the residual, -10.5,
+the<00:19:55.720><c> number</c><00:19:56.120><c> of</c><00:19:56.240><c> residuals</c><00:19:56.920><c> in</c><00:19:57.040><c> the</c><00:19:57.160><c> leaf,</c>
+
+00:19:57.910 --> 00:19:57.920 align:start position:0%
+the number of residuals in the leaf,
+ 
+
+00:19:57.920 --> 00:19:59.790 align:start position:0%
+the number of residuals in the leaf,
+one,
+
+00:19:59.790 --> 00:19:59.800 align:start position:0%
+one,
+ 
+
+00:19:59.800 --> 00:20:01.790 align:start position:0%
+one,
+and<00:20:00.080><c> the</c><00:20:00.200><c> value</c><00:20:00.600><c> for</c><00:20:00.720><c> the</c><00:20:00.880><c> regularization</c>
+
+00:20:01.790 --> 00:20:01.800 align:start position:0%
+and the value for the regularization
+ 
+
+00:20:01.800 --> 00:20:04.950 align:start position:0%
+and the value for the regularization
+parameter,<00:20:02.720><c> lambda.</c>
+
+00:20:04.950 --> 00:20:04.960 align:start position:0%
+parameter, lambda.
+ 
+
+00:20:04.960 --> 00:20:07.630 align:start position:0%
+parameter, lambda.
+If<00:20:05.200><c> lambda</c><00:20:05.680><c> equals</c><00:20:06.040><c> zero,</c><00:20:06.920><c> then</c><00:20:07.080><c> there</c><00:20:07.240><c> is</c><00:20:07.400><c> no</c>
+
+00:20:07.630 --> 00:20:07.640 align:start position:0%
+If lambda equals zero, then there is no
+ 
+
+00:20:07.640 --> 00:20:10.350 align:start position:0%
+If lambda equals zero, then there is no
+regularization,<00:20:08.960><c> and</c><00:20:09.120><c> the</c><00:20:09.280><c> output</c><00:20:09.720><c> value</c>
+
+00:20:10.350 --> 00:20:10.360 align:start position:0%
+regularization, and the output value
+ 
+
+00:20:10.360 --> 00:20:14.070 align:start position:0%
+regularization, and the output value
+equals<00:20:10.720><c> -10.5.</c>
+
+00:20:14.070 --> 00:20:14.080 align:start position:0%
+ 
+ 
+
+00:20:14.080 --> 00:20:17.870 align:start position:0%
+ 
+On<00:20:14.240><c> the</c><00:20:14.400><c> other</c><00:20:14.680><c> hand,</c><00:20:15.360><c> if</c><00:20:15.560><c> lambda</c><00:20:16.040><c> equals</c><00:20:16.480><c> one,</c>
+
+00:20:17.870 --> 00:20:17.880 align:start position:0%
+On the other hand, if lambda equals one,
+ 
+
+00:20:17.880 --> 00:20:23.030 align:start position:0%
+On the other hand, if lambda equals one,
+the<00:20:18.080><c> output</c><00:20:18.520><c> value</c><00:20:19.160><c> equals</c><00:20:19.480><c> -5.25.</c>
+
+00:20:23.030 --> 00:20:23.040 align:start position:0%
+ 
+ 
+
+00:20:23.040 --> 00:20:25.310 align:start position:0%
+ 
+In<00:20:23.240><c> other</c><00:20:23.480><c> words,</c><00:20:24.200><c> when</c><00:20:24.400><c> lambda</c><00:20:24.840><c> is</c><00:20:25.000><c> greater</c>
+
+00:20:25.310 --> 00:20:25.320 align:start position:0%
+In other words, when lambda is greater
+ 
+
+00:20:25.320 --> 00:20:27.590 align:start position:0%
+In other words, when lambda is greater
+than<00:20:25.520><c> zero,</c><00:20:26.520><c> then</c><00:20:26.720><c> it</c><00:20:26.840><c> will</c><00:20:26.960><c> reduce</c><00:20:27.440><c> the</c>
+
+00:20:27.590 --> 00:20:27.600 align:start position:0%
+than zero, then it will reduce the
+ 
+
+00:20:27.600 --> 00:20:29.870 align:start position:0%
+than zero, then it will reduce the
+amount<00:20:28.000><c> that</c><00:20:28.120><c> this</c><00:20:28.360><c> individual</c><00:20:29.080><c> observation</c>
+
+00:20:29.870 --> 00:20:29.880 align:start position:0%
+amount that this individual observation
+ 
+
+00:20:29.880 --> 00:20:33.190 align:start position:0%
+amount that this individual observation
+adds<00:20:30.240><c> to</c><00:20:30.360><c> the</c><00:20:30.560><c> overall</c><00:20:31.040><c> prediction.</c>
+
+00:20:33.190 --> 00:20:33.200 align:start position:0%
+adds to the overall prediction.
+ 
+
+00:20:33.200 --> 00:20:36.070 align:start position:0%
+adds to the overall prediction.
+Thus,<00:20:34.040><c> lambda,</c><00:20:35.000><c> the</c><00:20:35.120><c> regularization</c>
+
+00:20:36.070 --> 00:20:36.080 align:start position:0%
+Thus, lambda, the regularization
+ 
+
+00:20:36.080 --> 00:20:38.390 align:start position:0%
+Thus, lambda, the regularization
+parameter,<00:20:37.080><c> will</c><00:20:37.240><c> reduce</c><00:20:37.720><c> the</c><00:20:37.840><c> prediction</c>
+
+00:20:38.390 --> 00:20:38.400 align:start position:0%
+parameter, will reduce the prediction
+ 
+
+00:20:38.400 --> 00:20:40.510 align:start position:0%
+parameter, will reduce the prediction
+sensitivity<00:20:39.480><c> to</c><00:20:39.600><c> this</c><00:20:39.840><c> individual</c>
+
+00:20:40.510 --> 00:20:40.520 align:start position:0%
+sensitivity to this individual
+ 
+
+00:20:40.520 --> 00:20:42.790 align:start position:0%
+sensitivity to this individual
+observation.
+
+00:20:42.790 --> 00:20:42.800 align:start position:0%
+observation.
+ 
+
+00:20:42.800 --> 00:20:45.350 align:start position:0%
+observation.
+For<00:20:43.000><c> now,</c><00:20:43.760><c> we'll</c><00:20:43.920><c> keep</c><00:20:44.240><c> things</c><00:20:44.600><c> simple</c><00:20:45.200><c> and</c>
+
+00:20:45.350 --> 00:20:45.360 align:start position:0%
+For now, we'll keep things simple and
+ 
+
+00:20:45.360 --> 00:20:48.230 align:start position:0%
+For now, we'll keep things simple and
+let<00:20:45.560><c> lambda</c><00:20:46.040><c> equal</c><00:20:46.400><c> zero,</c><00:20:47.320><c> because</c><00:20:47.680><c> this</c><00:20:48.040><c> is</c>
+
+00:20:48.230 --> 00:20:48.240 align:start position:0%
+let lambda equal zero, because this is
+ 
+
+00:20:48.240 --> 00:20:50.270 align:start position:0%
+let lambda equal zero, because this is
+the<00:20:48.360><c> default</c><00:20:48.960><c> value,</c>
+
+00:20:50.270 --> 00:20:50.280 align:start position:0%
+the default value,
+ 
+
+00:20:50.280 --> 00:20:52.270 align:start position:0%
+the default value,
+and<00:20:50.480><c> put</c><00:20:50.760><c> -10.5</c>
+
+00:20:52.270 --> 00:20:52.280 align:start position:0%
+and put -10.5
+ 
+
+00:20:52.280 --> 00:20:56.150 align:start position:0%
+and put -10.5
+under<00:20:52.520><c> the</c><00:20:52.680><c> leaf,</c><00:20:53.120><c> so</c><00:20:53.320><c> we</c><00:20:53.480><c> will</c><00:20:53.640><c> remember</c><00:20:54.160><c> it.</c>
+
+00:20:56.150 --> 00:20:56.160 align:start position:0%
+under the leaf, so we will remember it.
+ 
+
+00:20:56.160 --> 00:20:58.230 align:start position:0%
+under the leaf, so we will remember it.
+Now,<00:20:56.440><c> let's</c><00:20:56.720><c> calculate</c><00:20:57.280><c> the</c><00:20:57.480><c> output</c><00:20:57.920><c> value</c>
+
+00:20:58.230 --> 00:20:58.240 align:start position:0%
+Now, let's calculate the output value
+ 
+
+00:20:58.240 --> 00:21:00.630 align:start position:0%
+Now, let's calculate the output value
+for<00:20:58.440><c> this</c><00:20:58.760><c> leaf.</c>
+
+00:21:00.630 --> 00:21:00.640 align:start position:0%
+for this leaf.
+ 
+
+00:21:00.640 --> 00:21:03.230 align:start position:0%
+for this leaf.
+When<00:21:00.880><c> lambda</c><00:21:01.360><c> equals</c><00:21:01.760><c> zero,</c><00:21:02.600><c> the</c><00:21:02.800><c> output</c>
+
+00:21:03.230 --> 00:21:03.240 align:start position:0%
+When lambda equals zero, the output
+ 
+
+00:21:03.240 --> 00:21:04.910 align:start position:0%
+When lambda equals zero, the output
+value<00:21:03.640><c> is</c>
+
+00:21:04.910 --> 00:21:04.920 align:start position:0%
+value is
+ 
+
+00:21:04.920 --> 00:21:06.750 align:start position:0%
+value is
+seven.
+
+00:21:06.750 --> 00:21:06.760 align:start position:0%
+seven.
+ 
+
+00:21:06.760 --> 00:21:09.990 align:start position:0%
+seven.
+In<00:21:06.920><c> other</c><00:21:07.200><c> words,</c><00:21:08.000><c> when</c><00:21:08.240><c> lambda</c><00:21:08.720><c> equals</c><00:21:09.120><c> zero,</c>
+
+00:21:09.990 --> 00:21:10.000 align:start position:0%
+In other words, when lambda equals zero,
+ 
+
+00:21:10.000 --> 00:21:12.590 align:start position:0%
+In other words, when lambda equals zero,
+the<00:21:10.240><c> output</c><00:21:10.640><c> value</c><00:21:11.040><c> for</c><00:21:11.320><c> a</c><00:21:11.360><c> leaf</c><00:21:12.040><c> is</c><00:21:12.240><c> simply</c>
+
+00:21:12.590 --> 00:21:12.600 align:start position:0%
+the output value for a leaf is simply
+ 
+
+00:21:12.600 --> 00:21:14.990 align:start position:0%
+the output value for a leaf is simply
+the<00:21:12.840><c> average</c><00:21:13.560><c> of</c><00:21:13.680><c> the</c><00:21:13.800><c> residuals</c><00:21:14.600><c> in</c><00:21:14.760><c> that</c>
+
+00:21:14.990 --> 00:21:15.000 align:start position:0%
+the average of the residuals in that
+ 
+
+00:21:15.000 --> 00:21:17.070 align:start position:0%
+the average of the residuals in that
+leaf.
+
+00:21:17.070 --> 00:21:17.080 align:start position:0%
+leaf.
+ 
+
+00:21:17.080 --> 00:21:19.310 align:start position:0%
+leaf.
+So,<00:21:17.360><c> we'll</c><00:21:17.520><c> put</c><00:21:17.760><c> the</c><00:21:17.960><c> output</c><00:21:18.400><c> value</c><00:21:18.880><c> under</c><00:21:19.200><c> the</c>
+
+00:21:19.310 --> 00:21:19.320 align:start position:0%
+So, we'll put the output value under the
+ 
+
+00:21:19.320 --> 00:21:22.830 align:start position:0%
+So, we'll put the output value under the
+leaf<00:21:20.000><c> so</c><00:21:20.240><c> we</c><00:21:20.360><c> will</c><00:21:20.600><c> remember</c><00:21:21.080><c> it.</c>
+
+00:21:22.830 --> 00:21:22.840 align:start position:0%
+leaf so we will remember it.
+ 
+
+00:21:22.840 --> 00:21:26.030 align:start position:0%
+leaf so we will remember it.
+Lastly,<00:21:23.920><c> when</c><00:21:24.160><c> lambda</c><00:21:24.600><c> equals</c><00:21:25.000><c> zero,</c><00:21:25.840><c> the</c>
+
+00:21:26.030 --> 00:21:26.040 align:start position:0%
+Lastly, when lambda equals zero, the
+ 
+
+00:21:26.040 --> 00:21:28.990 align:start position:0%
+Lastly, when lambda equals zero, the
+output<00:21:26.440><c> value</c><00:21:26.760><c> for</c><00:21:26.960><c> this</c><00:21:27.320><c> leaf</c><00:21:27.680><c> is</c>
+
+00:21:28.990 --> 00:21:29.000 align:start position:0%
+output value for this leaf is
+ 
+
+00:21:29.000 --> 00:21:32.750 align:start position:0%
+output value for this leaf is
+-7.5.
+
+00:21:32.750 --> 00:21:32.760 align:start position:0%
+ 
+ 
+
+00:21:32.760 --> 00:21:35.750 align:start position:0%
+ 
+Now,<00:21:33.560><c> at</c><00:21:33.800><c> long</c><00:21:34.160><c> last,</c><00:21:34.800><c> the</c><00:21:34.920><c> first</c><00:21:35.360><c> tree</c><00:21:35.640><c> is</c>
+
+00:21:35.750 --> 00:21:35.760 align:start position:0%
+Now, at long last, the first tree is
+ 
+
+00:21:35.760 --> 00:21:37.150 align:start position:0%
+Now, at long last, the first tree is
+complete.
+
+00:21:37.150 --> 00:21:37.160 align:start position:0%
+complete.
+ 
+
+00:21:37.160 --> 00:21:40.230 align:start position:0%
+complete.
+Double<00:21:38.040><c> bam!</c>
+
+00:21:40.230 --> 00:21:40.240 align:start position:0%
+Double bam!
+ 
+
+00:21:40.240 --> 00:21:42.670 align:start position:0%
+Double bam!
+Since<00:21:40.520><c> we</c><00:21:40.640><c> have</c><00:21:40.800><c> built</c><00:21:41.120><c> our</c><00:21:41.240><c> first</c><00:21:41.720><c> tree,</c><00:21:42.560><c> we</c>
+
+00:21:42.670 --> 00:21:42.680 align:start position:0%
+Since we have built our first tree, we
+ 
+
+00:21:42.680 --> 00:21:45.390 align:start position:0%
+Since we have built our first tree, we
+can<00:21:42.880><c> make</c><00:21:43.200><c> new</c><00:21:43.400><c> predictions.</c>
+
+00:21:45.390 --> 00:21:45.400 align:start position:0%
+can make new predictions.
+ 
+
+00:21:45.400 --> 00:21:48.710 align:start position:0%
+can make new predictions.
+And<00:21:45.640><c> just</c><00:21:45.960><c> like</c><00:21:46.360><c> on</c><00:21:46.600><c> extreme</c><00:21:47.160><c> gradient</c><00:21:47.680><c> boost,</c>
+
+00:21:48.710 --> 00:21:48.720 align:start position:0%
+And just like on extreme gradient boost,
+ 
+
+00:21:48.720 --> 00:21:51.390 align:start position:0%
+And just like on extreme gradient boost,
+XG<00:21:49.200><c> boost</c><00:21:49.800><c> makes</c><00:21:50.080><c> new</c><00:21:50.320><c> predictions</c><00:21:51.240><c> by</c>
+
+00:21:51.390 --> 00:21:51.400 align:start position:0%
+XG boost makes new predictions by
+ 
+
+00:21:51.400 --> 00:21:54.110 align:start position:0%
+XG boost makes new predictions by
+starting<00:21:51.880><c> with</c><00:21:52.040><c> the</c><00:21:52.160><c> initial</c><00:21:52.600><c> prediction</c>
+
+00:21:54.110 --> 00:21:54.120 align:start position:0%
+starting with the initial prediction
+ 
+
+00:21:54.120 --> 00:21:56.830 align:start position:0%
+starting with the initial prediction
+and<00:21:54.320><c> adding</c><00:21:54.640><c> the</c><00:21:54.840><c> output</c><00:21:55.320><c> of</c><00:21:55.440><c> the</c><00:21:55.560><c> tree</c><00:21:56.360><c> scaled</c>
+
+00:21:56.830 --> 00:21:56.840 align:start position:0%
+and adding the output of the tree scaled
+ 
+
+00:21:56.840 --> 00:21:58.950 align:start position:0%
+and adding the output of the tree scaled
+by<00:21:57.000><c> a</c><00:21:57.080><c> learning</c><00:21:57.560><c> rate.</c>
+
+00:21:58.950 --> 00:21:58.960 align:start position:0%
+by a learning rate.
+ 
+
+00:21:58.960 --> 00:22:01.750 align:start position:0%
+by a learning rate.
+Oh,<00:21:59.160><c> no!</c><00:21:59.880><c> It's</c><00:22:00.080><c> another</c><00:22:00.480><c> dreaded</c><00:22:00.880><c> terminology</c>
+
+00:22:01.750 --> 00:22:01.760 align:start position:0%
+Oh, no! It's another dreaded terminology
+ 
+
+00:22:01.760 --> 00:22:03.750 align:start position:0%
+Oh, no! It's another dreaded terminology
+alert.
+
+00:22:03.750 --> 00:22:03.760 align:start position:0%
+alert.
+ 
+
+00:22:03.760 --> 00:22:07.470 align:start position:0%
+alert.
+XG<00:22:04.280><c> boost</c><00:22:04.800><c> calls</c><00:22:05.120><c> the</c><00:22:05.280><c> learning</c><00:22:05.720><c> rate</c><00:22:06.320><c> eta,</c>
+
+00:22:07.470 --> 00:22:07.480 align:start position:0%
+XG boost calls the learning rate eta,
+ 
+
+00:22:07.480 --> 00:22:10.630 align:start position:0%
+XG boost calls the learning rate eta,
+and<00:22:07.640><c> the</c><00:22:07.720><c> default</c><00:22:08.280><c> value</c><00:22:08.840><c> is</c><00:22:09.080><c> 0.3.</c>
+
+00:22:10.630 --> 00:22:10.640 align:start position:0%
+and the default value is 0.3.
+ 
+
+00:22:10.640 --> 00:22:13.070 align:start position:0%
+and the default value is 0.3.
+So,<00:22:10.800><c> that's</c><00:22:11.120><c> what</c><00:22:11.280><c> we'll</c><00:22:11.480><c> use.</c>
+
+00:22:13.070 --> 00:22:13.080 align:start position:0%
+So, that's what we'll use.
+ 
+
+00:22:13.080 --> 00:22:15.630 align:start position:0%
+So, that's what we'll use.
+Thus,<00:22:13.920><c> the</c><00:22:14.040><c> new</c><00:22:14.280><c> predicted</c><00:22:14.800><c> value</c><00:22:15.240><c> for</c><00:22:15.360><c> this</c>
+
+00:22:15.630 --> 00:22:15.640 align:start position:0%
+Thus, the new predicted value for this
+ 
+
+00:22:15.640 --> 00:22:19.430 align:start position:0%
+Thus, the new predicted value for this
+observation<00:22:16.720><c> with</c><00:22:16.960><c> dosage</c><00:22:17.520><c> equal</c><00:22:17.800><c> to</c><00:22:17.960><c> 10</c>
+
+00:22:19.430 --> 00:22:19.440 align:start position:0%
+observation with dosage equal to 10
+ 
+
+00:22:19.440 --> 00:22:23.510 align:start position:0%
+observation with dosage equal to 10
+is<00:22:19.680><c> the</c><00:22:19.800><c> original</c><00:22:20.320><c> prediction</c><00:22:21.200><c> 0.5</c>
+
+00:22:23.510 --> 00:22:23.520 align:start position:0%
+is the original prediction 0.5
+ 
+
+00:22:23.520 --> 00:22:28.270 align:start position:0%
+is the original prediction 0.5
+plus<00:22:23.840><c> the</c><00:22:23.960><c> learning</c><00:22:24.400><c> rate</c><00:22:25.000><c> eta</c><00:22:25.840><c> 0.3</c>
+
+00:22:28.270 --> 00:22:28.280 align:start position:0%
+plus the learning rate eta 0.3
+ 
+
+00:22:28.280 --> 00:22:32.750 align:start position:0%
+plus the learning rate eta 0.3
+times<00:22:28.640><c> the</c><00:22:28.800><c> output</c><00:22:29.200><c> value</c><00:22:29.920><c> -10.5.</c>
+
+00:22:32.750 --> 00:22:32.760 align:start position:0%
+times the output value -10.5.
+ 
+
+00:22:32.760 --> 00:22:37.350 align:start position:0%
+times the output value -10.5.
+And<00:22:32.960><c> that</c><00:22:33.240><c> gives</c><00:22:33.600><c> us</c><00:22:33.920><c> -2.65.</c>
+
+00:22:37.350 --> 00:22:37.360 align:start position:0%
+ 
+ 
+
+00:22:37.360 --> 00:22:41.950 align:start position:0%
+ 
+So,<00:22:38.240><c> if</c><00:22:38.400><c> the</c><00:22:38.520><c> original</c><00:22:39.000><c> prediction</c><00:22:39.560><c> was</c><00:22:39.760><c> 0.5,</c>
+
+00:22:41.950 --> 00:22:41.960 align:start position:0%
+So, if the original prediction was 0.5,
+ 
+
+00:22:41.960 --> 00:22:45.790 align:start position:0%
+So, if the original prediction was 0.5,
+then<00:22:42.200><c> this</c><00:22:42.680><c> was</c><00:22:42.880><c> the</c><00:22:43.000><c> original</c><00:22:43.440><c> residual.</c>
+
+00:22:45.790 --> 00:22:45.800 align:start position:0%
+then this was the original residual.
+ 
+
+00:22:45.800 --> 00:22:49.910 align:start position:0%
+then this was the original residual.
+The<00:22:45.920><c> new</c><00:22:46.200><c> prediction</c><00:22:47.000><c> is</c><00:22:47.200><c> -2.65.</c>
+
+00:22:49.910 --> 00:22:49.920 align:start position:0%
+The new prediction is -2.65.
+ 
+
+00:22:49.920 --> 00:22:52.070 align:start position:0%
+The new prediction is -2.65.
+And<00:22:50.120><c> we</c><00:22:50.280><c> see</c><00:22:50.640><c> that</c><00:22:50.840><c> the</c><00:22:50.960><c> new</c><00:22:51.240><c> residual</c><00:22:51.880><c> is</c>
+
+00:22:52.070 --> 00:22:52.080 align:start position:0%
+And we see that the new residual is
+ 
+
+00:22:52.080 --> 00:22:54.390 align:start position:0%
+And we see that the new residual is
+smaller<00:22:52.520><c> than</c><00:22:52.680><c> before.</c><00:22:53.640><c> So,</c><00:22:53.800><c> we've</c><00:22:54.000><c> taken</c><00:22:54.360><c> a</c>
+
+00:22:54.390 --> 00:22:54.400 align:start position:0%
+smaller than before. So, we've taken a
+ 
+
+00:22:54.400 --> 00:22:57.630 align:start position:0%
+smaller than before. So, we've taken a
+small<00:22:54.880><c> step</c><00:22:55.320><c> in</c><00:22:55.440><c> the</c><00:22:55.560><c> right</c><00:22:55.800><c> direction.</c>
+
+00:22:57.630 --> 00:22:57.640 align:start position:0%
+small step in the right direction.
+ 
+
+00:22:57.640 --> 00:23:00.470 align:start position:0%
+small step in the right direction.
+Similarly,<00:22:59.120><c> the</c><00:22:59.240><c> new</c><00:22:59.440><c> prediction</c><00:23:00.000><c> for</c><00:23:00.160><c> this</c>
+
+00:23:00.470 --> 00:23:00.480 align:start position:0%
+Similarly, the new prediction for this
+ 
+
+00:23:00.480 --> 00:23:04.430 align:start position:0%
+Similarly, the new prediction for this
+observation<00:23:01.520><c> with</c><00:23:01.760><c> dosage</c><00:23:02.360><c> equal</c><00:23:02.640><c> 20,</c><00:23:03.480><c> is</c>
+
+00:23:04.430 --> 00:23:04.440 align:start position:0%
+observation with dosage equal 20, is
+ 
+
+00:23:04.440 --> 00:23:06.950 align:start position:0%
+observation with dosage equal 20, is
+beep<00:23:04.680><c> beep.</c>
+
+00:23:06.950 --> 00:23:06.960 align:start position:0%
+beep beep.
+ 
+
+00:23:06.960 --> 00:23:09.190 align:start position:0%
+beep beep.
+2.6.
+
+00:23:09.190 --> 00:23:09.200 align:start position:0%
+2.6.
+ 
+
+00:23:09.200 --> 00:23:11.190 align:start position:0%
+2.6.
+And<00:23:09.360><c> the</c><00:23:09.440><c> new</c><00:23:09.680><c> residual</c><00:23:10.480><c> is</c><00:23:10.640><c> smaller</c><00:23:11.040><c> than</c>
+
+00:23:11.190 --> 00:23:11.200 align:start position:0%
+And the new residual is smaller than
+ 
+
+00:23:11.200 --> 00:23:13.630 align:start position:0%
+And the new residual is smaller than
+before.<00:23:12.200><c> So,</c><00:23:12.360><c> we've</c><00:23:12.520><c> taken</c><00:23:12.840><c> another</c><00:23:13.320><c> small</c>
+
+00:23:13.630 --> 00:23:13.640 align:start position:0%
+before. So, we've taken another small
+ 
+
+00:23:13.640 --> 00:23:16.950 align:start position:0%
+before. So, we've taken another small
+step<00:23:14.200><c> in</c><00:23:14.360><c> the</c><00:23:14.480><c> right</c><00:23:14.680><c> direction.</c>
+
+00:23:16.950 --> 00:23:16.960 align:start position:0%
+step in the right direction.
+ 
+
+00:23:16.960 --> 00:23:19.350 align:start position:0%
+step in the right direction.
+Likewise,<00:23:18.080><c> the</c><00:23:18.200><c> new</c><00:23:18.440><c> predictions</c><00:23:19.120><c> for</c><00:23:19.240><c> the</c>
+
+00:23:19.350 --> 00:23:19.360 align:start position:0%
+Likewise, the new predictions for the
+ 
+
+00:23:19.360 --> 00:23:21.390 align:start position:0%
+Likewise, the new predictions for the
+remaining<00:23:19.880><c> observations</c><00:23:20.720><c> have</c><00:23:20.920><c> smaller</c>
+
+00:23:21.390 --> 00:23:21.400 align:start position:0%
+remaining observations have smaller
+ 
+
+00:23:21.400 --> 00:23:24.030 align:start position:0%
+remaining observations have smaller
+residuals<00:23:22.040><c> than</c><00:23:22.200><c> before,</c><00:23:23.160><c> suggesting</c><00:23:23.760><c> each</c>
+
+00:23:24.030 --> 00:23:24.040 align:start position:0%
+residuals than before, suggesting each
+ 
+
+00:23:24.040 --> 00:23:27.510 align:start position:0%
+residuals than before, suggesting each
+small<00:23:24.320><c> step</c><00:23:24.920><c> was</c><00:23:25.120><c> in</c><00:23:25.200><c> the</c><00:23:25.320><c> right</c><00:23:25.600><c> direction.</c>
+
+00:23:27.510 --> 00:23:27.520 align:start position:0%
+small step was in the right direction.
+ 
+
+00:23:27.520 --> 00:23:30.190 align:start position:0%
+small step was in the right direction.
+Bam!
+
+00:23:30.190 --> 00:23:30.200 align:start position:0%
+Bam!
+ 
+
+00:23:30.200 --> 00:23:32.310 align:start position:0%
+Bam!
+Now,<00:23:30.520><c> we</c><00:23:30.640><c> build</c><00:23:30.920><c> another</c><00:23:31.360><c> tree</c><00:23:31.720><c> based</c><00:23:32.080><c> on</c><00:23:32.200><c> the</c>
+
+00:23:32.310 --> 00:23:32.320 align:start position:0%
+Now, we build another tree based on the
+ 
+
+00:23:32.320 --> 00:23:34.150 align:start position:0%
+Now, we build another tree based on the
+new<00:23:32.520><c> residuals</c>
+
+00:23:34.150 --> 00:23:34.160 align:start position:0%
+new residuals
+ 
+
+00:23:34.160 --> 00:23:36.030 align:start position:0%
+new residuals
+and<00:23:34.320><c> make</c><00:23:34.600><c> new</c><00:23:34.840><c> predictions</c><00:23:35.520><c> that</c><00:23:35.680><c> give</c><00:23:35.880><c> us</c>
+
+00:23:36.030 --> 00:23:36.040 align:start position:0%
+and make new predictions that give us
+ 
+
+00:23:36.040 --> 00:23:39.070 align:start position:0%
+and make new predictions that give us
+even<00:23:36.320><c> smaller</c><00:23:36.840><c> residuals.</c>
+
+00:23:39.070 --> 00:23:39.080 align:start position:0%
+even smaller residuals.
+ 
+
+00:23:39.080 --> 00:23:41.430 align:start position:0%
+even smaller residuals.
+And<00:23:39.240><c> then</c><00:23:39.440><c> build</c><00:23:39.760><c> another</c><00:23:40.240><c> tree</c><00:23:40.880><c> based</c><00:23:41.200><c> on</c><00:23:41.320><c> the</c>
+
+00:23:41.430 --> 00:23:41.440 align:start position:0%
+And then build another tree based on the
+ 
+
+00:23:41.440 --> 00:23:43.990 align:start position:0%
+And then build another tree based on the
+newest<00:23:41.960><c> residuals.</c>
+
+00:23:43.990 --> 00:23:44.000 align:start position:0%
+newest residuals.
+ 
+
+00:23:44.000 --> 00:23:45.910 align:start position:0%
+newest residuals.
+And<00:23:44.160><c> we</c><00:23:44.280><c> keep</c><00:23:44.600><c> building</c><00:23:44.960><c> trees</c><00:23:45.520><c> until</c><00:23:45.800><c> the</c>
+
+00:23:45.910 --> 00:23:45.920 align:start position:0%
+And we keep building trees until the
+ 
+
+00:23:45.920 --> 00:23:48.550 align:start position:0%
+And we keep building trees until the
+residuals<00:23:46.560><c> are</c><00:23:46.680><c> super</c><00:23:47.120><c> small</c><00:23:48.040><c> or</c><00:23:48.200><c> we</c><00:23:48.360><c> have</c>
+
+00:23:48.550 --> 00:23:48.560 align:start position:0%
+residuals are super small or we have
+ 
+
+00:23:48.560 --> 00:23:51.790 align:start position:0%
+residuals are super small or we have
+reached<00:23:48.920><c> the</c><00:23:49.040><c> maximum</c><00:23:49.680><c> number.</c>
+
+00:23:51.790 --> 00:23:51.800 align:start position:0%
+reached the maximum number.
+ 
+
+00:23:51.800 --> 00:23:54.790 align:start position:0%
+reached the maximum number.
+Triple<00:23:52.440><c> bam!</c>
+
+00:23:54.790 --> 00:23:54.800 align:start position:0%
+Triple bam!
+ 
+
+00:23:54.800 --> 00:23:57.950 align:start position:0%
+Triple bam!
+In<00:23:55.040><c> summary,</c><00:23:56.000><c> when</c><00:23:56.160><c> building</c><00:23:56.640><c> XGBoost</c><00:23:57.520><c> trees</c>
+
+00:23:57.950 --> 00:23:57.960 align:start position:0%
+In summary, when building XGBoost trees
+ 
+
+00:23:57.960 --> 00:24:00.270 align:start position:0%
+In summary, when building XGBoost trees
+for<00:23:58.120><c> regression,</c>
+
+00:24:00.270 --> 00:24:00.280 align:start position:0%
+for regression,
+ 
+
+00:24:00.280 --> 00:24:04.390 align:start position:0%
+for regression,
+we<00:24:00.440><c> calculate</c><00:24:01.080><c> similarity</c><00:24:01.800><c> scores</c>
+
+00:24:04.390 --> 00:24:04.400 align:start position:0%
+we calculate similarity scores
+ 
+
+00:24:04.400 --> 00:24:06.910 align:start position:0%
+we calculate similarity scores
+and<00:24:04.680><c> gain</c><00:24:05.360><c> to</c><00:24:05.520><c> determine</c><00:24:06.040><c> how</c><00:24:06.280><c> to</c><00:24:06.400><c> split</c><00:24:06.800><c> the</c>
+
+00:24:06.910 --> 00:24:06.920 align:start position:0%
+and gain to determine how to split the
+ 
+
+00:24:06.920 --> 00:24:09.550 align:start position:0%
+and gain to determine how to split the
+data.
+
+00:24:09.550 --> 00:24:09.560 align:start position:0%
+ 
+ 
+
+00:24:09.560 --> 00:24:11.950 align:start position:0%
+ 
+And<00:24:09.720><c> we</c><00:24:09.880><c> prune</c><00:24:10.200><c> the</c><00:24:10.320><c> tree</c><00:24:11.000><c> by</c><00:24:11.160><c> calculating</c><00:24:11.840><c> the</c>
+
+00:24:11.950 --> 00:24:11.960 align:start position:0%
+And we prune the tree by calculating the
+ 
+
+00:24:11.960 --> 00:24:14.550 align:start position:0%
+And we prune the tree by calculating the
+differences<00:24:12.720><c> between</c><00:24:13.160><c> gain</c><00:24:13.520><c> values</c><00:24:14.360><c> and</c><00:24:14.520><c> a</c>
+
+00:24:14.550 --> 00:24:14.560 align:start position:0%
+differences between gain values and a
+ 
+
+00:24:14.560 --> 00:24:17.550 align:start position:0%
+differences between gain values and a
+user-defined<00:24:15.480><c> tree</c><00:24:15.840><c> complexity</c><00:24:16.600><c> parameter,</c>
+
+00:24:17.550 --> 00:24:17.560 align:start position:0%
+user-defined tree complexity parameter,
+ 
+
+00:24:17.560 --> 00:24:19.710 align:start position:0%
+user-defined tree complexity parameter,
+gamma.
+
+00:24:19.710 --> 00:24:19.720 align:start position:0%
+gamma.
+ 
+
+00:24:19.720 --> 00:24:21.910 align:start position:0%
+gamma.
+If<00:24:19.880><c> the</c><00:24:20.000><c> difference</c><00:24:20.440><c> is</c><00:24:20.600><c> positive,</c><00:24:21.640><c> then</c><00:24:21.800><c> we</c>
+
+00:24:21.910 --> 00:24:21.920 align:start position:0%
+If the difference is positive, then we
+ 
+
+00:24:21.920 --> 00:24:23.590 align:start position:0%
+If the difference is positive, then we
+do<00:24:22.160><c> not</c><00:24:22.440><c> prune.</c>
+
+00:24:23.590 --> 00:24:23.600 align:start position:0%
+do not prune.
+ 
+
+00:24:23.600 --> 00:24:27.590 align:start position:0%
+do not prune.
+If<00:24:23.760><c> it's</c><00:24:23.920><c> negative,</c><00:24:24.920><c> then</c><00:24:25.120><c> we</c><00:24:25.280><c> prune.</c>
+
+00:24:27.590 --> 00:24:27.600 align:start position:0%
+If it's negative, then we prune.
+ 
+
+00:24:27.600 --> 00:24:30.670 align:start position:0%
+If it's negative, then we prune.
+For<00:24:27.840><c> example,</c><00:24:28.920><c> if</c><00:24:29.080><c> we</c><00:24:29.200><c> subtract</c><00:24:29.960><c> gamma</c><00:24:30.440><c> from</c>
+
+00:24:30.670 --> 00:24:30.680 align:start position:0%
+For example, if we subtract gamma from
+ 
+
+00:24:30.680 --> 00:24:33.670 align:start position:0%
+For example, if we subtract gamma from
+this<00:24:30.960><c> gain</c><00:24:31.760><c> and</c><00:24:31.920><c> get</c><00:24:32.080><c> a</c><00:24:32.160><c> negative</c><00:24:32.680><c> value,</c><00:24:33.520><c> we</c>
+
+00:24:33.670 --> 00:24:33.680 align:start position:0%
+this gain and get a negative value, we
+ 
+
+00:24:33.680 --> 00:24:37.470 align:start position:0%
+this gain and get a negative value, we
+will<00:24:33.840><c> prune.</c><00:24:34.800><c> Otherwise,</c><00:24:35.520><c> we're</c><00:24:35.680><c> done.</c>
+
+00:24:37.470 --> 00:24:37.480 align:start position:0%
+will prune. Otherwise, we're done.
+ 
+
+00:24:37.480 --> 00:24:40.230 align:start position:0%
+will prune. Otherwise, we're done.
+If<00:24:37.720><c> we</c><00:24:37.880><c> prune,</c><00:24:38.720><c> then</c><00:24:38.960><c> we</c><00:24:39.080><c> will</c><00:24:39.200><c> subtract</c><00:24:39.760><c> gamma</c>
+
+00:24:40.230 --> 00:24:40.240 align:start position:0%
+If we prune, then we will subtract gamma
+ 
+
+00:24:40.240 --> 00:24:42.550 align:start position:0%
+If we prune, then we will subtract gamma
+from<00:24:40.440><c> the</c><00:24:40.560><c> next</c><00:24:40.960><c> gain</c><00:24:41.280><c> value</c><00:24:42.000><c> and</c><00:24:42.200><c> work</c><00:24:42.440><c> our</c>
+
+00:24:42.550 --> 00:24:42.560 align:start position:0%
+from the next gain value and work our
+ 
+
+00:24:42.560 --> 00:24:44.870 align:start position:0%
+from the next gain value and work our
+way<00:24:42.800><c> up</c><00:24:43.000><c> the</c><00:24:43.120><c> tree.</c>
+
+00:24:44.870 --> 00:24:44.880 align:start position:0%
+way up the tree.
+ 
+
+00:24:44.880 --> 00:24:47.150 align:start position:0%
+way up the tree.
+Then,<00:24:45.120><c> we</c><00:24:45.280><c> calculate</c><00:24:45.880><c> the</c><00:24:46.080><c> output</c><00:24:46.560><c> values</c><00:24:47.040><c> for</c>
+
+00:24:47.150 --> 00:24:47.160 align:start position:0%
+Then, we calculate the output values for
+ 
+
+00:24:47.160 --> 00:24:49.670 align:start position:0%
+Then, we calculate the output values for
+the<00:24:47.280><c> remaining</c><00:24:47.840><c> leaves.</c>
+
+00:24:49.670 --> 00:24:49.680 align:start position:0%
+the remaining leaves.
+ 
+
+00:24:49.680 --> 00:24:52.430 align:start position:0%
+the remaining leaves.
+And<00:24:49.880><c> lastly,</c><00:24:50.920><c> lambda</c><00:24:51.320><c> is</c><00:24:51.520><c> a</c><00:24:51.560><c> regularization</c>
+
+00:24:52.430 --> 00:24:52.440 align:start position:0%
+And lastly, lambda is a regularization
+ 
+
+00:24:52.440 --> 00:24:54.830 align:start position:0%
+And lastly, lambda is a regularization
+parameter,<00:24:53.400><c> and</c><00:24:53.560><c> when</c><00:24:53.760><c> lambda</c><00:24:54.200><c> is</c><00:24:54.400><c> greater</c>
+
+00:24:54.830 --> 00:24:54.840 align:start position:0%
+parameter, and when lambda is greater
+ 
+
+00:24:54.840 --> 00:24:57.910 align:start position:0%
+parameter, and when lambda is greater
+than<00:24:55.040><c> zero,</c><00:24:55.880><c> it</c><00:24:56.040><c> results</c><00:24:56.520><c> in</c><00:24:56.640><c> more</c><00:24:56.880><c> pruning</c><00:24:57.760><c> by</c>
+
+00:24:57.910 --> 00:24:57.920 align:start position:0%
+than zero, it results in more pruning by
+ 
+
+00:24:57.920 --> 00:25:00.270 align:start position:0%
+than zero, it results in more pruning by
+shrinking<00:24:58.360><c> the</c><00:24:58.480><c> similarity</c><00:24:59.160><c> scores.</c>
+
+00:25:00.270 --> 00:25:00.280 align:start position:0%
+shrinking the similarity scores.
+ 
+
+00:25:00.280 --> 00:25:02.510 align:start position:0%
+shrinking the similarity scores.
+And<00:25:00.520><c> it</c><00:25:00.640><c> results</c><00:25:01.040><c> in</c><00:25:01.160><c> smaller</c><00:25:01.640><c> output</c><00:25:02.040><c> values</c>
+
+00:25:02.510 --> 00:25:02.520 align:start position:0%
+And it results in smaller output values
+ 
+
+00:25:02.520 --> 00:25:04.230 align:start position:0%
+And it results in smaller output values
+for<00:25:02.640><c> the</c><00:25:02.800><c> leaves.</c>
+
+00:25:04.230 --> 00:25:04.240 align:start position:0%
+for the leaves.
+ 
+
+00:25:04.240 --> 00:25:06.150 align:start position:0%
+for the leaves.
+Bam.
+
+00:25:06.150 --> 00:25:06.160 align:start position:0%
+Bam.
+ 
+
+00:25:06.160 --> 00:25:09.510 align:start position:0%
+Bam.
+Tune<00:25:06.440><c> in</c><00:25:06.600><c> next</c><00:25:06.920><c> time</c><00:25:07.280><c> for</c><00:25:07.560><c> XGBoost</c><00:25:08.400><c> part</c><00:25:08.760><c> two,</c>
+
+00:25:09.510 --> 00:25:09.520 align:start position:0%
+Tune in next time for XGBoost part two,
+ 
+
+00:25:09.520 --> 00:25:12.310 align:start position:0%
+Tune in next time for XGBoost part two,
+when<00:25:09.720><c> we</c><00:25:09.840><c> give</c><00:25:10.080><c> an</c><00:25:10.240><c> overview</c><00:25:11.040><c> of</c><00:25:11.200><c> how</c><00:25:11.400><c> XGBoost</c>
+
+00:25:12.310 --> 00:25:12.320 align:start position:0%
+when we give an overview of how XGBoost
+ 
+
+00:25:12.320 --> 00:25:15.030 align:start position:0%
+when we give an overview of how XGBoost
+trees<00:25:12.920><c> are</c><00:25:13.080><c> built</c><00:25:13.400><c> for</c><00:25:13.520><c> classification.</c>
+
+00:25:15.030 --> 00:25:15.040 align:start position:0%
+trees are built for classification.
+ 
+
+00:25:15.040 --> 00:25:18.190 align:start position:0%
+trees are built for classification.
+It's<00:25:15.280><c> going</c><00:25:15.400><c> to</c><00:25:15.480><c> be</c><00:25:15.640><c> totally</c><00:25:16.280><c> awesome.</c>
+
+00:25:18.190 --> 00:25:18.200 align:start position:0%
+It's going to be totally awesome.
+ 
+
+00:25:18.200 --> 00:25:20.870 align:start position:0%
+It's going to be totally awesome.
+Hooray!<00:25:19.600><c> We've</c><00:25:19.840><c> made</c><00:25:20.080><c> it</c><00:25:20.200><c> to</c><00:25:20.320><c> the</c><00:25:20.520><c> end</c><00:25:20.760><c> of</c>
+
+00:25:20.870 --> 00:25:20.880 align:start position:0%
+Hooray! We've made it to the end of
+ 
+
+00:25:20.880 --> 00:25:23.670 align:start position:0%
+Hooray! We've made it to the end of
+another<00:25:21.280><c> exciting</c><00:25:21.880><c> StatQuest.</c><00:25:23.160><c> If</c><00:25:23.320><c> you</c><00:25:23.440><c> like</c>
+
+00:25:23.670 --> 00:25:23.680 align:start position:0%
+another exciting StatQuest. If you like
+ 
+
+00:25:23.680 --> 00:25:25.870 align:start position:0%
+another exciting StatQuest. If you like
+this<00:25:23.880><c> StatQuest</c><00:25:24.600><c> and</c><00:25:24.760><c> want</c><00:25:24.960><c> to</c><00:25:25.040><c> see</c><00:25:25.240><c> more,</c>
+
+00:25:25.870 --> 00:25:25.880 align:start position:0%
+this StatQuest and want to see more,
+ 
+
+00:25:25.880 --> 00:25:27.870 align:start position:0%
+this StatQuest and want to see more,
+please<00:25:26.120><c> subscribe.</c><00:25:27.280><c> And</c><00:25:27.400><c> if</c><00:25:27.520><c> you</c><00:25:27.640><c> want</c><00:25:27.800><c> to</c>
+
+00:25:27.870 --> 00:25:27.880 align:start position:0%
+please subscribe. And if you want to
+ 
+
+00:25:27.880 --> 00:25:30.510 align:start position:0%
+please subscribe. And if you want to
+support<00:25:28.320><c> StatQuest,</c><00:25:29.400><c> consider</c><00:25:29.880><c> contributing</c>
+
+00:25:30.510 --> 00:25:30.520 align:start position:0%
+support StatQuest, consider contributing
+ 
+
+00:25:30.520 --> 00:25:33.070 align:start position:0%
+support StatQuest, consider contributing
+to<00:25:30.640><c> my</c><00:25:30.800><c> Patreon</c><00:25:31.440><c> campaign,</c><00:25:32.560><c> becoming</c><00:25:33.000><c> a</c>
+
+00:25:33.070 --> 00:25:33.080 align:start position:0%
+to my Patreon campaign, becoming a
+ 
+
+00:25:33.080 --> 00:25:35.510 align:start position:0%
+to my Patreon campaign, becoming a
+channel<00:25:33.480><c> member,</c><00:25:34.480><c> buying</c><00:25:34.840><c> one</c><00:25:35.000><c> or</c><00:25:35.080><c> two</c><00:25:35.280><c> of</c><00:25:35.400><c> my</c>
+
+00:25:35.510 --> 00:25:35.520 align:start position:0%
+channel member, buying one or two of my
+ 
+
+00:25:35.520 --> 00:25:37.630 align:start position:0%
+channel member, buying one or two of my
+original<00:25:35.960><c> songs,</c><00:25:36.560><c> or</c><00:25:36.680><c> a</c><00:25:36.760><c> t-shirt,</c><00:25:37.400><c> or</c><00:25:37.600><c> a</c>
+
+00:25:37.630 --> 00:25:37.640 align:start position:0%
+original songs, or a t-shirt, or a
+ 
+
+00:25:37.640 --> 00:25:40.510 align:start position:0%
+original songs, or a t-shirt, or a
+hoodie,<00:25:38.320><c> or</c><00:25:38.440><c> just</c><00:25:38.760><c> donate.</c><00:25:39.720><c> The</c><00:25:39.880><c> links</c><00:25:40.360><c> are</c><00:25:40.440><c> in</c>
+
+00:25:40.510 --> 00:25:40.520 align:start position:0%
+hoodie, or just donate. The links are in
+ 
+
+00:25:40.520 --> 00:25:42.270 align:start position:0%
+hoodie, or just donate. The links are in
+the<00:25:40.640><c> description</c><00:25:41.200><c> below.</c>
+
+00:25:42.270 --> 00:25:42.280 align:start position:0%
+the description below.
+ 
+
+00:25:42.280 --> 00:25:47.600 align:start position:0%
+the description below.
+All<00:25:42.480><c> right.</c><00:25:43.160><c> Until</c><00:25:43.520><c> next</c><00:25:43.840><c> time,</c><00:25:44.520><c> quest</c><00:25:45.000><c> on.</c>
+

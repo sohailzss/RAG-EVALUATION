@@ -1,0 +1,61 @@
+# ============================================================
+# SECRETS -- never commit API keys
+# ============================================================
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# ============================================================
+# GENERATED DATA (large, rebuildable)
+# ============================================================
+# Vector store: rebuilt by `uv run python -m src.retriever`
+chroma_store/
+chroma_db/
+
+# DeepEval local config, run caches and telemetry (contain full LLM outputs)
+.deepeval/
+.deepeval-cache.json
+.deepeval_telemetry.txt
+temp_test_run_data.json
+
+# Logs and scratch output
+*.log
+*.output
+
+# ============================================================
+# PYTHON
+# ============================================================
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ============================================================
+# ENVIRONMENT (uv / virtualenv)
+# ============================================================
+.venv/
+venv/
+env/
+# uv.lock is intentionally NOT ignored: commit it for reproducible installs
+
+# ============================================================
+# MODEL CACHES (reranker cross-encoder downloads)
+# ============================================================
+.cache/
+
+# ============================================================
+# OS / EDITOR NOISE
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+.claude/
+*.swp

@@ -1,0 +1,518 @@
+WEBVTT
+
+00:00:00.470 --> 00:00:03.060
+>> Hurricane Florence came
+
+00:00:03.060 --> 00:00:07.585
+by while I was working on StatQuest.
+
+00:00:07.585 --> 00:00:10.820
+Dark clouds filled the sky,
+
+00:00:10.820 --> 00:00:14.205
+but that didn't stop StatQuest.
+
+00:00:14.205 --> 00:00:19.870
+StatQuest. Hello/ I'm Josh Starmer
+
+00:00:19.870 --> 00:00:21.395
+and welcome to StatQuest.
+
+00:00:21.395 --> 00:00:22.830
+Today we're going to be talking about
+
+00:00:22.830 --> 00:00:24.745
+some machine learning fundamentals,
+
+00:00:24.745 --> 00:00:26.450
+bias, and variance
+
+00:00:26.450 --> 00:00:28.950
+and they're going to be clearly explained.
+
+00:00:28.950 --> 00:00:32.030
+Imagine we measured the weight and height of
+
+00:00:32.030 --> 00:00:33.230
+a bunch of mice and
+
+00:00:33.230 --> 00:00:35.470
+plotted the data on a graph.
+
+00:00:35.470 --> 00:00:37.630
+Light mice tend to be
+
+00:00:37.630 --> 00:00:42.130
+short and heavier mice tend to be taller.
+
+00:00:42.130 --> 00:00:44.330
+But after a certain weight,
+
+00:00:44.330 --> 00:00:47.690
+mice don't get any taller, just more obese.
+
+00:00:47.690 --> 00:00:50.170
+Given this data, we would like to
+
+00:00:50.170 --> 00:00:52.830
+predict mouse height given its weight.
+
+00:00:52.830 --> 00:00:54.770
+For example, if you
+
+00:00:54.770 --> 00:00:57.250
+told me your mouse weighed this much,
+
+00:00:57.250 --> 00:00:59.210
+then we might predict that
+
+00:00:59.210 --> 00:01:01.320
+the mouse is this tall.
+
+00:01:01.320 --> 00:01:03.470
+Ideally, we would know
+
+00:01:03.470 --> 00:01:05.610
+the exact mathematical formula that
+
+00:01:05.610 --> 00:01:06.990
+describes the relationship
+
+00:01:06.990 --> 00:01:08.790
+between weight and height.
+
+00:01:08.790 --> 00:01:10.770
+But in this case,
+
+00:01:10.770 --> 00:01:12.330
+we don't know the formula,
+
+00:01:12.330 --> 00:01:13.410
+so we're going to use
+
+00:01:13.410 --> 00:01:14.850
+two machine learning methods
+
+00:01:14.850 --> 00:01:17.330
+to approximate this relationship.
+
+00:01:17.330 --> 00:01:19.450
+However, I'll leave
+
+00:01:19.450 --> 00:01:21.090
+the true relationship curve
+
+00:01:21.090 --> 00:01:23.190
+in the figure for reference.
+
+00:01:23.190 --> 00:01:25.150
+The first thing we do is
+
+00:01:25.150 --> 00:01:26.930
+split the data into two sets,
+
+00:01:26.930 --> 00:01:27.830
+one for training
+
+00:01:27.830 --> 00:01:29.330
+the machine learning algorithms
+
+00:01:29.330 --> 00:01:31.200
+and one for testing them.
+
+00:01:31.200 --> 00:01:34.290
+The blue dots are the training set
+
+00:01:34.290 --> 00:01:37.525
+and the green dots are the testing set.
+
+00:01:37.525 --> 00:01:40.400
+Here is just the training set.
+
+00:01:40.400 --> 00:01:43.030
+The first machine learning algorithm that
+
+00:01:43.030 --> 00:01:45.260
+we will use is linear regression,
+
+00:01:45.260 --> 00:01:48.030
+AKA, least squares.
+
+00:01:48.030 --> 00:01:50.250
+Linear regression fits
+
+00:01:50.250 --> 00:01:52.790
+a straight line to the training set.
+
+00:01:52.790 --> 00:01:55.190
+Note. The straight line
+
+00:01:55.190 --> 00:01:56.610
+doesn't have the flexibility
+
+00:01:56.610 --> 00:01:58.650
+to accurately replicate the arc
+
+00:01:58.650 --> 00:02:00.790
+in the true relationship.
+
+00:02:00.790 --> 00:02:02.990
+No matter how we try to fit
+
+00:02:02.990 --> 00:02:05.830
+the line, it will never curve.
+
+00:02:06.570 --> 00:02:09.630
+Thus, the straight line will never
+
+00:02:09.630 --> 00:02:11.270
+capture the true relationship
+
+00:02:11.270 --> 00:02:12.510
+between weight and height,
+
+00:02:12.510 --> 00:02:13.690
+no matter how well we
+
+00:02:13.690 --> 00:02:15.730
+fit it to the training set.
+
+00:02:15.730 --> 00:02:17.770
+The inability for a
+
+00:02:17.770 --> 00:02:19.230
+machine learning method like
+
+00:02:19.230 --> 00:02:21.250
+linear regression to capture
+
+00:02:21.250 --> 00:02:24.450
+the true relationship is called bias.
+
+00:02:24.450 --> 00:02:26.810
+Because the straight line can't
+
+00:02:26.810 --> 00:02:29.150
+be curved like the true relationship,
+
+00:02:29.150 --> 00:02:32.600
+it has a relatively large amount of bias.
+
+00:02:32.600 --> 00:02:35.350
+Another machine learning method might
+
+00:02:35.350 --> 00:02:38.160
+fit a squiggly line to the training set.
+
+00:02:38.160 --> 00:02:41.110
+The squiggly line is super flexible and
+
+00:02:41.110 --> 00:02:42.690
+hugs the training set along
+
+00:02:42.690 --> 00:02:44.950
+the arc of the true relationship.
+
+00:02:44.950 --> 00:02:47.510
+Because the squiggly line can handle
+
+00:02:47.510 --> 00:02:49.250
+the arc in the true relationship
+
+00:02:49.250 --> 00:02:50.510
+between weight and height,
+
+00:02:50.510 --> 00:02:52.870
+it has very little bias.
+
+00:02:52.870 --> 00:02:56.150
+We can compare how well the straight line and
+
+00:02:56.150 --> 00:02:57.570
+the squiggly line fit
+
+00:02:57.570 --> 00:02:58.790
+the training set by
+
+00:02:58.790 --> 00:03:01.230
+calculating their sums of squares.
+
+00:03:01.230 --> 00:03:03.570
+In other words, we measure
+
+00:03:03.570 --> 00:03:06.250
+the distances from the fit lines to the data,
+
+00:03:06.250 --> 00:03:09.070
+square them, and add them up.
+
+00:03:09.230 --> 00:03:11.590
+They are squared so that
+
+00:03:11.590 --> 00:03:13.130
+negative distances do not
+
+00:03:13.130 --> 00:03:15.890
+cancel out positive distances.
+
+00:03:15.890 --> 00:03:18.250
+Notice how the squiggly line
+
+00:03:18.250 --> 00:03:19.930
+fits the data so well
+
+00:03:19.930 --> 00:03:21.490
+that the distances between
+
+00:03:21.490 --> 00:03:24.550
+the line and the data are all zero.
+
+00:03:24.550 --> 00:03:26.650
+In the contest to see
+
+00:03:26.650 --> 00:03:27.850
+whether the straight line
+
+00:03:27.850 --> 00:03:29.130
+fits the training set
+
+00:03:29.130 --> 00:03:30.950
+better than the squiggly line,
+
+00:03:30.950 --> 00:03:33.645
+the squiggly line wins.
+
+00:03:33.645 --> 00:03:36.920
+But remember, so far we've only
+
+00:03:36.920 --> 00:03:38.100
+calculated the sums of
+
+00:03:38.100 --> 00:03:40.300
+squares for the training set.
+
+00:03:40.300 --> 00:03:43.100
+We also have a testing set.
+
+00:03:43.100 --> 00:03:45.340
+Now let's calculate the sums
+
+00:03:45.340 --> 00:03:47.780
+of squares for the testing set.
+
+00:03:47.780 --> 00:03:49.480
+In the contest to
+
+00:03:49.480 --> 00:03:50.800
+see whether the straight line
+
+00:03:50.800 --> 00:03:52.100
+fits the testing set
+
+00:03:52.100 --> 00:03:54.140
+better than the squiggly line,
+
+00:03:54.140 --> 00:03:57.100
+the straight line wins.
+
+00:03:57.260 --> 00:03:59.740
+Even though the squiggly line did
+
+00:03:59.740 --> 00:04:02.300
+a great job fitting the training set,
+
+00:04:02.300 --> 00:04:04.260
+it did a terrible job
+
+00:04:04.260 --> 00:04:06.100
+fitting the testing set.
+
+00:04:06.100 --> 00:04:08.360
+In machine learning lingo,
+
+00:04:08.360 --> 00:04:10.140
+the difference in fits between
+
+00:04:10.140 --> 00:04:12.800
+datasets is called variance.
+
+00:04:12.800 --> 00:04:15.780
+The squiggly line has low bias,
+
+00:04:15.780 --> 00:04:17.860
+since it is flexible and can adapt to
+
+00:04:17.860 --> 00:04:19.280
+the curve in the relationship
+
+00:04:19.280 --> 00:04:21.140
+between weight and height.
+
+00:04:21.140 --> 00:04:23.120
+But the squiggly line has
+
+00:04:23.120 --> 00:04:25.000
+high variability because it
+
+00:04:25.000 --> 00:04:26.880
+results in vastly different sums
+
+00:04:26.880 --> 00:04:29.560
+of squares for different datasets.
+
+00:04:29.560 --> 00:04:32.920
+In other words, it's hard to predict how well
+
+00:04:32.920 --> 00:04:34.460
+the squiggly line will perform
+
+00:04:34.460 --> 00:04:35.980
+with future datasets.
+
+00:04:35.980 --> 00:04:37.990
+It might do well sometimes
+
+00:04:37.990 --> 00:04:41.025
+and other times it might do terribly.
+
+00:04:41.025 --> 00:04:43.990
+In contrast, the straight line
+
+00:04:43.990 --> 00:04:45.810
+has relatively high bias,
+
+00:04:45.810 --> 00:04:47.330
+since it cannot capture
+
+00:04:47.330 --> 00:04:48.750
+the curve in the relationship
+
+00:04:48.750 --> 00:04:50.490
+between weight and height.
+
+00:04:50.490 --> 00:04:52.110
+But the straight line
+
+00:04:52.110 --> 00:04:54.030
+has relatively low variance
+
+00:04:54.030 --> 00:04:55.750
+because the sums of squares are
+
+00:04:55.750 --> 00:04:58.550
+very similar for different datasets.
+
+00:04:58.550 --> 00:05:01.810
+In other words, the straight line might only
+
+00:05:01.810 --> 00:05:03.270
+give good predictions and
+
+00:05:03.270 --> 00:05:04.850
+not great predictions,
+
+00:05:04.850 --> 00:05:06.570
+but they will be consistently
+
+00:05:06.570 --> 00:05:08.020
+good predictions.
+
+00:05:08.020 --> 00:05:11.315
+Bam. Oh, no.
+
+00:05:11.315 --> 00:05:13.280
+Terminology alert.
+
+00:05:13.280 --> 00:05:14.990
+Because the squiggly line
+
+00:05:14.990 --> 00:05:16.890
+fits the training set really well,
+
+00:05:16.890 --> 00:05:18.550
+but not the testing set,
+
+00:05:18.550 --> 00:05:22.050
+we say that the squiggly line is overfit.
+
+00:05:22.050 --> 00:05:25.590
+In machine learning, the ideal algorithm has
+
+00:05:25.590 --> 00:05:26.990
+low bias and can
+
+00:05:26.990 --> 00:05:29.900
+accurately model the true relationship.
+
+00:05:29.900 --> 00:05:32.670
+And it has low variability by
+
+00:05:32.670 --> 00:05:34.530
+producing consistent predictions
+
+00:05:34.530 --> 00:05:36.830
+across different datasets.
+
+00:05:36.830 --> 00:05:38.830
+This is done by finding
+
+00:05:38.830 --> 00:05:40.130
+the sweet spot between
+
+00:05:40.130 --> 00:05:44.010
+a simple model and a complex model.
+
+00:05:44.010 --> 00:05:47.680
+Oh, no. Another terminology alert.
+
+00:05:47.680 --> 00:05:49.680
+Three commonly used methods
+
+00:05:49.680 --> 00:05:51.560
+for finding the sweet spot between
+
+00:05:51.560 --> 00:05:53.460
+simple and complicated models
+
+00:05:53.460 --> 00:05:55.710
+are regularization,
+
+00:05:55.710 --> 00:05:58.300
+boosting, and bagging.
+
+00:05:58.300 --> 00:06:01.220
+The StatQuest on a random forest show
+
+00:06:01.220 --> 00:06:03.485
+an example of bagging in action.
+
+00:06:03.485 --> 00:06:06.020
+And we'll talk about regularization
+
+00:06:06.020 --> 00:06:08.935
+and boosting in future StatQuests.
+
+00:06:08.935 --> 00:06:13.260
+Double bam. Hooray. We've made
+
+00:06:13.260 --> 00:06:15.875
+it to the end of another exciting StatQuest.
+
+00:06:15.875 --> 00:06:17.400
+If you like this StatQuest and
+
+00:06:17.400 --> 00:06:19.140
+want to see more, please subscribe.
+
+00:06:19.140 --> 00:06:21.760
+And if you want to support StatQuest,
+
+00:06:21.760 --> 00:06:23.400
+please consider buying one
+
+00:06:23.400 --> 00:06:25.200
+or two of my original songs.
+
+00:06:25.200 --> 00:06:29.020
+All right. Until next time, quest on.
+

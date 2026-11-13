@@ -1,0 +1,1539 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:02.340
+&gt;&gt; I like decision trees.
+
+00:00:02.340 --> 00:00:07.310
+How about you StatQuest?
+
+00:00:07.310 --> 00:00:10.050
+Hello. I'm Josh Starmer,
+
+00:00:10.050 --> 00:00:11.750
+and welcome to StatQuest.
+
+00:00:11.750 --> 00:00:13.010
+Today, we're going
+to talk about
+
+00:00:13.010 --> 00:00:15.370
+decision and
+classification trees,
+
+00:00:15.370 --> 00:00:17.990
+and they're going to
+be clearly explained.
+
+00:00:17.990 --> 00:00:20.990
+Here is a simple
+decision tree.
+
+00:00:20.990 --> 00:00:22.590
+If a person wants to
+
+00:00:22.590 --> 00:00:24.430
+learn about
+decision trees,
+
+00:00:24.430 --> 00:00:27.445
+then they should
+watch this StatQuest.
+
+00:00:27.445 --> 00:00:29.610
+In contrast, if a person
+
+00:00:29.610 --> 00:00:32.290
+does not want to learn
+about decision trees,
+
+00:00:32.290 --> 00:00:33.990
+then check out the latest
+
+00:00:33.990 --> 00:00:36.550
+Justin Bieber
+video instead.
+
+00:00:36.550 --> 00:00:39.190
+In general, a
+decision tree
+
+00:00:39.190 --> 00:00:41.430
+makes a statement
+and then makes
+
+00:00:41.430 --> 00:00:42.610
+a decision based on
+
+00:00:42.610 --> 00:00:43.950
+whether or not
+that statement
+
+00:00:43.950 --> 00:00:47.730
+is true or false.
+It's no big deal.
+
+00:00:47.730 --> 00:00:49.610
+When a decision tree
+
+00:00:49.610 --> 00:00:52.410
+classifies things
+into categories,
+
+00:00:52.410 --> 00:00:55.415
+it's called a
+classification tree.
+
+00:00:55.415 --> 00:00:57.250
+And when a decision tree
+
+00:00:57.250 --> 00:00:59.270
+predicts numeric values,
+
+00:00:59.270 --> 00:01:01.810
+it's called a
+regression tree.
+
+00:01:01.810 --> 00:01:04.710
+In this case,
+we're using diet
+
+00:01:04.710 --> 00:01:08.610
+to predict a numeric
+value for mouse size.
+
+00:01:08.610 --> 00:01:11.850
+Note, for the remainder
+of this video,
+
+00:01:11.850 --> 00:01:15.290
+we are going to focus on
+classification trees.
+
+00:01:15.290 --> 00:01:17.930
+However, if you
+want to learn more
+
+00:01:17.930 --> 00:01:20.630
+about regression
+trees, fear not.
+
+00:01:20.630 --> 00:01:22.650
+There's a whole StatQuest
+
+00:01:22.650 --> 00:01:24.490
+dedicated to
+regression trees.
+
+00:01:24.490 --> 00:01:27.475
+The link is in the
+description below.
+
+00:01:27.475 --> 00:01:29.409
+Now, here's
+
+00:01:29.409 --> 00:01:32.980
+a more complicated
+classification tree.
+
+00:01:32.980 --> 00:01:37.940
+It combines numeric
+data with yes/no data.
+
+00:01:37.940 --> 00:01:40.000
+So it's okay to mix
+
+00:01:40.000 --> 00:01:42.360
+data types in
+the same tree.
+
+00:01:42.360 --> 00:01:44.380
+Also, notice that
+
+00:01:44.380 --> 00:01:46.620
+the tree asks
+about exercising
+
+00:01:46.620 --> 00:01:49.360
+multiple times and
+that the amount
+
+00:01:49.360 --> 00:01:52.740
+of time exercising
+isn't always the same.
+
+00:01:52.740 --> 00:01:55.020
+So numeric thresholds can
+
+00:01:55.020 --> 00:01:57.360
+be different for
+the same data.
+
+00:01:57.360 --> 00:01:58.776
+Lastly,
+
+00:01:58.776 --> 00:02:02.075
+the final classifications
+can be repeated.
+
+00:02:02.075 --> 00:02:05.290
+For the most part,
+classification trees
+
+00:02:05.290 --> 00:02:07.150
+are pretty easy
+to work with.
+
+00:02:07.150 --> 00:02:11.190
+You start at the top
+and work your way down
+
+00:02:11.190 --> 00:02:13.770
+and down until you
+
+00:02:13.770 --> 00:02:14.930
+get to a point where you
+
+00:02:14.930 --> 00:02:16.370
+can't go any further,
+
+00:02:16.370 --> 00:02:19.150
+and that's how you'll
+classify something.
+
+00:02:19.150 --> 00:02:21.610
+Note, so far, I've been
+
+00:02:21.610 --> 00:02:24.630
+labeling the arrows
+with true or false.
+
+00:02:24.630 --> 00:02:27.550
+But usually, it is
+just assumed that if
+
+00:02:27.550 --> 00:02:30.670
+a statement is true,
+you go to the left.
+
+00:02:30.670 --> 00:02:32.870
+And if a statement
+is false,
+
+00:02:32.870 --> 00:02:34.585
+you go to the right.
+
+00:02:34.585 --> 00:02:37.060
+So sometimes you see
+
+00:02:37.060 --> 00:02:39.800
+true and false labels,
+sometimes you don't.
+
+00:02:39.800 --> 00:02:42.663
+It's no big deal. No,
+
+00:02:42.663 --> 00:02:45.555
+it's the dreaded
+terminology alert.
+
+00:02:45.555 --> 00:02:47.620
+The very top
+of the tree is
+
+00:02:47.620 --> 00:02:50.620
+called the root node
+or just the root.
+
+00:02:50.620 --> 00:02:54.560
+These are called internal
+nodes or branches.
+
+00:02:54.560 --> 00:02:57.480
+Branches have arrows
+pointing to them,
+
+00:02:57.480 --> 00:03:00.720
+and they have arrows
+pointing away from them.
+
+00:03:00.720 --> 00:03:02.760
+Lastly, these are called
+
+00:03:02.760 --> 00:03:05.140
+leaf nodes or just leaves.
+
+00:03:05.140 --> 00:03:07.940
+Leaves have arrows
+pointing to them,
+
+00:03:07.940 --> 00:03:09.640
+but there are no arrows
+
+00:03:09.640 --> 00:03:11.240
+pointing away from them.
+
+00:03:11.240 --> 00:03:13.900
+Bam. Now that we know how
+
+00:03:13.900 --> 00:03:16.920
+to use and interpret
+classification trees,
+
+00:03:16.920 --> 00:03:20.375
+let's learn how to build
+one from raw data.
+
+00:03:20.375 --> 00:03:22.730
+This data tells us whether
+
+00:03:22.730 --> 00:03:24.930
+or not someone
+loves popcorn,
+
+00:03:24.930 --> 00:03:27.370
+whether or not
+they love soda,
+
+00:03:27.370 --> 00:03:31.310
+their age, and whether
+or not they love
+
+00:03:31.310 --> 00:03:33.870
+the 1991 Blockbuster Cool
+
+00:03:33.870 --> 00:03:36.770
+As Ice, starring
+Vanilla Ice.
+
+00:03:36.770 --> 00:03:40.370
+So we will use
+this data to build
+
+00:03:40.370 --> 00:03:42.690
+this classification
+tree that
+
+00:03:42.690 --> 00:03:44.450
+predicts whether
+or not someone
+
+00:03:44.450 --> 00:03:46.645
+loves Cool As Ice.
+
+00:03:46.645 --> 00:03:48.810
+Now, pretend you've never
+
+00:03:48.810 --> 00:03:50.595
+seen this tree before.
+
+00:03:50.595 --> 00:03:52.270
+And let's see how to build
+
+00:03:52.270 --> 00:03:54.970
+a tree starting
+with just data.
+
+00:03:54.970 --> 00:03:56.930
+The first thing we do is
+
+00:03:56.930 --> 00:03:59.050
+decide whether
+Loves Popcorn,
+
+00:03:59.050 --> 00:04:01.510
+Loves Soda, or
+Age should be
+
+00:04:01.510 --> 00:04:02.790
+the question we ask
+
+00:04:02.790 --> 00:04:04.890
+at the very top
+of the tree.
+
+00:04:04.890 --> 00:04:06.750
+To make that decision,
+
+00:04:06.750 --> 00:04:08.170
+we'll start by looking at
+
+00:04:08.170 --> 00:04:10.000
+how well Loves Popcorn
+
+00:04:10.000 --> 00:04:11.710
+predicts whether
+or not someone
+
+00:04:11.710 --> 00:04:13.930
+loves Cool As Ice.
+
+00:04:13.930 --> 00:04:15.770
+To do this, we'll make
+
+00:04:15.770 --> 00:04:17.770
+a super simple
+tree that only
+
+00:04:17.770 --> 00:04:20.470
+asks if someone
+loves popcorn,
+
+00:04:20.470 --> 00:04:23.795
+and then we'll run the
+data down the tree.
+
+00:04:23.795 --> 00:04:26.500
+For example, the
+first person
+
+00:04:26.500 --> 00:04:29.020
+in the dataset
+loves popcorn.
+
+00:04:29.020 --> 00:04:32.020
+So they go to the
+leaf on the left.
+
+00:04:32.020 --> 00:04:35.885
+And because they do
+not love Cool As Ice,
+
+00:04:35.885 --> 00:04:37.640
+we'll keep track
+of that by
+
+00:04:37.640 --> 00:04:40.500
+putting a one
+under the word no.
+
+00:04:40.500 --> 00:04:43.260
+The second person
+in the dataset
+
+00:04:43.260 --> 00:04:45.485
+also loves popcorn,
+
+00:04:45.485 --> 00:04:48.880
+so they also go to
+the leaf on the left.
+
+00:04:48.880 --> 00:04:51.040
+And because they also do
+
+00:04:51.040 --> 00:04:53.065
+not love Cool As Ice,
+
+00:04:53.065 --> 00:04:55.895
+we increment no to two.
+
+00:04:55.895 --> 00:04:59.845
+The third person does
+not love popcorn,
+
+00:04:59.845 --> 00:05:02.550
+so they go to the
+leaf on the right.
+
+00:05:02.550 --> 00:05:05.575
+And because they
+love Cool As Ice,
+
+00:05:05.575 --> 00:05:08.490
+we put a one under
+the word yes.
+
+00:05:08.490 --> 00:05:10.670
+Likewise, we run
+
+00:05:10.670 --> 00:05:12.690
+the remaining rows
+down the tree,
+
+00:05:12.690 --> 00:05:14.530
+keeping track of
+whether or not
+
+00:05:14.530 --> 00:05:17.400
+each one loves
+Cool As Ice.
+
+00:05:17.400 --> 00:05:19.710
+Bam. Now let's do
+
+00:05:19.710 --> 00:05:23.080
+the exact same thing
+for Loves Soda.
+
+00:05:23.080 --> 00:05:25.850
+Looking at the
+two little trees,
+
+00:05:25.850 --> 00:05:27.330
+we see that neither one
+
+00:05:27.330 --> 00:05:29.350
+does a perfect
+job predicting
+
+00:05:29.350 --> 00:05:33.755
+who will and who will
+not love Cool As Ice.
+
+00:05:33.755 --> 00:05:35.450
+Specifically,
+
+00:05:35.450 --> 00:05:37.670
+these three leaves
+contain mixtures
+
+00:05:37.670 --> 00:05:39.050
+of people that do and
+
+00:05:39.050 --> 00:05:41.665
+do not love Cool As Ice.
+
+00:05:41.665 --> 00:05:45.610
+Dret, it's another
+terminology alert.
+
+00:05:45.610 --> 00:05:47.690
+Because these three leaves
+
+00:05:47.690 --> 00:05:49.150
+all contain a mixture of
+
+00:05:49.150 --> 00:05:52.750
+people who do and do
+not love Cool As Ice,
+
+00:05:52.750 --> 00:05:55.410
+they are called impure.
+
+00:05:55.410 --> 00:05:58.170
+In contrast,
+this leaf only
+
+00:05:58.170 --> 00:06:01.615
+contains people who do
+not love Cool As Ice.
+
+00:06:01.615 --> 00:06:03.430
+Because both leaves and
+
+00:06:03.430 --> 00:06:05.315
+the Loves Popcorn tree are
+
+00:06:05.315 --> 00:06:08.230
+impure and only one leaf
+
+00:06:08.230 --> 00:06:11.045
+in the Loves Soda
+tree is impure,
+
+00:06:11.045 --> 00:06:13.135
+it seems like Loves Soda
+
+00:06:13.135 --> 00:06:14.690
+does a better
+job predicting
+
+00:06:14.690 --> 00:06:18.895
+who will and who will
+not love Cool As Ice.
+
+00:06:18.895 --> 00:06:21.590
+But it would be nice
+if we could quantify
+
+00:06:21.590 --> 00:06:22.750
+the differences between
+
+00:06:22.750 --> 00:06:25.660
+Loves Popcorn
+and Loves Soda.
+
+00:06:25.660 --> 00:06:28.650
+The good news is that
+there are several ways
+
+00:06:28.650 --> 00:06:31.805
+to quantify the
+impurity of the leaves.
+
+00:06:31.805 --> 00:06:34.280
+One of the most
+popular methods
+
+00:06:34.280 --> 00:06:36.250
+is called Gini Impurity,
+
+00:06:36.250 --> 00:06:38.620
+but there are also
+fancy sounding methods
+
+00:06:38.620 --> 00:06:41.360
+like entropy and
+information gain.
+
+00:06:41.360 --> 00:06:43.696
+However, numerically,
+
+00:06:43.696 --> 00:06:46.000
+the methods are
+all quite similar.
+
+00:06:46.000 --> 00:06:48.350
+So we will focus
+on Gini Impurity
+
+00:06:48.350 --> 00:06:51.200
+since not only is
+it very popular,
+
+00:06:51.200 --> 00:06:54.220
+I think it is the
+most straightforward.
+
+00:06:54.220 --> 00:06:56.540
+So let's start
+by calculating
+
+00:06:56.540 --> 00:06:59.515
+the Gini Impurity
+for Loves Popcorn.
+
+00:06:59.515 --> 00:07:01.220
+To calculate the Gini
+
+00:07:01.220 --> 00:07:03.290
+Impurity for
+Loves Popcorn,
+
+00:07:03.290 --> 00:07:04.860
+we start by calculating
+
+00:07:04.860 --> 00:07:08.290
+the Gini Impurity for
+the individual leaves.
+
+00:07:08.290 --> 00:07:12.140
+The Gini Impurity for
+the leaf on the left is
+
+00:07:12.140 --> 00:07:16.105
+one minus the
+probability of yes
+
+00:07:16.105 --> 00:07:21.240
+squared minus the
+probability of no squared.
+
+00:07:21.240 --> 00:07:23.960
+So we start out with one.
+
+00:07:23.960 --> 00:07:26.160
+Then we subtract
+the squared
+
+00:07:26.160 --> 00:07:27.600
+probability of someone in
+
+00:07:27.600 --> 00:07:31.880
+this leaf loving Cool
+As Ice, which is one,
+
+00:07:31.880 --> 00:07:34.385
+the number of people
+in the leaf who loved
+
+00:07:34.385 --> 00:07:36.580
+Cool As Ice divided
+
+00:07:36.580 --> 00:07:38.720
+by the total number of
+people in the leaf,
+
+00:07:38.720 --> 00:07:42.940
+four, and then the
+whole term is squared.
+
+00:07:42.940 --> 00:07:45.180
+Lastly, we subtract
+
+00:07:45.180 --> 00:07:47.020
+the squared probability
+of someone in
+
+00:07:47.020 --> 00:07:48.760
+this leaf not loving
+
+00:07:48.760 --> 00:07:51.340
+Cool As Ice,
+which is three,
+
+00:07:51.340 --> 00:07:52.580
+the number of people in
+
+00:07:52.580 --> 00:07:54.015
+the leaf who did not love
+
+00:07:54.015 --> 00:07:56.440
+Cool As Ice divided by
+
+00:07:56.440 --> 00:07:57.820
+the total number
+of people in
+
+00:07:57.820 --> 00:08:00.320
+the leaf squared.
+
+00:08:00.320 --> 00:08:05.120
+And when we do the
+math, we get 0.375.
+
+00:08:05.120 --> 00:08:08.220
+So let's put 0.375
+
+00:08:08.220 --> 00:08:09.140
+under the leaf on
+
+00:08:09.140 --> 00:08:11.480
+the left so we
+don't forget it.
+
+00:08:11.480 --> 00:08:14.350
+Now let's calculate
+the Gini Impurity
+
+00:08:14.350 --> 00:08:16.260
+for the leaf on the right.
+
+00:08:16.260 --> 00:08:18.945
+Just like before,
+we start out with
+
+00:08:18.945 --> 00:08:21.040
+one then we subtract
+
+00:08:21.040 --> 00:08:22.620
+the squared probability of
+
+00:08:22.620 --> 00:08:24.200
+someone in this
+leaf loving
+
+00:08:24.200 --> 00:08:26.420
+Cool As Ice and
+
+00:08:26.420 --> 00:08:28.440
+the squared probability
+of someone in
+
+00:08:28.440 --> 00:08:31.700
+this leaf not
+loving Cool As Ice.
+
+00:08:31.700 --> 00:08:36.455
+And when we do the
+math, we get 0.444.
+
+00:08:36.455 --> 00:08:38.510
+Now, because the leaf on
+
+00:08:38.510 --> 00:08:40.550
+the left has four
+people in it,
+
+00:08:40.550 --> 00:08:42.550
+and the leaf on
+the right only
+
+00:08:42.550 --> 00:08:44.210
+has three people in it,
+
+00:08:44.210 --> 00:08:45.550
+the leaves do not
+
+00:08:45.550 --> 00:08:47.920
+represent the same
+number of people.
+
+00:08:47.920 --> 00:08:51.050
+Thus the total
+Gini Impurity is
+
+00:08:51.050 --> 00:08:54.470
+the weighted average of
+the leaf impurities.
+
+00:08:54.470 --> 00:08:56.590
+We start by calculating
+
+00:08:56.590 --> 00:08:59.030
+the weight for the
+leaf on the left.
+
+00:08:59.030 --> 00:09:01.390
+The weight for
+the left leaf
+
+00:09:01.390 --> 00:09:03.750
+is the total number of
+people in the leaf,
+
+00:09:03.750 --> 00:09:06.870
+four divided by
+the total number
+
+00:09:06.870 --> 00:09:09.875
+of people in both
+leaves, seven.
+
+00:09:09.875 --> 00:09:12.440
+Then we multiply
+that weight by
+
+00:09:12.440 --> 00:09:17.040
+its associated Gini
+Impurity, 0.375.
+
+00:09:17.040 --> 00:09:19.040
+Now we add the weighted
+
+00:09:19.040 --> 00:09:21.720
+impurity for the
+leaf on the right,
+
+00:09:21.720 --> 00:09:23.680
+which is the total number
+
+00:09:23.680 --> 00:09:24.900
+of people in the leaf,
+
+00:09:24.900 --> 00:09:28.040
+three, divided by
+the total number
+
+00:09:28.040 --> 00:09:31.520
+of people in both
+leaves, seven, times
+
+00:09:31.520 --> 00:09:36.100
+the associated Gini
+Impurity, 0.444.
+
+00:09:36.100 --> 00:09:41.020
+And when we do the
+math, we get 0.405.
+
+00:09:41.020 --> 00:09:43.160
+So the Gini Impurity for
+
+00:09:43.160 --> 00:09:47.235
+Loves Popcorn is 0.405.
+
+00:09:47.235 --> 00:09:50.060
+Likewise, the
+Gini Impurity
+
+00:09:50.060 --> 00:09:53.710
+for Loves Soda is 0.214.
+
+00:09:53.710 --> 00:09:55.650
+Now we need to calculate
+
+00:09:55.650 --> 00:09:58.360
+the Gini Impurity for Age.
+
+00:09:58.360 --> 00:10:00.990
+However, because
+age contains
+
+00:10:00.990 --> 00:10:04.530
+numeric data and not
+just yes/no values,
+
+00:10:04.530 --> 00:10:06.665
+calculating the
+Gini Impurity
+
+00:10:06.665 --> 00:10:08.590
+is a little more involved.
+
+00:10:08.590 --> 00:10:11.590
+The first thing we do
+is sort the rows by
+
+00:10:11.590 --> 00:10:15.110
+age from lowest value
+to highest value.
+
+00:10:15.110 --> 00:10:17.650
+Then we calculate
+the average age
+
+00:10:17.650 --> 00:10:19.650
+for all adjacent people.
+
+00:10:19.650 --> 00:10:23.450
+Lastly, we calculate the
+Gini Impurity values
+
+00:10:23.450 --> 00:10:25.860
+for each average age.
+
+00:10:25.860 --> 00:10:28.340
+For example, to calculate
+
+00:10:28.340 --> 00:10:31.000
+the Gini Impurity
+for the first value,
+
+00:10:31.000 --> 00:10:32.900
+we put age less than
+
+00:10:32.900 --> 00:10:35.940
+9.5 in the Root
+and because
+
+00:10:35.940 --> 00:10:38.060
+the only person
+with age less than
+
+00:10:38.060 --> 00:10:41.895
+9.5 does not love
+Cool As Ice,
+
+00:10:41.895 --> 00:10:46.280
+we put a zero under yes
+and a one under no.
+
+00:10:46.280 --> 00:10:49.780
+Then everyone with
+age greater than or
+
+00:10:49.780 --> 00:10:53.810
+equal to 9.5 goes to
+the leaf on the right.
+
+00:10:53.810 --> 00:10:56.770
+Now we calculate the
+Gini Impurity for
+
+00:10:56.770 --> 00:11:00.080
+the leaf on the
+left and get zero.
+
+00:11:00.080 --> 00:11:01.790
+And this makes sense
+
+00:11:01.790 --> 00:11:03.355
+because every
+single person
+
+00:11:03.355 --> 00:11:06.660
+in this leaf does not
+love Cool As Ice,
+
+00:11:06.660 --> 00:11:09.400
+so there is no impurity.
+
+00:11:09.400 --> 00:11:12.230
+Then we calculate the
+Gini Impurity for
+
+00:11:12.230 --> 00:11:16.370
+the leaf on the
+right and get 0.5.
+
+00:11:16.370 --> 00:11:19.110
+Now we calculate the
+weighted average of
+
+00:11:19.110 --> 00:11:20.510
+the two impurities to get
+
+00:11:20.510 --> 00:11:22.685
+the total Gini Impurity,
+
+00:11:22.685 --> 00:11:26.150
+and we get 0.429.
+
+00:11:26.150 --> 00:11:29.645
+Likewise, we calculate
+the Gini Impurities
+
+00:11:29.645 --> 00:11:32.470
+for all of the other
+candidate values.
+
+00:11:32.470 --> 00:11:37.080
+These two candidate
+thresholds, 15 and 44,
+
+00:11:37.080 --> 00:11:39.295
+are tied for the
+lowest impurity,
+
+00:11:39.295 --> 00:11:43.850
+0.343, so we can
+pick either one.
+
+00:11:43.850 --> 00:11:46.760
+In this case,
+we'll pick 15.
+
+00:11:46.760 --> 00:11:49.340
+However, remember
+that we are
+
+00:11:49.340 --> 00:11:52.240
+comparing Gini Impurity
+values for Age,
+
+00:11:52.240 --> 00:11:55.200
+Loves Popcorn,
+and Loves Soda to
+
+00:11:55.200 --> 00:11:56.800
+decide which
+features should
+
+00:11:56.800 --> 00:11:59.060
+be at the very
+top of the tree.
+
+00:11:59.060 --> 00:12:01.040
+Earlier, we calculated
+
+00:12:01.040 --> 00:12:02.625
+the Gini Impurity
+values for
+
+00:12:02.625 --> 00:12:06.100
+Loves Popcorn
+and Loves Soda.
+
+00:12:06.100 --> 00:12:10.215
+And now we have the
+Gini Impurity for Age.
+
+00:12:10.215 --> 00:12:12.480
+And because Loves Soda has
+
+00:12:12.480 --> 00:12:15.200
+the lowest Gini
+Impurity overall,
+
+00:12:15.200 --> 00:12:17.055
+we know that its leaves
+
+00:12:17.055 --> 00:12:18.920
+had the lowest impurity.
+
+00:12:18.920 --> 00:12:22.555
+So we put Loves Soda at
+the top of the tree.
+
+00:12:22.555 --> 00:12:26.890
+Bam. Now, the four people
+
+00:12:26.890 --> 00:12:30.310
+that love soda go to
+a node on the left,
+
+00:12:30.310 --> 00:12:32.290
+and the people that do not
+
+00:12:32.290 --> 00:12:35.470
+love soda go to a
+node on the right.
+
+00:12:35.470 --> 00:12:39.070
+Now let's focus on
+the node on the left.
+
+00:12:39.070 --> 00:12:40.990
+All four people that
+
+00:12:40.990 --> 00:12:43.820
+love soda are
+in this node.
+
+00:12:43.820 --> 00:12:47.775
+Three of these people
+love Cool As Ice,
+
+00:12:47.775 --> 00:12:50.230
+and one does not.
+
+00:12:50.230 --> 00:12:53.615
+So this node is impure.
+
+00:12:53.615 --> 00:12:56.020
+So let's see if
+we can reduce
+
+00:12:56.020 --> 00:12:57.940
+the impurity by
+splitting the people
+
+00:12:57.940 --> 00:13:02.700
+that love soda based on
+Loves Popcorn or Age.
+
+00:13:02.700 --> 00:13:05.420
+We'll start by asking
+the four people that
+
+00:13:05.420 --> 00:13:08.900
+love soda if they
+also love popcorn.
+
+00:13:08.900 --> 00:13:11.660
+Because two of the
+four people that
+
+00:13:11.660 --> 00:13:14.400
+love soda also
+love popcorn,
+
+00:13:14.400 --> 00:13:17.480
+they end up in the
+leaf on the left.
+
+00:13:17.480 --> 00:13:20.460
+The remaining two
+people that love soda
+
+00:13:20.460 --> 00:13:24.020
+but do not love popcorn
+end up on the right.
+
+00:13:24.020 --> 00:13:26.440
+And the total
+Gini Impurity
+
+00:13:26.440 --> 00:13:29.540
+for this split is 0.25.
+
+00:13:29.540 --> 00:13:34.480
+So let's put 0.25 here
+so we don't forget.
+
+00:13:34.480 --> 00:13:36.660
+Now we test different
+
+00:13:36.660 --> 00:13:39.240
+age thresholds
+just like before.
+
+00:13:39.240 --> 00:13:41.580
+Only this time, we only
+
+00:13:41.580 --> 00:13:44.865
+consider the ages of
+people who love soda.
+
+00:13:44.865 --> 00:13:46.660
+And age less than
+
+00:13:46.660 --> 00:13:49.665
+12.5 gives us the
+lowest impurity,
+
+00:13:49.665 --> 00:13:52.480
+zero, because both leaves
+
+00:13:52.480 --> 00:13:54.540
+have no impurity at all.
+
+00:13:54.540 --> 00:13:57.305
+So let's put zero here.
+
+00:13:57.305 --> 00:14:01.650
+Now, because zero
+is less than 0.25,
+
+00:14:01.650 --> 00:14:03.470
+we will use age less than
+
+00:14:03.470 --> 00:14:07.290
+12.5 to split this
+node into leaves.
+
+00:14:07.290 --> 00:14:10.290
+Note, these are leaves
+because there is
+
+00:14:10.290 --> 00:14:12.130
+no reason to
+continue splitting
+
+00:14:12.130 --> 00:14:14.570
+these people into
+smaller groups.
+
+00:14:14.570 --> 00:14:17.690
+Likewise, this
+node, consisting of
+
+00:14:17.690 --> 00:14:19.110
+the three people
+who do not
+
+00:14:19.110 --> 00:14:21.550
+love soda is also a leaf,
+
+00:14:21.550 --> 00:14:24.130
+because there is no
+reason to continue
+
+00:14:24.130 --> 00:14:27.255
+splitting these people
+into smaller groups.
+
+00:14:27.255 --> 00:14:30.180
+Now there is just
+one last thing we
+
+00:14:30.180 --> 00:14:31.400
+need to do before we are
+
+00:14:31.400 --> 00:14:33.400
+done building this tree.
+
+00:14:33.400 --> 00:14:35.620
+We need to assign output
+
+00:14:35.620 --> 00:14:37.600
+values for each leaf.
+
+00:14:37.600 --> 00:14:40.700
+Generally speaking,
+the output of
+
+00:14:40.700 --> 00:14:42.560
+a leaf is
+whatever category
+
+00:14:42.560 --> 00:14:44.580
+that has the most values.
+
+00:14:44.580 --> 00:14:46.600
+In other words, because
+
+00:14:46.600 --> 00:14:48.160
+the majority of
+the people in
+
+00:14:48.160 --> 00:14:51.720
+these leaves do not
+love Cool As Ice,
+
+00:14:51.720 --> 00:14:53.680
+the output values are,
+
+00:14:53.680 --> 00:14:56.925
+does not love Cool As Ice.
+
+00:14:56.925 --> 00:14:59.440
+And because the majority
+of the people in
+
+00:14:59.440 --> 00:15:01.955
+this leaf love
+Cool As Ice,
+
+00:15:01.955 --> 00:15:06.200
+the output value is
+loves Cool As Ice.
+
+00:15:06.200 --> 00:15:07.745
+Hooray.
+
+00:15:07.745 --> 00:15:09.470
+We finished building
+a tree from
+
+00:15:09.470 --> 00:15:12.810
+this data. Double bam.
+
+00:15:12.810 --> 00:15:16.350
+Now, if someone new
+comes along and
+
+00:15:16.350 --> 00:15:17.690
+we want to predict if they
+
+00:15:17.690 --> 00:15:19.575
+will love Cool As Ice,
+
+00:15:19.575 --> 00:15:22.190
+then we run the
+data down our tree.
+
+00:15:22.190 --> 00:15:24.290
+And because
+they love soda,
+
+00:15:24.290 --> 00:15:25.870
+they go to the left.
+
+00:15:25.870 --> 00:15:28.010
+And because they are 15,
+
+00:15:28.010 --> 00:15:31.330
+so age less than
+12.5 is false,
+
+00:15:31.330 --> 00:15:33.250
+they end up in this leaf.
+
+00:15:33.250 --> 00:15:35.445
+And we predict that
+they will love
+
+00:15:35.445 --> 00:15:39.630
+Cool As Ice. Triple bam.
+
+00:15:40.060 --> 00:15:43.330
+Now that we understand
+the main ideas of
+
+00:15:43.330 --> 00:15:46.230
+how to build and use
+classification trees,
+
+00:15:46.230 --> 00:15:49.230
+let's discuss one
+technical detail.
+
+00:15:49.230 --> 00:15:52.190
+Remember, when we
+built this tree,
+
+00:15:52.190 --> 00:15:53.610
+only one person in the
+
+00:15:53.610 --> 00:15:56.490
+original dataset made
+it to this leaf.
+
+00:15:56.490 --> 00:15:59.670
+Because so few people
+made it to this leaf,
+
+00:15:59.670 --> 00:16:02.010
+it's hard to have
+confidence that it will do
+
+00:16:02.010 --> 00:16:03.230
+a great job making
+
+00:16:03.230 --> 00:16:05.190
+predictions with
+future data,
+
+00:16:05.190 --> 00:16:07.070
+and it is possible that we
+
+00:16:07.070 --> 00:16:09.315
+have overfit the data.
+
+00:16:09.315 --> 00:16:12.350
+Note, if the term
+overfit is new to
+
+00:16:12.350 --> 00:16:15.865
+you, don't freak out.
+
+00:16:15.865 --> 00:16:18.470
+Instead, check
+out the StatQuest
+
+00:16:18.470 --> 00:16:21.310
+on bias and variance
+in machine learning.
+
+00:16:21.310 --> 00:16:23.970
+Regardless, in
+practice, there
+
+00:16:23.970 --> 00:16:26.830
+are two main ways to
+deal with this problem.
+
+00:16:26.830 --> 00:16:28.990
+One method is
+called pruning,
+
+00:16:28.990 --> 00:16:30.630
+and there's a
+whole StatQuest
+
+00:16:30.630 --> 00:16:33.110
+dedicated to it,
+so check it out.
+
+00:16:33.110 --> 00:16:35.550
+Alternatively, we can put
+
+00:16:35.550 --> 00:16:37.270
+limits on how trees grow.
+
+00:16:37.270 --> 00:16:39.190
+For example, by requiring
+
+00:16:39.190 --> 00:16:41.510
+three or more
+people per leaf.
+
+00:16:41.510 --> 00:16:44.490
+Now we end up with
+an impure leaf,
+
+00:16:44.490 --> 00:16:46.730
+but also a better sense of
+
+00:16:46.730 --> 00:16:49.170
+the accuracy of our
+prediction because we
+
+00:16:49.170 --> 00:16:51.470
+know that only
+75% of the people
+
+00:16:51.470 --> 00:16:54.855
+in the leaf loved
+Cool As Ice.
+
+00:16:54.855 --> 00:16:57.850
+Note, even when a
+leaf is impure,
+
+00:16:57.850 --> 00:16:59.710
+we still need
+an output value
+
+00:16:59.710 --> 00:17:01.470
+to make a classification.
+
+00:17:01.470 --> 00:17:03.490
+And since most
+of the people in
+
+00:17:03.490 --> 00:17:05.900
+this leaf love
+cool As Ice,
+
+00:17:05.900 --> 00:17:08.075
+that will be the
+output value.
+
+00:17:08.075 --> 00:17:10.980
+Also note, when
+we build a tree,
+
+00:17:10.980 --> 00:17:13.460
+we don't know in advance
+if it is better to
+
+00:17:13.460 --> 00:17:14.840
+require three people per
+
+00:17:14.840 --> 00:17:16.880
+leaf or some other number.
+
+00:17:16.880 --> 00:17:18.520
+So we test different
+
+00:17:18.520 --> 00:17:19.800
+values with
+something called
+
+00:17:19.800 --> 00:17:21.540
+cross validation and pick
+
+00:17:21.540 --> 00:17:23.235
+the one that works best.
+
+00:17:23.235 --> 00:17:25.520
+And if you don't know
+what cross validation
+
+00:17:25.520 --> 00:17:27.420
+is, check out the Quest.
+
+00:17:27.420 --> 00:17:29.320
+Bam. Now it's time
+
+00:17:29.320 --> 00:17:32.575
+for some shameless
+self-promotion.
+
+00:17:32.575 --> 00:17:34.440
+If you want to
+review statistics
+
+00:17:34.440 --> 00:17:36.220
+and machine
+learning offline,
+
+00:17:36.220 --> 00:17:38.240
+check out the
+StatQuest study guides
+
+00:17:38.240 --> 00:17:40.020
+at statquest.org.
+
+00:17:40.020 --> 00:17:42.085
+There's something
+for everyone.
+
+00:17:42.085 --> 00:17:44.480
+Hooray. We've made
+it to the end
+
+00:17:44.480 --> 00:17:46.835
+of another exciting
+StatQuest.
+
+00:17:46.835 --> 00:17:48.420
+If you like this
+StatQuest and
+
+00:17:48.420 --> 00:17:50.600
+want to see more,
+please subscribe.
+
+00:17:50.600 --> 00:17:52.860
+And if you want to
+support StatQuest,
+
+00:17:52.860 --> 00:17:54.120
+consider contributing to
+
+00:17:54.120 --> 00:17:55.730
+my Patreon campaign,
+
+00:17:55.730 --> 00:17:57.340
+becoming a channel member,
+
+00:17:57.340 --> 00:17:59.800
+buying one or two of
+my original songs or
+
+00:17:59.800 --> 00:18:02.240
+a T-shirt or a hoodie
+or just donate.
+
+00:18:02.240 --> 00:18:04.815
+The links are in the
+description below.
+
+00:18:04.815 --> 00:18:08.480
+Until next time, Quest on.
+

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "C001",
+    "question": "what does an R squared of 0.6 actually mean in the mouse weight and size example?",
+    "ideal_answer": "R squared is the variation around the mean minus the variation around the fit, divided by the variation around the mean. In the example the variation around the mean was 11.1 and the variation around the fit was 4.4, which gives 0.6, or 60%. That means there is a 60% reduction in variance once mouse weight is taken into account; in other words, mouse weight explains 60% of the variation in mouse size.",
+    "source_session": "S1"
+  },
+  {
+    "id": "C002",
+    "question": "how do you get a p-value for R squared?",
+    "ideal_answer": "The p-value for R squared comes from F, which is the variation explained by the extra parameters in the fit divided by the variation not explained by the fit, with each sum of squares divided by its degrees of freedom (p fit minus p mean, and n minus p fit). Conceptually, you generate many random datasets, calculate F for each and plot them in a histogram, then calculate F for the real data; the p-value is the number of values as or more extreme than it divided by all the values. In practice people approximate the histogram with a standard F distribution whose shape is determined by the degrees of freedom. A useful result needs a large R squared and a small p-value.",
+    "source_session": "S1"
+  },
+  {
+    "id": "C003",
+    "question": "what's the difference between linear regression and logistic regression?",
+    "ideal_answer": "Linear regression predicts something continuous, like size, by fitting a straight line with least squares, and it can calculate R squared and a p-value from the residuals. Logistic regression predicts whether something is true or false, like whether a mouse is obese, by fitting an S-shaped logistic curve that goes from 0 to 1 and gives a probability, which is usually used for classification, for example calling a mouse obese if the probability is over 50%. Because logistic regression has no concept of a residual, it can't use least squares or calculate R squared and is fit with maximum likelihood instead. Both can use continuous and discrete variables.",
+    "source_session": "S2"
+  },
+  {
+    "id": "C004",
+    "question": "what does it mean when a model is overfit?",
+    "ideal_answer": "A model is overfit when it fits the training set really well but not the testing set. The squiggly line in the mouse example has a sum of squares of zero on the training data, so it has low bias, but it does a terrible job on the testing data, so it has high variance and its performance on future data is hard to predict. The ideal algorithm has both low bias and low variance, which is found by looking for the sweet spot between a simple and a complex model, using methods such as regularization, boosting and bagging.",
+    "source_session": "S3"
+  },
+  {
+    "id": "C005",
+    "question": "how does cross validation help us choose between machine learning methods?",
+    "ideal_answer": "We need data both to train a method, which means estimating its parameters, and to test it, which means evaluating how well it works on data it wasn't trained on; using the same data for both is a bad idea. Instead of guessing which block of data is best to hold out for testing, cross validation uses every block for testing one at a time, training on the rest and keeping track of how well the method did each time. At the end you compare methods, such as logistic regression, k-nearest neighbors and support vector machines, by how well they performed across all the test blocks, and pick the best one.",
+    "source_session": "S4"
+  },
+  {
+    "id": "C006",
+    "question": "why would ridge regression deliberately make the fit to the training data worse?",
+    "ideal_answer": "With a small training set, least squares can produce a line that fits the training data perfectly but is overfit and has high variance on the testing data. Ridge regression finds a line that doesn't fit the training data as well by minimizing the sum of squared residuals plus lambda times the slope squared. This introduces a small amount of bias, but in return gives a significant drop in variance, because the smaller slope makes predictions less sensitive to the training data. By starting with a slightly worse fit, ridge regression can provide better long-term predictions.",
+    "source_session": "S5"
+  },
+  {
+    "id": "C007",
+    "question": "what's the main difference between ridge and lasso regression?",
+    "ideal_answer": "Both add a penalty to least squares that contains every parameter except the y-intercept, with lambda chosen by cross validation, and both trade a little bias for less variance. The superficial difference is that ridge regression squares the parameters while lasso regression takes their absolute value. The big difference is that ridge regression can only shrink a parameter asymptotically close to zero, while lasso can shrink it all the way to zero, so lasso can exclude useless variables and produce a simpler equation that is easier to interpret. Lasso does a little better when there are many useless variables, and ridge does a little better when most variables are useful.",
+    "source_session": "S5-S6"
+  },
+  {
+    "id": "C008",
+    "question": "what are the root node, internal nodes and leaves in a decision tree?",
+    "ideal_answer": "The root node, or just the root, is the very top of the tree. Internal nodes, also called branches, have arrows pointing to them and arrows pointing away from them. Leaf nodes, or leaves, have arrows pointing to them but no arrows pointing away from them, and they give the final classification. You classify something by starting at the root and working your way down, usually going left when a statement is true and right when it is false.",
+    "source_session": "S7"
+  },
+  {
+    "id": "C009",
+    "question": "how can we stop a classification tree from overfitting the data?",
+    "ideal_answer": "When very few samples end up in a leaf, it's hard to trust that leaf's predictions on future data, and the tree may be overfit. There are two main ways to deal with this. One is pruning. The other is to put limits on how trees grow, for example requiring three or more people per leaf; this can leave an impure leaf, but gives a better sense of how accurate its prediction is, and the leaf still outputs the majority category. Since you don't know in advance which limit is best, you test different values with cross validation and pick the one that works best.",
+    "source_session": "S7"
+  },
+  {
+    "id": "C010",
+    "question": "how is a random forest built and how does it make a prediction?",
+    "ideal_answer": "First you create a bootstrapped dataset the same size as the original by randomly selecting samples, allowing the same sample to be picked more than once. Then you build a decision tree from that bootstrapped data, but at each step only consider a random subset of the variables. You repeat this, ideally hundreds of times, which produces a wide variety of trees, and that variety is what makes random forests more effective than individual trees. To make a prediction, you run the new sample down every tree and choose the option that received the most votes. Bootstrapping the data and using the aggregate to make a decision is called bagging.",
+    "source_session": "S8"
+  },
+  {
+    "id": "C011",
+    "question": "how is AdaBoost different from a random forest?",
+    "ideal_answer": "A random forest makes full-sized trees with no predetermined maximum depth, while AdaBoost usually makes stumps, a single node with two leaves, which are weak learners. In a random forest every tree gets an equal vote, while in AdaBoost some stumps get more say in the final classification than others, based on how well they classified the samples. And in a random forest each tree is made independently, so order doesn't matter, while in AdaBoost order is important because the errors each stump makes influence how the next stump is made.",
+    "source_session": "S8-S9"
+  },
+  {
+    "id": "C012",
+    "question": "how does gradient boost differ from AdaBoost when predicting a continuous value?",
+    "ideal_answer": "AdaBoost starts by building a stump, and each new stump is based on the previous stump's errors, with an amount of say that depends on how well it did. Gradient boost instead starts with a single leaf, which for a continuous value like weight is the average. Like AdaBoost, each new tree is based on the previous tree's errors, but gradient boost trees are usually larger than stumps (often limited to between 8 and 32 leaves), and gradient boost scales all trees by the same amount, the learning rate, rather than giving each one a different amount of say. Both keep adding trees until they reach the requested number or stop improving the fit.",
+    "source_session": "S9-S10"
+  },
+  {
+    "id": "C013",
+    "question": "what is a pseudo residual and why does gradient boost build trees on residuals?",
+    "ideal_answer": "A pseudo residual is the difference between an observed value and the current predicted value, for example an observed weight minus the initial prediction of 71.2. The name borrows from residuals in linear regression, and the pseudo part is a reminder that this is gradient boost, not linear regression. Each new tree is built to predict these residuals, and its output, scaled by the learning rate, is added to the previous prediction. Each time a tree is added the residuals get smaller, so the model takes a small step towards good predictions, and it keeps adding trees until it reaches the maximum or the residuals stop shrinking significantly.",
+    "source_session": "S10"
+  },
+  {
+    "id": "C014",
+    "question": "how does XGBoost regression differ from regular gradient boost, and what does lambda do in it?",
+    "ideal_answer": "Like regular gradient boost, XGBoost starts from an initial prediction, fits trees to the residuals and adds each tree's output scaled by a learning rate, but its initial prediction defaults to 0.5 and its learning rate, called eta, defaults to 0.3. Instead of regular off-the-shelf regression trees it builds unique XGBoost trees, choosing splits using similarity scores and gain, and pruning branches whose gain minus gamma is negative. Lambda is a regularization parameter that appears in the denominator of the similarity score and the leaf output value. When lambda is greater than zero it shrinks the similarity scores, especially for leaves with few residuals, which leads to more pruning, and it shrinks the leaf output values, reducing the prediction's sensitivity to individual observations and helping prevent overfitting.",
+    "source_session": "S10-S11"
+  },
+  {
+    "id": "C015",
+    "question": "what's the difference between a maximal margin classifier, a support vector classifier and a support vector machine?",
+    "ideal_answer": "A maximal margin classifier puts the threshold halfway between the edge observations of each class, giving the largest possible margin, but it is super sensitive to outliers. A support vector classifier, also called a soft margin classifier, allows some misclassifications so it is less sensitive to the training data, accepting a little more bias for lower variance, and it uses cross validation to choose the best soft margin; the observations on the edge of and within the soft margin are the support vectors. Support vector classifiers still fail when the classes overlap a lot, so a support vector machine moves the data into a higher dimension, for example by adding dosage squared, and finds a support vector classifier there, using kernel functions such as the polynomial or radial kernel.",
+    "source_session": "S12"
+  }
+]

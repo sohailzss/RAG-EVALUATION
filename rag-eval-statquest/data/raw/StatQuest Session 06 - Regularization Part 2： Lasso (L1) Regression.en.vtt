@@ -1,0 +1,1560 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:05.830 align:start position:0%
+ 
+Lasso<00:00:01.200><c> and</c><00:00:01.520><c> Ridge</c><00:00:02.240><c> regression</c><00:00:03.400><c> are</c><00:00:03.640><c> similar,</c>
+
+00:00:05.830 --> 00:00:05.840 align:start position:0%
+Lasso and Ridge regression are similar,
+ 
+
+00:00:05.840 --> 00:00:09.950 align:start position:0%
+Lasso and Ridge regression are similar,
+but<00:00:06.760><c> there's</c><00:00:06.960><c> a</c><00:00:07.040><c> big,</c><00:00:07.840><c> important</c><00:00:09.160><c> difference.</c>
+
+00:00:09.950 --> 00:00:09.960 align:start position:0%
+but there's a big, important difference.
+ 
+
+00:00:09.960 --> 00:00:12.310 align:start position:0%
+but there's a big, important difference.
+We'll<00:00:10.240><c> talk</c><00:00:10.560><c> about</c><00:00:10.880><c> it.</c>
+
+00:00:12.310 --> 00:00:12.320 align:start position:0%
+We'll talk about it.
+ 
+
+00:00:12.320 --> 00:00:15.870 align:start position:0%
+We'll talk about it.
+StatQuest
+
+00:00:15.870 --> 00:00:15.880 align:start position:0%
+ 
+ 
+
+00:00:15.880 --> 00:00:18.230 align:start position:0%
+ 
+Hello,<00:00:16.800><c> I'm</c><00:00:17.040><c> Josh</c><00:00:17.360><c> Starmer</c><00:00:17.720><c> and</c><00:00:17.880><c> welcome</c><00:00:18.160><c> to</c>
+
+00:00:18.230 --> 00:00:18.240 align:start position:0%
+Hello, I'm Josh Starmer and welcome to
+ 
+
+00:00:18.240 --> 00:00:20.590 align:start position:0%
+Hello, I'm Josh Starmer and welcome to
+StatQuest.<00:00:19.440><c> Today,</c><00:00:19.720><c> we're</c><00:00:19.840><c> going</c><00:00:19.960><c> to</c><00:00:20.040><c> do</c><00:00:20.200><c> part</c>
+
+00:00:20.590 --> 00:00:20.600 align:start position:0%
+StatQuest. Today, we're going to do part
+ 
+
+00:00:20.600 --> 00:00:23.270 align:start position:0%
+StatQuest. Today, we're going to do part
+two<00:00:20.840><c> of</c><00:00:20.960><c> our</c><00:00:21.120><c> series</c><00:00:21.520><c> on</c><00:00:21.680><c> regularization.</c>
+
+00:00:23.270 --> 00:00:23.280 align:start position:0%
+two of our series on regularization.
+ 
+
+00:00:23.280 --> 00:00:24.630 align:start position:0%
+two of our series on regularization.
+We're<00:00:23.520><c> going</c><00:00:23.640><c> to</c><00:00:23.720><c> talk</c><00:00:23.960><c> about</c><00:00:24.240><c> Lasso</c>
+
+00:00:24.630 --> 00:00:24.640 align:start position:0%
+We're going to talk about Lasso
+ 
+
+00:00:24.640 --> 00:00:26.630 align:start position:0%
+We're going to talk about Lasso
+regression,<00:00:25.480><c> and</c><00:00:25.600><c> it's</c><00:00:25.760><c> going</c><00:00:25.880><c> to</c><00:00:25.960><c> be</c><00:00:26.080><c> clearly</c>
+
+00:00:26.630 --> 00:00:26.640 align:start position:0%
+regression, and it's going to be clearly
+ 
+
+00:00:26.640 --> 00:00:28.470 align:start position:0%
+regression, and it's going to be clearly
+explained.
+
+00:00:28.470 --> 00:00:28.480 align:start position:0%
+explained.
+ 
+
+00:00:28.480 --> 00:00:30.750 align:start position:0%
+explained.
+This<00:00:28.800><c> StatQuest</c><00:00:29.520><c> follows</c><00:00:29.960><c> up</c><00:00:30.120><c> on</c><00:00:30.240><c> the</c><00:00:30.320><c> one</c><00:00:30.560><c> on</c>
+
+00:00:30.750 --> 00:00:30.760 align:start position:0%
+This StatQuest follows up on the one on
+ 
+
+00:00:30.760 --> 00:00:32.710 align:start position:0%
+This StatQuest follows up on the one on
+Ridge<00:00:31.080><c> regression.</c><00:00:32.080><c> So,</c><00:00:32.240><c> if</c><00:00:32.360><c> you</c><00:00:32.480><c> aren't</c>
+
+00:00:32.710 --> 00:00:32.720 align:start position:0%
+Ridge regression. So, if you aren't
+ 
+
+00:00:32.720 --> 00:00:34.590 align:start position:0%
+Ridge regression. So, if you aren't
+already<00:00:33.000><c> familiar</c><00:00:33.440><c> with</c><00:00:33.600><c> that,</c><00:00:34.160><c> check</c><00:00:34.400><c> it</c>
+
+00:00:34.590 --> 00:00:34.600 align:start position:0%
+already familiar with that, check it
+ 
+
+00:00:34.600 --> 00:00:35.710 align:start position:0%
+already familiar with that, check it
+out.
+
+00:00:35.710 --> 00:00:35.720 align:start position:0%
+out.
+ 
+
+00:00:35.720 --> 00:00:37.630 align:start position:0%
+out.
+Even<00:00:36.120><c> if</c><00:00:36.240><c> you</c><00:00:36.480><c> are</c><00:00:36.760><c> familiar</c><00:00:37.240><c> with</c><00:00:37.440><c> Ridge</c>
+
+00:00:37.630 --> 00:00:37.640 align:start position:0%
+Even if you are familiar with Ridge
+ 
+
+00:00:37.640 --> 00:00:39.390 align:start position:0%
+Even if you are familiar with Ridge
+regression,<00:00:38.560><c> you</c><00:00:38.680><c> should</c><00:00:38.880><c> seriously</c>
+
+00:00:39.390 --> 00:00:39.400 align:start position:0%
+regression, you should seriously
+ 
+
+00:00:39.400 --> 00:00:41.790 align:start position:0%
+regression, you should seriously
+consider<00:00:39.840><c> watching,</c><00:00:40.480><c> or</c><00:00:40.640><c> at</c><00:00:40.720><c> least</c><00:00:41.080><c> skimming,</c>
+
+00:00:41.790 --> 00:00:41.800 align:start position:0%
+consider watching, or at least skimming,
+ 
+
+00:00:41.800 --> 00:00:44.070 align:start position:0%
+consider watching, or at least skimming,
+that<00:00:42.040><c> StatQuest</c><00:00:43.080><c> because</c><00:00:43.360><c> the</c><00:00:43.440><c> examples</c><00:00:44.000><c> in</c>
+
+00:00:44.070 --> 00:00:44.080 align:start position:0%
+that StatQuest because the examples in
+ 
+
+00:00:44.080 --> 00:00:45.990 align:start position:0%
+that StatQuest because the examples in
+this<00:00:44.280><c> video</c><00:00:44.640><c> are</c><00:00:44.800><c> based</c><00:00:45.160><c> on</c><00:00:45.240><c> the</c><00:00:45.360><c> ones</c><00:00:45.600><c> in</c><00:00:45.720><c> that</c>
+
+00:00:45.990 --> 00:00:46.000 align:start position:0%
+this video are based on the ones in that
+ 
+
+00:00:46.000 --> 00:00:48.150 align:start position:0%
+this video are based on the ones in that
+video.
+
+00:00:48.150 --> 00:00:48.160 align:start position:0%
+video.
+ 
+
+00:00:48.160 --> 00:00:51.510 align:start position:0%
+video.
+Lasso<00:00:48.760><c> regression</c><00:00:49.400><c> is</c><00:00:49.640><c> very,</c><00:00:50.480><c> very</c><00:00:50.960><c> similar</c>
+
+00:00:51.510 --> 00:00:51.520 align:start position:0%
+Lasso regression is very, very similar
+ 
+
+00:00:51.520 --> 00:00:53.550 align:start position:0%
+Lasso regression is very, very similar
+to<00:00:51.720><c> Ridge</c><00:00:51.960><c> regression,</c><00:00:52.960><c> but</c><00:00:53.080><c> it</c><00:00:53.200><c> has</c><00:00:53.360><c> some</c>
+
+00:00:53.550 --> 00:00:53.560 align:start position:0%
+to Ridge regression, but it has some
+ 
+
+00:00:53.560 --> 00:00:56.830 align:start position:0%
+to Ridge regression, but it has some
+very,<00:00:54.400><c> very</c><00:00:54.880><c> important</c><00:00:55.360><c> differences.</c>
+
+00:00:56.830 --> 00:00:56.840 align:start position:0%
+very, very important differences.
+ 
+
+00:00:56.840 --> 00:00:58.830 align:start position:0%
+very, very important differences.
+To<00:00:57.080><c> understand</c><00:00:57.680><c> those</c><00:00:57.920><c> similarities</c><00:00:58.720><c> and</c>
+
+00:00:58.830 --> 00:00:58.840 align:start position:0%
+To understand those similarities and
+ 
+
+00:00:58.840 --> 00:01:00.990 align:start position:0%
+To understand those similarities and
+differences,<00:00:59.840><c> let's</c><00:01:00.080><c> first</c><00:01:00.400><c> do</c><00:01:00.520><c> a</c><00:01:00.600><c> super</c>
+
+00:01:00.990 --> 00:01:01.000 align:start position:0%
+differences, let's first do a super
+ 
+
+00:01:01.000 --> 00:01:04.350 align:start position:0%
+differences, let's first do a super
+quick<00:01:01.280><c> review</c><00:01:01.880><c> of</c><00:01:02.120><c> Ridge</c><00:01:02.360><c> regression.</c>
+
+00:01:04.350 --> 00:01:04.360 align:start position:0%
+quick review of Ridge regression.
+ 
+
+00:01:04.360 --> 00:01:06.990 align:start position:0%
+quick review of Ridge regression.
+In<00:01:04.559><c> the</c><00:01:04.680><c> StatQuest</c><00:01:05.400><c> on</c><00:01:05.560><c> Ridge</c><00:01:05.800><c> regression,</c><00:01:06.880><c> we</c>
+
+00:01:06.990 --> 00:01:07.000 align:start position:0%
+In the StatQuest on Ridge regression, we
+ 
+
+00:01:07.000 --> 00:01:08.830 align:start position:0%
+In the StatQuest on Ridge regression, we
+started<00:01:07.400><c> out</c><00:01:07.600><c> with</c><00:01:07.840><c> weight</c><00:01:08.280><c> and</c><00:01:08.480><c> size</c>
+
+00:01:08.830 --> 00:01:08.840 align:start position:0%
+started out with weight and size
+ 
+
+00:01:08.840 --> 00:01:11.430 align:start position:0%
+started out with weight and size
+measurements<00:01:09.440><c> from</c><00:01:09.640><c> a</c><00:01:09.720><c> bunch</c><00:01:10.000><c> of</c><00:01:10.120><c> mice,</c>
+
+00:01:11.430 --> 00:01:11.440 align:start position:0%
+measurements from a bunch of mice,
+ 
+
+00:01:11.440 --> 00:01:14.510 align:start position:0%
+measurements from a bunch of mice,
+and<00:01:11.720><c> we</c><00:01:11.800><c> split</c><00:01:12.120><c> the</c><00:01:12.240><c> data</c><00:01:12.680><c> into</c><00:01:12.920><c> two</c><00:01:13.120><c> sets.</c>
+
+00:01:14.510 --> 00:01:14.520 align:start position:0%
+and we split the data into two sets.
+ 
+
+00:01:14.520 --> 00:01:17.350 align:start position:0%
+and we split the data into two sets.
+The<00:01:14.720><c> red</c><00:01:15.000><c> dots</c><00:01:15.520><c> were</c><00:01:15.680><c> training</c><00:01:16.160><c> data,</c>
+
+00:01:17.350 --> 00:01:17.360 align:start position:0%
+The red dots were training data,
+ 
+
+00:01:17.360 --> 00:01:21.270 align:start position:0%
+The red dots were training data,
+and<00:01:17.640><c> the</c><00:01:17.720><c> green</c><00:01:18.040><c> dots</c><00:01:18.680><c> were</c><00:01:18.840><c> testing</c><00:01:19.360><c> data.</c>
+
+00:01:21.270 --> 00:01:21.280 align:start position:0%
+and the green dots were testing data.
+ 
+
+00:01:21.280 --> 00:01:23.750 align:start position:0%
+and the green dots were testing data.
+Then<00:01:21.520><c> we</c><00:01:21.640><c> fit</c><00:01:21.840><c> a</c><00:01:21.920><c> line</c><00:01:22.560><c> to</c><00:01:22.720><c> the</c><00:01:22.800><c> training</c><00:01:23.200><c> data</c>
+
+00:01:23.750 --> 00:01:23.760 align:start position:0%
+Then we fit a line to the training data
+ 
+
+00:01:23.760 --> 00:01:26.470 align:start position:0%
+Then we fit a line to the training data
+using<00:01:24.080><c> least</c><00:01:24.400><c> squares.</c>
+
+00:01:26.470 --> 00:01:26.480 align:start position:0%
+using least squares.
+ 
+
+00:01:26.480 --> 00:01:29.190 align:start position:0%
+using least squares.
+In<00:01:26.760><c> other</c><00:01:27.000><c> words,</c><00:01:27.800><c> we</c><00:01:27.960><c> minimized</c><00:01:28.600><c> the</c><00:01:28.720><c> sum</c><00:01:29.080><c> of</c>
+
+00:01:29.190 --> 00:01:29.200 align:start position:0%
+In other words, we minimized the sum of
+ 
+
+00:01:29.200 --> 00:01:31.990 align:start position:0%
+In other words, we minimized the sum of
+the<00:01:29.320><c> squared</c><00:01:29.800><c> residuals.</c>
+
+00:01:31.990 --> 00:01:32.000 align:start position:0%
+the squared residuals.
+ 
+
+00:01:32.000 --> 00:01:34.190 align:start position:0%
+the squared residuals.
+When<00:01:32.280><c> we</c><00:01:32.400><c> did</c><00:01:32.640><c> this,</c><00:01:33.320><c> we</c><00:01:33.440><c> saw</c><00:01:33.680><c> that</c><00:01:33.920><c> even</c>
+
+00:01:34.190 --> 00:01:34.200 align:start position:0%
+When we did this, we saw that even
+ 
+
+00:01:34.200 --> 00:01:35.910 align:start position:0%
+When we did this, we saw that even
+though<00:01:34.360><c> the</c><00:01:34.520><c> line</c><00:01:34.880><c> fit</c><00:01:35.080><c> the</c><00:01:35.200><c> training</c><00:01:35.640><c> data</c>
+
+00:01:35.910 --> 00:01:35.920 align:start position:0%
+though the line fit the training data
+ 
+
+00:01:35.920 --> 00:01:38.750 align:start position:0%
+though the line fit the training data
+really<00:01:36.280><c> well,</c><00:01:37.040><c> that</c><00:01:37.240><c> is</c><00:01:37.360><c> to</c><00:01:37.480><c> say,</c><00:01:38.120><c> it</c><00:01:38.280><c> had</c><00:01:38.480><c> low</c>
+
+00:01:38.750 --> 00:01:38.760 align:start position:0%
+really well, that is to say, it had low
+ 
+
+00:01:38.760 --> 00:01:40.870 align:start position:0%
+really well, that is to say, it had low
+bias,
+
+00:01:40.870 --> 00:01:40.880 align:start position:0%
+bias,
+ 
+
+00:01:40.880 --> 00:01:42.910 align:start position:0%
+bias,
+it<00:01:41.120><c> did</c><00:01:41.280><c> not</c><00:01:41.560><c> fit</c><00:01:41.760><c> the</c><00:01:41.880><c> testing</c><00:01:42.400><c> data</c><00:01:42.640><c> very</c>
+
+00:01:42.910 --> 00:01:42.920 align:start position:0%
+it did not fit the testing data very
+ 
+
+00:01:42.920 --> 00:01:45.870 align:start position:0%
+it did not fit the testing data very
+well<00:01:43.200><c> at</c><00:01:43.360><c> all.</c><00:01:44.120><c> That</c><00:01:44.280><c> is</c><00:01:44.400><c> to</c><00:01:44.560><c> say,</c><00:01:45.240><c> it</c><00:01:45.400><c> had</c><00:01:45.600><c> high</c>
+
+00:01:45.870 --> 00:01:45.880 align:start position:0%
+well at all. That is to say, it had high
+ 
+
+00:01:45.880 --> 00:01:48.190 align:start position:0%
+well at all. That is to say, it had high
+variance.
+
+00:01:48.190 --> 00:01:48.200 align:start position:0%
+variance.
+ 
+
+00:01:48.200 --> 00:01:50.150 align:start position:0%
+variance.
+Then<00:01:48.520><c> we</c><00:01:48.640><c> fit</c><00:01:48.840><c> a</c><00:01:48.880><c> line</c><00:01:49.200><c> to</c><00:01:49.320><c> the</c><00:01:49.440><c> data</c><00:01:49.760><c> using</c>
+
+00:01:50.150 --> 00:01:50.160 align:start position:0%
+Then we fit a line to the data using
+ 
+
+00:01:50.160 --> 00:01:52.110 align:start position:0%
+Then we fit a line to the data using
+Ridge<00:01:50.440><c> regression.</c>
+
+00:01:52.110 --> 00:01:52.120 align:start position:0%
+Ridge regression.
+ 
+
+00:01:52.120 --> 00:01:54.150 align:start position:0%
+Ridge regression.
+We<00:01:52.360><c> minimized</c><00:01:53.200><c> the</c><00:01:53.320><c> sum</c><00:01:53.560><c> of</c><00:01:53.680><c> the</c><00:01:53.760><c> squared</c>
+
+00:01:54.150 --> 00:01:54.160 align:start position:0%
+We minimized the sum of the squared
+ 
+
+00:01:54.160 --> 00:01:56.870 align:start position:0%
+We minimized the sum of the squared
+residuals<00:01:55.160><c> plus</c><00:01:55.440><c> lambda</c><00:01:55.920><c> times</c><00:01:56.280><c> the</c><00:01:56.440><c> slope</c>
+
+00:01:56.870 --> 00:01:56.880 align:start position:0%
+residuals plus lambda times the slope
+ 
+
+00:01:56.880 --> 00:01:58.790 align:start position:0%
+residuals plus lambda times the slope
+squared.
+
+00:01:58.790 --> 00:01:58.800 align:start position:0%
+squared.
+ 
+
+00:01:58.800 --> 00:02:02.270 align:start position:0%
+squared.
+Ridge<00:01:59.240><c> regression</c><00:02:00.120><c> is</c><00:02:00.280><c> just</c><00:02:00.600><c> least</c><00:02:00.920><c> squares</c>
+
+00:02:02.270 --> 00:02:02.280 align:start position:0%
+Ridge regression is just least squares
+ 
+
+00:02:02.280 --> 00:02:05.270 align:start position:0%
+Ridge regression is just least squares
+plus<00:02:02.640><c> the</c><00:02:02.800><c> ridge</c><00:02:03.080><c> regression</c><00:02:03.640><c> penalty.</c>
+
+00:02:05.270 --> 00:02:05.280 align:start position:0%
+plus the ridge regression penalty.
+ 
+
+00:02:05.280 --> 00:02:08.029 align:start position:0%
+plus the ridge regression penalty.
+The<00:02:05.479><c> blue</c><00:02:06.200><c> ridge</c><00:02:06.479><c> regression</c><00:02:07.000><c> line</c><00:02:07.680><c> did</c><00:02:07.800><c> not</c>
+
+00:02:08.029 --> 00:02:08.039 align:start position:0%
+The blue ridge regression line did not
+ 
+
+00:02:08.039 --> 00:02:10.389 align:start position:0%
+The blue ridge regression line did not
+fit<00:02:08.240><c> the</c><00:02:08.320><c> training</c><00:02:08.720><c> data</c><00:02:09.080><c> as</c><00:02:09.280><c> well</c><00:02:09.440><c> as</c><00:02:09.560><c> the</c><00:02:09.720><c> red</c>
+
+00:02:10.389 --> 00:02:10.399 align:start position:0%
+fit the training data as well as the red
+ 
+
+00:02:10.399 --> 00:02:12.590 align:start position:0%
+fit the training data as well as the red
+least<00:02:10.720><c> squares</c><00:02:11.240><c> line.</c>
+
+00:02:12.590 --> 00:02:12.600 align:start position:0%
+least squares line.
+ 
+
+00:02:12.600 --> 00:02:15.030 align:start position:0%
+least squares line.
+In<00:02:12.840><c> other</c><00:02:13.040><c> words,</c><00:02:13.959><c> ridge</c><00:02:14.280><c> regression</c><00:02:14.840><c> had</c>
+
+00:02:15.030 --> 00:02:15.040 align:start position:0%
+In other words, ridge regression had
+ 
+
+00:02:15.040 --> 00:02:18.270 align:start position:0%
+In other words, ridge regression had
+more<00:02:15.320><c> bias</c><00:02:15.959><c> than</c><00:02:16.200><c> least</c><00:02:16.560><c> squares.</c>
+
+00:02:18.270 --> 00:02:18.280 align:start position:0%
+more bias than least squares.
+ 
+
+00:02:18.280 --> 00:02:20.390 align:start position:0%
+more bias than least squares.
+But<00:02:18.520><c> in</c><00:02:18.640><c> return</c><00:02:19.280><c> for</c><00:02:19.400><c> that</c><00:02:19.600><c> small</c><00:02:20.000><c> amount</c><00:02:20.280><c> of</c>
+
+00:02:20.390 --> 00:02:20.400 align:start position:0%
+But in return for that small amount of
+ 
+
+00:02:20.400 --> 00:02:22.790 align:start position:0%
+But in return for that small amount of
+bias,<00:02:21.320><c> the</c><00:02:21.480><c> ridge</c><00:02:21.720><c> regression</c><00:02:22.200><c> line</c><00:02:22.560><c> had</c><00:02:22.760><c> a</c>
+
+00:02:22.790 --> 00:02:22.800 align:start position:0%
+bias, the ridge regression line had a
+ 
+
+00:02:22.800 --> 00:02:26.270 align:start position:0%
+bias, the ridge regression line had a
+significant<00:02:23.640><c> drop</c><00:02:23.920><c> in</c><00:02:24.040><c> variance.</c>
+
+00:02:26.270 --> 00:02:26.280 align:start position:0%
+significant drop in variance.
+ 
+
+00:02:26.280 --> 00:02:28.550 align:start position:0%
+significant drop in variance.
+The<00:02:26.520><c> main</c><00:02:26.800><c> idea</c><00:02:27.400><c> was</c><00:02:27.640><c> that</c><00:02:27.800><c> by</c><00:02:27.920><c> starting</c><00:02:28.400><c> with</c>
+
+00:02:28.550 --> 00:02:28.560 align:start position:0%
+The main idea was that by starting with
+ 
+
+00:02:28.560 --> 00:02:31.270 align:start position:0%
+The main idea was that by starting with
+a<00:02:28.640><c> slightly</c><00:02:29.200><c> worse</c><00:02:29.560><c> fit,</c><00:02:30.440><c> ridge</c><00:02:30.720><c> regression</c>
+
+00:02:31.270 --> 00:02:31.280 align:start position:0%
+a slightly worse fit, ridge regression
+ 
+
+00:02:31.280 --> 00:02:34.949 align:start position:0%
+a slightly worse fit, ridge regression
+provided<00:02:31.800><c> better</c><00:02:32.160><c> long-term</c><00:02:32.840><c> predictions.</c>
+
+00:02:34.949 --> 00:02:34.959 align:start position:0%
+provided better long-term predictions.
+ 
+
+00:02:34.959 --> 00:02:37.150 align:start position:0%
+provided better long-term predictions.
+Bam.
+
+00:02:37.150 --> 00:02:37.160 align:start position:0%
+Bam.
+ 
+
+00:02:37.160 --> 00:02:39.230 align:start position:0%
+Bam.
+Now,<00:02:37.520><c> let's</c><00:02:37.760><c> go</c><00:02:37.920><c> back</c><00:02:38.200><c> to</c><00:02:38.320><c> the</c><00:02:38.440><c> equation</c><00:02:39.040><c> that</c>
+
+00:02:39.230 --> 00:02:39.240 align:start position:0%
+Now, let's go back to the equation that
+ 
+
+00:02:39.240 --> 00:02:41.590 align:start position:0%
+Now, let's go back to the equation that
+ridge<00:02:39.440><c> regression</c><00:02:39.959><c> minimizes</c>
+
+00:02:41.590 --> 00:02:41.600 align:start position:0%
+ridge regression minimizes
+ 
+
+00:02:41.600 --> 00:02:43.350 align:start position:0%
+ridge regression minimizes
+and<00:02:41.880><c> focus</c><00:02:42.280><c> on</c><00:02:42.400><c> the</c><00:02:42.520><c> ridge</c><00:02:42.800><c> regression</c>
+
+00:02:43.350 --> 00:02:43.360 align:start position:0%
+and focus on the ridge regression
+ 
+
+00:02:43.360 --> 00:02:44.830 align:start position:0%
+and focus on the ridge regression
+penalty.
+
+00:02:44.830 --> 00:02:44.840 align:start position:0%
+penalty.
+ 
+
+00:02:44.840 --> 00:02:48.190 align:start position:0%
+penalty.
+If,<00:02:45.680><c> instead</c><00:02:46.120><c> of</c><00:02:46.240><c> squaring</c><00:02:46.800><c> the</c><00:02:46.920><c> slope,</c>
+
+00:02:48.190 --> 00:02:48.200 align:start position:0%
+If, instead of squaring the slope,
+ 
+
+00:02:48.200 --> 00:02:50.790 align:start position:0%
+If, instead of squaring the slope,
+we<00:02:48.440><c> take</c><00:02:48.720><c> the</c><00:02:48.880><c> absolute</c><00:02:49.480><c> value,</c>
+
+00:02:50.790 --> 00:02:50.800 align:start position:0%
+we take the absolute value,
+ 
+
+00:02:50.800 --> 00:02:53.870 align:start position:0%
+we take the absolute value,
+then<00:02:51.080><c> we</c><00:02:51.200><c> have</c><00:02:51.480><c> lasso</c><00:02:52.000><c> regression.</c>
+
+00:02:53.870 --> 00:02:53.880 align:start position:0%
+then we have lasso regression.
+ 
+
+00:02:53.880 --> 00:02:56.870 align:start position:0%
+then we have lasso regression.
+Note,<00:02:54.840><c> just</c><00:02:55.200><c> like</c><00:02:55.400><c> with</c><00:02:55.600><c> ridge</c><00:02:55.840><c> regression,</c>
+
+00:02:56.870 --> 00:02:56.880 align:start position:0%
+Note, just like with ridge regression,
+ 
+
+00:02:56.880 --> 00:02:59.229 align:start position:0%
+Note, just like with ridge regression,
+lambda<00:02:57.320><c> can</c><00:02:57.480><c> be</c><00:02:57.680><c> any</c><00:02:57.920><c> value</c><00:02:58.320><c> from</c><00:02:58.520><c> zero</c><00:02:59.080><c> to</c>
+
+00:02:59.229 --> 00:02:59.239 align:start position:0%
+lambda can be any value from zero to
+ 
+
+00:02:59.239 --> 00:03:01.670 align:start position:0%
+lambda can be any value from zero to
+positive<00:02:59.720><c> infinity</c><00:03:00.640><c> and</c><00:03:00.800><c> is</c><00:03:00.920><c> determined</c>
+
+00:03:01.670 --> 00:03:01.680 align:start position:0%
+positive infinity and is determined
+ 
+
+00:03:01.680 --> 00:03:04.190 align:start position:0%
+positive infinity and is determined
+using<00:03:02.000><c> cross-validation.</c>
+
+00:03:04.190 --> 00:03:04.200 align:start position:0%
+using cross-validation.
+ 
+
+00:03:04.200 --> 00:03:07.350 align:start position:0%
+using cross-validation.
+Like<00:03:04.680><c> ridge</c><00:03:04.920><c> regression,</c><00:03:06.040><c> lasso</c><00:03:06.480><c> regression,</c>
+
+00:03:07.350 --> 00:03:07.360 align:start position:0%
+Like ridge regression, lasso regression,
+ 
+
+00:03:07.360 --> 00:03:09.870 align:start position:0%
+Like ridge regression, lasso regression,
+the<00:03:07.560><c> orange</c><00:03:07.880><c> line,</c><00:03:08.640><c> results</c><00:03:09.080><c> in</c><00:03:09.160><c> a</c><00:03:09.239><c> line</c><00:03:09.720><c> with</c>
+
+00:03:09.870 --> 00:03:09.880 align:start position:0%
+the orange line, results in a line with
+ 
+
+00:03:09.880 --> 00:03:11.870 align:start position:0%
+the orange line, results in a line with
+a<00:03:09.920><c> little</c><00:03:10.239><c> bit</c><00:03:10.400><c> of</c><00:03:10.519><c> bias,</c>
+
+00:03:11.870 --> 00:03:11.880 align:start position:0%
+a little bit of bias,
+ 
+
+00:03:11.880 --> 00:03:15.470 align:start position:0%
+a little bit of bias,
+but<00:03:12.200><c> less</c><00:03:12.480><c> variance</c><00:03:13.160><c> than</c><00:03:13.440><c> least</c><00:03:13.800><c> squares.</c>
+
+00:03:15.470 --> 00:03:15.480 align:start position:0%
+but less variance than least squares.
+ 
+
+00:03:15.480 --> 00:03:17.310 align:start position:0%
+but less variance than least squares.
+Bam.
+
+00:03:17.310 --> 00:03:17.320 align:start position:0%
+Bam.
+ 
+
+00:03:17.320 --> 00:03:20.910 align:start position:0%
+Bam.
+Ridge<00:03:17.720><c> regression</c><00:03:18.920><c> and</c><00:03:19.239><c> lasso</c><00:03:19.680><c> regression</c>
+
+00:03:20.910 --> 00:03:20.920 align:start position:0%
+Ridge regression and lasso regression
+ 
+
+00:03:20.920 --> 00:03:23.229 align:start position:0%
+Ridge regression and lasso regression
+look<00:03:21.320><c> very</c><00:03:21.800><c> similar.</c>
+
+00:03:23.229 --> 00:03:23.239 align:start position:0%
+look very similar.
+ 
+
+00:03:23.239 --> 00:03:25.870 align:start position:0%
+look very similar.
+And<00:03:23.480><c> they</c><00:03:23.600><c> do</c><00:03:23.959><c> similar</c><00:03:24.440><c> things.</c>
+
+00:03:25.870 --> 00:03:25.880 align:start position:0%
+And they do similar things.
+ 
+
+00:03:25.880 --> 00:03:28.229 align:start position:0%
+And they do similar things.
+In<00:03:26.160><c> this</c><00:03:26.400><c> case,</c><00:03:27.200><c> they</c><00:03:27.320><c> make</c><00:03:27.560><c> our</c><00:03:27.680><c> predictions</c>
+
+00:03:28.229 --> 00:03:28.239 align:start position:0%
+In this case, they make our predictions
+ 
+
+00:03:28.239 --> 00:03:30.590 align:start position:0%
+In this case, they make our predictions
+of<00:03:28.360><c> size</c><00:03:28.959><c> less</c><00:03:29.280><c> sensitive</c><00:03:29.880><c> to</c><00:03:30.000><c> this</c><00:03:30.200><c> tiny</c>
+
+00:03:30.590 --> 00:03:30.600 align:start position:0%
+of size less sensitive to this tiny
+ 
+
+00:03:30.600 --> 00:03:33.150 align:start position:0%
+of size less sensitive to this tiny
+training<00:03:31.040><c> data</c><00:03:31.360><c> set.</c>
+
+00:03:33.150 --> 00:03:33.160 align:start position:0%
+training data set.
+ 
+
+00:03:33.160 --> 00:03:35.590 align:start position:0%
+training data set.
+Both<00:03:33.600><c> ridge</c><00:03:34.040><c> and</c><00:03:34.239><c> lasso</c><00:03:34.640><c> regression</c><00:03:35.280><c> can</c><00:03:35.480><c> be</c>
+
+00:03:35.590 --> 00:03:35.600 align:start position:0%
+Both ridge and lasso regression can be
+ 
+
+00:03:35.600 --> 00:03:38.030 align:start position:0%
+Both ridge and lasso regression can be
+applied<00:03:36.120><c> in</c><00:03:36.239><c> the</c><00:03:36.320><c> same</c><00:03:36.640><c> context,</c><00:03:37.680><c> like</c><00:03:37.880><c> this</c>
+
+00:03:38.030 --> 00:03:38.040 align:start position:0%
+applied in the same context, like this
+ 
+
+00:03:38.040 --> 00:03:40.070 align:start position:0%
+applied in the same context, like this
+situation<00:03:39.080><c> where</c><00:03:39.239><c> we</c><00:03:39.360><c> are</c><00:03:39.480><c> using</c><00:03:39.840><c> two</c>
+
+00:03:40.070 --> 00:03:40.080 align:start position:0%
+situation where we are using two
+ 
+
+00:03:40.080 --> 00:03:43.350 align:start position:0%
+situation where we are using two
+different<00:03:40.480><c> diets</c><00:03:40.920><c> to</c><00:03:41.040><c> predict</c><00:03:41.440><c> size.</c>
+
+00:03:43.350 --> 00:03:43.360 align:start position:0%
+different diets to predict size.
+ 
+
+00:03:43.360 --> 00:03:45.430 align:start position:0%
+different diets to predict size.
+Or<00:03:43.640><c> in</c><00:03:43.760><c> a</c><00:03:43.800><c> logistic</c><00:03:44.400><c> regression</c><00:03:44.959><c> setting</c>
+
+00:03:45.430 --> 00:03:45.440 align:start position:0%
+Or in a logistic regression setting
+ 
+
+00:03:45.440 --> 00:03:48.870 align:start position:0%
+Or in a logistic regression setting
+where<00:03:45.600><c> we</c><00:03:45.720><c> use</c><00:03:46.000><c> weight</c><00:03:46.519><c> to</c><00:03:46.640><c> predict</c><00:03:47.000><c> obesity.</c>
+
+00:03:48.870 --> 00:03:48.880 align:start position:0%
+where we use weight to predict obesity.
+ 
+
+00:03:48.880 --> 00:03:51.470 align:start position:0%
+where we use weight to predict obesity.
+And<00:03:49.120><c> both</c><00:03:49.480><c> ridge</c><00:03:49.880><c> and</c><00:03:50.080><c> lasso</c><00:03:50.480><c> regression</c><00:03:51.360><c> can</c>
+
+00:03:51.470 --> 00:03:51.480 align:start position:0%
+And both ridge and lasso regression can
+ 
+
+00:03:51.480 --> 00:03:53.310 align:start position:0%
+And both ridge and lasso regression can
+be<00:03:51.600><c> applied</c><00:03:52.040><c> to</c><00:03:52.160><c> complicated</c><00:03:52.800><c> models</c><00:03:53.200><c> that</c>
+
+00:03:53.310 --> 00:03:53.320 align:start position:0%
+be applied to complicated models that
+ 
+
+00:03:53.320 --> 00:03:56.550 align:start position:0%
+be applied to complicated models that
+combine<00:03:53.720><c> different</c><00:03:54.120><c> types</c><00:03:54.400><c> of</c><00:03:54.520><c> data.</c>
+
+00:03:56.550 --> 00:03:56.560 align:start position:0%
+combine different types of data.
+ 
+
+00:03:56.560 --> 00:03:58.630 align:start position:0%
+combine different types of data.
+In<00:03:56.680><c> this</c><00:03:56.920><c> case,</c><00:03:57.600><c> we've</c><00:03:57.800><c> combined</c><00:03:58.240><c> the</c><00:03:58.320><c> data</c>
+
+00:03:58.630 --> 00:03:58.640 align:start position:0%
+In this case, we've combined the data
+ 
+
+00:03:58.640 --> 00:04:00.910 align:start position:0%
+In this case, we've combined the data
+from<00:03:58.800><c> the</c><00:03:58.920><c> first</c><00:03:59.240><c> two</c><00:03:59.360><c> examples.</c><00:04:00.360><c> Weight,</c>
+
+00:04:00.910 --> 00:04:00.920 align:start position:0%
+from the first two examples. Weight,
+ 
+
+00:04:00.920 --> 00:04:03.430 align:start position:0%
+from the first two examples. Weight,
+which<00:04:01.120><c> is</c><00:04:01.240><c> continuous,</c><00:04:02.200><c> and</c><00:04:02.360><c> high-fat</c><00:04:02.800><c> diet,</c>
+
+00:04:03.430 --> 00:04:03.440 align:start position:0%
+which is continuous, and high-fat diet,
+ 
+
+00:04:03.440 --> 00:04:06.030 align:start position:0%
+which is continuous, and high-fat diet,
+which<00:04:03.640><c> is</c><00:04:03.760><c> discrete.</c>
+
+00:04:06.030 --> 00:04:06.040 align:start position:0%
+which is discrete.
+ 
+
+00:04:06.040 --> 00:04:08.310 align:start position:0%
+which is discrete.
+Just<00:04:06.280><c> like</c><00:04:06.480><c> the</c><00:04:06.640><c> ridge</c><00:04:06.920><c> regression</c><00:04:07.400><c> penalty,</c>
+
+00:04:08.310 --> 00:04:08.320 align:start position:0%
+Just like the ridge regression penalty,
+ 
+
+00:04:08.320 --> 00:04:10.350 align:start position:0%
+Just like the ridge regression penalty,
+the<00:04:08.440><c> lasso</c><00:04:08.920><c> regression</c><00:04:09.440><c> penalty</c><00:04:09.840><c> contains</c>
+
+00:04:10.350 --> 00:04:10.360 align:start position:0%
+the lasso regression penalty contains
+ 
+
+00:04:10.360 --> 00:04:12.790 align:start position:0%
+the lasso regression penalty contains
+all<00:04:10.640><c> of</c><00:04:10.760><c> the</c><00:04:10.920><c> estimated</c><00:04:11.480><c> parameters</c><00:04:12.360><c> except</c>
+
+00:04:12.790 --> 00:04:12.800 align:start position:0%
+all of the estimated parameters except
+ 
+
+00:04:12.800 --> 00:04:15.270 align:start position:0%
+all of the estimated parameters except
+for<00:04:12.880><c> the</c><00:04:13.000><c> Y</c><00:04:13.360><c> intercept.</c>
+
+00:04:15.270 --> 00:04:15.280 align:start position:0%
+for the Y intercept.
+ 
+
+00:04:15.280 --> 00:04:17.069 align:start position:0%
+for the Y intercept.
+It's<00:04:15.520><c> also</c><00:04:15.880><c> worth</c><00:04:16.120><c> mentioning</c><00:04:16.720><c> that</c><00:04:16.880><c> when</c>
+
+00:04:17.069 --> 00:04:17.079 align:start position:0%
+It's also worth mentioning that when
+ 
+
+00:04:17.079 --> 00:04:19.069 align:start position:0%
+It's also worth mentioning that when
+ridge<00:04:17.480><c> and</c><00:04:17.640><c> lasso</c><00:04:18.040><c> regression</c><00:04:18.680><c> shrink</c>
+
+00:04:19.069 --> 00:04:19.079 align:start position:0%
+ridge and lasso regression shrink
+ 
+
+00:04:19.079 --> 00:04:21.110 align:start position:0%
+ridge and lasso regression shrink
+parameters,<00:04:20.200><c> they</c><00:04:20.320><c> don't</c><00:04:20.600><c> have</c><00:04:20.720><c> to</c><00:04:20.840><c> shrink</c>
+
+00:04:21.110 --> 00:04:21.120 align:start position:0%
+parameters, they don't have to shrink
+ 
+
+00:04:21.120 --> 00:04:23.870 align:start position:0%
+parameters, they don't have to shrink
+them<00:04:21.320><c> all</c><00:04:21.640><c> equally.</c>
+
+00:04:23.870 --> 00:04:23.880 align:start position:0%
+them all equally.
+ 
+
+00:04:23.880 --> 00:04:26.110 align:start position:0%
+them all equally.
+For<00:04:24.000><c> example,</c><00:04:24.960><c> if</c><00:04:25.160><c> these</c><00:04:25.440><c> were</c><00:04:25.560><c> the</c><00:04:25.680><c> training</c>
+
+00:04:26.110 --> 00:04:26.120 align:start position:0%
+For example, if these were the training
+ 
+
+00:04:26.120 --> 00:04:27.590 align:start position:0%
+For example, if these were the training
+data,
+
+00:04:27.590 --> 00:04:27.600 align:start position:0%
+data,
+ 
+
+00:04:27.600 --> 00:04:30.630 align:start position:0%
+data,
+and<00:04:27.760><c> these</c><00:04:28.040><c> were</c><00:04:28.160><c> the</c><00:04:28.320><c> testing</c><00:04:28.840><c> data,</c>
+
+00:04:30.630 --> 00:04:30.640 align:start position:0%
+and these were the testing data,
+ 
+
+00:04:30.640 --> 00:04:33.030 align:start position:0%
+and these were the testing data,
+then<00:04:30.800><c> when</c><00:04:31.000><c> lambda</c><00:04:31.400><c> equals</c><00:04:31.800><c> zero,</c><00:04:32.720><c> we</c><00:04:32.840><c> would</c>
+
+00:04:33.030 --> 00:04:33.040 align:start position:0%
+then when lambda equals zero, we would
+ 
+
+00:04:33.040 --> 00:04:35.390 align:start position:0%
+then when lambda equals zero, we would
+start<00:04:33.440><c> with</c><00:04:33.640><c> these</c><00:04:33.960><c> least</c><00:04:34.240><c> squares</c><00:04:34.680><c> estimates</c>
+
+00:04:35.390 --> 00:04:35.400 align:start position:0%
+start with these least squares estimates
+ 
+
+00:04:35.400 --> 00:04:38.070 align:start position:0%
+start with these least squares estimates
+for<00:04:35.520><c> the</c><00:04:35.640><c> slope</c><00:04:36.680><c> and</c><00:04:36.800><c> the</c><00:04:36.960><c> offset</c><00:04:37.520><c> for</c><00:04:37.640><c> diet</c>
+
+00:04:38.070 --> 00:04:38.080 align:start position:0%
+for the slope and the offset for diet
+ 
+
+00:04:38.080 --> 00:04:40.190 align:start position:0%
+for the slope and the offset for diet
+difference.
+
+00:04:40.190 --> 00:04:40.200 align:start position:0%
+difference.
+ 
+
+00:04:40.200 --> 00:04:42.870 align:start position:0%
+difference.
+But<00:04:40.360><c> as</c><00:04:40.560><c> we</c><00:04:40.680><c> increase</c><00:04:41.120><c> the</c><00:04:41.240><c> value</c><00:04:41.600><c> for</c><00:04:41.760><c> lambda,</c>
+
+00:04:42.870 --> 00:04:42.880 align:start position:0%
+But as we increase the value for lambda,
+ 
+
+00:04:42.880 --> 00:04:45.510 align:start position:0%
+But as we increase the value for lambda,
+ridge<00:04:43.400><c> and</c><00:04:43.600><c> lasso</c><00:04:44.000><c> regression</c><00:04:44.880><c> may</c><00:04:45.080><c> shrink</c>
+
+00:04:45.510 --> 00:04:45.520 align:start position:0%
+ridge and lasso regression may shrink
+ 
+
+00:04:45.520 --> 00:04:47.510 align:start position:0%
+ridge and lasso regression may shrink
+diet<00:04:45.880><c> difference</c><00:04:46.520><c> a</c><00:04:46.600><c> lot</c><00:04:46.919><c> more</c><00:04:47.280><c> than</c><00:04:47.440><c> they</c>
+
+00:04:47.510 --> 00:04:47.520 align:start position:0%
+diet difference a lot more than they
+ 
+
+00:04:47.520 --> 00:04:50.670 align:start position:0%
+diet difference a lot more than they
+shrink<00:04:47.840><c> the</c><00:04:47.960><c> slope.</c>
+
+00:04:50.670 --> 00:04:50.680 align:start position:0%
+ 
+ 
+
+00:04:50.680 --> 00:04:53.430 align:start position:0%
+ 
+Okay,<00:04:51.640><c> we've</c><00:04:51.880><c> seen</c><00:04:52.160><c> how</c><00:04:52.360><c> ridge</c><00:04:52.800><c> and</c><00:04:53.000><c> lasso</c>
+
+00:04:53.430 --> 00:04:53.440 align:start position:0%
+Okay, we've seen how ridge and lasso
+ 
+
+00:04:53.440 --> 00:04:56.350 align:start position:0%
+Okay, we've seen how ridge and lasso
+regression<00:04:54.200><c> are</c><00:04:54.360><c> similar.</c>
+
+00:04:56.350 --> 00:04:56.360 align:start position:0%
+regression are similar.
+ 
+
+00:04:56.360 --> 00:04:58.190 align:start position:0%
+regression are similar.
+Now<00:04:56.520><c> let's</c><00:04:56.800><c> talk</c><00:04:57.040><c> about</c><00:04:57.280><c> the</c><00:04:57.400><c> big</c><00:04:57.720><c> difference</c>
+
+00:04:58.190 --> 00:04:58.200 align:start position:0%
+Now let's talk about the big difference
+ 
+
+00:04:58.200 --> 00:05:00.670 align:start position:0%
+Now let's talk about the big difference
+between<00:04:58.720><c> them.</c>
+
+00:05:00.670 --> 00:05:00.680 align:start position:0%
+between them.
+ 
+
+00:05:00.680 --> 00:05:02.510 align:start position:0%
+between them.
+To<00:05:00.800><c> see</c><00:05:01.040><c> what</c><00:05:01.200><c> makes</c><00:05:01.480><c> lasso</c><00:05:01.919><c> regression</c>
+
+00:05:02.510 --> 00:05:02.520 align:start position:0%
+To see what makes lasso regression
+ 
+
+00:05:02.520 --> 00:05:04.670 align:start position:0%
+To see what makes lasso regression
+different<00:05:02.919><c> from</c><00:05:03.160><c> ridge</c><00:05:03.400><c> regression,</c><00:05:04.440><c> let's</c>
+
+00:05:04.670 --> 00:05:04.680 align:start position:0%
+different from ridge regression, let's
+ 
+
+00:05:04.680 --> 00:05:07.830 align:start position:0%
+different from ridge regression, let's
+go<00:05:04.840><c> back</c><00:05:05.160><c> to</c><00:05:05.280><c> the</c><00:05:05.440><c> two</c><00:05:05.680><c> sample</c><00:05:06.120><c> training</c><00:05:06.560><c> data.</c>
+
+00:05:07.830 --> 00:05:07.840 align:start position:0%
+go back to the two sample training data.
+ 
+
+00:05:07.840 --> 00:05:09.630 align:start position:0%
+go back to the two sample training data.
+And<00:05:07.919><c> let's</c><00:05:08.160><c> focus</c><00:05:08.560><c> on</c><00:05:08.720><c> what</c><00:05:08.880><c> happens</c><00:05:09.360><c> when</c><00:05:09.480><c> we</c>
+
+00:05:09.630 --> 00:05:09.640 align:start position:0%
+And let's focus on what happens when we
+ 
+
+00:05:09.640 --> 00:05:12.909 align:start position:0%
+And let's focus on what happens when we
+increase<00:05:10.160><c> the</c><00:05:10.280><c> value</c><00:05:10.640><c> for</c><00:05:10.800><c> lambda.</c>
+
+00:05:12.909 --> 00:05:12.919 align:start position:0%
+increase the value for lambda.
+ 
+
+00:05:12.919 --> 00:05:15.430 align:start position:0%
+increase the value for lambda.
+When<00:05:13.040><c> lambda</c><00:05:13.440><c> equals</c><00:05:13.840><c> zero,</c><00:05:14.760><c> then</c><00:05:14.880><c> the</c><00:05:15.000><c> lasso</c>
+
+00:05:15.430 --> 00:05:15.440 align:start position:0%
+When lambda equals zero, then the lasso
+ 
+
+00:05:15.440 --> 00:05:17.430 align:start position:0%
+When lambda equals zero, then the lasso
+regression<00:05:16.000><c> line</c><00:05:16.360><c> will</c><00:05:16.480><c> be</c><00:05:16.640><c> the</c><00:05:16.760><c> same</c><00:05:17.160><c> as</c><00:05:17.320><c> the</c>
+
+00:05:17.430 --> 00:05:17.440 align:start position:0%
+regression line will be the same as the
+ 
+
+00:05:17.440 --> 00:05:20.310 align:start position:0%
+regression line will be the same as the
+least<00:05:17.720><c> squares</c><00:05:18.240><c> line.</c>
+
+00:05:20.310 --> 00:05:20.320 align:start position:0%
+least squares line.
+ 
+
+00:05:20.320 --> 00:05:23.070 align:start position:0%
+least squares line.
+As<00:05:20.520><c> lambda</c><00:05:20.960><c> increases</c><00:05:21.520><c> in</c><00:05:21.640><c> value,</c><00:05:22.560><c> the</c><00:05:22.680><c> slope</c>
+
+00:05:23.070 --> 00:05:23.080 align:start position:0%
+As lambda increases in value, the slope
+ 
+
+00:05:23.080 --> 00:05:25.230 align:start position:0%
+As lambda increases in value, the slope
+gets<00:05:23.400><c> smaller</c>
+
+00:05:25.230 --> 00:05:25.240 align:start position:0%
+gets smaller
+ 
+
+00:05:25.240 --> 00:05:28.830 align:start position:0%
+gets smaller
+until<00:05:25.520><c> the</c><00:05:25.640><c> slope</c><00:05:26.200><c> equals</c><00:05:26.720><c> zero.</c>
+
+00:05:28.830 --> 00:05:28.840 align:start position:0%
+until the slope equals zero.
+ 
+
+00:05:28.840 --> 00:05:31.070 align:start position:0%
+until the slope equals zero.
+Bam!
+
+00:05:31.070 --> 00:05:31.080 align:start position:0%
+Bam!
+ 
+
+00:05:31.080 --> 00:05:33.110 align:start position:0%
+Bam!
+The<00:05:31.160><c> big</c><00:05:31.400><c> difference</c><00:05:31.960><c> between</c><00:05:32.400><c> ridge</c><00:05:32.960><c> and</c>
+
+00:05:33.110 --> 00:05:33.120 align:start position:0%
+The big difference between ridge and
+ 
+
+00:05:33.120 --> 00:05:35.190 align:start position:0%
+The big difference between ridge and
+lasso<00:05:33.520><c> regression</c><00:05:34.560><c> is</c><00:05:34.720><c> that</c><00:05:34.960><c> ridge</c>
+
+00:05:35.190 --> 00:05:35.200 align:start position:0%
+lasso regression is that ridge
+ 
+
+00:05:35.200 --> 00:05:37.390 align:start position:0%
+lasso regression is that ridge
+regression<00:05:35.960><c> can</c><00:05:36.240><c> only</c><00:05:36.520><c> shrink</c><00:05:36.800><c> the</c><00:05:36.880><c> slope</c>
+
+00:05:37.390 --> 00:05:37.400 align:start position:0%
+regression can only shrink the slope
+ 
+
+00:05:37.400 --> 00:05:39.870 align:start position:0%
+regression can only shrink the slope
+asymptotically<00:05:38.240><c> close</c><00:05:38.680><c> to</c><00:05:38.800><c> zero,</c><00:05:39.640><c> while</c>
+
+00:05:39.870 --> 00:05:39.880 align:start position:0%
+asymptotically close to zero, while
+ 
+
+00:05:39.880 --> 00:05:41.990 align:start position:0%
+asymptotically close to zero, while
+lasso<00:05:40.320><c> regression</c><00:05:40.919><c> can</c><00:05:41.080><c> shrink</c><00:05:41.360><c> the</c><00:05:41.440><c> slope</c>
+
+00:05:41.990 --> 00:05:42.000 align:start position:0%
+lasso regression can shrink the slope
+ 
+
+00:05:42.000 --> 00:05:44.750 align:start position:0%
+lasso regression can shrink the slope
+all<00:05:42.280><c> the</c><00:05:42.400><c> way</c><00:05:42.640><c> to</c><00:05:42.840><c> zero.</c>
+
+00:05:44.750 --> 00:05:44.760 align:start position:0%
+all the way to zero.
+ 
+
+00:05:44.760 --> 00:05:47.230 align:start position:0%
+all the way to zero.
+To<00:05:44.880><c> appreciate</c><00:05:45.560><c> this</c><00:05:45.760><c> difference,</c><00:05:46.880><c> let's</c>
+
+00:05:47.230 --> 00:05:47.240 align:start position:0%
+To appreciate this difference, let's
+ 
+
+00:05:47.240 --> 00:05:53.270 align:start position:0%
+To appreciate this difference, let's
+look<00:05:47.440><c> at</c><00:05:47.560><c> a</c><00:05:47.640><c> big,</c><00:05:48.560><c> huge,</c><00:05:49.560><c> crazy</c><00:05:50.800><c> equation.</c>
+
+00:05:53.270 --> 00:05:53.280 align:start position:0%
+look at a big, huge, crazy equation.
+ 
+
+00:05:53.280 --> 00:05:55.430 align:start position:0%
+look at a big, huge, crazy equation.
+The<00:05:53.400><c> goal</c><00:05:53.680><c> of</c><00:05:53.800><c> this</c><00:05:54.000><c> equation</c><00:05:54.720><c> is</c><00:05:54.920><c> to</c><00:05:55.000><c> predict</c>
+
+00:05:55.430 --> 00:05:55.440 align:start position:0%
+The goal of this equation is to predict
+ 
+
+00:05:55.440 --> 00:05:57.350 align:start position:0%
+The goal of this equation is to predict
+size.
+
+00:05:57.350 --> 00:05:57.360 align:start position:0%
+size.
+ 
+
+00:05:57.360 --> 00:05:59.910 align:start position:0%
+size.
+The<00:05:57.480><c> terms</c><00:05:57.840><c> for</c><00:05:58.040><c> weight</c><00:05:58.480><c> and</c><00:05:58.640><c> high-fat</c><00:05:59.160><c> diet</c>
+
+00:05:59.910 --> 00:05:59.920 align:start position:0%
+The terms for weight and high-fat diet
+ 
+
+00:05:59.920 --> 00:06:01.950 align:start position:0%
+The terms for weight and high-fat diet
+are<00:06:00.040><c> both</c><00:06:00.440><c> reasonable</c><00:06:01.000><c> things</c><00:06:01.480><c> to</c><00:06:01.640><c> use</c><00:06:01.840><c> to</c>
+
+00:06:01.950 --> 00:06:01.960 align:start position:0%
+are both reasonable things to use to
+ 
+
+00:06:01.960 --> 00:06:04.110 align:start position:0%
+are both reasonable things to use to
+predict<00:06:02.360><c> size.</c>
+
+00:06:04.110 --> 00:06:04.120 align:start position:0%
+predict size.
+ 
+
+00:06:04.120 --> 00:06:06.710 align:start position:0%
+predict size.
+But<00:06:04.280><c> the</c><00:06:04.440><c> astrological</c><00:06:05.240><c> sign</c><00:06:06.280><c> and</c><00:06:06.440><c> the</c><00:06:06.520><c> air</c>
+
+00:06:06.710 --> 00:06:06.720 align:start position:0%
+But the astrological sign and the air
+ 
+
+00:06:06.720 --> 00:06:09.750 align:start position:0%
+But the astrological sign and the air
+speed<00:06:07.000><c> of</c><00:06:07.080><c> a</c><00:06:07.160><c> swallow,</c><00:06:08.120><c> African</c><00:06:08.520><c> or</c><00:06:08.640><c> European,</c>
+
+00:06:09.750 --> 00:06:09.760 align:start position:0%
+speed of a swallow, African or European,
+ 
+
+00:06:09.760 --> 00:06:13.470 align:start position:0%
+speed of a swallow, African or European,
+are<00:06:09.920><c> terrible</c><00:06:10.440><c> ways</c><00:06:10.760><c> to</c><00:06:10.880><c> predict</c><00:06:11.280><c> size.</c>
+
+00:06:13.470 --> 00:06:13.480 align:start position:0%
+are terrible ways to predict size.
+ 
+
+00:06:13.480 --> 00:06:15.110 align:start position:0%
+are terrible ways to predict size.
+When<00:06:13.640><c> we</c><00:06:13.760><c> apply</c><00:06:14.120><c> ridge</c><00:06:14.400><c> regression</c><00:06:14.880><c> to</c><00:06:14.960><c> this</c>
+
+00:06:15.110 --> 00:06:15.120 align:start position:0%
+When we apply ridge regression to this
+ 
+
+00:06:15.120 --> 00:06:17.550 align:start position:0%
+When we apply ridge regression to this
+equation,<00:06:16.160><c> we</c><00:06:16.280><c> find</c><00:06:16.560><c> the</c><00:06:16.640><c> minimal</c><00:06:17.120><c> sum</c><00:06:17.360><c> of</c><00:06:17.480><c> the</c>
+
+00:06:17.550 --> 00:06:17.560 align:start position:0%
+equation, we find the minimal sum of the
+ 
+
+00:06:17.560 --> 00:06:19.550 align:start position:0%
+equation, we find the minimal sum of the
+squared<00:06:17.960><c> residuals</c><00:06:18.919><c> plus</c><00:06:19.160><c> the</c><00:06:19.320><c> ridge</c>
+
+00:06:19.550 --> 00:06:19.560 align:start position:0%
+squared residuals plus the ridge
+ 
+
+00:06:19.560 --> 00:06:21.950 align:start position:0%
+squared residuals plus the ridge
+regression<00:06:20.080><c> penalty.</c>
+
+00:06:21.950 --> 00:06:21.960 align:start position:0%
+regression penalty.
+ 
+
+00:06:21.960 --> 00:06:25.190 align:start position:0%
+regression penalty.
+And<00:06:22.080><c> the</c><00:06:22.200><c> larger</c><00:06:22.640><c> we</c><00:06:22.800><c> make</c><00:06:23.120><c> lambda,</c>
+
+00:06:25.190 --> 00:06:25.200 align:start position:0%
+And the larger we make lambda,
+ 
+
+00:06:25.200 --> 00:06:26.950 align:start position:0%
+And the larger we make lambda,
+these<00:06:25.440><c> parameters</c><00:06:26.040><c> might</c><00:06:26.280><c> shrink</c><00:06:26.560><c> a</c><00:06:26.600><c> little</c>
+
+00:06:26.950 --> 00:06:26.960 align:start position:0%
+these parameters might shrink a little
+ 
+
+00:06:26.960 --> 00:06:28.710 align:start position:0%
+these parameters might shrink a little
+bit,
+
+00:06:28.710 --> 00:06:28.720 align:start position:0%
+bit,
+ 
+
+00:06:28.720 --> 00:06:31.110 align:start position:0%
+bit,
+and<00:06:28.840><c> these</c><00:06:29.080><c> parameters</c><00:06:29.640><c> might</c><00:06:29.880><c> shrink</c><00:06:30.160><c> a</c><00:06:30.240><c> lot,</c>
+
+00:06:31.110 --> 00:06:31.120 align:start position:0%
+and these parameters might shrink a lot,
+ 
+
+00:06:31.120 --> 00:06:34.630 align:start position:0%
+and these parameters might shrink a lot,
+but<00:06:31.280><c> they</c><00:06:31.400><c> will</c><00:06:31.520><c> never</c><00:06:31.880><c> be</c><00:06:32.120><c> equal</c><00:06:32.480><c> to</c><00:06:32.680><c> zero.</c>
+
+00:06:34.630 --> 00:06:34.640 align:start position:0%
+but they will never be equal to zero.
+ 
+
+00:06:34.640 --> 00:06:38.710 align:start position:0%
+but they will never be equal to zero.
+In<00:06:34.840><c> contrast,</c><00:06:36.040><c> with</c><00:06:36.280><c> lasso</c><00:06:36.720><c> regression,</c>
+
+00:06:38.710 --> 00:06:38.720 align:start position:0%
+In contrast, with lasso regression,
+ 
+
+00:06:38.720 --> 00:06:41.909 align:start position:0%
+In contrast, with lasso regression,
+when<00:06:38.919><c> we</c><00:06:39.080><c> increase</c><00:06:39.600><c> the</c><00:06:39.680><c> value</c><00:06:40.000><c> for</c><00:06:40.200><c> lambda,</c>
+
+00:06:41.909 --> 00:06:41.919 align:start position:0%
+when we increase the value for lambda,
+ 
+
+00:06:41.919 --> 00:06:43.390 align:start position:0%
+when we increase the value for lambda,
+then<00:06:42.080><c> these</c><00:06:42.360><c> parameters</c><00:06:42.919><c> will</c><00:06:43.040><c> shrink</c><00:06:43.320><c> a</c>
+
+00:06:43.390 --> 00:06:43.400 align:start position:0%
+then these parameters will shrink a
+ 
+
+00:06:43.400 --> 00:06:45.110 align:start position:0%
+then these parameters will shrink a
+little<00:06:43.760><c> bit,</c>
+
+00:06:45.110 --> 00:06:45.120 align:start position:0%
+little bit,
+ 
+
+00:06:45.120 --> 00:06:47.350 align:start position:0%
+little bit,
+and<00:06:45.280><c> these</c><00:06:45.600><c> parameters</c><00:06:46.320><c> will</c><00:06:46.480><c> go</c><00:06:46.720><c> all</c><00:06:47.000><c> the</c><00:06:47.120><c> way</c>
+
+00:06:47.350 --> 00:06:47.360 align:start position:0%
+and these parameters will go all the way
+ 
+
+00:06:47.360 --> 00:06:50.030 align:start position:0%
+and these parameters will go all the way
+to<00:06:47.520><c> zero.</c>
+
+00:06:50.030 --> 00:06:50.040 align:start position:0%
+to zero.
+ 
+
+00:06:50.040 --> 00:06:53.630 align:start position:0%
+to zero.
+And<00:06:50.200><c> these</c><00:06:50.480><c> terms</c><00:06:51.120><c> go</c><00:06:51.360><c> away.</c>
+
+00:06:53.630 --> 00:06:53.640 align:start position:0%
+And these terms go away.
+ 
+
+00:06:53.640 --> 00:06:55.310 align:start position:0%
+And these terms go away.
+And<00:06:53.840><c> we're</c><00:06:53.960><c> left</c><00:06:54.320><c> with</c><00:06:54.480><c> a</c><00:06:54.520><c> way</c><00:06:54.760><c> to</c><00:06:54.880><c> predict</c>
+
+00:06:55.310 --> 00:06:55.320 align:start position:0%
+And we're left with a way to predict
+ 
+
+00:06:55.320 --> 00:06:59.950 align:start position:0%
+And we're left with a way to predict
+size<00:06:56.040><c> that</c><00:06:56.280><c> only</c><00:06:56.600><c> includes</c><00:06:57.320><c> weight</c><00:06:57.800><c> and</c><00:06:57.960><c> diet.</c>
+
+00:06:59.950 --> 00:06:59.960 align:start position:0%
+size that only includes weight and diet.
+ 
+
+00:06:59.960 --> 00:07:03.950 align:start position:0%
+size that only includes weight and diet.
+And<00:07:00.120><c> excludes</c><00:07:01.080><c> all</c><00:07:01.280><c> of</c><00:07:01.400><c> the</c><00:07:01.520><c> silly</c><00:07:01.880><c> stuff.</c>
+
+00:07:03.950 --> 00:07:03.960 align:start position:0%
+And excludes all of the silly stuff.
+ 
+
+00:07:03.960 --> 00:07:06.070 align:start position:0%
+And excludes all of the silly stuff.
+Since<00:07:04.240><c> lasso</c><00:07:04.720><c> regression</c><00:07:05.280><c> can</c><00:07:05.480><c> exclude</c>
+
+00:07:06.070 --> 00:07:06.080 align:start position:0%
+Since lasso regression can exclude
+ 
+
+00:07:06.080 --> 00:07:08.590 align:start position:0%
+Since lasso regression can exclude
+useless<00:07:06.560><c> variables</c><00:07:07.080><c> from</c><00:07:07.240><c> equations,</c><00:07:08.360><c> it</c><00:07:08.480><c> is</c>
+
+00:07:08.590 --> 00:07:08.600 align:start position:0%
+useless variables from equations, it is
+ 
+
+00:07:08.600 --> 00:07:10.510 align:start position:0%
+useless variables from equations, it is
+a<00:07:08.680><c> little</c><00:07:08.919><c> better</c><00:07:09.200><c> than</c><00:07:09.400><c> ridge</c><00:07:09.640><c> regression</c><00:07:10.360><c> at</c>
+
+00:07:10.510 --> 00:07:10.520 align:start position:0%
+a little better than ridge regression at
+ 
+
+00:07:10.520 --> 00:07:12.430 align:start position:0%
+a little better than ridge regression at
+reducing<00:07:10.960><c> the</c><00:07:11.080><c> variance</c><00:07:11.640><c> in</c><00:07:11.800><c> models</c><00:07:12.280><c> that</c>
+
+00:07:12.430 --> 00:07:12.440 align:start position:0%
+reducing the variance in models that
+ 
+
+00:07:12.440 --> 00:07:15.870 align:start position:0%
+reducing the variance in models that
+contain<00:07:12.800><c> a</c><00:07:12.880><c> lot</c><00:07:13.160><c> of</c><00:07:13.280><c> useless</c><00:07:13.760><c> variables.</c>
+
+00:07:15.870 --> 00:07:15.880 align:start position:0%
+contain a lot of useless variables.
+ 
+
+00:07:15.880 --> 00:07:18.430 align:start position:0%
+contain a lot of useless variables.
+In<00:07:16.080><c> contrast,</c><00:07:17.240><c> ridge</c><00:07:17.480><c> regression</c><00:07:18.040><c> tends</c><00:07:18.320><c> to</c>
+
+00:07:18.430 --> 00:07:18.440 align:start position:0%
+In contrast, ridge regression tends to
+ 
+
+00:07:18.440 --> 00:07:20.510 align:start position:0%
+In contrast, ridge regression tends to
+do<00:07:18.600><c> a</c><00:07:18.640><c> little</c><00:07:18.960><c> better</c><00:07:19.520><c> when</c><00:07:19.720><c> most</c><00:07:20.040><c> variables</c>
+
+00:07:20.510 --> 00:07:20.520 align:start position:0%
+do a little better when most variables
+ 
+
+00:07:20.520 --> 00:07:22.510 align:start position:0%
+do a little better when most variables
+are<00:07:20.680><c> useful.</c>
+
+00:07:22.510 --> 00:07:22.520 align:start position:0%
+are useful.
+ 
+
+00:07:22.520 --> 00:07:25.470 align:start position:0%
+are useful.
+Double<00:07:22.919><c> bam.</c>
+
+00:07:25.470 --> 00:07:25.480 align:start position:0%
+Double bam.
+ 
+
+00:07:25.480 --> 00:07:27.350 align:start position:0%
+Double bam.
+In<00:07:25.720><c> summary,</c>
+
+00:07:27.350 --> 00:07:27.360 align:start position:0%
+In summary,
+ 
+
+00:07:27.360 --> 00:07:30.350 align:start position:0%
+In summary,
+ridge<00:07:27.600><c> regression</c><00:07:28.360><c> is</c><00:07:28.560><c> very</c><00:07:28.840><c> similar</c><00:07:29.280><c> to</c>
+
+00:07:30.350 --> 00:07:30.360 align:start position:0%
+ridge regression is very similar to
+ 
+
+00:07:30.360 --> 00:07:33.070 align:start position:0%
+ridge regression is very similar to
+lasso<00:07:30.840><c> regression.</c>
+
+00:07:33.070 --> 00:07:33.080 align:start position:0%
+lasso regression.
+ 
+
+00:07:33.080 --> 00:07:34.990 align:start position:0%
+lasso regression.
+And<00:07:33.200><c> the</c><00:07:33.320><c> superficial</c><00:07:34.000><c> difference</c><00:07:34.640><c> is</c><00:07:34.800><c> that</c>
+
+00:07:34.990 --> 00:07:35.000 align:start position:0%
+And the superficial difference is that
+ 
+
+00:07:35.000 --> 00:07:37.710 align:start position:0%
+And the superficial difference is that
+ridge<00:07:35.200><c> regression</c><00:07:35.720><c> squares</c><00:07:36.240><c> the</c><00:07:36.360><c> variables,</c>
+
+00:07:37.710 --> 00:07:37.720 align:start position:0%
+ridge regression squares the variables,
+ 
+
+00:07:37.720 --> 00:07:39.990 align:start position:0%
+ridge regression squares the variables,
+and<00:07:37.919><c> lasso</c><00:07:38.360><c> regression</c><00:07:39.040><c> takes</c><00:07:39.280><c> the</c><00:07:39.440><c> absolute</c>
+
+00:07:39.990 --> 00:07:40.000 align:start position:0%
+and lasso regression takes the absolute
+ 
+
+00:07:40.000 --> 00:07:42.430 align:start position:0%
+and lasso regression takes the absolute
+value.
+
+00:07:42.430 --> 00:07:42.440 align:start position:0%
+value.
+ 
+
+00:07:42.440 --> 00:07:43.710 align:start position:0%
+value.
+But<00:07:42.600><c> the</c><00:07:42.720><c> big</c>
+
+00:07:43.710 --> 00:07:43.720 align:start position:0%
+But the big
+ 
+
+00:07:43.720 --> 00:07:45.990 align:start position:0%
+But the big
+is<00:07:43.880><c> that</c><00:07:44.080><c> lasso</c><00:07:44.480><c> regression</c><00:07:45.200><c> can</c><00:07:45.360><c> exclude</c>
+
+00:07:45.990 --> 00:07:46.000 align:start position:0%
+is that lasso regression can exclude
+ 
+
+00:07:46.000 --> 00:07:49.070 align:start position:0%
+is that lasso regression can exclude
+useless<00:07:46.440><c> variables</c><00:07:47.000><c> from</c><00:07:47.160><c> equations.</c>
+
+00:07:49.070 --> 00:07:49.080 align:start position:0%
+useless variables from equations.
+ 
+
+00:07:49.080 --> 00:07:51.470 align:start position:0%
+useless variables from equations.
+This<00:07:49.280><c> makes</c><00:07:49.560><c> the</c><00:07:49.680><c> final</c><00:07:50.080><c> equation</c><00:07:50.680><c> simpler</c>
+
+00:07:51.470 --> 00:07:51.480 align:start position:0%
+This makes the final equation simpler
+ 
+
+00:07:51.480 --> 00:07:54.630 align:start position:0%
+This makes the final equation simpler
+and<00:07:51.720><c> easier</c><00:07:52.080><c> to</c><00:07:52.240><c> interpret.</c>
+
+00:07:54.630 --> 00:07:54.640 align:start position:0%
+and easier to interpret.
+ 
+
+00:07:54.640 --> 00:07:56.710 align:start position:0%
+and easier to interpret.
+Hooray!<00:07:55.560><c> We've</c><00:07:55.800><c> made</c><00:07:56.000><c> it</c><00:07:56.120><c> to</c><00:07:56.200><c> the</c><00:07:56.400><c> end</c><00:07:56.640><c> of</c>
+
+00:07:56.710 --> 00:07:56.720 align:start position:0%
+Hooray! We've made it to the end of
+ 
+
+00:07:56.720 --> 00:07:59.310 align:start position:0%
+Hooray! We've made it to the end of
+another<00:07:57.120><c> exciting</c><00:07:57.640><c> StatQuest.</c><00:07:58.880><c> If</c><00:07:59.000><c> you</c><00:07:59.120><c> like</c>
+
+00:07:59.310 --> 00:07:59.320 align:start position:0%
+another exciting StatQuest. If you like
+ 
+
+00:07:59.320 --> 00:08:01.190 align:start position:0%
+another exciting StatQuest. If you like
+this<00:07:59.480><c> StatQuest</c><00:08:00.120><c> and</c><00:08:00.240><c> want</c><00:08:00.400><c> to</c><00:08:00.480><c> see</c><00:08:00.640><c> more,</c>
+
+00:08:01.190 --> 00:08:01.200 align:start position:0%
+this StatQuest and want to see more,
+ 
+
+00:08:01.200 --> 00:08:03.110 align:start position:0%
+this StatQuest and want to see more,
+please<00:08:01.440><c> subscribe.</c><00:08:02.640><c> And</c><00:08:02.720><c> if</c><00:08:02.840><c> you</c><00:08:02.920><c> want</c><00:08:03.040><c> to</c>
+
+00:08:03.110 --> 00:08:03.120 align:start position:0%
+please subscribe. And if you want to
+ 
+
+00:08:03.120 --> 00:08:05.990 align:start position:0%
+please subscribe. And if you want to
+support<00:08:03.560><c> StatQuest,</c><00:08:04.440><c> well,</c><00:08:05.400><c> please</c><00:08:05.600><c> consider</c>
+
+00:08:05.990 --> 00:08:06.000 align:start position:0%
+support StatQuest, well, please consider
+ 
+
+00:08:06.000 --> 00:08:08.550 align:start position:0%
+support StatQuest, well, please consider
+buying<00:08:06.400><c> one</c><00:08:06.560><c> or</c><00:08:06.640><c> two</c><00:08:06.840><c> of</c><00:08:06.960><c> my</c><00:08:07.120><c> original</c><00:08:07.560><c> songs.</c>
+
+00:08:08.550 --> 00:08:08.560 align:start position:0%
+buying one or two of my original songs.
+ 
+
+00:08:08.560 --> 00:08:13.520 align:start position:0%
+buying one or two of my original songs.
+All<00:08:08.680><c> right.</c><00:08:09.280><c> Until</c><00:08:09.640><c> next</c><00:08:09.920><c> time,</c><00:08:10.560><c> quest</c><00:08:11.040><c> on.</c>
+

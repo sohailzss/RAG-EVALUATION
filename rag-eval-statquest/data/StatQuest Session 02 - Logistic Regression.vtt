@@ -1,0 +1,620 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.700
+>> If you can fit a line,
+
+00:00:01.700 --> 00:00:03.180
+you can fit a squiggle.
+
+00:00:03.180 --> 00:00:04.700
+If you can make me laugh,
+
+00:00:04.700 --> 00:00:06.155
+you can make me giggle.
+
+00:00:06.155 --> 00:00:12.080
+StatQuest. Hello, I'm Josh Starmer
+
+00:00:12.080 --> 00:00:13.620
+and welcome to StatQuest.
+
+00:00:13.620 --> 00:00:14.460
+Today we're going to
+
+00:00:14.460 --> 00:00:16.480
+talk about logistic regression.
+
+00:00:16.480 --> 00:00:18.900
+This is a technique that can be used for
+
+00:00:18.900 --> 00:00:20.900
+traditional statistics as well
+
+00:00:20.900 --> 00:00:21.980
+as machine learning.
+
+00:00:21.980 --> 00:00:23.680
+So let's get right to it.
+
+00:00:23.680 --> 00:00:26.540
+Before we dive into logistic regression,
+
+00:00:26.540 --> 00:00:28.060
+let's take a step back and
+
+00:00:28.060 --> 00:00:30.260
+review linear regression.
+
+00:00:30.260 --> 00:00:32.440
+In another StatQuest,
+
+00:00:32.440 --> 00:00:34.780
+we talked about linear regression.
+
+00:00:34.780 --> 00:00:40.470
+We had some data, weight, and size.
+
+00:00:40.470 --> 00:00:43.310
+Then we fit a line to it.
+
+00:00:43.310 --> 00:00:45.780
+And with that line, we
+
+00:00:45.780 --> 00:00:47.760
+could do a lot of things.
+
+00:00:47.760 --> 00:00:51.100
+First, we could calculate R^2
+
+00:00:51.100 --> 00:00:52.220
+and determine if weight
+
+00:00:52.220 --> 00:00:54.120
+and size are correlated.
+
+00:00:54.120 --> 00:00:57.220
+Large values imply a large effect.
+
+00:00:57.220 --> 00:01:00.320
+And second, calculate a p-value to
+
+00:01:00.320 --> 00:01:02.140
+determine if the R^2 value
+
+00:01:02.140 --> 00:01:04.500
+is statistically significant.
+
+00:01:04.500 --> 00:01:06.800
+And third, we could use
+
+00:01:06.800 --> 00:01:10.100
+the line to predict size given weight.
+
+00:01:10.100 --> 00:01:13.860
+If a new mouse has this weight,
+
+00:01:14.400 --> 00:01:16.600
+then this is the size
+
+00:01:16.600 --> 00:01:18.780
+that we predict from the weight.
+
+00:01:18.780 --> 00:01:21.680
+Although we didn't mention it at the time,
+
+00:01:21.680 --> 00:01:24.420
+using data to predict something falls
+
+00:01:24.420 --> 00:01:27.680
+under the category of machine learning.
+
+00:01:27.680 --> 00:01:30.580
+So plain old linear regression
+
+00:01:30.580 --> 00:01:33.340
+is a form of machine learning.
+
+00:01:33.340 --> 00:01:35.460
+We also talked a little
+
+00:01:35.460 --> 00:01:37.835
+bit about multiple regression.
+
+00:01:37.835 --> 00:01:40.060
+Now we are trying to predict
+
+00:01:40.060 --> 00:01:43.420
+size using weight and blood volume.
+
+00:01:43.420 --> 00:01:45.380
+Alternatively,
+
+00:01:45.380 --> 00:01:46.820
+we could say that we are trying
+
+00:01:46.820 --> 00:01:50.415
+to model size using weight and blood volume.
+
+00:01:50.415 --> 00:01:53.550
+Multiple regression did the same things
+
+00:01:53.550 --> 00:01:55.650
+that normal regression did.
+
+00:01:55.650 --> 00:01:58.855
+We calculated R^2,
+
+00:01:58.855 --> 00:02:02.080
+and we calculated the p-value
+
+00:02:02.080 --> 00:02:04.390
+and we could predict size
+
+00:02:04.390 --> 00:02:06.890
+using weight and blood volume.
+
+00:02:06.890 --> 00:02:09.590
+This makes multiple regression a
+
+00:02:09.590 --> 00:02:12.710
+slightly fancier machine learning method.
+
+00:02:12.710 --> 00:02:15.390
+We also talked about how we can use
+
+00:02:15.390 --> 00:02:16.690
+discrete measurements
+
+00:02:16.690 --> 00:02:19.410
+like genotype to predict size.
+
+00:02:19.410 --> 00:02:21.070
+If you're not familiar with
+
+00:02:21.070 --> 00:02:23.110
+the term genotype, don't freak out.
+
+00:02:23.110 --> 00:02:25.250
+It's no big deal. Just know
+
+00:02:25.250 --> 00:02:28.430
+that it refers to different types of mice.
+
+00:02:28.780 --> 00:02:33.165
+Lastly, we could compare models.
+
+00:02:33.165 --> 00:02:35.440
+So on the left side, we've got
+
+00:02:35.440 --> 00:02:36.980
+normal regression using
+
+00:02:36.980 --> 00:02:39.260
+weight to predict size.
+
+00:02:39.260 --> 00:02:42.020
+And we can compare those predictions to
+
+00:02:42.020 --> 00:02:44.280
+the ones we get from multiple regression.
+
+00:02:44.280 --> 00:02:45.580
+Where we're using weight and
+
+00:02:45.580 --> 00:02:48.380
+blood volume to predict size.
+
+00:02:48.380 --> 00:02:50.860
+Comparing the simple model to
+
+00:02:50.860 --> 00:02:53.080
+the complicated one tells us if we
+
+00:02:53.080 --> 00:02:55.200
+need to measure weight and blood volume
+
+00:02:55.200 --> 00:02:57.220
+to accurately predict size,
+
+00:02:57.220 --> 00:03:00.900
+or if we can get away with just weight.
+
+00:03:01.050 --> 00:03:04.210
+Now that we remember all the cool things
+
+00:03:04.210 --> 00:03:06.170
+we can do with linear regression,
+
+00:03:06.170 --> 00:03:09.130
+let's talk about logistic regression.
+
+00:03:09.130 --> 00:03:11.950
+Logistic regression is similar
+
+00:03:11.950 --> 00:03:14.610
+to linear regression except
+
+00:03:14.610 --> 00:03:16.490
+logistic regression
+
+00:03:16.490 --> 00:03:18.450
+predicts whether something is true or
+
+00:03:18.450 --> 00:03:20.350
+false instead of predicting
+
+00:03:20.350 --> 00:03:23.370
+something continuous like size.
+
+00:03:23.370 --> 00:03:29.770
+These mice are obese and these mice are not.
+
+00:03:30.230 --> 00:03:34.150
+Also, instead of fitting a line to the data,
+
+00:03:34.150 --> 00:03:36.270
+logistic regression fits
+
+00:03:36.270 --> 00:03:39.350
+an S shaped logistic function.
+
+00:03:39.350 --> 00:03:43.230
+The curve goes from 0-1,
+
+00:03:43.470 --> 00:03:46.330
+and that means that the curve tells you
+
+00:03:46.330 --> 00:03:47.930
+the probability that a mouse
+
+00:03:47.930 --> 00:03:50.690
+is obese based on its weight.
+
+00:03:50.690 --> 00:03:54.050
+If we weighed a very heavy mouse,
+
+00:03:54.050 --> 00:03:56.050
+there is a high probability
+
+00:03:56.050 --> 00:03:58.390
+that the new mouse is obese.
+
+00:03:58.390 --> 00:04:02.055
+If we weighed an intermediate mouse,
+
+00:04:02.055 --> 00:04:05.020
+then there is only a 50% chance
+
+00:04:05.020 --> 00:04:07.190
+that the mouse is obese.
+
+00:04:07.190 --> 00:04:10.820
+Lastly, there's only a small probability
+
+00:04:10.820 --> 00:04:13.360
+that a light mouse is obese.
+
+00:04:13.360 --> 00:04:16.020
+Although logistic regression tells
+
+00:04:16.020 --> 00:04:18.460
+the probability that a mouse is obese or not,
+
+00:04:18.460 --> 00:04:21.600
+it's usually used for classification.
+
+00:04:21.600 --> 00:04:24.620
+For example, if the probability
+
+00:04:24.620 --> 00:04:27.620
+a mouse is obese is greater than 50%,
+
+00:04:27.620 --> 00:04:30.380
+then we'll classify it as obese.
+
+00:04:30.380 --> 00:04:34.460
+Otherwise, we'll classify it as not obese.
+
+00:04:34.460 --> 00:04:37.220
+Just like with linear regression,
+
+00:04:37.220 --> 00:04:39.060
+we can make simple models.
+
+00:04:39.060 --> 00:04:40.600
+In this case, we can
+
+00:04:40.600 --> 00:04:42.240
+have obesity predicted by
+
+00:04:42.240 --> 00:04:46.460
+weight or more complicated models.
+
+00:04:46.460 --> 00:04:48.100
+In this case, obesity is
+
+00:04:48.100 --> 00:04:50.800
+predicted by weight and genotype.
+
+00:04:50.800 --> 00:04:53.540
+In this case, obesity is predicted
+
+00:04:53.540 --> 00:04:56.500
+by weight and genotype and age.
+
+00:04:56.500 --> 00:05:00.420
+And lastly, obesity is predicted by weight,
+
+00:05:00.420 --> 00:05:04.500
+genotype, age, and astrological sign.
+
+00:05:04.500 --> 00:05:08.180
+In other words, just like linear regression,
+
+00:05:08.180 --> 00:05:10.140
+logistic regression can work with
+
+00:05:10.140 --> 00:05:12.280
+continuous data like weight and
+
+00:05:12.280 --> 00:05:14.460
+age and discrete data
+
+00:05:14.460 --> 00:05:18.095
+like genotype and astrological sign.
+
+00:05:18.095 --> 00:05:20.570
+We can also test to see if
+
+00:05:20.570 --> 00:05:22.070
+each variable is useful
+
+00:05:22.070 --> 00:05:24.150
+for predicting obesity.
+
+00:05:24.150 --> 00:05:27.550
+However, unlike normal regression,
+
+00:05:27.550 --> 00:05:29.050
+we can't easily compare
+
+00:05:29.050 --> 00:05:31.330
+the complicated model to the simple model,
+
+00:05:31.330 --> 00:05:34.310
+and we'll talk more about why in a bit.
+
+00:05:34.310 --> 00:05:37.430
+Instead, we just test to see if
+
+00:05:37.430 --> 00:05:38.730
+a variable's effect on
+
+00:05:38.730 --> 00:05:39.570
+the prediction is
+
+00:05:39.570 --> 00:05:42.250
+significantly different from zero.
+
+00:05:42.250 --> 00:05:44.710
+If not, it means that
+
+00:05:44.710 --> 00:05:47.850
+the variable is not helping the prediction.
+
+00:05:48.570 --> 00:05:52.190
+We use Wald's test to figure this out.
+
+00:05:52.190 --> 00:05:55.715
+We'll talk about that in another StatQuest.
+
+00:05:55.715 --> 00:05:59.190
+In this case, the astrological sign
+
+00:05:59.190 --> 00:06:01.530
+is totes useless.
+
+00:06:01.530 --> 00:06:05.470
+That's statistical jargon for not helping.
+
+00:06:05.470 --> 00:06:07.930
+That means we can save time and
+
+00:06:07.930 --> 00:06:10.730
+space in our study by leaving it out.
+
+00:06:10.730 --> 00:06:13.530
+Logistic regression's ability to
+
+00:06:13.530 --> 00:06:15.870
+provide probabilities and classify
+
+00:06:15.870 --> 00:06:17.550
+new samples using continuous
+
+00:06:17.550 --> 00:06:18.990
+and discrete measurements
+
+00:06:18.990 --> 00:06:22.345
+makes it a popular machine learning method.
+
+00:06:22.345 --> 00:06:24.860
+One big difference between
+
+00:06:24.860 --> 00:06:26.120
+linear regression and
+
+00:06:26.120 --> 00:06:28.000
+logistic regression is how
+
+00:06:28.000 --> 00:06:30.380
+the line is fit to the data.
+
+00:06:30.380 --> 00:06:33.000
+With linear regression, we
+
+00:06:33.000 --> 00:06:35.920
+fit the line using least squares.
+
+00:06:35.920 --> 00:06:39.020
+In other words, we find the line that
+
+00:06:39.020 --> 00:06:40.460
+minimizes the sum of
+
+00:06:40.460 --> 00:06:43.120
+the squares of these residuals.
+
+00:06:43.120 --> 00:06:45.680
+We also use the residuals to
+
+00:06:45.680 --> 00:06:47.540
+calculate R^2 and to
+
+00:06:47.540 --> 00:06:50.895
+compare simple models to complicated models.
+
+00:06:50.895 --> 00:06:53.390
+Logistic regression doesn't have
+
+00:06:53.390 --> 00:06:55.510
+the same concept of a residual,
+
+00:06:55.510 --> 00:06:57.590
+so it can't use least squares,
+
+00:06:57.590 --> 00:07:00.555
+and it can't calculate R^2.
+
+00:07:00.555 --> 00:07:02.450
+Instead, it uses
+
+00:07:02.450 --> 00:07:05.170
+something called maximum likelihood.
+
+00:07:05.170 --> 00:07:07.330
+There's a whole StatQuest
+
+00:07:07.330 --> 00:07:08.670
+on maximum likelihood,
+
+00:07:08.670 --> 00:07:10.290
+so see that for details,
+
+00:07:10.290 --> 00:07:13.050
+but in a nutshell, you pick
+
+00:07:13.050 --> 00:07:14.670
+a probability scaled by
+
+00:07:14.670 --> 00:07:17.030
+weight of observing an obese mouse,
+
+00:07:17.030 --> 00:07:19.270
+just like this curve.
+
+00:07:19.270 --> 00:07:21.290
+And you use that to
+
+00:07:21.290 --> 00:07:22.810
+calculate the likelihood of
+
+00:07:22.810 --> 00:07:24.910
+observing a non-obese mouse
+
+00:07:24.910 --> 00:07:26.910
+that weighs this much.
+
+00:07:26.910 --> 00:07:29.610
+And then you calculate the likelihood
+
+00:07:29.610 --> 00:07:31.970
+of observing this mouse.
+
+00:07:31.970 --> 00:07:35.790
+And you do that for all of the mice.
+
+00:07:35.790 --> 00:07:38.450
+And lastly, you multiply
+
+00:07:38.450 --> 00:07:40.350
+all of those likelihoods together.
+
+00:07:40.350 --> 00:07:41.850
+That's the likelihood of
+
+00:07:41.850 --> 00:07:44.610
+the data given this line.
+
+00:07:44.930 --> 00:07:47.290
+Then you shift the line and
+
+00:07:47.290 --> 00:07:50.290
+calculate a new likelihood of the data.
+
+00:07:50.290 --> 00:07:53.430
+And then shift the line and calculate
+
+00:07:53.430 --> 00:07:57.870
+the likelihood again and again.
+
+00:07:57.870 --> 00:08:00.350
+Finally, the curve with
+
+00:08:00.350 --> 00:08:01.650
+the maximum value for
+
+00:08:01.650 --> 00:08:04.410
+the likelihood is selected.
+
+00:08:06.250 --> 00:08:09.570
+In summary, logistic regression
+
+00:08:09.570 --> 00:08:12.270
+can be used to classify samples
+
+00:08:12.270 --> 00:08:14.590
+and it can use different types
+
+00:08:14.590 --> 00:08:16.090
+of data like size
+
+00:08:16.090 --> 00:08:20.050
+and/or genotype to do that classification.
+
+00:08:20.050 --> 00:08:22.930
+And it can also be used to assess
+
+00:08:22.930 --> 00:08:24.490
+what variables are useful
+
+00:08:24.490 --> 00:08:26.205
+for classifying samples,
+
+00:08:26.205 --> 00:08:31.530
+i.e, astrological sign is totes useless.
+
+00:08:32.210 --> 00:08:34.410
+We've made it to the end of
+
+00:08:34.410 --> 00:08:36.335
+another exciting StatQuest.
+
+00:08:36.335 --> 00:08:37.870
+If you like this StatQuest and
+
+00:08:37.870 --> 00:08:39.770
+want to see more, please subscribe.
+
+00:08:39.770 --> 00:08:41.310
+And if you have suggestions
+
+00:08:41.310 --> 00:08:42.730
+for future StatQuest,
+
+00:08:42.730 --> 00:08:44.760
+well, put them in the comments below.
+
+00:08:44.760 --> 00:08:47.770
+Until next time quest on.
+

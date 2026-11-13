@@ -1,0 +1,1658 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.230
+XG boost, it's extreme
+
+00:00:04.240 --> 00:00:06.110
+and it's gradient boost.
+
+00:00:06.120 --> 00:00:09.830
+StatQuest
+
+00:00:09.840 --> 00:00:12.430
+Hello, I'm Josh Starmer and welcome to
+
+00:00:12.440 --> 00:00:14.590
+StatQuest. Today we're going to talk
+
+00:00:14.600 --> 00:00:18.030
+about XG boost part one. We're going to
+
+00:00:18.040 --> 00:00:20.390
+talk about XG boost trees and how
+
+00:00:20.400 --> 00:00:23.430
+they're used for regression.
+
+00:00:23.440 --> 00:00:26.070
+Note, this StatQuest assumes that you
+
+00:00:26.080 --> 00:00:27.950
+are already familiar with at least the
+
+00:00:27.960 --> 00:00:30.910
+main ideas of how gradient boost does
+
+00:00:30.920 --> 00:00:32.870
+regression.
+
+00:00:32.880 --> 00:00:35.030
+And you should be familiar with at least
+
+00:00:35.040 --> 00:00:37.990
+the main ideas behind regularization.
+
+00:00:38.000 --> 00:00:40.790
+If not, check out the quests. The links
+
+00:00:40.800 --> 00:00:44.030
+are in the description below.
+
+00:00:44.040 --> 00:00:47.590
+XG boost is extreme
+
+00:00:47.600 --> 00:00:49.710
+and that means it's a big machine
+
+00:00:49.720 --> 00:00:52.870
+learning algorithm with lots of parts.
+
+00:00:52.880 --> 00:00:54.790
+The good news is that each part is
+
+00:00:54.800 --> 00:00:57.470
+pretty simple and easy to understand and
+
+00:00:57.480 --> 00:00:59.270
+we'll go through them one step at a
+
+00:00:59.280 --> 00:01:01.310
+time.
+
+00:01:01.320 --> 00:01:03.830
+Actually, I'm assuming that you are
+
+00:01:03.840 --> 00:01:06.270
+already familiar with gradient boost and
+
+00:01:06.280 --> 00:01:08.710
+regularization.
+
+00:01:08.720 --> 00:01:11.110
+So we'll start by learning about XG
+
+00:01:11.120 --> 00:01:14.870
+boost's unique regression trees.
+
+00:01:14.880 --> 00:01:17.590
+Because this is a big topic, we'll spend
+
+00:01:17.600 --> 00:01:20.990
+three whole StatQuests on it.
+
+00:01:21.000 --> 00:01:24.390
+In this StatQuest, part one, we'll build
+
+00:01:24.400 --> 00:01:27.070
+our intuition about how XG boost does
+
+00:01:27.080 --> 00:01:31.190
+regression with its unique trees.
+
+00:01:31.200 --> 00:01:34.150
+In part two, we'll build our intuition
+
+00:01:34.160 --> 00:01:39.070
+about how XG boost does classification.
+
+00:01:39.080 --> 00:01:41.550
+And in part three, we'll dive into the
+
+00:01:41.560 --> 00:01:43.910
+mathematical details and show you how
+
+00:01:43.920 --> 00:01:46.190
+regression and classification are
+
+00:01:46.200 --> 00:01:48.910
+related and why creating unique trees
+
+00:01:48.920 --> 00:01:51.710
+makes so much sense.
+
+00:01:51.720 --> 00:01:54.910
+Note, XG boost was designed to be used
+
+00:01:54.920 --> 00:01:58.990
+with large, complicated data sets.
+
+00:01:59.000 --> 00:02:01.190
+However, to keep the examples from
+
+00:02:01.200 --> 00:02:03.390
+getting out of hand, we'll use this
+
+00:02:03.400 --> 00:02:06.670
+super simple training data.
+
+00:02:06.680 --> 00:02:09.190
+On the x-axis, we have different drug
+
+00:02:09.200 --> 00:02:11.550
+dosages.
+
+00:02:11.560 --> 00:02:14.030
+And on the y-axis, we've measured drug
+
+00:02:14.040 --> 00:02:16.670
+effectiveness.
+
+00:02:16.680 --> 00:02:18.870
+These two observations have relatively
+
+00:02:18.880 --> 00:02:20.870
+large positive values for drug
+
+00:02:20.880 --> 00:02:22.990
+effectiveness, and that means that the
+
+00:02:23.000 --> 00:02:25.630
+drug was helpful.
+
+00:02:25.640 --> 00:02:27.910
+These two observations have relatively
+
+00:02:27.920 --> 00:02:29.949
+large negative values for drug
+
+00:02:29.959 --> 00:02:32.070
+effectiveness, and that means that the
+
+00:02:32.080 --> 00:02:35.949
+drug did more harm than good.
+
+00:02:35.959 --> 00:02:38.830
+The very first step in fitting XGBoost
+
+00:02:38.840 --> 00:02:40.830
+to the training data is to make an
+
+00:02:40.840 --> 00:02:43.070
+initial prediction.
+
+00:02:43.080 --> 00:02:45.590
+This prediction can be anything, but by
+
+00:02:45.600 --> 00:02:48.430
+default, it is 0.5,
+
+00:02:48.440 --> 00:02:50.110
+regardless of whether you're using
+
+00:02:50.120 --> 00:02:52.230
+XGBoost for regression or
+
+00:02:52.240 --> 00:02:54.910
+classification.
+
+00:02:54.920 --> 00:02:57.630
+The prediction, 0.5,
+
+00:02:57.640 --> 00:03:00.030
+corresponds to this thick, black,
+
+00:03:00.040 --> 00:03:02.750
+horizontal line.
+
+00:03:02.760 --> 00:03:04.790
+And the residuals, the differences
+
+00:03:04.800 --> 00:03:06.710
+between the observed and predicted
+
+00:03:06.720 --> 00:03:09.190
+values, show us how good the initial
+
+00:03:09.200 --> 00:03:11.870
+prediction is.
+
+00:03:11.880 --> 00:03:15.710
+Now, just like unextreme gradient boost,
+
+00:03:15.720 --> 00:03:18.150
+XGBoost fits a regression tree to the
+
+00:03:18.160 --> 00:03:20.070
+residuals.
+
+00:03:20.080 --> 00:03:23.070
+However, unlike unextreme gradient
+
+00:03:23.080 --> 00:03:25.710
+boost, which typically uses regular,
+
+00:03:25.720 --> 00:03:28.550
+off-the-shelf regression trees,
+
+00:03:28.560 --> 00:03:31.830
+XGBoost uses a unique regression tree
+
+00:03:31.840 --> 00:03:35.750
+that I call an XGBoost tree.
+
+00:03:35.760 --> 00:03:37.509
+So, let's talk about how to build an
+
+00:03:37.519 --> 00:03:41.190
+XGBoost tree for regression.
+
+00:03:41.200 --> 00:03:43.630
+Note, there are many ways to build
+
+00:03:43.640 --> 00:03:47.270
+XGBoost trees. This video focuses on the
+
+00:03:47.280 --> 00:03:49.190
+most common way to build them for
+
+00:03:49.200 --> 00:03:51.870
+regression.
+
+00:03:51.880 --> 00:03:56.230
+Each tree starts out as a single leaf.
+
+00:03:56.240 --> 00:04:00.590
+And all of the residuals go to the leaf.
+
+00:04:00.600 --> 00:04:03.590
+Now we calculate a quality score or
+
+00:04:03.600 --> 00:04:07.870
+similarity score for the residuals.
+
+00:04:07.880 --> 00:04:11.150
+The similarity score equals the sum of
+
+00:04:11.160 --> 00:04:14.630
+the residuals squared over the number of
+
+00:04:14.640 --> 00:04:18.390
+residuals plus lambda.
+
+00:04:18.400 --> 00:04:21.270
+Note, lambda is a regularization
+
+00:04:21.280 --> 00:04:23.630
+parameter and we'll talk more about that
+
+00:04:23.640 --> 00:04:25.310
+later.
+
+00:04:25.320 --> 00:04:29.750
+For now, let lambda equals zero.
+
+00:04:29.760 --> 00:04:32.230
+Now we plug the four residuals into the
+
+00:04:32.240 --> 00:04:34.510
+numerator.
+
+00:04:34.520 --> 00:04:36.430
+And since there are four residuals in
+
+00:04:36.440 --> 00:04:38.870
+the leaf, we put a four in the
+
+00:04:38.880 --> 00:04:41.110
+denominator.
+
+00:04:41.120 --> 00:04:43.430
+Note, because we do not square the
+
+00:04:43.440 --> 00:04:45.909
+residuals before we add them together in
+
+00:04:45.919 --> 00:04:50.710
+the numerator, 7.5 and -7.5
+
+00:04:50.720 --> 00:04:53.430
+cancel each other out.
+
+00:04:53.440 --> 00:04:55.430
+In other words, when we add this
+
+00:04:55.440 --> 00:04:56.790
+residual
+
+00:04:56.800 --> 00:04:58.990
+to this residual,
+
+00:04:59.000 --> 00:05:02.070
+they cancel each other out.
+
+00:05:02.080 --> 00:05:08.390
+Likewise, 6.5 cancels out most of -10.5,
+
+00:05:08.400 --> 00:05:13.030
+leaving -4 squared in the numerator.
+
+00:05:13.040 --> 00:05:15.350
+Thus, the similarity score for the
+
+00:05:15.360 --> 00:05:19.190
+residuals in the root equals four.
+
+00:05:19.200 --> 00:05:22.190
+So let's put similarity equals four up
+
+00:05:22.200 --> 00:05:25.630
+here so we can keep track of it.
+
+00:05:25.640 --> 00:05:27.990
+Now the question is whether or not we
+
+00:05:28.000 --> 00:05:30.430
+can do a better job clustering similar
+
+00:05:30.440 --> 00:05:32.870
+residuals if we split them into two
+
+00:05:32.880 --> 00:05:34.870
+groups.
+
+00:05:34.880 --> 00:05:37.430
+To answer this, we first focus on the
+
+00:05:37.440 --> 00:05:39.550
+two observations with the lowest
+
+00:05:39.560 --> 00:05:41.990
+dosages.
+
+00:05:42.000 --> 00:05:44.909
+Their average dosage is 15 and that
+
+00:05:44.919 --> 00:05:49.350
+corresponds to this dotted red line.
+
+00:05:49.360 --> 00:05:51.670
+So, we split the observations into two
+
+00:05:51.680 --> 00:05:53.750
+groups based on whether or not the
+
+00:05:53.760 --> 00:05:57.390
+dosage is less than 15.
+
+00:05:57.400 --> 00:05:59.870
+The observation on the far left is the
+
+00:05:59.880 --> 00:06:03.230
+only one with dosage less than 15.
+
+00:06:03.240 --> 00:06:05.670
+So, its residual goes to the leaf on the
+
+00:06:05.680 --> 00:06:07.630
+left.
+
+00:06:07.640 --> 00:06:09.710
+All of the other residuals go to the
+
+00:06:09.720 --> 00:06:12.830
+leaf on the right.
+
+00:06:12.840 --> 00:06:15.030
+Now, we calculate the similarity score
+
+00:06:15.040 --> 00:06:17.909
+for the leaf on the left by plugging the
+
+00:06:17.919 --> 00:06:21.510
+one residual into the numerator.
+
+00:06:21.520 --> 00:06:23.670
+And since only one residual went to the
+
+00:06:23.680 --> 00:06:25.550
+leaf on the left, the number of
+
+00:06:25.560 --> 00:06:28.990
+residuals equals one.
+
+00:06:29.000 --> 00:06:31.550
+And just like before, we set lambda
+
+00:06:31.560 --> 00:06:34.070
+equal to zero.
+
+00:06:34.080 --> 00:06:36.190
+And the similarity score for the leaf on
+
+00:06:36.200 --> 00:06:40.990
+the left equals 110.25.
+
+00:06:41.000 --> 00:06:45.630
+So, let's put similarity equals 110.25
+
+00:06:45.640 --> 00:06:47.710
+under the leaf so we can keep track of
+
+00:06:47.720 --> 00:06:49.430
+it.
+
+00:06:49.440 --> 00:06:51.630
+And calculate the similarity score for
+
+00:06:51.640 --> 00:06:53.790
+the residuals that go to the leaf on the
+
+00:06:53.800 --> 00:06:55.790
+right.
+
+00:06:55.800 --> 00:06:58.550
+We plug in the sum of residuals squared
+
+00:06:58.560 --> 00:07:01.190
+into the numerator.
+
+00:07:01.200 --> 00:07:03.030
+And since there are three residuals in
+
+00:07:03.040 --> 00:07:05.630
+the leaf on the right, we plug three
+
+00:07:05.640 --> 00:07:08.390
+into the denominator.
+
+00:07:08.400 --> 00:07:11.190
+And just like before, let's let lambda
+
+00:07:11.200 --> 00:07:13.750
+equal zero.
+
+00:07:13.760 --> 00:07:16.990
+Note, like we saw earlier, because we do
+
+00:07:17.000 --> 00:07:19.390
+not square the residuals before we add
+
+00:07:19.400 --> 00:07:23.990
+them together, 7.5 and -7.5
+
+00:07:24.000 --> 00:07:26.830
+cancel each other out.
+
+00:07:26.840 --> 00:07:30.110
+Leaving only one residual, 6.5, in the
+
+00:07:30.120 --> 00:07:32.750
+numerator.
+
+00:07:32.760 --> 00:07:35.070
+Thus, the similarity score for the
+
+00:07:35.080 --> 00:07:37.510
+residuals in the leaf on the right
+
+00:07:37.520 --> 00:07:41.550
+equals 14.08.
+
+00:07:41.560 --> 00:07:45.630
+So, let's similarity equals 14.08
+
+00:07:45.640 --> 00:07:47.590
+under the leaf so we can keep track of
+
+00:07:47.600 --> 00:07:49.670
+it.
+
+00:07:49.680 --> 00:07:51.870
+Now that we have calculated similarity
+
+00:07:51.880 --> 00:07:54.590
+scores for each node,
+
+00:07:54.600 --> 00:07:56.870
+we see that when the residuals in a node
+
+00:07:56.880 --> 00:07:59.110
+are very different, they cancel each
+
+00:07:59.120 --> 00:08:01.390
+other out and the similarity score is
+
+00:08:01.400 --> 00:08:04.110
+relatively small.
+
+00:08:04.120 --> 00:08:06.470
+In contrast, when the residuals are
+
+00:08:06.480 --> 00:08:09.350
+similar or there is just one of them,
+
+00:08:09.360 --> 00:08:11.150
+they do not cancel out and the
+
+00:08:11.160 --> 00:08:15.830
+similarity score is relatively large.
+
+00:08:15.840 --> 00:08:18.150
+Now we need to quantify how much better
+
+00:08:18.160 --> 00:08:20.710
+the leaves cluster similar residuals
+
+00:08:20.720 --> 00:08:23.350
+than the root.
+
+00:08:23.360 --> 00:08:25.909
+We do this by calculating the gain of
+
+00:08:25.919 --> 00:08:29.909
+splitting the residuals into two groups.
+
+00:08:29.919 --> 00:08:32.510
+Gain is equal to the similarity score
+
+00:08:32.520 --> 00:08:34.990
+for the leaf on the left
+
+00:08:35.000 --> 00:08:37.230
+plus the similarity score for the leaf
+
+00:08:37.240 --> 00:08:38.990
+on the right
+
+00:08:39.000 --> 00:08:43.190
+minus the similarity score for the root.
+
+00:08:43.200 --> 00:08:49.070
+Pluging in the numbers
+
+00:08:49.080 --> 00:08:52.750
+gives us 120.33.
+
+00:08:52.760 --> 00:08:55.470
+Small bam.
+
+00:08:55.480 --> 00:08:57.670
+Now that we have calculated the gain for
+
+00:08:57.680 --> 00:09:01.150
+the threshold of dosage less than 15, we
+
+00:09:01.160 --> 00:09:03.390
+can compare it to the gain calculated
+
+00:09:03.400 --> 00:09:06.070
+for other thresholds.
+
+00:09:06.080 --> 00:09:08.710
+So, we shift the threshold over so that
+
+00:09:08.720 --> 00:09:10.950
+it is the average of the next two
+
+00:09:10.960 --> 00:09:13.150
+observations
+
+00:09:13.160 --> 00:09:15.590
+and build a simple tree that divides the
+
+00:09:15.600 --> 00:09:18.350
+observations using the new threshold,
+
+00:09:18.360 --> 00:09:22.750
+dosage less than 22.5.
+
+00:09:22.760 --> 00:09:25.190
+Now we calculate the similarity scores
+
+00:09:25.200 --> 00:09:27.430
+for the leaves
+
+00:09:27.440 --> 00:09:34.870
+and calculate the gain.
+
+00:09:34.880 --> 00:09:38.510
+The The for dosage less than 22.5
+
+00:09:38.520 --> 00:09:40.830
+is four.
+
+00:09:40.840 --> 00:09:44.750
+Since the gain for dosage less than 22.5
+
+00:09:44.760 --> 00:09:47.030
+is less than the gain for dosage less
+
+00:09:47.040 --> 00:09:48.670
+than 15,
+
+00:09:48.680 --> 00:09:51.230
+dosage less than 15 is better at
+
+00:09:51.240 --> 00:09:53.510
+splitting the residuals into clusters of
+
+00:09:53.520 --> 00:09:56.510
+similar values.
+
+00:09:56.520 --> 00:09:59.110
+Now we shift the threshold over so that
+
+00:09:59.120 --> 00:10:01.030
+it is the average of the last two
+
+00:10:01.040 --> 00:10:02.950
+observations
+
+00:10:02.960 --> 00:10:05.230
+and build a simple tree that divides the
+
+00:10:05.240 --> 00:10:07.990
+observations using the new threshold,
+
+00:10:08.000 --> 00:10:10.990
+dosage less than 30.
+
+00:10:11.000 --> 00:10:13.430
+Then we calculate the similarity scores
+
+00:10:13.440 --> 00:10:15.430
+for the leaves
+
+00:10:15.440 --> 00:10:22.790
+and the gain.
+
+00:10:22.800 --> 00:10:25.870
+The gain for dosage less than 30 equals
+
+00:10:25.880 --> 00:10:29.150
+56.33.
+
+00:10:29.160 --> 00:10:31.910
+Again, since the gain for dosage less
+
+00:10:31.920 --> 00:10:34.750
+than 30 is less than the gain for dosage
+
+00:10:34.760 --> 00:10:36.710
+less than 15,
+
+00:10:36.720 --> 00:10:38.950
+dosage less than 15 is better at
+
+00:10:38.960 --> 00:10:41.870
+splitting the observations.
+
+00:10:41.880 --> 00:10:43.870
+And since we can't shift the threshold
+
+00:10:43.880 --> 00:10:46.110
+over any further to the right, we are
+
+00:10:46.120 --> 00:10:49.630
+done comparing different thresholds.
+
+00:10:49.640 --> 00:10:51.630
+And we will use the threshold that gave
+
+00:10:51.640 --> 00:10:54.190
+us the largest gain, dosage less than
+
+00:10:54.200 --> 00:10:58.710
+15, for the first branch in the tree.
+
+00:10:58.720 --> 00:11:01.750
+Bam!
+
+00:11:01.760 --> 00:11:04.630
+Now, since there is only one residual in
+
+00:11:04.640 --> 00:11:07.070
+the leaf on the left, we can't split it
+
+00:11:07.080 --> 00:11:08.829
+any further.
+
+00:11:08.839 --> 00:11:11.190
+However, we can split the three
+
+00:11:11.200 --> 00:11:14.350
+residuals in the leaf on the right.
+
+00:11:14.360 --> 00:11:17.990
+So we start with these two observations
+
+00:11:18.000 --> 00:11:21.230
+and their average dosage is 22.5,
+
+00:11:21.240 --> 00:11:23.510
+which corresponds to this dotted green
+
+00:11:23.520 --> 00:11:25.430
+line.
+
+00:11:25.440 --> 00:11:27.790
+So the first threshold that we try is
+
+00:11:27.800 --> 00:11:31.630
+dosage less than 22.5.
+
+00:11:31.640 --> 00:11:34.590
+Now, just like before, we calculate the
+
+00:11:34.600 --> 00:11:37.910
+similarity scores for the leaves.
+
+00:11:37.920 --> 00:11:40.790
+Note, we calculated the similarity score
+
+00:11:40.800 --> 00:11:42.830
+for this node when we figured out how to
+
+00:11:42.840 --> 00:11:45.550
+split the root.
+
+00:11:45.560 --> 00:11:53.110
+So, now we calculate the gain.
+
+00:11:53.120 --> 00:11:56.710
+And we get gain equals 28.17
+
+00:11:56.720 --> 00:11:58.950
+for when the threshold is dosage less
+
+00:11:58.960 --> 00:12:02.670
+than 22.5.
+
+00:12:02.680 --> 00:12:05.110
+Now, we shift the threshold over so that
+
+00:12:05.120 --> 00:12:07.190
+it is the average of the last two
+
+00:12:07.200 --> 00:12:09.150
+observations,
+
+00:12:09.160 --> 00:12:11.470
+calculate the similarity scores for the
+
+00:12:11.480 --> 00:12:12.990
+leaves,
+
+00:12:13.000 --> 00:12:17.310
+and the gain.
+
+00:12:17.320 --> 00:12:21.430
+And we get gain equals 140.17,
+
+00:12:21.440 --> 00:12:24.710
+which is much larger than 28.17
+
+00:12:24.720 --> 00:12:26.710
+when the threshold was dosage less than
+
+00:12:26.720 --> 00:12:29.910
+22.5.
+
+00:12:29.920 --> 00:12:32.590
+So, we will use dosage less than 30 as
+
+00:12:32.600 --> 00:12:36.070
+the threshold for this branch.
+
+00:12:36.080 --> 00:12:38.670
+Note, to keep this example from getting
+
+00:12:38.680 --> 00:12:41.550
+out of hand, I've limited the tree depth
+
+00:12:41.560 --> 00:12:43.750
+to two levels.
+
+00:12:43.760 --> 00:12:46.030
+And this means we will not split this
+
+00:12:46.040 --> 00:12:48.110
+leaf any further, and we are done
+
+00:12:48.120 --> 00:12:50.670
+building this tree.
+
+00:12:50.680 --> 00:12:53.670
+However, the default is to allow up to
+
+00:12:53.680 --> 00:12:55.670
+six levels.
+
+00:12:55.680 --> 00:12:58.270
+Small bam.
+
+00:12:58.280 --> 00:13:00.390
+Now, we need to talk about how to prune
+
+00:13:00.400 --> 00:13:02.430
+this tree.
+
+00:13:02.440 --> 00:13:05.430
+We prune an XGBoost tree based on its
+
+00:13:05.440 --> 00:13:07.790
+gain values.
+
+00:13:07.800 --> 00:13:10.150
+We start by picking a number, for
+
+00:13:10.160 --> 00:13:13.190
+example, 130.
+
+00:13:13.200 --> 00:13:15.750
+Oh, no! It's the dreaded terminology
+
+00:13:15.760 --> 00:13:17.070
+alert.
+
+00:13:17.080 --> 00:13:21.950
+XGBoost calls this number gamma.
+
+00:13:21.960 --> 00:13:24.110
+We then calculate the difference between
+
+00:13:24.120 --> 00:13:26.230
+the gain associated with the lowest
+
+00:13:26.240 --> 00:13:28.430
+branch in the tree
+
+00:13:28.440 --> 00:13:31.310
+and the value for gamma.
+
+00:13:31.320 --> 00:13:33.670
+If the difference between the gain and
+
+00:13:33.680 --> 00:13:36.430
+gamma is negative, we will remove the
+
+00:13:36.440 --> 00:13:38.110
+branch.
+
+00:13:38.120 --> 00:13:40.150
+And if the difference between the gain
+
+00:13:40.160 --> 00:13:42.910
+and gamma is positive, we will not
+
+00:13:42.920 --> 00:13:45.310
+remove the branch.
+
+00:13:45.320 --> 00:13:48.870
+In this case, when we plug in the gain
+
+00:13:48.880 --> 00:13:52.990
+and the value for gamma, 130,
+
+00:13:53.000 --> 00:13:55.430
+we get a positive number. So, we will
+
+00:13:55.440 --> 00:13:57.830
+not remove this branch and we are done
+
+00:13:57.840 --> 00:14:00.430
+pruning.
+
+00:14:00.440 --> 00:14:04.710
+Note, the gain for the root, 120.3,
+
+00:14:04.720 --> 00:14:08.270
+is less than 130, the value for gamma,
+
+00:14:08.280 --> 00:14:11.270
+so the difference will be negative.
+
+00:14:11.280 --> 00:14:13.710
+However, because we did not remove the
+
+00:14:13.720 --> 00:14:16.270
+first branch, we will not remove the
+
+00:14:16.280 --> 00:14:18.350
+root.
+
+00:14:18.360 --> 00:14:21.230
+In contrast, if we set gamma equal to
+
+00:14:21.240 --> 00:14:24.270
+150, then we would remove this branch
+
+00:14:24.280 --> 00:14:25.950
+because
+
+00:14:25.960 --> 00:14:28.470
+140.17
+
+00:14:28.480 --> 00:14:30.430
+- 150
+
+00:14:30.440 --> 00:14:33.430
+equals a negative number.
+
+00:14:33.440 --> 00:14:36.950
+So, let's remove this branch.
+
+00:14:36.960 --> 00:14:39.590
+Now, we subtract gamma from the gain for
+
+00:14:39.600 --> 00:14:41.550
+the root.
+
+00:14:41.560 --> 00:14:44.470
+Since 120.33
+
+00:14:44.480 --> 00:14:49.030
+- 150 equals a negative number,
+
+00:14:49.040 --> 00:14:51.990
+we will remove the root.
+
+00:14:52.000 --> 00:14:54.030
+And all we would be left with is the
+
+00:14:54.040 --> 00:14:56.190
+original prediction, which is pretty
+
+00:14:56.200 --> 00:14:59.070
+extreme pruning.
+
+00:14:59.080 --> 00:15:01.990
+So, while this wasn't the most nuanced
+
+00:15:02.000 --> 00:15:04.510
+example of how an XGBoost tree is
+
+00:15:04.520 --> 00:15:08.550
+pruned, I hope you get the idea.
+
+00:15:08.560 --> 00:15:10.390
+Now, let's go back to the original
+
+00:15:10.400 --> 00:15:12.110
+residuals
+
+00:15:12.120 --> 00:15:15.590
+and build a tree just like before,
+
+00:15:15.600 --> 00:15:18.030
+only this time, when we calculate
+
+00:15:18.040 --> 00:15:21.110
+similarity scores, we will set lambda
+
+00:15:21.120 --> 00:15:23.790
+equal to 1.
+
+00:15:23.800 --> 00:15:26.630
+Remember, lambda is a regularization
+
+00:15:26.640 --> 00:15:28.630
+parameter, which means that it is
+
+00:15:28.640 --> 00:15:30.630
+intended to reduce the prediction
+
+00:15:30.640 --> 00:15:34.910
+sensitivity to individual observations.
+
+00:15:34.920 --> 00:15:37.430
+Now, the similarity score for the root
+
+00:15:37.440 --> 00:15:38.910
+is
+
+00:15:38.920 --> 00:15:40.750
+3.2,
+
+00:15:40.760 --> 00:15:43.830
+which is 8/10 of what we got when lambda
+
+00:15:43.840 --> 00:15:46.270
+equals 0.
+
+00:15:46.280 --> 00:15:48.470
+When we calculate the similarity score
+
+00:15:48.480 --> 00:15:50.910
+for the leaf on the left,
+
+00:15:50.920 --> 00:15:53.670
+we get 55.12,
+
+00:15:53.680 --> 00:15:55.790
+which is half of what we got when lambda
+
+00:15:55.800 --> 00:15:58.310
+equals 0.
+
+00:15:58.320 --> 00:16:00.230
+And when we calculate the similarity
+
+00:16:00.240 --> 00:16:02.910
+score for the leaf on the right,
+
+00:16:02.920 --> 00:16:05.150
+we get 10.56,
+
+00:16:05.160 --> 00:16:07.870
+which is 3/4 of what we got when lambda
+
+00:16:07.880 --> 00:16:10.390
+equals 0.
+
+00:16:10.400 --> 00:16:13.430
+So, one thing we see is that when lambda
+
+00:16:13.440 --> 00:16:16.470
+is greater than 0, the similarity scores
+
+00:16:16.480 --> 00:16:18.230
+are smaller.
+
+00:16:18.240 --> 00:16:20.830
+And the amount of decrease is inversely
+
+00:16:20.840 --> 00:16:23.270
+proportional to the number of residuals
+
+00:16:23.280 --> 00:16:25.430
+in the node.
+
+00:16:25.440 --> 00:16:28.110
+In other words, the leaf on the left had
+
+00:16:28.120 --> 00:16:30.310
+only one residual, and it had the
+
+00:16:30.320 --> 00:16:32.990
+largest decrease in similarity score,
+
+00:16:33.000 --> 00:16:35.310
+50%.
+
+00:16:35.320 --> 00:16:38.030
+In contrast, the root had all four
+
+00:16:38.040 --> 00:16:40.950
+residuals and the smallest decrease,
+
+00:16:40.960 --> 00:16:43.510
+20%.
+
+00:16:43.520 --> 00:16:46.790
+Now, when we calculate the gain,
+
+00:16:46.800 --> 00:16:49.710
+we get 66, which is a lot less than
+
+00:16:49.720 --> 00:16:52.030
+120.33,
+
+00:16:52.040 --> 00:16:56.230
+the value we got when lambda equals 0.
+
+00:16:56.240 --> 00:16:59.710
+Similarly, when lambda equals 1, the
+
+00:16:59.720 --> 00:17:02.190
+gain for the next branch is smaller than
+
+00:17:02.200 --> 00:17:04.390
+before.
+
+00:17:04.400 --> 00:17:07.630
+Now, just for comparison, these were the
+
+00:17:07.640 --> 00:17:11.550
+gain values when lambda equals 0.
+
+00:17:11.560 --> 00:17:13.270
+When we first talked about pruning
+
+00:17:13.280 --> 00:17:17.870
+trees, we set gamma equal to 130.
+
+00:17:17.880 --> 00:17:20.510
+And because for the lowest branch in the
+
+00:17:20.520 --> 00:17:23.870
+first tree, gain minus gamma equal to
+
+00:17:23.880 --> 00:17:26.470
+positive number, so we did not prune it
+
+00:17:26.480 --> 00:17:28.510
+all.
+
+00:17:28.520 --> 00:17:32.070
+Now, with lambda equals 1, the values
+
+00:17:32.080 --> 00:17:35.950
+for gain are both less than 130.
+
+00:17:35.960 --> 00:17:40.510
+So, we would prune the whole tree away.
+
+00:17:40.520 --> 00:17:43.750
+So, when lambda is greater than zero, it
+
+00:17:43.760 --> 00:17:45.750
+is easier to prune leaves because the
+
+00:17:45.760 --> 00:17:49.670
+values for gain are smaller.
+
+00:17:49.680 --> 00:17:52.510
+Note, before we move on, I want to
+
+00:17:52.520 --> 00:17:56.550
+illustrate one last feature of lambda.
+
+00:17:56.560 --> 00:17:59.110
+For this example, imagine we split this
+
+00:17:59.120 --> 00:18:02.190
+node into two leaves.
+
+00:18:02.200 --> 00:18:04.150
+Now, let's calculate the similarity
+
+00:18:04.160 --> 00:18:08.350
+scores with lambda equal to 1.
+
+00:18:08.360 --> 00:18:10.790
+For the branch, we get
+
+00:18:10.800 --> 00:18:13.910
+65.3.
+
+00:18:13.920 --> 00:18:19.710
+For the left leaf, we get 21.12.
+
+00:18:19.720 --> 00:18:22.310
+And for the right leaf, we get
+
+00:18:22.320 --> 00:18:25.830
+28.12.
+
+00:18:25.840 --> 00:18:29.150
+That means the gain is
+
+00:18:29.160 --> 00:18:33.430
+-16.06.
+
+00:18:33.440 --> 00:18:35.950
+Now, when we decide if we should prune
+
+00:18:35.960 --> 00:18:39.030
+this branch, we plug in the gain
+
+00:18:39.040 --> 00:18:41.870
+and we plug in a value for gamma.
+
+00:18:41.880 --> 00:18:45.870
+Note, if we set gamma equal to zero,
+
+00:18:45.880 --> 00:18:49.150
+then we will get a negative number.
+
+00:18:49.160 --> 00:18:51.510
+And we will prune this branch even
+
+00:18:51.520 --> 00:18:54.750
+though gamma equals zero.
+
+00:18:54.760 --> 00:18:57.350
+In other words, setting gamma equal to
+
+00:18:57.360 --> 00:19:01.230
+zero does not turn off pruning.
+
+00:19:01.240 --> 00:19:04.510
+Dang.
+
+00:19:04.520 --> 00:19:07.190
+On the other hand, by setting lambda
+
+00:19:07.200 --> 00:19:09.790
+equal to 1, lambda did what it was
+
+00:19:09.800 --> 00:19:12.670
+supposed to do. It prevented overfitting
+
+00:19:12.680 --> 00:19:14.630
+the training data.
+
+00:19:14.640 --> 00:19:17.230
+Awesome.
+
+00:19:17.240 --> 00:19:20.830
+For now, regardless of lambda and gamma,
+
+00:19:20.840 --> 00:19:22.910
+let's assume that this is the tree we
+
+00:19:22.920 --> 00:19:24.710
+are working with
+
+00:19:24.720 --> 00:19:26.990
+and determine the output values for the
+
+00:19:27.000 --> 00:19:29.030
+leaves.
+
+00:19:29.040 --> 00:19:32.550
+The output value equals the sum of the
+
+00:19:32.560 --> 00:19:35.830
+residuals divided by the number of
+
+00:19:35.840 --> 00:19:39.110
+residuals plus lambda.
+
+00:19:39.120 --> 00:19:42.470
+Note, the output value equation is like
+
+00:19:42.480 --> 00:19:45.230
+the similarity score, except we do not
+
+00:19:45.240 --> 00:19:48.510
+square the sum of the residuals.
+
+00:19:48.520 --> 00:19:51.070
+So, for this leaf,
+
+00:19:51.080 --> 00:19:55.550
+we plug in the residual, -10.5,
+
+00:19:55.560 --> 00:19:57.910
+the number of residuals in the leaf,
+
+00:19:57.920 --> 00:19:59.790
+one,
+
+00:19:59.800 --> 00:20:01.790
+and the value for the regularization
+
+00:20:01.800 --> 00:20:04.950
+parameter, lambda.
+
+00:20:04.960 --> 00:20:07.630
+If lambda equals zero, then there is no
+
+00:20:07.640 --> 00:20:10.350
+regularization, and the output value
+
+00:20:10.360 --> 00:20:14.070
+equals -10.5.
+
+00:20:14.080 --> 00:20:17.870
+On the other hand, if lambda equals one,
+
+00:20:17.880 --> 00:20:23.030
+the output value equals -5.25.
+
+00:20:23.040 --> 00:20:25.310
+In other words, when lambda is greater
+
+00:20:25.320 --> 00:20:27.590
+than zero, then it will reduce the
+
+00:20:27.600 --> 00:20:29.870
+amount that this individual observation
+
+00:20:29.880 --> 00:20:33.190
+adds to the overall prediction.
+
+00:20:33.200 --> 00:20:36.070
+Thus, lambda, the regularization
+
+00:20:36.080 --> 00:20:38.390
+parameter, will reduce the prediction
+
+00:20:38.400 --> 00:20:40.510
+sensitivity to this individual
+
+00:20:40.520 --> 00:20:42.790
+observation.
+
+00:20:42.800 --> 00:20:45.350
+For now, we'll keep things simple and
+
+00:20:45.360 --> 00:20:48.230
+let lambda equal zero, because this is
+
+00:20:48.240 --> 00:20:50.270
+the default value,
+
+00:20:50.280 --> 00:20:52.270
+and put -10.5
+
+00:20:52.280 --> 00:20:56.150
+under the leaf, so we will remember it.
+
+00:20:56.160 --> 00:20:58.230
+Now, let's calculate the output value
+
+00:20:58.240 --> 00:21:00.630
+for this leaf.
+
+00:21:00.640 --> 00:21:03.230
+When lambda equals zero, the output
+
+00:21:03.240 --> 00:21:04.910
+value is
+
+00:21:04.920 --> 00:21:06.750
+seven.
+
+00:21:06.760 --> 00:21:09.990
+In other words, when lambda equals zero,
+
+00:21:10.000 --> 00:21:12.590
+the output value for a leaf is simply
+
+00:21:12.600 --> 00:21:14.990
+the average of the residuals in that
+
+00:21:15.000 --> 00:21:17.070
+leaf.
+
+00:21:17.080 --> 00:21:19.310
+So, we'll put the output value under the
+
+00:21:19.320 --> 00:21:22.830
+leaf so we will remember it.
+
+00:21:22.840 --> 00:21:26.030
+Lastly, when lambda equals zero, the
+
+00:21:26.040 --> 00:21:28.990
+output value for this leaf is
+
+00:21:29.000 --> 00:21:32.750
+-7.5.
+
+00:21:32.760 --> 00:21:35.750
+Now, at long last, the first tree is
+
+00:21:35.760 --> 00:21:37.150
+complete.
+
+00:21:37.160 --> 00:21:40.230
+Double bam!
+
+00:21:40.240 --> 00:21:42.670
+Since we have built our first tree, we
+
+00:21:42.680 --> 00:21:45.390
+can make new predictions.
+
+00:21:45.400 --> 00:21:48.710
+And just like on extreme gradient boost,
+
+00:21:48.720 --> 00:21:51.390
+XG boost makes new predictions by
+
+00:21:51.400 --> 00:21:54.110
+starting with the initial prediction
+
+00:21:54.120 --> 00:21:56.830
+and adding the output of the tree scaled
+
+00:21:56.840 --> 00:21:58.950
+by a learning rate.
+
+00:21:58.960 --> 00:22:01.750
+Oh, no! It's another dreaded terminology
+
+00:22:01.760 --> 00:22:03.750
+alert.
+
+00:22:03.760 --> 00:22:07.470
+XG boost calls the learning rate eta,
+
+00:22:07.480 --> 00:22:10.630
+and the default value is 0.3.
+
+00:22:10.640 --> 00:22:13.070
+So, that's what we'll use.
+
+00:22:13.080 --> 00:22:15.630
+Thus, the new predicted value for this
+
+00:22:15.640 --> 00:22:19.430
+observation with dosage equal to 10
+
+00:22:19.440 --> 00:22:23.510
+is the original prediction 0.5
+
+00:22:23.520 --> 00:22:28.270
+plus the learning rate eta 0.3
+
+00:22:28.280 --> 00:22:32.750
+times the output value -10.5.
+
+00:22:32.760 --> 00:22:37.350
+And that gives us -2.65.
+
+00:22:37.360 --> 00:22:41.950
+So, if the original prediction was 0.5,
+
+00:22:41.960 --> 00:22:45.790
+then this was the original residual.
+
+00:22:45.800 --> 00:22:49.910
+The new prediction is -2.65.
+
+00:22:49.920 --> 00:22:52.070
+And we see that the new residual is
+
+00:22:52.080 --> 00:22:54.390
+smaller than before. So, we've taken a
+
+00:22:54.400 --> 00:22:57.630
+small step in the right direction.
+
+00:22:57.640 --> 00:23:00.470
+Similarly, the new prediction for this
+
+00:23:00.480 --> 00:23:04.430
+observation with dosage equal 20, is
+
+00:23:04.440 --> 00:23:06.950
+beep beep.
+
+00:23:06.960 --> 00:23:09.190
+2.6.
+
+00:23:09.200 --> 00:23:11.190
+And the new residual is smaller than
+
+00:23:11.200 --> 00:23:13.630
+before. So, we've taken another small
+
+00:23:13.640 --> 00:23:16.950
+step in the right direction.
+
+00:23:16.960 --> 00:23:19.350
+Likewise, the new predictions for the
+
+00:23:19.360 --> 00:23:21.390
+remaining observations have smaller
+
+00:23:21.400 --> 00:23:24.030
+residuals than before, suggesting each
+
+00:23:24.040 --> 00:23:27.510
+small step was in the right direction.
+
+00:23:27.520 --> 00:23:30.190
+Bam!
+
+00:23:30.200 --> 00:23:32.310
+Now, we build another tree based on the
+
+00:23:32.320 --> 00:23:34.150
+new residuals
+
+00:23:34.160 --> 00:23:36.030
+and make new predictions that give us
+
+00:23:36.040 --> 00:23:39.070
+even smaller residuals.
+
+00:23:39.080 --> 00:23:41.430
+And then build another tree based on the
+
+00:23:41.440 --> 00:23:43.990
+newest residuals.
+
+00:23:44.000 --> 00:23:45.910
+And we keep building trees until the
+
+00:23:45.920 --> 00:23:48.550
+residuals are super small or we have
+
+00:23:48.560 --> 00:23:51.790
+reached the maximum number.
+
+00:23:51.800 --> 00:23:54.790
+Triple bam!
+
+00:23:54.800 --> 00:23:57.950
+In summary, when building XGBoost trees
+
+00:23:57.960 --> 00:24:00.270
+for regression,
+
+00:24:00.280 --> 00:24:04.390
+we calculate similarity scores
+
+00:24:04.400 --> 00:24:06.910
+and gain to determine how to split the
+
+00:24:06.920 --> 00:24:09.550
+data.
+
+00:24:09.560 --> 00:24:11.950
+And we prune the tree by calculating the
+
+00:24:11.960 --> 00:24:14.550
+differences between gain values and a
+
+00:24:14.560 --> 00:24:17.550
+user-defined tree complexity parameter,
+
+00:24:17.560 --> 00:24:19.710
+gamma.
+
+00:24:19.720 --> 00:24:21.910
+If the difference is positive, then we
+
+00:24:21.920 --> 00:24:23.590
+do not prune.
+
+00:24:23.600 --> 00:24:27.590
+If it's negative, then we prune.
+
+00:24:27.600 --> 00:24:30.670
+For example, if we subtract gamma from
+
+00:24:30.680 --> 00:24:33.670
+this gain and get a negative value, we
+
+00:24:33.680 --> 00:24:37.470
+will prune. Otherwise, we're done.
+
+00:24:37.480 --> 00:24:40.230
+If we prune, then we will subtract gamma
+
+00:24:40.240 --> 00:24:42.550
+from the next gain value and work our
+
+00:24:42.560 --> 00:24:44.870
+way up the tree.
+
+00:24:44.880 --> 00:24:47.150
+Then, we calculate the output values for
+
+00:24:47.160 --> 00:24:49.670
+the remaining leaves.
+
+00:24:49.680 --> 00:24:52.430
+And lastly, lambda is a regularization
+
+00:24:52.440 --> 00:24:54.830
+parameter, and when lambda is greater
+
+00:24:54.840 --> 00:24:57.910
+than zero, it results in more pruning by
+
+00:24:57.920 --> 00:25:00.270
+shrinking the similarity scores.
+
+00:25:00.280 --> 00:25:02.510
+And it results in smaller output values
+
+00:25:02.520 --> 00:25:04.230
+for the leaves.
+
+00:25:04.240 --> 00:25:06.150
+Bam.
+
+00:25:06.160 --> 00:25:09.510
+Tune in next time for XGBoost part two,
+
+00:25:09.520 --> 00:25:12.310
+when we give an overview of how XGBoost
+
+00:25:12.320 --> 00:25:15.030
+trees are built for classification.
+
+00:25:15.040 --> 00:25:18.190
+It's going to be totally awesome.
+
+00:25:18.200 --> 00:25:20.870
+Hooray! We've made it to the end of
+
+00:25:20.880 --> 00:25:23.670
+another exciting StatQuest. If you like
+
+00:25:23.680 --> 00:25:25.870
+this StatQuest and want to see more,
+
+00:25:25.880 --> 00:25:27.870
+please subscribe. And if you want to
+
+00:25:27.880 --> 00:25:30.510
+support StatQuest, consider contributing
+
+00:25:30.520 --> 00:25:33.070
+to my Patreon campaign, becoming a
+
+00:25:33.080 --> 00:25:35.510
+channel member, buying one or two of my
+
+00:25:35.520 --> 00:25:37.630
+original songs, or a t-shirt, or a
+
+00:25:37.640 --> 00:25:40.510
+hoodie, or just donate. The links are in
+
+00:25:40.520 --> 00:25:42.270
+the description below.
+
+00:25:42.280 --> 00:25:47.600
+All right. Until next time, quest on.
+

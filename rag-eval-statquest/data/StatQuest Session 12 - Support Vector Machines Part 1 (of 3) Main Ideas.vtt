@@ -1,0 +1,1439 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.310
+Support vector machines
+
+00:00:03.320 --> 00:00:05.830
+have a lot of terminology associated
+
+00:00:05.840 --> 00:00:06.870
+with them.
+
+00:00:06.880 --> 00:00:09.510
+Brace yourself.
+
+00:00:09.520 --> 00:00:11.870
+StatQuest
+
+00:00:11.880 --> 00:00:14.510
+Hello, I'm Josh Starmer and welcome to
+
+00:00:14.520 --> 00:00:16.590
+StatQuest. Today, we're going to talk
+
+00:00:16.600 --> 00:00:18.750
+about support vector machines and
+
+00:00:18.760 --> 00:00:21.750
+they're going to be clearly explained.
+
+00:00:21.760 --> 00:00:24.390
+Note, this StatQuest assumes that you
+
+00:00:24.400 --> 00:00:26.470
+are already familiar with the trade-off
+
+00:00:26.480 --> 00:00:28.830
+that plagues all of machine learning,
+
+00:00:28.840 --> 00:00:32.190
+the bias-variance trade-off.
+
+00:00:32.200 --> 00:00:33.630
+You should also be familiar with
+
+00:00:33.640 --> 00:00:35.150
+cross-validation.
+
+00:00:35.160 --> 00:00:37.870
+If not, check out the quests. The links
+
+00:00:37.880 --> 00:00:40.870
+are in the description below.
+
+00:00:40.880 --> 00:00:43.270
+Let's start by imagining we measured the
+
+00:00:43.280 --> 00:00:46.190
+mass of a bunch of mice.
+
+00:00:46.200 --> 00:00:48.830
+The red dots represent mice that are not
+
+00:00:48.840 --> 00:00:50.310
+obese.
+
+00:00:50.320 --> 00:00:52.510
+And the green dots represent mice that
+
+00:00:52.520 --> 00:00:54.870
+are obese.
+
+00:00:54.880 --> 00:00:57.270
+Based on these observations, we can pick
+
+00:00:57.280 --> 00:00:59.270
+a threshold.
+
+00:00:59.280 --> 00:01:01.310
+And when we get a new observation that
+
+00:01:01.320 --> 00:01:04.630
+has less mass than the threshold,
+
+00:01:04.640 --> 00:01:08.790
+we can classify it as not obese.
+
+00:01:08.800 --> 00:01:10.830
+And when we get a new observation with
+
+00:01:10.840 --> 00:01:13.830
+more mass than the threshold,
+
+00:01:13.840 --> 00:01:17.870
+we can classify it as obese.
+
+00:01:17.880 --> 00:01:19.950
+However, what if we get a new
+
+00:01:19.960 --> 00:01:22.550
+observation here?
+
+00:01:22.560 --> 00:01:24.950
+Because this observation has more mass
+
+00:01:24.960 --> 00:01:27.510
+than the threshold, we classify it as
+
+00:01:27.520 --> 00:01:29.230
+obese.
+
+00:01:29.240 --> 00:01:31.470
+But that doesn't make sense because it
+
+00:01:31.480 --> 00:01:33.790
+is much closer to the observations that
+
+00:01:33.800 --> 00:01:36.190
+are not obese.
+
+00:01:36.200 --> 00:01:39.590
+So, this threshold is pretty lame.
+
+00:01:39.600 --> 00:01:41.870
+Can we do better?
+
+00:01:41.880 --> 00:01:43.870
+Yes.
+
+00:01:43.880 --> 00:01:45.950
+Going back to the original training data
+
+00:01:45.960 --> 00:01:47.310
+set,
+
+00:01:47.320 --> 00:01:49.750
+we can focus on the observations on the
+
+00:01:49.760 --> 00:01:52.270
+edges of each cluster
+
+00:01:52.280 --> 00:01:54.870
+and use the midpoint between them as the
+
+00:01:54.880 --> 00:01:57.270
+threshold.
+
+00:01:57.280 --> 00:02:00.030
+Now, when a new observation falls on the
+
+00:02:00.040 --> 00:02:02.990
+left side of the threshold,
+
+00:02:03.000 --> 00:02:05.070
+it will be closer to the observations
+
+00:02:05.080 --> 00:02:07.630
+that are not obese
+
+00:02:07.640 --> 00:02:11.470
+than it is to the obese observations.
+
+00:02:11.480 --> 00:02:13.790
+So, it makes sense to classify this new
+
+00:02:13.800 --> 00:02:17.070
+observation as not obese.
+
+00:02:17.080 --> 00:02:19.710
+Bam!
+
+00:02:19.720 --> 00:02:23.670
+Oh, no! It's a terminology alert.
+
+00:02:23.680 --> 00:02:25.350
+The shortest distance between the
+
+00:02:25.360 --> 00:02:27.949
+observations and the threshold is called
+
+00:02:27.959 --> 00:02:30.070
+the margin.
+
+00:02:30.080 --> 00:02:32.070
+Since we put the threshold halfway
+
+00:02:32.080 --> 00:02:35.190
+between these two observations,
+
+00:02:35.200 --> 00:02:37.470
+the distances between the observations
+
+00:02:37.480 --> 00:02:39.710
+and the threshold are the same and both
+
+00:02:39.720 --> 00:02:42.990
+reflect the margin.
+
+00:02:43.000 --> 00:02:44.990
+When the threshold is halfway between
+
+00:02:45.000 --> 00:02:47.910
+the two observations, the margin is as
+
+00:02:47.920 --> 00:02:50.550
+large as it can be.
+
+00:02:50.560 --> 00:02:52.910
+For example, if we move the threshold to
+
+00:02:52.920 --> 00:02:55.350
+the left a little bit,
+
+00:02:55.360 --> 00:02:57.470
+then the distance between the threshold
+
+00:02:57.480 --> 00:02:59.870
+and the observation that is not obese
+
+00:02:59.880 --> 00:03:01.790
+would be smaller.
+
+00:03:01.800 --> 00:03:03.910
+And thus, the margin would be smaller
+
+00:03:03.920 --> 00:03:06.830
+than it was before.
+
+00:03:06.840 --> 00:03:08.430
+And if we move the threshold to the
+
+00:03:08.440 --> 00:03:10.790
+right a little bit,
+
+00:03:10.800 --> 00:03:12.750
+then the distance between the obese
+
+00:03:12.760 --> 00:03:14.630
+observation and the threshold would get
+
+00:03:14.640 --> 00:03:16.390
+smaller.
+
+00:03:16.400 --> 00:03:20.470
+And again, the margin would be smaller.
+
+00:03:20.480 --> 00:03:22.430
+When we use the threshold that gives us
+
+00:03:22.440 --> 00:03:23.910
+the largest margin to make
+
+00:03:23.920 --> 00:03:26.070
+classifications,
+
+00:03:26.080 --> 00:03:29.070
+heads up, terminology alert.
+
+00:03:29.080 --> 00:03:31.030
+We are using a maximal margin
+
+00:03:31.040 --> 00:03:33.350
+classifier.
+
+00:03:33.360 --> 00:03:34.910
+Bam?
+
+00:03:34.920 --> 00:03:35.910
+No.
+
+00:03:35.920 --> 00:03:37.949
+No bam.
+
+00:03:37.959 --> 00:03:40.550
+Maximal margin classifiers seem pretty
+
+00:03:40.560 --> 00:03:41.990
+cool,
+
+00:03:42.000 --> 00:03:43.670
+but what if our training data looked
+
+00:03:43.680 --> 00:03:45.390
+like this?
+
+00:03:45.400 --> 00:03:47.470
+And we had an outlier observation that
+
+00:03:47.480 --> 00:03:50.150
+was classified as not obese, but was
+
+00:03:50.160 --> 00:03:54.350
+much closer to the obese observations.
+
+00:03:54.360 --> 00:03:56.590
+In this case, the maximum margin
+
+00:03:56.600 --> 00:03:59.030
+classifier would be super close to the
+
+00:03:59.040 --> 00:04:01.630
+obese observations.
+
+00:04:01.640 --> 00:04:03.830
+And really far from the majority of the
+
+00:04:03.840 --> 00:04:07.710
+observations that are not obese.
+
+00:04:07.720 --> 00:04:11.590
+Now, if we got this new observation,
+
+00:04:11.600 --> 00:04:14.750
+we would classify it as not obese, even
+
+00:04:14.760 --> 00:04:16.470
+though most of the not obese
+
+00:04:16.480 --> 00:04:18.949
+observations are much further away than
+
+00:04:18.959 --> 00:04:22.270
+the obese observations.
+
+00:04:22.280 --> 00:04:25.190
+So, maximum margin classifiers are super
+
+00:04:25.200 --> 00:04:27.190
+sensitive to outliers in the training
+
+00:04:27.200 --> 00:04:30.909
+data, and that makes them pretty lame.
+
+00:04:30.919 --> 00:04:32.790
+Can we do better?
+
+00:04:32.800 --> 00:04:35.030
+Yes.
+
+00:04:35.040 --> 00:04:37.110
+To make a threshold that is not so
+
+00:04:37.120 --> 00:04:39.750
+sensitive to outliers, we must allow
+
+00:04:39.760 --> 00:04:42.550
+misclassifications.
+
+00:04:42.560 --> 00:04:44.870
+For example, if we put the threshold
+
+00:04:44.880 --> 00:04:48.710
+halfway between these two observations,
+
+00:04:48.720 --> 00:04:50.390
+then we will misclassify this
+
+00:04:50.400 --> 00:04:52.830
+observation.
+
+00:04:52.840 --> 00:04:55.190
+However, now when we get a new
+
+00:04:55.200 --> 00:04:57.430
+observation here,
+
+00:04:57.440 --> 00:05:01.390
+we will classify it as obese.
+
+00:05:01.400 --> 00:05:03.190
+And that makes sense, because it is
+
+00:05:03.200 --> 00:05:05.110
+closer to most of the obese
+
+00:05:05.120 --> 00:05:07.790
+observations.
+
+00:05:07.800 --> 00:05:09.630
+Choosing a threshold that allows
+
+00:05:09.640 --> 00:05:12.270
+misclassifications is an example of the
+
+00:05:12.280 --> 00:05:15.150
+bias-variance tradeoff that plagues all
+
+00:05:15.160 --> 00:05:17.790
+of machine learning.
+
+00:05:17.800 --> 00:05:19.950
+In other words, before we allowed
+
+00:05:19.960 --> 00:05:21.550
+misclassifications,
+
+00:05:21.560 --> 00:05:23.310
+we picked a threshold that was very
+
+00:05:23.320 --> 00:05:25.710
+sensitive to the training data. It had
+
+00:05:25.720 --> 00:05:27.830
+low bias.
+
+00:05:27.840 --> 00:05:30.070
+And it performed poorly when we got new
+
+00:05:30.080 --> 00:05:34.310
+data. It had high variance.
+
+00:05:34.320 --> 00:05:36.870
+In contrast, when we picked a threshold
+
+00:05:36.880 --> 00:05:38.710
+that was less sensitive to the training
+
+00:05:38.720 --> 00:05:41.550
+data and allowed misclassifications,
+
+00:05:41.560 --> 00:05:44.430
+so it had higher bias,
+
+00:05:44.440 --> 00:05:46.590
+it performed better when we got new
+
+00:05:46.600 --> 00:05:50.310
+data. So, it had low variance.
+
+00:05:50.320 --> 00:05:52.870
+Small bam.
+
+00:05:52.880 --> 00:05:57.190
+Oh, no. It's another terminology alert.
+
+00:05:57.200 --> 00:05:59.630
+When we allow misclassifications,
+
+00:05:59.640 --> 00:06:01.750
+the distance between the observations
+
+00:06:01.760 --> 00:06:03.870
+and the threshold is called a soft
+
+00:06:03.880 --> 00:06:05.910
+margin.
+
+00:06:05.920 --> 00:06:08.590
+So, the question is, how do we know that
+
+00:06:08.600 --> 00:06:10.670
+this soft margin
+
+00:06:10.680 --> 00:06:13.950
+is better than this soft margin?
+
+00:06:13.960 --> 00:06:16.190
+The answer is simple. We use
+
+00:06:16.200 --> 00:06:18.750
+cross-validation to determine how many
+
+00:06:18.760 --> 00:06:20.270
+misclassifications
+
+00:06:20.280 --> 00:06:23.030
+and observations to allow inside of the
+
+00:06:23.040 --> 00:06:25.070
+soft margin to get the best
+
+00:06:25.080 --> 00:06:27.670
+classification.
+
+00:06:27.680 --> 00:06:30.350
+For example, if cross-validation
+
+00:06:30.360 --> 00:06:32.630
+determined that this was the best soft
+
+00:06:32.640 --> 00:06:34.190
+margin,
+
+00:06:34.200 --> 00:06:35.430
+then we would allow one
+
+00:06:35.440 --> 00:06:37.630
+misclassification
+
+00:06:37.640 --> 00:06:40.030
+and two observations that are correctly
+
+00:06:40.040 --> 00:06:44.110
+classified to be within the soft margin.
+
+00:06:44.120 --> 00:06:46.670
+Bam.
+
+00:06:46.680 --> 00:06:49.030
+When we use a soft margin to determine
+
+00:06:49.040 --> 00:06:51.830
+the location of a threshold,
+
+00:06:51.840 --> 00:06:53.670
+brace yourself, we have another
+
+00:06:53.680 --> 00:06:56.190
+terminology alert.
+
+00:06:56.200 --> 00:06:58.070
+Then we are using a soft margin
+
+00:06:58.080 --> 00:07:01.470
+classifier, aka a support vector
+
+00:07:01.480 --> 00:07:05.990
+classifier, to classify observations.
+
+00:07:06.000 --> 00:07:08.990
+The name support vector classifier comes
+
+00:07:09.000 --> 00:07:10.870
+from the fact that the observations on
+
+00:07:10.880 --> 00:07:13.630
+the edge and within the soft margin are
+
+00:07:13.640 --> 00:07:16.750
+called support vectors.
+
+00:07:16.760 --> 00:07:19.750
+Super small bam.
+
+00:07:19.760 --> 00:07:22.750
+Note, if each observation had a mass
+
+00:07:22.760 --> 00:07:24.270
+measurement
+
+00:07:24.280 --> 00:07:27.030
+and a height measurement,
+
+00:07:27.040 --> 00:07:30.670
+then the data would be two-dimensional.
+
+00:07:30.680 --> 00:07:32.870
+When the data are two-dimensional, a
+
+00:07:32.880 --> 00:07:37.310
+support vector classifier is a line.
+
+00:07:37.320 --> 00:07:40.510
+And in this case, the soft margin is
+
+00:07:40.520 --> 00:07:43.790
+measured from these two points.
+
+00:07:43.800 --> 00:07:46.270
+The blue parallel lines gives us a sense
+
+00:07:46.280 --> 00:07:48.310
+of where all of the other points are in
+
+00:07:48.320 --> 00:07:51.830
+relation to the soft margin.
+
+00:07:51.840 --> 00:07:54.110
+These observations are outside of the
+
+00:07:54.120 --> 00:07:56.550
+soft margin.
+
+00:07:56.560 --> 00:07:59.230
+And this observation is inside the soft
+
+00:07:59.240 --> 00:08:02.790
+margin and misclassified.
+
+00:08:02.800 --> 00:08:04.710
+Just like before, we used
+
+00:08:04.720 --> 00:08:06.750
+cross-validation to determine that
+
+00:08:06.760 --> 00:08:09.150
+allowing this misclassification
+
+00:08:09.160 --> 00:08:11.550
+results in better classification in the
+
+00:08:11.560 --> 00:08:13.670
+long run.
+
+00:08:13.680 --> 00:08:16.909
+Bam!
+
+00:08:16.919 --> 00:08:20.590
+Now, if each observation has a mass,
+
+00:08:20.600 --> 00:08:22.070
+a height,
+
+00:08:22.080 --> 00:08:24.190
+and an age,
+
+00:08:24.200 --> 00:08:25.230
+then the data would be
+
+00:08:25.240 --> 00:08:27.790
+three-dimensional.
+
+00:08:27.800 --> 00:08:30.830
+Note, the axis that age is on is
+
+00:08:30.840 --> 00:08:33.589
+supposed to represent depth.
+
+00:08:33.599 --> 00:08:35.950
+And these circles are larger in order to
+
+00:08:35.960 --> 00:08:39.390
+appear closer and thus younger.
+
+00:08:39.400 --> 00:08:41.630
+And these circles are smaller in order
+
+00:08:41.640 --> 00:08:46.510
+to look further away and thus older.
+
+00:08:46.520 --> 00:08:48.710
+When the data are three-dimensional, the
+
+00:08:48.720 --> 00:08:51.590
+support vector classifier forms a plane
+
+00:08:51.600 --> 00:08:54.070
+instead of a line.
+
+00:08:54.080 --> 00:08:56.590
+And we classify new observations by
+
+00:08:56.600 --> 00:08:58.750
+determining which side of the plane they
+
+00:08:58.760 --> 00:09:00.870
+are on.
+
+00:09:00.880 --> 00:09:02.990
+For example, if this were a new
+
+00:09:03.000 --> 00:09:05.150
+observation,
+
+00:09:05.160 --> 00:09:08.030
+we would classify it as not obese since
+
+00:09:08.040 --> 00:09:09.829
+it is above the support vector
+
+00:09:09.839 --> 00:09:12.390
+classifier.
+
+00:09:12.400 --> 00:09:16.310
+Note, if we measured mass, height, age,
+
+00:09:16.320 --> 00:09:18.910
+and blood pressure, then the data would
+
+00:09:18.920 --> 00:09:21.670
+be in four dimensions.
+
+00:09:21.680 --> 00:09:23.030
+And I don't know how to draw
+
+00:09:23.040 --> 00:09:25.710
+four-dimensional graph.
+
+00:09:25.720 --> 00:09:27.990
+Wah, wah.
+
+00:09:28.000 --> 00:09:29.710
+But we know that when the data are
+
+00:09:29.720 --> 00:09:31.870
+one-dimensional, the support vector
+
+00:09:31.880 --> 00:09:34.110
+classifier is a single point on a
+
+00:09:34.120 --> 00:09:36.950
+one-dimensional number line.
+
+00:09:36.960 --> 00:09:40.470
+Psst. In mathematical jargon, a point is
+
+00:09:40.480 --> 00:09:45.270
+a flat affine zero-dimensional subspace.
+
+00:09:45.280 --> 00:09:47.710
+And when the data are in two dimensions,
+
+00:09:47.720 --> 00:09:49.550
+the support vector classifier is a
+
+00:09:49.560 --> 00:09:51.430
+one-dimensional line in a
+
+00:09:51.440 --> 00:09:54.230
+two-dimensional space.
+
+00:09:54.240 --> 00:09:57.830
+Psst. In mathematical jargon, a line is
+
+00:09:57.840 --> 00:10:02.550
+a flat affine one-dimensional subspace.
+
+00:10:02.560 --> 00:10:04.910
+And when the data are three-dimensional,
+
+00:10:04.920 --> 00:10:06.950
+the support vector classifier is a
+
+00:10:06.960 --> 00:10:09.030
+two-dimensional plane in a
+
+00:10:09.040 --> 00:10:11.830
+three-dimensional space.
+
+00:10:11.840 --> 00:10:15.430
+Psst. In mathematical jargon, a plane is
+
+00:10:15.440 --> 00:10:19.830
+a flat affine two-dimensional subspace.
+
+00:10:19.840 --> 00:10:22.270
+And when the data are in four or more
+
+00:10:22.280 --> 00:10:24.430
+dimensions, the support vector
+
+00:10:24.440 --> 00:10:28.030
+classifier is a hyperplane.
+
+00:10:28.040 --> 00:10:30.670
+Psst. In mathematical jargon, a
+
+00:10:30.680 --> 00:10:35.190
+hyperplane is a flat affine subspace.
+
+00:10:35.200 --> 00:10:38.270
+Note. Technically speaking, all flat
+
+00:10:38.280 --> 00:10:42.510
+affine subspaces are called hyperplanes.
+
+00:10:42.520 --> 00:10:45.150
+So, technically speaking, this
+
+00:10:45.160 --> 00:10:48.710
+one-dimensional line is a hyperplane.
+
+00:10:48.720 --> 00:10:51.110
+But we generally only use the term when
+
+00:10:51.120 --> 00:10:54.030
+we can't draw it on paper.
+
+00:10:54.040 --> 00:10:56.510
+Small bam, because this is just more
+
+00:10:56.520 --> 00:10:58.750
+terminology.
+
+00:10:58.760 --> 00:11:00.710
+Ugh.
+
+00:11:00.720 --> 00:11:03.110
+Support vector classifiers seem pretty
+
+00:11:03.120 --> 00:11:05.510
+cool because they can handle
+
+00:11:05.520 --> 00:11:07.190
+outliers
+
+00:11:07.200 --> 00:11:08.870
+and because they can allow
+
+00:11:08.880 --> 00:11:10.550
+misclassifications,
+
+00:11:10.560 --> 00:11:12.070
+they can handle overlapping
+
+00:11:12.080 --> 00:11:14.950
+classifications.
+
+00:11:14.960 --> 00:11:16.950
+But what if this was our training data
+
+00:11:16.960 --> 00:11:20.310
+and we had tons of overlap?
+
+00:11:20.320 --> 00:11:22.630
+In this new example with tons of
+
+00:11:22.640 --> 00:11:24.910
+overlap, we are now looking at drug
+
+00:11:24.920 --> 00:11:27.070
+dosages.
+
+00:11:27.080 --> 00:11:29.270
+And the red dots represent patients that
+
+00:11:29.280 --> 00:11:31.910
+were not cured.
+
+00:11:31.920 --> 00:11:33.990
+And the green dots represent patients
+
+00:11:34.000 --> 00:11:36.630
+that were cured.
+
+00:11:36.640 --> 00:11:39.070
+In other words, the drug doesn't work if
+
+00:11:39.080 --> 00:11:41.550
+the dosage is too small
+
+00:11:41.560 --> 00:11:43.950
+or too large.
+
+00:11:43.960 --> 00:11:46.350
+It only works when the dosage is just
+
+00:11:46.360 --> 00:11:48.310
+right.
+
+00:11:48.320 --> 00:11:50.270
+Now, no matter where we put the
+
+00:11:50.280 --> 00:11:52.430
+classifier, we will make a lot of
+
+00:11:52.440 --> 00:11:55.190
+misclassifications.
+
+00:11:55.200 --> 00:11:58.070
+So, support vector classifiers are only
+
+00:11:58.080 --> 00:12:00.590
+semi-cool since they don't perform well
+
+00:12:00.600 --> 00:12:03.110
+with this type of data.
+
+00:12:03.120 --> 00:12:05.150
+Can we do better than maximal margin
+
+00:12:05.160 --> 00:12:07.230
+classifiers and support vector
+
+00:12:07.240 --> 00:12:08.990
+classifiers?
+
+00:12:09.000 --> 00:12:10.950
+Yes.
+
+00:12:10.960 --> 00:12:13.310
+Since maximal margin classifiers and
+
+00:12:13.320 --> 00:12:15.870
+support vector classifiers can't handle
+
+00:12:15.880 --> 00:12:18.350
+this data, it's high time we talked
+
+00:12:18.360 --> 00:12:23.710
+about support vector machines.
+
+00:12:23.720 --> 00:12:25.870
+So, let's start by getting an intuitive
+
+00:12:25.880 --> 00:12:28.550
+sense of the main ideas behind support
+
+00:12:28.560 --> 00:12:31.030
+vector machines.
+
+00:12:31.040 --> 00:12:33.870
+We start by adding a Y axis so we can
+
+00:12:33.880 --> 00:12:36.310
+draw a graph.
+
+00:12:36.320 --> 00:12:38.750
+The X axis coordinates in this graph
+
+00:12:38.760 --> 00:12:40.790
+will be the dosages that we have already
+
+00:12:40.800 --> 00:12:42.870
+observed.
+
+00:12:42.880 --> 00:12:45.070
+And the Y axis coordinates will be the
+
+00:12:45.080 --> 00:12:48.230
+square of the dosages.
+
+00:12:48.240 --> 00:12:51.510
+So, for this observation with dosage
+
+00:12:51.520 --> 00:12:55.390
+equals 0.5 on the X axis,
+
+00:12:55.400 --> 00:12:58.910
+the Y axis value equals dosage squared,
+
+00:12:58.920 --> 00:13:02.030
+which equals 0.5 squared, which equals
+
+00:13:02.040 --> 00:13:05.190
+0.25.
+
+00:13:05.200 --> 00:13:07.910
+Now, we use dosage squared for this Y
+
+00:13:07.920 --> 00:13:10.030
+axis coordinate.
+
+00:13:10.040 --> 00:13:12.510
+And then we use dosage squared for the Y
+
+00:13:12.520 --> 00:13:14.430
+axis coordinates for the remaining
+
+00:13:14.440 --> 00:13:17.350
+observations.
+
+00:13:17.360 --> 00:13:20.670
+Since each observation has X and Y axis
+
+00:13:20.680 --> 00:13:22.710
+coordinates, the data are now
+
+00:13:22.720 --> 00:13:25.150
+two-dimensional.
+
+00:13:25.160 --> 00:13:26.390
+And now that the data are
+
+00:13:26.400 --> 00:13:28.790
+two-dimensional, we can draw a support
+
+00:13:28.800 --> 00:13:30.950
+vector classifier that separates the
+
+00:13:30.960 --> 00:13:33.190
+people who were cured from the people
+
+00:13:33.200 --> 00:13:36.110
+who were not cured.
+
+00:13:36.120 --> 00:13:38.550
+And the support vector classifier can be
+
+00:13:38.560 --> 00:13:42.230
+used to classify new observations.
+
+00:13:42.240 --> 00:13:45.030
+For example, if a new observation had
+
+00:13:45.040 --> 00:13:46.870
+this dosage,
+
+00:13:46.880 --> 00:13:49.070
+then we could calculate the Y-axis
+
+00:13:49.080 --> 00:13:51.910
+coordinate by squaring the dosage,
+
+00:13:51.920 --> 00:13:54.710
+and classify the observation as not
+
+00:13:54.720 --> 00:13:57.430
+cured because it ended up on this side
+
+00:13:57.440 --> 00:14:00.430
+of the support vector classifier.
+
+00:14:00.440 --> 00:14:02.750
+On the other hand, if we got a new
+
+00:14:02.760 --> 00:14:05.270
+observation with this dosage,
+
+00:14:05.280 --> 00:14:07.510
+then we would square the dosage and get
+
+00:14:07.520 --> 00:14:09.830
+a Y-axis coordinate,
+
+00:14:09.840 --> 00:14:13.030
+and classify this observation as cured
+
+00:14:13.040 --> 00:14:15.070
+because it falls on the other side of
+
+00:14:15.080 --> 00:14:17.870
+the support vector classifier.
+
+00:14:17.880 --> 00:14:20.790
+Bam!
+
+00:14:20.800 --> 00:14:23.390
+The main ideas behind support vector
+
+00:14:23.400 --> 00:14:25.710
+machines are
+
+00:14:25.720 --> 00:14:28.870
+one, start with data in a relatively low
+
+00:14:28.880 --> 00:14:30.550
+dimension.
+
+00:14:30.560 --> 00:14:33.590
+Psst. In this example, the data started
+
+00:14:33.600 --> 00:14:35.950
+in one dimension.
+
+00:14:35.960 --> 00:14:38.590
+Two, move the data into a higher
+
+00:14:38.600 --> 00:14:40.150
+dimension.
+
+00:14:40.160 --> 00:14:43.030
+Psst. In this example, we moved the data
+
+00:14:43.040 --> 00:14:46.630
+from one dimension to two dimensions.
+
+00:14:46.640 --> 00:14:49.829
+Three, find a support vector classifier
+
+00:14:49.839 --> 00:14:51.750
+that separates the higher dimensional
+
+00:14:51.760 --> 00:14:54.829
+data into two groups.
+
+00:14:54.839 --> 00:14:57.430
+That's all there is to it.
+
+00:14:57.440 --> 00:15:00.350
+Double bam!
+
+00:15:00.360 --> 00:15:01.950
+Going back to the original
+
+00:15:01.960 --> 00:15:04.350
+one-dimensional data,
+
+00:15:04.360 --> 00:15:06.710
+you may be wondering why we decided to
+
+00:15:06.720 --> 00:15:09.510
+create Y-axis coordinates with dosage
+
+00:15:09.520 --> 00:15:11.470
+squared.
+
+00:15:11.480 --> 00:15:14.870
+Why not dosage cubed?
+
+00:15:14.880 --> 00:15:17.990
+Or pi divided by 4 * the square root of
+
+00:15:18.000 --> 00:15:19.990
+dosage?
+
+00:15:20.000 --> 00:15:22.790
+In other words, how do we decide how to
+
+00:15:22.800 --> 00:15:25.590
+transform the data?
+
+00:15:25.600 --> 00:15:27.430
+In order to make the mathematics
+
+00:15:27.440 --> 00:15:30.190
+possible, support vector machines use
+
+00:15:30.200 --> 00:15:32.390
+something called kernel functions to
+
+00:15:32.400 --> 00:15:34.710
+systematically find support vector
+
+00:15:34.720 --> 00:15:38.150
+classifiers in higher dimensions.
+
+00:15:38.160 --> 00:15:40.190
+So, let me show you how a kernel
+
+00:15:40.200 --> 00:15:42.750
+function systematically finds support
+
+00:15:42.760 --> 00:15:46.470
+vector classifiers in higher dimensions.
+
+00:15:46.480 --> 00:15:49.350
+For this example, I use the polynomial
+
+00:15:49.360 --> 00:15:52.430
+kernel, which has a parameter D, which
+
+00:15:52.440 --> 00:15:56.430
+stands for the degree of the polynomial.
+
+00:15:56.440 --> 00:15:59.750
+When D equals 1, the polynomial kernel
+
+00:15:59.760 --> 00:16:02.110
+computes the relationships between each
+
+00:16:02.120 --> 00:16:07.510
+pair of observations in one dimension.
+
+00:16:07.520 --> 00:16:09.950
+And these relationships are used to find
+
+00:16:09.960 --> 00:16:13.430
+a support vector classifier.
+
+00:16:13.440 --> 00:16:16.110
+When D equals 2, we get a second
+
+00:16:16.120 --> 00:16:19.750
+dimension based on dosages squared.
+
+00:16:19.760 --> 00:16:22.070
+And the polynomial kernel computes the
+
+00:16:22.080 --> 00:16:24.230
+two-dimensional relationships between
+
+00:16:24.240 --> 00:16:27.750
+each pair of observations.
+
+00:16:27.760 --> 00:16:30.110
+And those relationships are used to find
+
+00:16:30.120 --> 00:16:33.510
+a support vector classifier.
+
+00:16:33.520 --> 00:16:36.710
+And when we set D equal 3, then we would
+
+00:16:36.720 --> 00:16:38.950
+get a third dimension based on dosages
+
+00:16:38.960 --> 00:16:40.990
+cubed.
+
+00:16:41.000 --> 00:16:43.190
+And the polynomial kernel computes the
+
+00:16:43.200 --> 00:16:45.390
+three-dimensional relationships between
+
+00:16:45.400 --> 00:16:48.630
+each pair of observations.
+
+00:16:48.640 --> 00:16:50.910
+And those relationships are used to find
+
+00:16:50.920 --> 00:16:54.590
+a support vector classifier.
+
+00:16:54.600 --> 00:16:57.829
+And when D equals 4 or more, then we get
+
+00:16:57.839 --> 00:17:00.070
+even more dimensions to find a support
+
+00:17:00.080 --> 00:17:02.990
+vector classifier.
+
+00:17:03.000 --> 00:17:05.710
+In summary, the polynomial kernel
+
+00:17:05.720 --> 00:17:08.189
+systematically increases dimensions by
+
+00:17:08.199 --> 00:17:12.350
+setting D, the degree of the polynomial.
+
+00:17:12.360 --> 00:17:14.670
+And the relationships between each pair
+
+00:17:14.680 --> 00:17:16.710
+of observations are used to find a
+
+00:17:16.720 --> 00:17:20.230
+support vector classifier.
+
+00:17:20.240 --> 00:17:22.910
+Last but not least, we can find a good
+
+00:17:22.920 --> 00:17:27.030
+value for D with cross-validation.
+
+00:17:27.040 --> 00:17:30.270
+Double bam!
+
+00:17:30.280 --> 00:17:33.030
+Another very commonly used kernel is the
+
+00:17:33.040 --> 00:17:36.190
+radio kernel, also known as the radial
+
+00:17:36.200 --> 00:17:39.230
+basis function kernel.
+
+00:17:39.240 --> 00:17:41.910
+Unfortunately, the radio kernel finds
+
+00:17:41.920 --> 00:17:44.350
+support vector classifiers in infinite
+
+00:17:44.360 --> 00:17:46.510
+dimensions. So, I can't give you an
+
+00:17:46.520 --> 00:17:50.310
+example of what it does exactly.
+
+00:17:50.320 --> 00:17:52.550
+However, when using it on a new
+
+00:17:52.560 --> 00:17:55.550
+observation like this,
+
+00:17:55.560 --> 00:17:58.110
+the radio kernel behaves like a weighted
+
+00:17:58.120 --> 00:18:00.550
+nearest neighbor model.
+
+00:18:00.560 --> 00:18:02.590
+In other words, the closest
+
+00:18:02.600 --> 00:18:06.230
+observations, aka the nearest neighbors,
+
+00:18:06.240 --> 00:18:07.950
+have a lot of influence on how we
+
+00:18:07.960 --> 00:18:11.070
+classify the new observation.
+
+00:18:11.080 --> 00:18:13.710
+And observations that are further away
+
+00:18:13.720 --> 00:18:15.750
+have relatively little influence on the
+
+00:18:15.760 --> 00:18:18.270
+classification.
+
+00:18:18.280 --> 00:18:20.750
+So, since these observations are the
+
+00:18:20.760 --> 00:18:24.110
+closest to the new observation,
+
+00:18:24.120 --> 00:18:25.790
+the radio kernel uses their
+
+00:18:25.800 --> 00:18:29.910
+classification for the new observation.
+
+00:18:29.920 --> 00:18:32.790
+Bam!
+
+00:18:32.800 --> 00:18:35.430
+Now, for the sake of completeness, let
+
+00:18:35.440 --> 00:18:37.390
+me mention one last detail about
+
+00:18:37.400 --> 00:18:39.510
+kernels.
+
+00:18:39.520 --> 00:18:41.750
+Although the examples I've given show
+
+00:18:41.760 --> 00:18:43.710
+the data being transformed from a
+
+00:18:43.720 --> 00:18:46.390
+relatively low dimension
+
+00:18:46.400 --> 00:18:49.990
+to a relatively high dimension,
+
+00:18:50.000 --> 00:18:52.070
+kernel functions only calculate the
+
+00:18:52.080 --> 00:18:54.350
+relationships between every pair of
+
+00:18:54.360 --> 00:18:56.510
+points as if they are in the higher
+
+00:18:56.520 --> 00:18:59.030
+dimensions. They don't actually do the
+
+00:18:59.040 --> 00:19:02.750
+transformation.
+
+00:19:02.760 --> 00:19:04.470
+This trick, calculating the
+
+00:19:04.480 --> 00:19:06.590
+high-dimensional relationships without
+
+00:19:06.600 --> 00:19:08.510
+actually transforming the data to the
+
+00:19:08.520 --> 00:19:10.910
+higher dimension, is called the kernel
+
+00:19:10.920 --> 00:19:13.070
+trick.
+
+00:19:13.080 --> 00:19:15.150
+The kernel trick reduces the amount of
+
+00:19:15.160 --> 00:19:17.550
+computation required for support vector
+
+00:19:17.560 --> 00:19:19.830
+machines by avoiding the math that
+
+00:19:19.840 --> 00:19:22.270
+transforms the data from low to high
+
+00:19:22.280 --> 00:19:24.150
+dimensions.
+
+00:19:24.160 --> 00:19:25.470
+And it makes calculating the
+
+00:19:25.480 --> 00:19:27.630
+relationships in the infinite dimensions
+
+00:19:27.640 --> 00:19:31.750
+used by the radial kernel possible.
+
+00:19:31.760 --> 00:19:33.870
+However, regardless of how the
+
+00:19:33.880 --> 00:19:35.910
+relationships are calculated, the
+
+00:19:35.920 --> 00:19:38.990
+concepts are the same.
+
+00:19:39.000 --> 00:19:41.390
+When we have two categories, but no
+
+00:19:41.400 --> 00:19:43.910
+obvious linear classifier that separates
+
+00:19:43.920 --> 00:19:46.430
+them in a nice way,
+
+00:19:46.440 --> 00:19:48.910
+support vector machines work by moving
+
+00:19:48.920 --> 00:19:50.790
+the data into a relatively high
+
+00:19:50.800 --> 00:19:53.190
+dimensional space
+
+00:19:53.200 --> 00:19:54.750
+and finding a relatively high
+
+00:19:54.760 --> 00:19:57.230
+dimensional support vector classifier
+
+00:19:57.240 --> 00:19:59.230
+that can effectively classify the
+
+00:19:59.240 --> 00:20:01.470
+observations.
+
+00:20:01.480 --> 00:20:04.670
+Triple bam!
+
+00:20:04.680 --> 00:20:07.390
+Hooray! We made it to the end of another
+
+00:20:07.400 --> 00:20:09.950
+exciting StatQuest. If you like this
+
+00:20:09.960 --> 00:20:11.990
+StatQuest and want to see more, please
+
+00:20:12.000 --> 00:20:14.270
+subscribe. And if you want to support
+
+00:20:14.280 --> 00:20:16.710
+StatQuest, consider contributing to my
+
+00:20:16.720 --> 00:20:19.430
+Patreon campaign, becoming a channel
+
+00:20:19.440 --> 00:20:21.950
+member, buying one or two of my original
+
+00:20:21.960 --> 00:20:24.350
+songs, or a t-shirt, or a hoodie, or
+
+00:20:24.360 --> 00:20:26.350
+just donate. The links are in the
+
+00:20:26.360 --> 00:20:29.550
+description below. All right. Until next
+
+00:20:29.560 --> 00:20:33.320
+time, quest on.
+

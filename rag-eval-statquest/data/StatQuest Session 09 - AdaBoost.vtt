@@ -1,0 +1,1496 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.270
+Machine
+
+00:00:02.280 --> 00:00:06.350
+learning sounds so complicated,
+
+00:00:06.360 --> 00:00:09.310
+but it's not so complicated.
+
+00:00:09.320 --> 00:00:11.950
+StatQuest.
+
+00:00:11.960 --> 00:00:14.390
+Hello, I'm Josh Starmer, and welcome to
+
+00:00:14.400 --> 00:00:16.550
+StatQuest. Today, we're going to cover
+
+00:00:16.560 --> 00:00:18.310
+AdaBoost, and it's going to be clearly
+
+00:00:18.320 --> 00:00:20.350
+explained.
+
+00:00:20.360 --> 00:00:22.670
+Note, this StatQuest shows how to
+
+00:00:22.680 --> 00:00:25.710
+combine AdaBoost with decision trees,
+
+00:00:25.720 --> 00:00:27.550
+because that is the most common way to
+
+00:00:27.560 --> 00:00:30.630
+use AdaBoost. So, if you're not familiar
+
+00:00:30.640 --> 00:00:32.470
+with decision trees, check out the
+
+00:00:32.480 --> 00:00:33.870
+quest.
+
+00:00:33.880 --> 00:00:36.390
+We will also mention random forests, so
+
+00:00:36.400 --> 00:00:38.390
+if you don't know about them, check out
+
+00:00:38.400 --> 00:00:39.910
+the quest.
+
+00:00:39.920 --> 00:00:42.270
+We'll start by using decision trees and
+
+00:00:42.280 --> 00:00:44.550
+random forests to explain the three
+
+00:00:44.560 --> 00:00:47.310
+concepts behind AdaBoost.
+
+00:00:47.320 --> 00:00:48.750
+Then, we'll get into the nitty-gritty
+
+00:00:48.760 --> 00:00:51.150
+details of how AdaBoost creates a forest
+
+00:00:51.160 --> 00:00:53.470
+of trees from scratch, and how it's used
+
+00:00:53.480 --> 00:00:56.230
+to make classifications.
+
+00:00:56.240 --> 00:00:58.670
+So, let's start by using decision trees
+
+00:00:58.680 --> 00:01:01.030
+and random forests to explain the three
+
+00:01:01.040 --> 00:01:04.950
+main concepts behind AdaBoost.
+
+00:01:04.960 --> 00:01:07.430
+In a random forest, each time you make a
+
+00:01:07.440 --> 00:01:11.630
+tree, you make a full-sized tree.
+
+00:01:11.640 --> 00:01:14.110
+Some trees might be bigger than others,
+
+00:01:14.120 --> 00:01:16.110
+but there's no predetermined maximum
+
+00:01:16.120 --> 00:01:17.830
+depth.
+
+00:01:17.840 --> 00:01:20.710
+In contrast, in a forest of trees made
+
+00:01:20.720 --> 00:01:22.910
+with AdaBoost, the trees are usually
+
+00:01:22.920 --> 00:01:26.870
+just a node and two leaves.
+
+00:01:26.880 --> 00:01:29.470
+Oh, no, it's the dreaded terminology
+
+00:01:29.480 --> 00:01:31.150
+alert.
+
+00:01:31.160 --> 00:01:33.870
+A tree with just one node and two leaves
+
+00:01:33.880 --> 00:01:36.230
+is called a stump.
+
+00:01:36.240 --> 00:01:38.630
+So, this is really a forest of stumps
+
+00:01:38.640 --> 00:01:40.910
+rather than trees.
+
+00:01:40.920 --> 00:01:43.270
+Stumps are not great at making accurate
+
+00:01:43.280 --> 00:01:45.910
+classifications.
+
+00:01:45.920 --> 00:01:48.550
+For example, if we were using this data
+
+00:01:48.560 --> 00:01:50.150
+to determine if someone had heart
+
+00:01:50.160 --> 00:01:52.030
+disease or not,
+
+00:01:52.040 --> 00:01:54.110
+then a full-sized decision tree would
+
+00:01:54.120 --> 00:01:56.070
+take advantage of all four variables
+
+00:01:56.080 --> 00:01:58.470
+that we measured, chest pain, blood
+
+00:01:58.480 --> 00:02:00.470
+circulation, blocked arteries, and
+
+00:02:00.480 --> 00:02:03.390
+weight, to make a decision.
+
+00:02:03.400 --> 00:02:05.750
+But, a stump can only use one variable
+
+00:02:05.760 --> 00:02:07.670
+to make a decision.
+
+00:02:07.680 --> 00:02:10.710
+Thus, stumps are technically weak
+
+00:02:10.720 --> 00:02:12.430
+learners.
+
+00:02:12.440 --> 00:02:14.910
+However, that's the way AdaBoost likes
+
+00:02:14.920 --> 00:02:16.949
+it, and it's one of the reasons why they
+
+00:02:16.959 --> 00:02:19.949
+are so commonly combined.
+
+00:02:19.959 --> 00:02:22.830
+Now, back to the random forest.
+
+00:02:22.840 --> 00:02:25.510
+In a random forest, each tree has an
+
+00:02:25.520 --> 00:02:29.190
+equal vote on the final classification.
+
+00:02:29.200 --> 00:02:31.670
+This tree's vote is worth just as much
+
+00:02:31.680 --> 00:02:34.070
+as this tree's vote, or this tree's
+
+00:02:34.080 --> 00:02:35.830
+vote.
+
+00:02:35.840 --> 00:02:38.630
+In contrast, in a forest of stumps made
+
+00:02:38.640 --> 00:02:41.390
+with AdaBoost, some stumps get more say
+
+00:02:41.400 --> 00:02:44.630
+in the final classification than others.
+
+00:02:44.640 --> 00:02:47.630
+In this illustration, the larger stumps
+
+00:02:47.640 --> 00:02:50.070
+get more say in the final classification
+
+00:02:50.080 --> 00:02:53.230
+than the smaller stumps.
+
+00:02:53.240 --> 00:02:55.990
+Lastly, in a random forest, each
+
+00:02:56.000 --> 00:02:58.310
+decision tree is made independently of
+
+00:02:58.320 --> 00:03:00.190
+the others.
+
+00:03:00.200 --> 00:03:02.310
+In other words, it doesn't matter if
+
+00:03:02.320 --> 00:03:06.550
+this tree was made first, or this one.
+
+00:03:06.560 --> 00:03:09.430
+In contrast, in a forest of stumps made
+
+00:03:09.440 --> 00:03:13.310
+with AdaBoost, order is important.
+
+00:03:13.320 --> 00:03:16.229
+The errors that the first stump makes
+
+00:03:16.239 --> 00:03:19.830
+influence how the second stump is made.
+
+00:03:19.840 --> 00:03:21.630
+And the errors that the second stump
+
+00:03:21.640 --> 00:03:22.870
+makes
+
+00:03:22.880 --> 00:03:26.150
+influence how the third stump is made.
+
+00:03:26.160 --> 00:03:30.509
+Etcetera, etcetera, etcetera.
+
+00:03:30.519 --> 00:03:33.150
+To review, the three ideas behind
+
+00:03:33.160 --> 00:03:35.070
+AdaBoost are:
+
+00:03:35.080 --> 00:03:37.870
+One, AdaBoost combines a lot of weak
+
+00:03:37.880 --> 00:03:40.350
+learners to make classifications.
+
+00:03:40.360 --> 00:03:42.350
+The weak learners are almost always
+
+00:03:42.360 --> 00:03:44.070
+stumps.
+
+00:03:44.080 --> 00:03:46.830
+Two, some stumps get more say in the
+
+00:03:46.840 --> 00:03:49.790
+classification than others.
+
+00:03:49.800 --> 00:03:52.750
+Three, each stump is made by taking the
+
+00:03:52.760 --> 00:03:56.510
+previous stumps mistakes into account.
+
+00:03:56.520 --> 00:03:59.310
+Bam!
+
+00:03:59.320 --> 00:04:01.070
+Now, let's dive into the nitty-gritty
+
+00:04:01.080 --> 00:04:03.110
+detail of how to create a forest of
+
+00:04:03.120 --> 00:04:06.110
+stumps using AdaBoost.
+
+00:04:06.120 --> 00:04:09.230
+First, we'll start with some data.
+
+00:04:09.240 --> 00:04:11.030
+We create a forest of stumps with
+
+00:04:11.040 --> 00:04:13.430
+AdaBoost to predict if a patient has
+
+00:04:13.440 --> 00:04:15.590
+heart disease.
+
+00:04:15.600 --> 00:04:17.509
+We will make these predictions based on
+
+00:04:17.519 --> 00:04:19.430
+a patient's chest pain and blocked
+
+00:04:19.440 --> 00:04:22.950
+artery status and their weight.
+
+00:04:22.960 --> 00:04:24.710
+The first thing we do is give each
+
+00:04:24.720 --> 00:04:26.470
+sample a weight that indicates how
+
+00:04:26.480 --> 00:04:28.070
+important it is to be correctly
+
+00:04:28.080 --> 00:04:30.470
+classified.
+
+00:04:30.480 --> 00:04:32.830
+Note, the sample weight is different
+
+00:04:32.840 --> 00:04:34.710
+from the patient weight, and I'll do the
+
+00:04:34.720 --> 00:04:36.710
+best I can to be clear about which of
+
+00:04:36.720 --> 00:04:39.909
+the two I'm talking about.
+
+00:04:39.919 --> 00:04:42.470
+At the start, all samples get the same
+
+00:04:42.480 --> 00:04:43.909
+weight.
+
+00:04:43.919 --> 00:04:45.990
+One divided by the total number of
+
+00:04:46.000 --> 00:04:47.590
+samples.
+
+00:04:47.600 --> 00:04:50.030
+In this case, that's one divided by
+
+00:04:50.040 --> 00:04:51.550
+eight.
+
+00:04:51.560 --> 00:04:53.710
+And that makes the samples all equally
+
+00:04:53.720 --> 00:04:56.110
+important.
+
+00:04:56.120 --> 00:04:58.950
+However, after we make the first stump,
+
+00:04:58.960 --> 00:05:00.750
+these weights will change in order to
+
+00:05:00.760 --> 00:05:03.670
+guide how the next stump is created.
+
+00:05:03.680 --> 00:05:05.909
+In other words, we'll talk more about
+
+00:05:05.919 --> 00:05:08.909
+the sample weights later.
+
+00:05:08.919 --> 00:05:10.670
+Now, we need to make the first stump in
+
+00:05:10.680 --> 00:05:12.830
+the forest.
+
+00:05:12.840 --> 00:05:15.070
+This is done by finding the variable
+
+00:05:15.080 --> 00:05:17.550
+chest pain, blocked arteries, or patient
+
+00:05:17.560 --> 00:05:19.470
+weight that does the best job
+
+00:05:19.480 --> 00:05:22.350
+classifying the samples.
+
+00:05:22.360 --> 00:05:24.550
+Note, because all of the weights are the
+
+00:05:24.560 --> 00:05:28.830
+same, we can ignore them right now.
+
+00:05:28.840 --> 00:05:31.230
+We start by seeing how well chest pain
+
+00:05:31.240 --> 00:05:34.070
+classifies the samples.
+
+00:05:34.080 --> 00:05:36.590
+Of the five samples with chest pain,
+
+00:05:36.600 --> 00:05:38.470
+three were correctly classified as
+
+00:05:38.480 --> 00:05:40.590
+having heart disease.
+
+00:05:40.600 --> 00:05:44.310
+And two were incorrectly classified.
+
+00:05:44.320 --> 00:05:47.350
+Of the three samples without chest pain,
+
+00:05:47.360 --> 00:05:49.790
+two were correctly classified as not
+
+00:05:49.800 --> 00:05:52.030
+having heart disease.
+
+00:05:52.040 --> 00:05:56.350
+And one was incorrectly classified.
+
+00:05:56.360 --> 00:05:58.350
+Now we do the same thing for blocked
+
+00:05:58.360 --> 00:06:00.070
+arteries.
+
+00:06:00.080 --> 00:06:03.030
+And for patient weight.
+
+00:06:03.040 --> 00:06:05.750
+Note, we used the techniques described
+
+00:06:05.760 --> 00:06:07.950
+in the decision tree StatQuest to
+
+00:06:07.960 --> 00:06:11.230
+determine that 176 was the best weight
+
+00:06:11.240 --> 00:06:14.510
+to separate the patients.
+
+00:06:14.520 --> 00:06:16.950
+Now we calculate the Gini index for the
+
+00:06:16.960 --> 00:06:19.550
+three stumps.
+
+00:06:19.560 --> 00:06:22.230
+The Gini index for patient weight is the
+
+00:06:22.240 --> 00:06:23.750
+lowest.
+
+00:06:23.760 --> 00:06:25.630
+So this will be the first stump in the
+
+00:06:25.640 --> 00:06:27.909
+forest.
+
+00:06:27.919 --> 00:06:29.990
+Now we need to determine how much say
+
+00:06:30.000 --> 00:06:31.510
+this stump will have in the final
+
+00:06:31.520 --> 00:06:33.750
+classification.
+
+00:06:33.760 --> 00:06:36.150
+Remember, some stumps get more say in
+
+00:06:36.160 --> 00:06:40.270
+the final classification than others.
+
+00:06:40.280 --> 00:06:42.750
+We determine how much say a stump has in
+
+00:06:42.760 --> 00:06:45.110
+the final classification based on how
+
+00:06:45.120 --> 00:06:48.590
+well it classified the samples.
+
+00:06:48.600 --> 00:06:52.030
+This stump made one error.
+
+00:06:52.040 --> 00:06:55.990
+This patient, who weighs less than 176,
+
+00:06:56.000 --> 00:06:58.550
+has heart disease, but the stump says
+
+00:06:58.560 --> 00:07:01.190
+they do not.
+
+00:07:01.200 --> 00:07:03.670
+The total error for a stump is the sum
+
+00:07:03.680 --> 00:07:05.590
+of the weights associated with the
+
+00:07:05.600 --> 00:07:09.510
+incorrectly classified samples.
+
+00:07:09.520 --> 00:07:12.470
+Thus, in this case, the total error is
+
+00:07:12.480 --> 00:07:14.790
+1/8.
+
+00:07:14.800 --> 00:07:17.390
+Note, because all of the sample weights
+
+00:07:17.400 --> 00:07:20.070
+add up to one, total error will always
+
+00:07:20.080 --> 00:07:23.430
+be between zero for a perfect stump and
+
+00:07:23.440 --> 00:07:27.030
+one for a horrible stump.
+
+00:07:27.040 --> 00:07:29.270
+We use the total error to determine the
+
+00:07:29.280 --> 00:07:31.270
+amount of say this stump has in the
+
+00:07:31.280 --> 00:07:33.790
+final classification with the following
+
+00:07:33.800 --> 00:07:35.390
+formula.
+
+00:07:35.400 --> 00:07:39.390
+Amount of say equals 1/2 times the log
+
+00:07:39.400 --> 00:07:42.030
+of 1 minus the total error divided by
+
+00:07:42.040 --> 00:07:44.710
+the total error.
+
+00:07:44.720 --> 00:07:47.110
+We can draw a graph of the amount of say
+
+00:07:47.120 --> 00:07:48.750
+by plugging in a bunch of numbers
+
+00:07:48.760 --> 00:07:52.430
+between zero and one for total error.
+
+00:07:52.440 --> 00:07:54.990
+The blue line tells us the amount of say
+
+00:07:55.000 --> 00:07:57.790
+for total error values between zero and
+
+00:07:57.800 --> 00:07:59.590
+one.
+
+00:07:59.600 --> 00:08:01.870
+When a stump does a good job and the
+
+00:08:01.880 --> 00:08:04.350
+total error is small,
+
+00:08:04.360 --> 00:08:06.510
+then the amount of say is a relatively
+
+00:08:06.520 --> 00:08:10.070
+large positive value.
+
+00:08:10.080 --> 00:08:11.510
+When a stump is no better at
+
+00:08:11.520 --> 00:08:13.950
+classification than flipping a coin,
+
+00:08:13.960 --> 00:08:16.070
+i.e. half the stumps are correctly
+
+00:08:16.080 --> 00:08:18.230
+classified and half are incorrectly
+
+00:08:18.240 --> 00:08:20.909
+classified, and the total error equals
+
+00:08:20.919 --> 00:08:22.870
+0.5,
+
+00:08:22.880 --> 00:08:26.710
+then the amount of say will be zero.
+
+00:08:26.720 --> 00:08:29.070
+And when a stump does a terrible job and
+
+00:08:29.080 --> 00:08:31.950
+the total error is close to one,
+
+00:08:31.960 --> 00:08:33.790
+in other words, if the stump
+
+00:08:33.800 --> 00:08:35.750
+consistently gives you the opposite
+
+00:08:35.760 --> 00:08:37.589
+classification,
+
+00:08:37.599 --> 00:08:39.990
+then the amount of say will be a large
+
+00:08:40.000 --> 00:08:42.230
+negative value.
+
+00:08:42.240 --> 00:08:44.790
+So if a stump votes for heart disease,
+
+00:08:44.800 --> 00:08:47.030
+the negative amount of say will turn
+
+00:08:47.040 --> 00:08:51.110
+that vote into not heart disease.
+
+00:08:51.120 --> 00:08:54.670
+Note, if total error is one or zero,
+
+00:08:54.680 --> 00:08:57.750
+then this equation will freak out.
+
+00:08:57.760 --> 00:09:00.910
+In practice, a small error term is added
+
+00:09:00.920 --> 00:09:03.710
+to prevent this from happening.
+
+00:09:03.720 --> 00:09:07.070
+With patient weight greater than 176,
+
+00:09:07.080 --> 00:09:10.110
+the total error is 1/8, so we just plug
+
+00:09:10.120 --> 00:09:14.230
+and chug.
+
+00:09:14.240 --> 00:09:16.510
+And the amount of say that this stump
+
+00:09:16.520 --> 00:09:21.270
+has on the final classification is 0.97.
+
+00:09:21.280 --> 00:09:23.710
+Bam!
+
+00:09:23.720 --> 00:09:25.470
+Now that we've worked out how much say
+
+00:09:25.480 --> 00:09:27.430
+this stump gets when classifying a
+
+00:09:27.440 --> 00:09:28.829
+sample,
+
+00:09:28.839 --> 00:09:30.829
+let's work out how much say the chest
+
+00:09:30.839 --> 00:09:33.030
+pain stump would have if it had been the
+
+00:09:33.040 --> 00:09:34.950
+best stump.
+
+00:09:34.960 --> 00:09:37.510
+Note, we don't need to do this, but I
+
+00:09:37.520 --> 00:09:39.350
+think it helps illustrate the concepts
+
+00:09:39.360 --> 00:09:41.830
+we've covered so far.
+
+00:09:41.840 --> 00:09:45.350
+Chest pain made three errors.
+
+00:09:45.360 --> 00:09:47.630
+And the total error equals the sum of
+
+00:09:47.640 --> 00:09:49.390
+the weights for the incorrectly
+
+00:09:49.400 --> 00:09:54.070
+classified samples.
+
+00:09:54.080 --> 00:09:56.630
+So, the total error for chest pain is
+
+00:09:56.640 --> 00:09:58.910
+3/8.
+
+00:09:58.920 --> 00:10:00.710
+We can get a sense of what the amount of
+
+00:10:00.720 --> 00:10:03.190
+say will be by looking at the graph when
+
+00:10:03.200 --> 00:10:06.310
+total error equals 3/8.
+
+00:10:06.320 --> 00:10:08.470
+So, we are expecting the amount of say
+
+00:10:08.480 --> 00:10:12.670
+to be between 0 and 0.5.
+
+00:10:12.680 --> 00:10:15.110
+Now, we plug 3/8 into the formula for
+
+00:10:15.120 --> 00:10:21.630
+the amount of say and do the math.
+
+00:10:21.640 --> 00:10:23.390
+And the amount of say that the chest
+
+00:10:23.400 --> 00:10:25.430
+pain stump would have had on the final
+
+00:10:25.440 --> 00:10:29.790
+classification is 0.42.
+
+00:10:29.800 --> 00:10:31.990
+I'll leave the blocked artery stump as
+
+00:10:32.000 --> 00:10:34.910
+an exercise for the viewer.
+
+00:10:34.920 --> 00:10:36.910
+Now, we know how the sample weights for
+
+00:10:36.920 --> 00:10:39.510
+the incorrectly classified samples are
+
+00:10:39.520 --> 00:10:41.990
+used to determine the amount of say each
+
+00:10:42.000 --> 00:10:43.910
+stump gets.
+
+00:10:43.920 --> 00:10:46.190
+Bam!
+
+00:10:46.200 --> 00:10:48.030
+Now, we need to learn how to modify the
+
+00:10:48.040 --> 00:10:50.310
+weights so that the next stump will take
+
+00:10:50.320 --> 00:10:52.630
+the errors that the current stump made
+
+00:10:52.640 --> 00:10:55.270
+into account.
+
+00:10:55.280 --> 00:10:57.150
+Let's go back to the first stump that we
+
+00:10:57.160 --> 00:10:59.310
+made.
+
+00:10:59.320 --> 00:11:01.590
+When we created this stump, all of the
+
+00:11:01.600 --> 00:11:04.430
+sample weights were the same.
+
+00:11:04.440 --> 00:11:06.630
+And that meant we did not emphasize the
+
+00:11:06.640 --> 00:11:09.030
+importance of correctly classifying any
+
+00:11:09.040 --> 00:11:11.590
+particular sample.
+
+00:11:11.600 --> 00:11:13.470
+But, since this stump incorrectly
+
+00:11:13.480 --> 00:11:16.350
+classified this sample,
+
+00:11:16.360 --> 00:11:18.430
+we will emphasize the need for the next
+
+00:11:18.440 --> 00:11:20.710
+stump to correctly classify it by
+
+00:11:20.720 --> 00:11:23.910
+increasing its sample weight
+
+00:11:23.920 --> 00:11:26.270
+and decreasing all of the other sample
+
+00:11:26.280 --> 00:11:28.670
+weights.
+
+00:11:28.680 --> 00:11:31.030
+Let's start by increasing the sample
+
+00:11:31.040 --> 00:11:33.390
+weight for the incorrectly classified
+
+00:11:33.400 --> 00:11:35.710
+sample.
+
+00:11:35.720 --> 00:11:37.670
+This is the formula we will use to
+
+00:11:37.680 --> 00:11:39.710
+increase the sample weight for the
+
+00:11:39.720 --> 00:11:43.430
+sample that was incorrectly classified.
+
+00:11:43.440 --> 00:11:45.230
+We plug in the sample weight from the
+
+00:11:45.240 --> 00:11:47.070
+last stump
+
+00:11:47.080 --> 00:11:51.790
+and we scale 1/8 with this term.
+
+00:11:51.800 --> 00:11:53.510
+To get a better understanding of how
+
+00:11:53.520 --> 00:11:55.750
+this part will scale the previous sample
+
+00:11:55.760 --> 00:11:58.990
+weight, let's draw a graph.
+
+00:11:59.000 --> 00:12:01.750
+The blue line is equal to e raised to
+
+00:12:01.760 --> 00:12:04.110
+the amount of say.
+
+00:12:04.120 --> 00:12:06.110
+When the amount of say is relatively
+
+00:12:06.120 --> 00:12:09.350
+large, i.e. the last stump did a good
+
+00:12:09.360 --> 00:12:11.950
+job classifying samples,
+
+00:12:11.960 --> 00:12:13.830
+then we will scale the previous sample
+
+00:12:13.840 --> 00:12:16.870
+weight with a large number.
+
+00:12:16.880 --> 00:12:19.070
+This means that the new sample weight
+
+00:12:19.080 --> 00:12:22.950
+will be much larger than the old one.
+
+00:12:22.960 --> 00:12:25.030
+And when the amount of say is relatively
+
+00:12:25.040 --> 00:12:28.190
+low, i.e. the last stump did not do a
+
+00:12:28.200 --> 00:12:31.390
+very good job classifying samples,
+
+00:12:31.400 --> 00:12:33.270
+then the previous sample weight is
+
+00:12:33.280 --> 00:12:36.829
+scaled by a relatively small number.
+
+00:12:36.839 --> 00:12:39.310
+This means that the new sample weight
+
+00:12:39.320 --> 00:12:41.390
+will only be a little larger than the
+
+00:12:41.400 --> 00:12:43.630
+old one.
+
+00:12:43.640 --> 00:12:46.350
+In this example, the amount of say was
+
+00:12:46.360 --> 00:12:48.950
+0.97.
+
+00:12:48.960 --> 00:12:52.390
+And e raised to the 0.97
+
+00:12:52.400 --> 00:12:55.710
+equals 2.64.
+
+00:12:55.720 --> 00:12:58.070
+That means the new sample weight is
+
+00:12:58.080 --> 00:12:59.870
+0.33,
+
+00:12:59.880 --> 00:13:02.550
+which is more than the old one.
+
+00:13:02.560 --> 00:13:04.430
+Bam.
+
+00:13:04.440 --> 00:13:06.350
+Now we need to decrease the sample
+
+00:13:06.360 --> 00:13:08.230
+weights for all of the correctly
+
+00:13:08.240 --> 00:13:10.990
+classified samples.
+
+00:13:11.000 --> 00:13:12.950
+This is the formula we will use to
+
+00:13:12.960 --> 00:13:16.190
+decrease the sample weights.
+
+00:13:16.200 --> 00:13:18.510
+The big difference is the negative sign
+
+00:13:18.520 --> 00:13:22.070
+in front of amount of say.
+
+00:13:22.080 --> 00:13:24.590
+Just like before, we plug in the sample
+
+00:13:24.600 --> 00:13:26.390
+weight.
+
+00:13:26.400 --> 00:13:28.430
+And just like before, we can get a
+
+00:13:28.440 --> 00:13:30.190
+better understanding of how this will
+
+00:13:30.200 --> 00:13:32.350
+scale the sample weight by plotting a
+
+00:13:32.360 --> 00:13:34.790
+graph using different values for amount
+
+00:13:34.800 --> 00:13:36.950
+of say.
+
+00:13:36.960 --> 00:13:39.950
+The blue line represents e raised to the
+
+00:13:39.960 --> 00:13:42.870
+negative amount of say.
+
+00:13:42.880 --> 00:13:44.870
+When the amount of say is relatively
+
+00:13:44.880 --> 00:13:46.470
+large,
+
+00:13:46.480 --> 00:13:48.510
+then we scale the sample weight by a
+
+00:13:48.520 --> 00:13:51.070
+value close to zero.
+
+00:13:51.080 --> 00:13:53.150
+This will make the new sample weight
+
+00:13:53.160 --> 00:13:55.750
+very small.
+
+00:13:55.760 --> 00:13:57.830
+If the amount of say for the last stump
+
+00:13:57.840 --> 00:14:00.150
+is relatively small,
+
+00:14:00.160 --> 00:14:02.350
+then we will scale the sample weight by
+
+00:14:02.360 --> 00:14:05.030
+a value close to one.
+
+00:14:05.040 --> 00:14:07.390
+This means that the new sample weight
+
+00:14:07.400 --> 00:14:09.150
+will be just a little smaller than the
+
+00:14:09.160 --> 00:14:11.350
+old one.
+
+00:14:11.360 --> 00:14:13.750
+In this example, the amount of say was
+
+00:14:13.760 --> 00:14:16.310
+0.97.
+
+00:14:16.320 --> 00:14:19.990
+And e raised to the negative 0.97
+
+00:14:20.000 --> 00:14:23.430
+equals 0.38.
+
+00:14:23.440 --> 00:14:26.710
+The new sample weight is 0.05,
+
+00:14:26.720 --> 00:14:29.870
+which is less than the old one.
+
+00:14:29.880 --> 00:14:31.829
+Bam.
+
+00:14:31.839 --> 00:14:33.670
+We will keep track of the new sample
+
+00:14:33.680 --> 00:14:36.750
+weights in this column.
+
+00:14:36.760 --> 00:14:39.030
+We plug in 0.33
+
+00:14:39.040 --> 00:14:40.870
+for the sample that was incorrectly
+
+00:14:40.880 --> 00:14:42.950
+classified.
+
+00:14:42.960 --> 00:14:47.790
+All of the other samples get 0.05.
+
+00:14:47.800 --> 00:14:49.870
+Now we need to normalize the new sample
+
+00:14:49.880 --> 00:14:53.350
+weights so that they will add up to one.
+
+00:14:53.360 --> 00:14:55.550
+Right now, if you add up the new sample
+
+00:14:55.560 --> 00:14:59.630
+weights, you get 0.68.
+
+00:14:59.640 --> 00:15:02.190
+So we divide each new sample weight by
+
+00:15:02.200 --> 00:15:03.829
+0.68
+
+00:15:03.839 --> 00:15:07.110
+to get the normalized values.
+
+00:15:07.120 --> 00:15:09.110
+Now, when we add up the new sample
+
+00:15:09.120 --> 00:15:11.710
+weights, we get one, plus or minus a
+
+00:15:11.720 --> 00:15:14.390
+little rounding error.
+
+00:15:14.400 --> 00:15:16.230
+Now we just transfer the normalized
+
+00:15:16.240 --> 00:15:18.110
+sample weights to the sample weights
+
+00:15:18.120 --> 00:15:20.670
+column, since those are what we will use
+
+00:15:20.680 --> 00:15:23.390
+for the next stump.
+
+00:15:23.400 --> 00:15:25.350
+Now we can use the modified sample
+
+00:15:25.360 --> 00:15:27.750
+weights to make the second stump in the
+
+00:15:27.760 --> 00:15:29.510
+forest.
+
+00:15:29.520 --> 00:15:32.550
+Bam!
+
+00:15:32.560 --> 00:15:34.670
+In theory, we could use the sample
+
+00:15:34.680 --> 00:15:36.590
+weights to calculate weighted Gini
+
+00:15:36.600 --> 00:15:39.110
+indexes to determine which variable
+
+00:15:39.120 --> 00:15:41.910
+should split the next stump.
+
+00:15:41.920 --> 00:15:43.950
+The weighted Gini index would put more
+
+00:15:43.960 --> 00:15:46.110
+emphasis on correctly classifying this
+
+00:15:46.120 --> 00:15:47.190
+sample,
+
+00:15:47.200 --> 00:15:48.990
+the one that was misclassified by the
+
+00:15:49.000 --> 00:15:51.510
+last stump, since this sample has the
+
+00:15:51.520 --> 00:15:54.830
+largest sample weight.
+
+00:15:54.840 --> 00:15:57.110
+Alternatively, instead of using a
+
+00:15:57.120 --> 00:15:59.790
+weighted Gini index, we can make a new
+
+00:15:59.800 --> 00:16:01.830
+collection of samples that contains
+
+00:16:01.840 --> 00:16:03.990
+duplicate copies of the samples with the
+
+00:16:04.000 --> 00:16:06.990
+largest sample weights.
+
+00:16:07.000 --> 00:16:09.830
+So we start by making a new, but empty,
+
+00:16:09.840 --> 00:16:12.350
+data set that is the same size as the
+
+00:16:12.360 --> 00:16:14.310
+original.
+
+00:16:14.320 --> 00:16:16.670
+Then we pick a random number between 0
+
+00:16:16.680 --> 00:16:18.750
+and 1.
+
+00:16:18.760 --> 00:16:21.030
+And we see where that number falls when
+
+00:16:21.040 --> 00:16:22.790
+we use the sample weights like a
+
+00:16:22.800 --> 00:16:25.190
+distribution.
+
+00:16:25.200 --> 00:16:28.710
+If the number is between 0 and 0.7,
+
+00:16:28.720 --> 00:16:30.710
+then we would put this sample into the
+
+00:16:30.720 --> 00:16:33.750
+new collection of samples.
+
+00:16:33.760 --> 00:16:36.590
+And if the number is between 0.7 and
+
+00:16:36.600 --> 00:16:38.590
+0.14,
+
+00:16:38.600 --> 00:16:40.470
+then we would put this sample into the
+
+00:16:40.480 --> 00:16:42.950
+new collection of samples.
+
+00:16:42.960 --> 00:16:45.870
+And if the number is between 0.14
+
+00:16:45.880 --> 00:16:47.829
+and 0.21,
+
+00:16:47.839 --> 00:16:49.710
+then we would put this sample into the
+
+00:16:49.720 --> 00:16:52.230
+new collection of samples.
+
+00:16:52.240 --> 00:16:55.070
+And if the number is between 0.21
+
+00:16:55.080 --> 00:16:57.150
+and 0.70,
+
+00:16:57.160 --> 00:16:59.070
+then we would put this sample into the
+
+00:16:59.080 --> 00:17:01.670
+new collection of samples.
+
+00:17:01.680 --> 00:17:04.990
+Et cetera, et cetera.
+
+00:17:05.000 --> 00:17:07.390
+For example, imagine the first number I
+
+00:17:07.400 --> 00:17:10.590
+picked was 0.72.
+
+00:17:10.600 --> 00:17:12.870
+Then I would put this sample into my new
+
+00:17:12.880 --> 00:17:15.870
+collection of samples.
+
+00:17:15.880 --> 00:17:17.910
+Then I pick another random number and
+
+00:17:17.920 --> 00:17:20.910
+get 0.42.
+
+00:17:20.920 --> 00:17:23.150
+And I would put this sample into my new
+
+00:17:23.160 --> 00:17:25.790
+collection of samples.
+
+00:17:25.800 --> 00:17:28.870
+Then I pick 0.83.
+
+00:17:28.880 --> 00:17:30.870
+And I would put this sample into my new
+
+00:17:30.880 --> 00:17:33.470
+collection of samples.
+
+00:17:33.480 --> 00:17:36.470
+Then I pick 0.51.
+
+00:17:36.480 --> 00:17:38.510
+And I would put this sample into my new
+
+00:17:38.520 --> 00:17:41.510
+collection of samples.
+
+00:17:41.520 --> 00:17:44.190
+Note, this is the second time we have
+
+00:17:44.200 --> 00:17:46.470
+added this particular sample to the new
+
+00:17:46.480 --> 00:17:49.110
+collection of samples.
+
+00:17:49.120 --> 00:17:51.630
+We then continue to pick random numbers
+
+00:17:51.640 --> 00:17:53.950
+and add samples to the new collection
+
+00:17:53.960 --> 00:17:55.790
+until the new collection is the same
+
+00:17:55.800 --> 00:17:58.710
+size as the original.
+
+00:17:58.720 --> 00:18:01.190
+Ultimately, this sample was added to the
+
+00:18:01.200 --> 00:18:03.790
+new collection of samples four times,
+
+00:18:03.800 --> 00:18:07.910
+reflecting its larger sample weight.
+
+00:18:07.920 --> 00:18:11.270
+Now we get rid of the original samples
+
+00:18:11.280 --> 00:18:15.110
+and use the new collection of samples.
+
+00:18:15.120 --> 00:18:17.870
+Lastly, we give all of the samples equal
+
+00:18:17.880 --> 00:18:21.670
+sample weights, just like before.
+
+00:18:21.680 --> 00:18:23.790
+However, that doesn't mean the next
+
+00:18:23.800 --> 00:18:25.710
+stump will not emphasize the need to
+
+00:18:25.720 --> 00:18:29.110
+correctly classify these samples.
+
+00:18:29.120 --> 00:18:31.630
+Because these samples are all the same,
+
+00:18:31.640 --> 00:18:33.430
+they will be treated as a block,
+
+00:18:33.440 --> 00:18:35.470
+creating a large penalty for being
+
+00:18:35.480 --> 00:18:38.510
+misclassified.
+
+00:18:38.520 --> 00:18:40.670
+Now we go back to the beginning and try
+
+00:18:40.680 --> 00:18:42.910
+to find the stump that does the best job
+
+00:18:42.920 --> 00:18:44.670
+classifying the new collection of
+
+00:18:44.680 --> 00:18:46.750
+samples.
+
+00:18:46.760 --> 00:18:48.670
+So that is how the errors that the first
+
+00:18:48.680 --> 00:18:50.190
+tree makes
+
+00:18:50.200 --> 00:18:53.870
+influence how the second tree is made.
+
+00:18:53.880 --> 00:18:55.790
+And how the errors that the second tree
+
+00:18:55.800 --> 00:18:56.950
+makes
+
+00:18:56.960 --> 00:19:00.150
+influence how the third tree is made.
+
+00:19:00.160 --> 00:19:03.630
+Etcetera, etcetera, etcetera.
+
+00:19:03.640 --> 00:19:06.750
+Double bam!
+
+00:19:06.760 --> 00:19:08.710
+Now we need to talk about how a forest
+
+00:19:08.720 --> 00:19:11.470
+of stumps created by AdaBoost makes
+
+00:19:11.480 --> 00:19:13.630
+classifications.
+
+00:19:13.640 --> 00:19:15.750
+Imagine that these stumps classified a
+
+00:19:15.760 --> 00:19:19.230
+patient as has heart disease.
+
+00:19:19.240 --> 00:19:21.350
+And these stumps classified the patient
+
+00:19:21.360 --> 00:19:25.470
+as does not have heart disease.
+
+00:19:25.480 --> 00:19:27.710
+These are the amounts of say for these
+
+00:19:27.720 --> 00:19:29.230
+stumps.
+
+00:19:29.240 --> 00:19:31.270
+And these are the amounts of say for
+
+00:19:31.280 --> 00:19:33.750
+these stumps.
+
+00:19:33.760 --> 00:19:35.750
+Now we add up the amounts of say for
+
+00:19:35.760 --> 00:19:37.830
+this group of stumps
+
+00:19:37.840 --> 00:19:40.950
+and for this group of stumps.
+
+00:19:40.960 --> 00:19:43.910
+Ultimately, the patient is classified as
+
+00:19:43.920 --> 00:19:46.350
+has heart disease because this is the
+
+00:19:46.360 --> 00:19:48.870
+larger sum.
+
+00:19:48.880 --> 00:19:51.910
+Triple bam!
+
+00:19:51.920 --> 00:19:54.510
+To review, the three ideas behind
+
+00:19:54.520 --> 00:19:56.550
+AdaBoost are
+
+00:19:56.560 --> 00:19:59.350
+one, AdaBoost combines a lot of weak
+
+00:19:59.360 --> 00:20:01.830
+learners to make classifications.
+
+00:20:01.840 --> 00:20:04.150
+The weak learners are almost always
+
+00:20:04.160 --> 00:20:05.710
+stumps.
+
+00:20:05.720 --> 00:20:08.310
+Two, some stumps get more say in the
+
+00:20:08.320 --> 00:20:11.270
+classification than others.
+
+00:20:11.280 --> 00:20:14.390
+And three, each stump is made by taking
+
+00:20:14.400 --> 00:20:16.590
+the previous stumps mistakes into
+
+00:20:16.600 --> 00:20:18.430
+account.
+
+00:20:18.440 --> 00:20:20.590
+If we have a weighted gini function,
+
+00:20:20.600 --> 00:20:22.830
+then we use it with the sample weights.
+
+00:20:22.840 --> 00:20:25.070
+Otherwise, we use the sample weights to
+
+00:20:25.080 --> 00:20:27.510
+make a new data set that reflects those
+
+00:20:27.520 --> 00:20:29.670
+weights.
+
+00:20:29.680 --> 00:20:31.830
+Hooray! We've made it to the end of
+
+00:20:31.840 --> 00:20:34.390
+another exciting StatQuest. If you like
+
+00:20:34.400 --> 00:20:36.310
+this StatQuest and want to see more,
+
+00:20:36.320 --> 00:20:37.910
+please subscribe.
+
+00:20:37.920 --> 00:20:39.790
+And if you want to support StatQuest,
+
+00:20:39.800 --> 00:20:41.950
+well, consider buying a t-shirt or a
+
+00:20:41.960 --> 00:20:43.750
+hoodie, or buying one or two of my
+
+00:20:43.760 --> 00:20:46.630
+original songs. The links to do this are
+
+00:20:46.640 --> 00:20:48.630
+in the description below.
+
+00:20:48.640 --> 00:20:53.680
+All right, until next time, quest on.
+

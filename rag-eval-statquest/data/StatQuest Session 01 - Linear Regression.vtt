@@ -1,0 +1,1943 @@
+WEBVTT
+
+00:00:00.800 --> 00:00:03.670
+Sailing on a boat headed towards
+
+00:00:03.680 --> 00:00:06.270
+StatQuest.
+
+00:00:06.280 --> 00:00:08.630
+Join me on this boat, let's go to
+
+00:00:08.640 --> 00:00:10.590
+StatQuest.
+
+00:00:10.600 --> 00:00:13.630
+It's super cool.
+
+00:00:13.640 --> 00:00:16.550
+Hello, and welcome to StatQuest.
+
+00:00:16.560 --> 00:00:18.070
+StatQuest is brought to you by the
+
+00:00:18.080 --> 00:00:19.670
+friendly folks in the genetics
+
+00:00:19.680 --> 00:00:21.710
+department at the University of North
+
+00:00:21.720 --> 00:00:23.870
+Carolina at Chapel Hill.
+
+00:00:23.880 --> 00:00:25.270
+Today, we're going to be talking about
+
+00:00:25.280 --> 00:00:28.750
+linear regression, aka general linear
+
+00:00:28.760 --> 00:00:31.590
+models part one. There's a lot of parts
+
+00:00:31.600 --> 00:00:33.710
+to linear models, but it's a really cool
+
+00:00:33.720 --> 00:00:36.110
+and powerful concept. So, let's get
+
+00:00:36.120 --> 00:00:38.190
+right down to it.
+
+00:00:38.200 --> 00:00:40.550
+I promise you, I have lots and lots of
+
+00:00:40.560 --> 00:00:42.110
+slides that talk about all the
+
+00:00:42.120 --> 00:00:43.990
+nitty-gritty details behind linear
+
+00:00:44.000 --> 00:00:46.870
+regression. But first, let's talk about
+
+00:00:46.880 --> 00:00:49.350
+the main ideas behind it.
+
+00:00:49.360 --> 00:00:50.710
+The first thing you do in linear
+
+00:00:50.720 --> 00:00:53.670
+regression is use least squares to fit a
+
+00:00:53.680 --> 00:00:55.830
+line to the data.
+
+00:00:55.840 --> 00:00:58.070
+The second thing you do is calculate R
+
+00:00:58.080 --> 00:00:59.830
+squared.
+
+00:00:59.840 --> 00:01:02.510
+Lastly, calculate a P value for R
+
+00:01:02.520 --> 00:01:04.229
+squared.
+
+00:01:04.239 --> 00:01:05.830
+There are lots of other little things
+
+00:01:05.840 --> 00:01:08.110
+that come up along the way, but these
+
+00:01:08.120 --> 00:01:10.470
+are the three most important concepts
+
+00:01:10.480 --> 00:01:13.110
+behind linear regression.
+
+00:01:13.120 --> 00:01:16.590
+In the StatQuest fitting a line to data,
+
+00:01:16.600 --> 00:01:18.230
+we talked about
+
+00:01:18.240 --> 00:01:21.750
+fitting a line to data. Duh.
+
+00:01:21.760 --> 00:01:23.990
+But let's do a quick review.
+
+00:01:24.000 --> 00:01:25.350
+I'm going to introduce some new
+
+00:01:25.360 --> 00:01:27.390
+terminology in this part of the video,
+
+00:01:27.400 --> 00:01:29.310
+so it's worth watching even if you've
+
+00:01:29.320 --> 00:01:32.070
+already seen the earlier StatQuest.
+
+00:01:32.080 --> 00:01:34.590
+That said, if you need more details,
+
+00:01:34.600 --> 00:01:37.270
+check that StatQuest out.
+
+00:01:37.280 --> 00:01:39.110
+For this review, we're going to be
+
+00:01:39.120 --> 00:01:41.350
+talking about a data set where we took a
+
+00:01:41.360 --> 00:01:43.270
+bunch of mice, and we measured their
+
+00:01:43.280 --> 00:01:46.550
+size, and we measured their weight.
+
+00:01:46.560 --> 00:01:50.030
+Our goal is to use mouse weight as a way
+
+00:01:50.040 --> 00:01:53.910
+to predict mouse size.
+
+00:01:53.920 --> 00:01:57.710
+First, draw a a through the data.
+
+00:01:57.720 --> 00:01:59.830
+Second, measure the distance from the
+
+00:01:59.840 --> 00:02:02.790
+line to the data. Square each distance,
+
+00:02:02.800 --> 00:02:04.990
+and then add them up.
+
+00:02:05.000 --> 00:02:07.030
+Terminology alert.
+
+00:02:07.040 --> 00:02:08.910
+The distance from the line to the data
+
+00:02:08.920 --> 00:02:12.270
+point is called a residual.
+
+00:02:12.280 --> 00:02:16.310
+Third, rotate the line a little bit.
+
+00:02:16.320 --> 00:02:18.190
+With the new line, measure the
+
+00:02:18.200 --> 00:02:21.590
+residuals, square them, and then sum up
+
+00:02:21.600 --> 00:02:23.830
+the squares.
+
+00:02:23.840 --> 00:02:27.270
+Now, rotate the line a little bit more.
+
+00:02:27.280 --> 00:02:30.150
+Sum up the squared residuals, etc.,
+
+00:02:30.160 --> 00:02:33.310
+etc., etc. We rotate, and then sum up
+
+00:02:33.320 --> 00:02:35.949
+the squared residuals. Rotate, then sum
+
+00:02:35.959 --> 00:02:37.630
+up the squared residuals. Just keep
+
+00:02:37.640 --> 00:02:39.430
+doing that.
+
+00:02:39.440 --> 00:02:42.030
+After a bunch of rotations, you can plot
+
+00:02:42.040 --> 00:02:43.990
+the sum of squared residuals and
+
+00:02:44.000 --> 00:02:46.390
+corresponding rotation.
+
+00:02:46.400 --> 00:02:48.630
+So, in this graph, we have the sum of
+
+00:02:48.640 --> 00:02:51.670
+squared residuals on the Y axis, and the
+
+00:02:51.680 --> 00:02:55.230
+different rotations on the X axis.
+
+00:02:55.240 --> 00:02:58.070
+Lastly, you find the rotation that has
+
+00:02:58.080 --> 00:03:00.790
+the least sum of squares.
+
+00:03:00.800 --> 00:03:03.270
+More details about how this is actually
+
+00:03:03.280 --> 00:03:05.710
+done in practice are provided in the
+
+00:03:05.720 --> 00:03:09.030
+StatQuest on fitting a line to data.
+
+00:03:09.040 --> 00:03:12.350
+So, we see that this rotation is the one
+
+00:03:12.360 --> 00:03:15.070
+with the least squares. So, it will be
+
+00:03:15.080 --> 00:03:18.350
+the one to fit to the data.
+
+00:03:18.360 --> 00:03:20.990
+This is our least squares rotation
+
+00:03:21.000 --> 00:03:24.350
+superimposed on the original data.
+
+00:03:24.360 --> 00:03:25.590
+Bam!
+
+00:03:25.600 --> 00:03:27.750
+Now, we know why the method for fitting
+
+00:03:27.760 --> 00:03:31.630
+a line is called least squares.
+
+00:03:31.640 --> 00:03:33.870
+Now, we have fit a line to the data.
+
+00:03:33.880 --> 00:03:36.190
+This is awesome.
+
+00:03:36.200 --> 00:03:38.830
+Here's the equation for the line.
+
+00:03:38.840 --> 00:03:43.070
+Least squares estimated two parameters.
+
+00:03:43.080 --> 00:03:46.110
+A Y axis intercept
+
+00:03:46.120 --> 00:03:48.110
+and a slope.
+
+00:03:48.120 --> 00:03:51.030
+Since the slope is not zero, it means
+
+00:03:51.040 --> 00:03:53.430
+that knowing a mouse's weight will help
+
+00:03:53.440 --> 00:03:57.590
+us make a guess about that mouse's size.
+
+00:03:57.600 --> 00:04:00.470
+How good is that guess?
+
+00:04:00.480 --> 00:04:03.510
+Calculating R squared is the first step
+
+00:04:03.520 --> 00:04:05.990
+in determining how good that guess will
+
+00:04:06.000 --> 00:04:07.470
+be.
+
+00:04:07.480 --> 00:04:11.190
+The StatQuest R squared explained talks
+
+00:04:11.200 --> 00:04:12.310
+about
+
+00:04:12.320 --> 00:04:15.470
+you got it R squared.
+
+00:04:15.480 --> 00:04:17.310
+Let's do a quick review.
+
+00:04:17.320 --> 00:04:19.069
+I'm also going to introduce some
+
+00:04:19.079 --> 00:04:21.430
+additional terminology. So, it's worth
+
+00:04:21.440 --> 00:04:23.430
+watching this part of the video even if
+
+00:04:23.440 --> 00:04:25.470
+you've seen the original StatQuest on R
+
+00:04:25.480 --> 00:04:27.430
+squared.
+
+00:04:27.440 --> 00:04:31.510
+First, calculate the average mouse size.
+
+00:04:31.520 --> 00:04:34.110
+Okay, I've just shifted all the data
+
+00:04:34.120 --> 00:04:37.630
+points to the Y axis to emphasize that
+
+00:04:37.640 --> 00:04:40.390
+at this point we are only interested in
+
+00:04:40.400 --> 00:04:42.670
+mouse size.
+
+00:04:42.680 --> 00:04:45.310
+Here, I've drawn a black line to show
+
+00:04:45.320 --> 00:04:48.230
+the average mouse size.
+
+00:04:48.240 --> 00:04:50.310
+Bam!
+
+00:04:50.320 --> 00:04:53.950
+Now, sum the squared residuals.
+
+00:04:53.960 --> 00:04:56.750
+Just like in least squares, we measure
+
+00:04:56.760 --> 00:04:58.909
+the distance from the mean to the data
+
+00:04:58.919 --> 00:05:01.750
+point and square it and then add those
+
+00:05:01.760 --> 00:05:04.070
+squares together.
+
+00:05:04.080 --> 00:05:07.590
+Terminology alert. We'll call this SS
+
+00:05:07.600 --> 00:05:12.430
+mean for sum of squares around the mean.
+
+00:05:12.440 --> 00:05:13.550
+Note,
+
+00:05:13.560 --> 00:05:15.870
+the sum of squares around the mean
+
+00:05:15.880 --> 00:05:20.270
+equals the data minus the mean squared.
+
+00:05:20.280 --> 00:05:22.830
+The variation around the mean equals the
+
+00:05:22.840 --> 00:05:25.590
+data minus the mean squared divided by
+
+00:05:25.600 --> 00:05:27.350
+n.
+
+00:05:27.360 --> 00:05:30.670
+N is the sample size. In this case, n
+
+00:05:30.680 --> 00:05:32.590
+equals 9.
+
+00:05:32.600 --> 00:05:35.350
+The shorthand notation is the variation
+
+00:05:35.360 --> 00:05:37.510
+around the mean equals the sum of
+
+00:05:37.520 --> 00:05:40.670
+squares around the mean divided by n,
+
+00:05:40.680 --> 00:05:42.870
+the sample size.
+
+00:05:42.880 --> 00:05:45.550
+Another way to think about variance is
+
+00:05:45.560 --> 00:05:49.750
+as the average sum of squares per mouse.
+
+00:05:49.760 --> 00:05:52.390
+Now, go back to the original plot and
+
+00:05:52.400 --> 00:05:55.030
+sum up the squared residuals around our
+
+00:05:55.040 --> 00:05:57.790
+least squares fit.
+
+00:05:57.800 --> 00:06:01.110
+We'll call this SS fit for the sum of
+
+00:06:01.120 --> 00:06:04.790
+squares around the least squares fit.
+
+00:06:04.800 --> 00:06:06.750
+The sum of squares around the least
+
+00:06:06.760 --> 00:06:10.670
+squares fit is the sum of the distances
+
+00:06:10.680 --> 00:06:14.550
+between the data and the line squared.
+
+00:06:14.560 --> 00:06:16.990
+Just like with the mean, the variance
+
+00:06:17.000 --> 00:06:18.630
+around the fit
+
+00:06:18.640 --> 00:06:20.830
+is the distance between the line and the
+
+00:06:20.840 --> 00:06:23.990
+data squared divided by n, the sample
+
+00:06:24.000 --> 00:06:25.550
+size.
+
+00:06:25.560 --> 00:06:28.350
+The shorthand is the variation around
+
+00:06:28.360 --> 00:06:30.670
+the fitted line equals the sum of
+
+00:06:30.680 --> 00:06:33.150
+squares around the fitted line divided
+
+00:06:33.160 --> 00:06:36.070
+by n, the sample size.
+
+00:06:36.080 --> 00:06:38.590
+Again, we can think of the variation
+
+00:06:38.600 --> 00:06:41.110
+around the fit as the average of the sum
+
+00:06:41.120 --> 00:06:43.350
+of squares around the fit for each
+
+00:06:43.360 --> 00:06:44.990
+mouse.
+
+00:06:45.000 --> 00:06:47.710
+In general, the variance of something
+
+00:06:47.720 --> 00:06:50.550
+equals the sum of squares divided by the
+
+00:06:50.560 --> 00:06:52.830
+number of those things.
+
+00:06:52.840 --> 00:06:55.230
+In other words, it's an average of sum
+
+00:06:55.240 --> 00:06:56.750
+of squares.
+
+00:06:56.760 --> 00:06:58.590
+I mentioned this because it's going to
+
+00:06:58.600 --> 00:07:00.670
+come in handy in a little bit, so keep
+
+00:07:00.680 --> 00:07:02.990
+it in the back of your mind.
+
+00:07:03.000 --> 00:07:05.710
+Okay, let's step back a little bit.
+
+00:07:05.720 --> 00:07:10.190
+This is the raw variation in mouse size.
+
+00:07:10.200 --> 00:07:12.350
+And this is the variation around the
+
+00:07:12.360 --> 00:07:14.830
+least squares line.
+
+00:07:14.840 --> 00:07:16.830
+There is less variation around the line
+
+00:07:16.840 --> 00:07:19.550
+that we fit by least squares. That is to
+
+00:07:19.560 --> 00:07:22.870
+say, the residuals are smaller.
+
+00:07:22.880 --> 00:07:25.470
+As a result, we say that some of the
+
+00:07:25.480 --> 00:07:28.790
+variation in mouse size is explained by
+
+00:07:28.800 --> 00:07:31.950
+taking mouse weight into account.
+
+00:07:31.960 --> 00:07:35.150
+In other words, heavier mice are bigger,
+
+00:07:35.160 --> 00:07:37.710
+lighter mice are smaller.
+
+00:07:37.720 --> 00:07:40.150
+R squared tells us how much of the
+
+00:07:40.160 --> 00:07:43.710
+variation in mouse size can be explained
+
+00:07:43.720 --> 00:07:47.230
+by taking mouse weight into account.
+
+00:07:47.240 --> 00:07:50.030
+This is the formula for R squared. It's
+
+00:07:50.040 --> 00:07:52.550
+the variation around the mean minus the
+
+00:07:52.560 --> 00:07:55.350
+variation around the fit divided by the
+
+00:07:55.360 --> 00:07:58.310
+variation around the mean.
+
+00:07:58.320 --> 00:08:00.870
+Let's look at an example.
+
+00:08:00.880 --> 00:08:02.350
+In this example,
+
+00:08:02.360 --> 00:08:04.390
+the variation around the mean equals
+
+00:08:04.400 --> 00:08:06.230
+11.1
+
+00:08:06.240 --> 00:08:08.870
+and the variation around the fit equals
+
+00:08:08.880 --> 00:08:10.670
+4.4.
+
+00:08:10.680 --> 00:08:12.110
+So, we plug those numbers into the
+
+00:08:12.120 --> 00:08:13.590
+equation.
+
+00:08:13.600 --> 00:08:18.550
+The result is that R squared equals 0.6,
+
+00:08:18.560 --> 00:08:22.790
+which is the same thing as saying 60%.
+
+00:08:22.800 --> 00:08:26.070
+This means there is a 60% reduction in
+
+00:08:26.080 --> 00:08:28.110
+the variance when we take the mouse
+
+00:08:28.120 --> 00:08:30.630
+weight into account.
+
+00:08:30.640 --> 00:08:32.149
+Alternatively,
+
+00:08:32.159 --> 00:08:34.909
+we can say that mouse weight explains
+
+00:08:34.919 --> 00:08:39.310
+60% of the variation in mouse size.
+
+00:08:39.320 --> 00:08:41.550
+We can also use the sum of squares to
+
+00:08:41.560 --> 00:08:43.830
+make the same calculation.
+
+00:08:43.840 --> 00:08:45.710
+This is because when we're talking about
+
+00:08:45.720 --> 00:08:48.670
+variation, everything's divided by n,
+
+00:08:48.680 --> 00:08:50.870
+the sample size. Since everything's
+
+00:08:50.880 --> 00:08:53.670
+scaled by n, we can pull that term out
+
+00:08:53.680 --> 00:08:56.590
+and just use the raw sum of squares.
+
+00:08:56.600 --> 00:08:58.870
+In this case, the sum of squares around
+
+00:08:58.880 --> 00:09:01.470
+the mean equals 100
+
+00:09:01.480 --> 00:09:03.590
+and the sum of squares around the fit
+
+00:09:03.600 --> 00:09:05.270
+equals 40.
+
+00:09:05.280 --> 00:09:07.870
+Plugging those numbers into the equation
+
+00:09:07.880 --> 00:09:10.870
+gives us the same value we had before. R
+
+00:09:10.880 --> 00:09:16.030
+squared equals 0.6, which equals 60%.
+
+00:09:16.040 --> 00:09:19.070
+60% of the sums of squares of the mouse
+
+00:09:19.080 --> 00:09:23.190
+size can be explained by mouse weight.
+
+00:09:23.200 --> 00:09:25.390
+Here's another example. We're also going
+
+00:09:25.400 --> 00:09:27.310
+to go back to using variation in the
+
+00:09:27.320 --> 00:09:30.870
+calculation, since that's more common.
+
+00:09:30.880 --> 00:09:33.950
+In this case, knowing mouse weight means
+
+00:09:33.960 --> 00:09:36.190
+you can make a perfect prediction of
+
+00:09:36.200 --> 00:09:38.630
+mouse size.
+
+00:09:38.640 --> 00:09:40.630
+The variation around the mean is the
+
+00:09:40.640 --> 00:09:44.270
+same as it was before, 11.1.
+
+00:09:44.280 --> 00:09:46.150
+But now the variation around the fitted
+
+00:09:46.160 --> 00:09:48.590
+line equals zero because there are no
+
+00:09:48.600 --> 00:09:50.310
+residuals.
+
+00:09:50.320 --> 00:09:52.670
+Plugging the numbers in gives us an R
+
+00:09:52.680 --> 00:09:57.390
+squared equal to one, which equals 100%.
+
+00:09:57.400 --> 00:10:01.990
+In this case, mouse weight explains 100%
+
+00:10:02.000 --> 00:10:05.710
+of the variation in mouse size.
+
+00:10:05.720 --> 00:10:09.190
+Okay. One last example.
+
+00:10:09.200 --> 00:10:12.030
+In this case, knowing mouse weight
+
+00:10:12.040 --> 00:10:15.470
+doesn't help us predict mouse size.
+
+00:10:15.480 --> 00:10:17.510
+If someone tells us they have a heavy
+
+00:10:17.520 --> 00:10:19.710
+mouse, well, that mouse could either be
+
+00:10:19.720 --> 00:10:23.430
+small or large with equal probability.
+
+00:10:23.440 --> 00:10:25.870
+Similarly, if someone said they had a
+
+00:10:25.880 --> 00:10:28.710
+light mouse, well, again, we wouldn't
+
+00:10:28.720 --> 00:10:30.590
+know if it was a big mouse or a small
+
+00:10:30.600 --> 00:10:33.070
+mouse because each of those options is
+
+00:10:33.080 --> 00:10:35.070
+equally likely.
+
+00:10:35.080 --> 00:10:37.190
+Just like the other two examples, the
+
+00:10:37.200 --> 00:10:41.270
+variation around the mean is equal 11.1.
+
+00:10:41.280 --> 00:10:43.790
+However, in this case, the variation
+
+00:10:43.800 --> 00:10:47.829
+around the fit is also equal 11.1.
+
+00:10:47.839 --> 00:10:50.110
+So, we plug those numbers in and we get
+
+00:10:50.120 --> 00:10:52.670
+R squared equals zero, which equals zero
+
+00:10:52.680 --> 00:10:54.550
+percent.
+
+00:10:54.560 --> 00:10:56.790
+In this case, mouse weight doesn't
+
+00:10:56.800 --> 00:10:59.190
+explain any of the variation around the
+
+00:10:59.200 --> 00:11:00.910
+mean.
+
+00:11:00.920 --> 00:11:02.870
+When calculating the sum of squares
+
+00:11:02.880 --> 00:11:05.790
+around the mean, we collapse the points
+
+00:11:05.800 --> 00:11:08.590
+onto the Y axis just to emphasize the
+
+00:11:08.600 --> 00:11:12.470
+fact that we were ignoring mouse weight.
+
+00:11:12.480 --> 00:11:15.630
+But we could just as easily draw a line
+
+00:11:15.640 --> 00:11:18.829
+Y equals the mean mouse size
+
+00:11:18.839 --> 00:11:20.950
+and calculate the sum of squares around
+
+00:11:20.960 --> 00:11:24.150
+the mean around that.
+
+00:11:24.160 --> 00:11:27.430
+In this example, we applied R squared to
+
+00:11:27.440 --> 00:11:31.110
+a simple equation for a line Y equals
+
+00:11:31.120 --> 00:11:32.670
+0.1
+
+00:11:32.680 --> 00:11:34.750
++ 0.78
+
+00:11:34.760 --> 00:11:36.750
+* x.
+
+00:11:36.760 --> 00:11:40.230
+This gave us an r-squared of 60% meaning
+
+00:11:40.240 --> 00:11:43.710
+60% of the variation in mouse size could
+
+00:11:43.720 --> 00:11:46.670
+be explained by mouse weight.
+
+00:11:46.680 --> 00:11:49.350
+But the concept applies to any equation,
+
+00:11:49.360 --> 00:11:51.950
+no matter how complicated.
+
+00:11:51.960 --> 00:11:54.910
+First, you measure, square, and sum the
+
+00:11:54.920 --> 00:11:57.630
+distance from the data to the mean.
+
+00:11:57.640 --> 00:12:00.510
+Then measure, square, and sum the
+
+00:12:00.520 --> 00:12:02.070
+distance from the data to the
+
+00:12:02.080 --> 00:12:04.150
+complicated equation.
+
+00:12:04.160 --> 00:12:05.670
+Once you've got those two sums of
+
+00:12:05.680 --> 00:12:07.830
+squares, just plug them in and you've
+
+00:12:07.840 --> 00:12:10.310
+got r-squared.
+
+00:12:10.320 --> 00:12:11.830
+Let's look at a slightly more
+
+00:12:11.840 --> 00:12:14.390
+complicated example.
+
+00:12:14.400 --> 00:12:16.990
+Imagine we wanted to know if mouse
+
+00:12:17.000 --> 00:12:19.870
+weight and tail length did a good job
+
+00:12:19.880 --> 00:12:21.710
+predicting the length of the mouse's
+
+00:12:21.720 --> 00:12:23.230
+body.
+
+00:12:23.240 --> 00:12:26.510
+So we measure a bunch of mice.
+
+00:12:26.520 --> 00:12:28.430
+To plot this data, we need a
+
+00:12:28.440 --> 00:12:31.310
+three-dimensional graph.
+
+00:12:31.320 --> 00:12:33.990
+We want to know how well weight and tail
+
+00:12:34.000 --> 00:12:35.070
+length
+
+00:12:35.080 --> 00:12:37.390
+predict body length.
+
+00:12:37.400 --> 00:12:40.750
+The first mouse we measured had weight =
+
+00:12:40.760 --> 00:12:42.470
+2.1,
+
+00:12:42.480 --> 00:12:45.510
+tail length = 1.3,
+
+00:12:45.520 --> 00:12:49.310
+and body length = 2.5.
+
+00:12:49.320 --> 00:12:51.590
+So that's how we plot this data on this
+
+00:12:51.600 --> 00:12:53.870
+3D graph.
+
+00:12:53.880 --> 00:12:56.350
+Here's all the data in the graph.
+
+00:12:56.360 --> 00:12:58.470
+The larger circles are points that are
+
+00:12:58.480 --> 00:13:01.110
+closer to us and represent mice that
+
+00:13:01.120 --> 00:13:03.270
+have shorter tails.
+
+00:13:03.280 --> 00:13:05.430
+The smaller circles are points that are
+
+00:13:05.440 --> 00:13:08.190
+further from us and represent mice with
+
+00:13:08.200 --> 00:13:10.670
+longer tails.
+
+00:13:10.680 --> 00:13:13.470
+Now we do a least squares fit.
+
+00:13:13.480 --> 00:13:15.190
+Since we have the extra term in the
+
+00:13:15.200 --> 00:13:17.510
+equation representing an extra
+
+00:13:17.520 --> 00:13:20.630
+dimension, we fit a plane instead of a
+
+00:13:20.640 --> 00:13:22.350
+line.
+
+00:13:22.360 --> 00:13:25.670
+Here's the equation for the plane.
+
+00:13:25.680 --> 00:13:29.670
+The y value represents body length.
+
+00:13:29.680 --> 00:13:32.350
+Least squares estimates three different
+
+00:13:32.360 --> 00:13:34.230
+parameters.
+
+00:13:34.240 --> 00:13:37.150
+The first is the Y intercept. That's
+
+00:13:37.160 --> 00:13:39.030
+when both tail length and mouse weight
+
+00:13:39.040 --> 00:13:41.350
+are equal to zero.
+
+00:13:41.360 --> 00:13:44.590
+The second parameter, 0.7,
+
+00:13:44.600 --> 00:13:47.070
+is for the mouse weight.
+
+00:13:47.080 --> 00:13:48.670
+The last term,
+
+00:13:48.680 --> 00:13:50.270
+0.5,
+
+00:13:50.280 --> 00:13:52.910
+is for the tail length.
+
+00:13:52.920 --> 00:13:55.150
+If we know a mouse's weight and tail
+
+00:13:55.160 --> 00:13:58.070
+length, we can use the equation to guess
+
+00:13:58.080 --> 00:14:00.230
+the body length.
+
+00:14:00.240 --> 00:14:02.870
+For example, given the weight and tail
+
+00:14:02.880 --> 00:14:05.390
+length for this mouse,
+
+00:14:05.400 --> 00:14:09.030
+the equation predicts this body length.
+
+00:14:09.040 --> 00:14:11.310
+Just like before, we can measure the
+
+00:14:11.320 --> 00:14:13.950
+residuals, square them, and then add
+
+00:14:13.960 --> 00:14:17.430
+them up to calculate R squared.
+
+00:14:17.440 --> 00:14:18.510
+Now,
+
+00:14:18.520 --> 00:14:21.470
+if the tail length, or the Z axis, is
+
+00:14:21.480 --> 00:14:23.590
+useless and doesn't make the sum of
+
+00:14:23.600 --> 00:14:26.590
+squares fit any smaller, then least
+
+00:14:26.600 --> 00:14:28.870
+squares will ignore it by making that
+
+00:14:28.880 --> 00:14:31.230
+parameter equal to zero.
+
+00:14:31.240 --> 00:14:33.630
+In this case, plugging the tail length
+
+00:14:33.640 --> 00:14:36.110
+into the equation would have no effect
+
+00:14:36.120 --> 00:14:39.470
+on predicting the mouse size.
+
+00:14:39.480 --> 00:14:41.550
+This means equations with more
+
+00:14:41.560 --> 00:14:44.070
+parameters will never make the sum of
+
+00:14:44.080 --> 00:14:46.190
+squares around the fit worse than
+
+00:14:46.200 --> 00:14:49.270
+equations with fewer parameters.
+
+00:14:49.280 --> 00:14:50.829
+In other words,
+
+00:14:50.839 --> 00:14:52.390
+this equation,
+
+00:14:52.400 --> 00:14:55.870
+mouse size = 0.3
+
+00:14:55.880 --> 00:14:59.150
++ mouse weight + flip of a coin +
+
+00:14:59.160 --> 00:15:02.430
+favorite color + astrological sign +
+
+00:15:02.440 --> 00:15:05.390
+extra stuff, will never perform worse
+
+00:15:05.400 --> 00:15:06.990
+than this equation,
+
+00:15:07.000 --> 00:15:11.390
+mouse size = 0.3 + mouse weight.
+
+00:15:11.400 --> 00:15:13.750
+This is because least squares will cause
+
+00:15:13.760 --> 00:15:15.550
+any term that makes sum of squares
+
+00:15:15.560 --> 00:15:18.190
+around the fit worse to be multiplied by
+
+00:15:18.200 --> 00:15:23.110
+zero, and in a sense, no longer exist.
+
+00:15:23.120 --> 00:15:26.150
+Now, due to random chance, there is a
+
+00:15:26.160 --> 00:15:29.070
+small probability that the small mice in
+
+00:15:29.080 --> 00:15:31.630
+the data set might get heads more
+
+00:15:31.640 --> 00:15:34.630
+frequently than large mice.
+
+00:15:34.640 --> 00:15:36.510
+If this happened, then we'd get a
+
+00:15:36.520 --> 00:15:38.870
+smaller sum of squares fit
+
+00:15:38.880 --> 00:15:41.830
+and a better R squared.
+
+00:15:41.840 --> 00:15:45.350
+Womp womp. Here's the frowny face of sad
+
+00:15:45.360 --> 00:15:47.670
+times.
+
+00:15:47.680 --> 00:15:49.830
+The more silly parameters we add to the
+
+00:15:49.840 --> 00:15:52.910
+equation, the more opportunities we have
+
+00:15:52.920 --> 00:15:55.110
+for random events to reduce sum of
+
+00:15:55.120 --> 00:15:57.670
+squares fit and result in a better R
+
+00:15:57.680 --> 00:15:59.150
+squared.
+
+00:15:59.160 --> 00:16:01.870
+Thus, people report an adjusted R
+
+00:16:01.880 --> 00:16:05.430
+squared value that, in essence, scales R
+
+00:16:05.440 --> 00:16:09.030
+squared by the number of parameters.
+
+00:16:09.040 --> 00:16:11.310
+R squared is awesome,
+
+00:16:11.320 --> 00:16:13.750
+but it's missing something.
+
+00:16:13.760 --> 00:16:15.550
+What if all we had were two
+
+00:16:15.560 --> 00:16:17.550
+measurements?
+
+00:16:17.560 --> 00:16:19.470
+We'd calculate the sum of squares around
+
+00:16:19.480 --> 00:16:21.750
+the mean. In this case, that would be
+
+00:16:21.760 --> 00:16:23.590
+10.
+
+00:16:23.600 --> 00:16:25.390
+Then we'd calculate the sum of squares
+
+00:16:25.400 --> 00:16:26.829
+around the fit,
+
+00:16:26.839 --> 00:16:29.110
+which equals zero.
+
+00:16:29.120 --> 00:16:31.390
+The sum of squares around the fit equals
+
+00:16:31.400 --> 00:16:33.870
+zero because you can always draw a
+
+00:16:33.880 --> 00:16:37.910
+straight line to connect any two points.
+
+00:16:37.920 --> 00:16:40.310
+What this means is when we calculate R
+
+00:16:40.320 --> 00:16:42.790
+squared by plugging the numbers in,
+
+00:16:42.800 --> 00:16:45.910
+we're going to get 100%.
+
+00:16:45.920 --> 00:16:48.950
+100% is a great number. We've explained
+
+00:16:48.960 --> 00:16:51.590
+all the variation, but any two random
+
+00:16:51.600 --> 00:16:53.630
+points will give us the exact same
+
+00:16:53.640 --> 00:16:55.710
+thing. It doesn't actually mean
+
+00:16:55.720 --> 00:16:57.630
+anything.
+
+00:16:57.640 --> 00:16:59.990
+We need a way to determine if the R
+
+00:17:00.000 --> 00:17:02.150
+squared value is statistically
+
+00:17:02.160 --> 00:17:04.110
+significant.
+
+00:17:04.120 --> 00:17:06.309
+We need a P value.
+
+00:17:06.319 --> 00:17:09.069
+Before we calculate the P value, let's
+
+00:17:09.079 --> 00:17:11.350
+review the main concepts behind R
+
+00:17:11.360 --> 00:17:14.590
+squared one last time.
+
+00:17:14.600 --> 00:17:17.150
+The general equation for R squared is
+
+00:17:17.160 --> 00:17:19.470
+the variance around the mean minus the
+
+00:17:19.480 --> 00:17:22.230
+variance around the fit divided by the
+
+00:17:22.240 --> 00:17:24.429
+variance around the mean.
+
+00:17:24.439 --> 00:17:27.270
+In our example, this means the variation
+
+00:17:27.280 --> 00:17:30.270
+in the mouse size minus the variation
+
+00:17:30.280 --> 00:17:33.150
+after taking weight into account divided
+
+00:17:33.160 --> 00:17:36.390
+by the variation in mouse size.
+
+00:17:36.400 --> 00:17:38.950
+In other words, r squared equals the
+
+00:17:38.960 --> 00:17:41.750
+variation in mouse size explained by
+
+00:17:41.760 --> 00:17:44.510
+weight divided by the variation in mouse
+
+00:17:44.520 --> 00:17:48.670
+size without taking weight into account.
+
+00:17:48.680 --> 00:17:51.390
+In this particular example, r squared
+
+00:17:51.400 --> 00:17:53.470
+equals 0.6,
+
+00:17:53.480 --> 00:17:55.750
+meaning we saw a 60% reduction in
+
+00:17:55.760 --> 00:17:58.390
+variation once we took mouse weight into
+
+00:17:58.400 --> 00:18:00.190
+account.
+
+00:18:00.200 --> 00:18:01.550
+Now that we have a thorough
+
+00:18:01.560 --> 00:18:04.070
+understanding of the ideas behind r
+
+00:18:04.080 --> 00:18:07.190
+squared, let's talk about the main ideas
+
+00:18:07.200 --> 00:18:10.550
+behind calculating a p value for it.
+
+00:18:10.560 --> 00:18:13.590
+The p value for r squared comes from
+
+00:18:13.600 --> 00:18:16.190
+something called f.
+
+00:18:16.200 --> 00:18:19.070
+F is equal to the variation in mouse
+
+00:18:19.080 --> 00:18:22.830
+size explained by weight divided by the
+
+00:18:22.840 --> 00:18:25.950
+variation mouse size not explained by
+
+00:18:25.960 --> 00:18:27.670
+weight.
+
+00:18:27.680 --> 00:18:31.030
+The numerators for r squared and for f
+
+00:18:31.040 --> 00:18:33.190
+are the same.
+
+00:18:33.200 --> 00:18:35.510
+That is to say, it's the reduction in
+
+00:18:35.520 --> 00:18:37.830
+variance when we take the weight into
+
+00:18:37.840 --> 00:18:39.430
+account.
+
+00:18:39.440 --> 00:18:42.590
+The denominator is a little different.
+
+00:18:42.600 --> 00:18:45.590
+These dotted lines, the residuals,
+
+00:18:45.600 --> 00:18:47.990
+represent the variation that remains
+
+00:18:48.000 --> 00:18:50.150
+after fitting the line.
+
+00:18:50.160 --> 00:18:52.230
+This is the variation that is not
+
+00:18:52.240 --> 00:18:54.430
+explained by weight.
+
+00:18:54.440 --> 00:18:55.870
+So together,
+
+00:18:55.880 --> 00:18:57.870
+we have the variation in mouse size
+
+00:18:57.880 --> 00:19:00.910
+explained by weight divided by the
+
+00:19:00.920 --> 00:19:03.790
+variation in mouse size not explained by
+
+00:19:03.800 --> 00:19:05.470
+weight.
+
+00:19:05.480 --> 00:19:07.110
+Now let's look at the underlying
+
+00:19:07.120 --> 00:19:08.710
+mathematics.
+
+00:19:08.720 --> 00:19:11.230
+Just as a reminder, here's the equation
+
+00:19:11.240 --> 00:19:13.510
+for R squared.
+
+00:19:13.520 --> 00:19:16.190
+This is the general equation that will
+
+00:19:16.200 --> 00:19:19.590
+tell us if R squared is significant.
+
+00:19:19.600 --> 00:19:22.150
+The meat of these two equations are very
+
+00:19:22.160 --> 00:19:24.830
+similar and rely on the same sums of
+
+00:19:24.840 --> 00:19:26.670
+squares.
+
+00:19:26.680 --> 00:19:29.270
+Like we said before, the numerators are
+
+00:19:29.280 --> 00:19:30.790
+the same.
+
+00:19:30.800 --> 00:19:33.950
+In our mouse size and weight example,
+
+00:19:33.960 --> 00:19:36.030
+the numerator is the variation in mouse
+
+00:19:36.040 --> 00:19:39.110
+size explained by weight.
+
+00:19:39.120 --> 00:19:41.790
+And the sum of squares around the fit is
+
+00:19:41.800 --> 00:19:44.990
+just the residuals squared and summed up
+
+00:19:45.000 --> 00:19:46.990
+around the fitted line. So, that's the
+
+00:19:47.000 --> 00:19:50.990
+variation that the fit does not explain.
+
+00:19:51.000 --> 00:19:53.790
+These numbers over here are the degrees
+
+00:19:53.800 --> 00:19:55.670
+of freedom.
+
+00:19:55.680 --> 00:19:57.870
+They turn the sums of squares into
+
+00:19:57.880 --> 00:19:59.750
+variances.
+
+00:19:59.760 --> 00:20:02.190
+I'm going to dedicate a whole StatQuest
+
+00:20:02.200 --> 00:20:04.990
+to degrees of freedom, but for now,
+
+00:20:05.000 --> 00:20:06.750
+let's see if we can get an intuitive
+
+00:20:06.760 --> 00:20:10.070
+feel for what they're doing here.
+
+00:20:10.080 --> 00:20:13.150
+Let's start with these.
+
+00:20:13.160 --> 00:20:16.190
+P fit is the number of parameters in the
+
+00:20:16.200 --> 00:20:17.950
+fit line.
+
+00:20:17.960 --> 00:20:20.270
+Here's the equation for the fit line in
+
+00:20:20.280 --> 00:20:22.590
+a general format. We just have the Y
+
+00:20:22.600 --> 00:20:26.350
+intercept plus the slope times X.
+
+00:20:26.360 --> 00:20:29.390
+The Y intercept and the slope are two
+
+00:20:29.400 --> 00:20:31.710
+separate parameters.
+
+00:20:31.720 --> 00:20:35.190
+That means P fit equals two.
+
+00:20:35.200 --> 00:20:38.310
+P mean is the number of parameters in
+
+00:20:38.320 --> 00:20:40.150
+the mean line.
+
+00:20:40.160 --> 00:20:43.590
+In general, that equation is Y equals
+
+00:20:43.600 --> 00:20:46.550
+the Y intercept. That's what gives us a
+
+00:20:46.560 --> 00:20:48.550
+horizontal line that cuts through the
+
+00:20:48.560 --> 00:20:49.830
+data.
+
+00:20:49.840 --> 00:20:52.670
+In this case, the Y intercept is the
+
+00:20:52.680 --> 00:20:54.630
+mean value.
+
+00:20:54.640 --> 00:20:58.070
+This equation just has one parameter.
+
+00:20:58.080 --> 00:21:02.150
+Thus, P mean equals one.
+
+00:21:02.160 --> 00:21:04.670
+Both equations have a parameter for the
+
+00:21:04.680 --> 00:21:07.190
+Y intercept.
+
+00:21:07.200 --> 00:21:10.190
+However, the fit line has one extra
+
+00:21:10.200 --> 00:21:12.550
+parameter, the slope.
+
+00:21:12.560 --> 00:21:13.950
+In our example,
+
+00:21:13.960 --> 00:21:16.230
+this slope is the relationship between
+
+00:21:16.240 --> 00:21:19.110
+weight and size.
+
+00:21:19.120 --> 00:21:20.670
+In this example,
+
+00:21:20.680 --> 00:21:25.270
+P fit minus P mean equals two minus one,
+
+00:21:25.280 --> 00:21:27.310
+which equals one.
+
+00:21:27.320 --> 00:21:30.870
+The fit has one extra parameter, mouse
+
+00:21:30.880 --> 00:21:32.710
+weight.
+
+00:21:32.720 --> 00:21:33.710
+Thus,
+
+00:21:33.720 --> 00:21:36.630
+the numerator is the variance explained
+
+00:21:36.640 --> 00:21:38.670
+by the extra parameter.
+
+00:21:38.680 --> 00:21:40.910
+In our example, that's the variance in
+
+00:21:40.920 --> 00:21:44.910
+mouse size explained by mouse weight.
+
+00:21:44.920 --> 00:21:47.270
+If we had used mouse weight and tail
+
+00:21:47.280 --> 00:21:50.870
+length to explain variation in size,
+
+00:21:50.880 --> 00:21:52.910
+then we would end up with an equation
+
+00:21:52.920 --> 00:21:55.670
+that had three parameters and P fit
+
+00:21:55.680 --> 00:21:57.710
+would equal three.
+
+00:21:57.720 --> 00:22:01.270
+Thus, P fit minus P mean would equal
+
+00:22:01.280 --> 00:22:04.830
+three minus one, which equals two.
+
+00:22:04.840 --> 00:22:07.670
+Now, the fit has two extra parameters,
+
+00:22:07.680 --> 00:22:11.150
+mouse weight and tail length.
+
+00:22:11.160 --> 00:22:14.110
+With the fancier equation for the fit,
+
+00:22:14.120 --> 00:22:16.270
+the numerator is the variance in mouse
+
+00:22:16.280 --> 00:22:19.550
+size explained by mouse weight and tail
+
+00:22:19.560 --> 00:22:21.150
+length.
+
+00:22:21.160 --> 00:22:23.430
+Now, let's talk about the denominator
+
+00:22:23.440 --> 00:22:26.710
+for our equation for F.
+
+00:22:26.720 --> 00:22:28.990
+The denominator is the variation in
+
+00:22:29.000 --> 00:22:33.590
+mouse size not explained by the fit.
+
+00:22:33.600 --> 00:22:35.150
+That is to say,
+
+00:22:35.160 --> 00:22:37.710
+it's the sum of squares of the residuals
+
+00:22:37.720 --> 00:22:40.950
+that remain after we fit our new line to
+
+00:22:40.960 --> 00:22:42.910
+the data.
+
+00:22:42.920 --> 00:22:46.550
+Why divide sum of squares fit by N minus
+
+00:22:46.560 --> 00:22:50.230
+P fit instead of just N?
+
+00:22:50.240 --> 00:22:51.710
+Intuitively,
+
+00:22:51.720 --> 00:22:53.230
+the more parameters you have in your
+
+00:22:53.240 --> 00:22:54.590
+equation,
+
+00:22:54.600 --> 00:22:57.430
+the more data you need to estimate them.
+
+00:22:57.440 --> 00:23:00.070
+For example, you only need two points to
+
+00:23:00.080 --> 00:23:01.710
+estimate a line,
+
+00:23:01.720 --> 00:23:03.910
+but you need three points to estimate a
+
+00:23:03.920 --> 00:23:05.830
+plane.
+
+00:23:05.840 --> 00:23:07.790
+If the fit is good,
+
+00:23:07.800 --> 00:23:09.670
+then the variation explained by the
+
+00:23:09.680 --> 00:23:11.870
+extra parameters in the fit will be a
+
+00:23:11.880 --> 00:23:14.350
+large number, and the variation not
+
+00:23:14.360 --> 00:23:16.230
+explained by the extra parameters in the
+
+00:23:16.240 --> 00:23:18.870
+fit will be a small number.
+
+00:23:18.880 --> 00:23:22.310
+That makes F a really large number.
+
+00:23:22.320 --> 00:23:24.750
+Now, that question we've all been dying
+
+00:23:24.760 --> 00:23:26.390
+to know the answer to,
+
+00:23:26.400 --> 00:23:28.470
+how do we turn this number into a P
+
+00:23:28.480 --> 00:23:30.310
+value?
+
+00:23:30.320 --> 00:23:31.870
+Conceptually,
+
+00:23:31.880 --> 00:23:34.790
+generate a set of random data.
+
+00:23:34.800 --> 00:23:36.790
+Calculate the mean and the sum of
+
+00:23:36.800 --> 00:23:39.150
+squares around the mean.
+
+00:23:39.160 --> 00:23:41.870
+Calculate the fit and the sum of squares
+
+00:23:41.880 --> 00:23:44.070
+around the fit.
+
+00:23:44.080 --> 00:23:46.270
+Now, plug all those values into our
+
+00:23:46.280 --> 00:23:48.430
+equation for F,
+
+00:23:48.440 --> 00:23:50.390
+and that will give us a number. In this
+
+00:23:50.400 --> 00:23:52.910
+case, that number is two.
+
+00:23:52.920 --> 00:23:56.110
+Now, plot that number in a histogram.
+
+00:23:56.120 --> 00:23:58.310
+Now, generate another set of random
+
+00:23:58.320 --> 00:23:59.550
+data.
+
+00:23:59.560 --> 00:24:01.430
+Calculate the mean and the sum of
+
+00:24:01.440 --> 00:24:03.790
+squares around the mean.
+
+00:24:03.800 --> 00:24:06.110
+Then calculate the fit and the sum of
+
+00:24:06.120 --> 00:24:08.670
+squares around the fit.
+
+00:24:08.680 --> 00:24:10.750
+Plug those values into our equation for
+
+00:24:10.760 --> 00:24:12.350
+F,
+
+00:24:12.360 --> 00:24:15.750
+and in this case, we get F equals three.
+
+00:24:15.760 --> 00:24:17.630
+So, we then plug that value into our
+
+00:24:17.640 --> 00:24:19.550
+histogram.
+
+00:24:19.560 --> 00:24:22.150
+And then we repeat with yet another set
+
+00:24:22.160 --> 00:24:23.790
+of random data.
+
+00:24:23.800 --> 00:24:26.550
+In this case, we got F equals one.
+
+00:24:26.560 --> 00:24:28.830
+That's plotted on our histogram.
+
+00:24:28.840 --> 00:24:30.870
+And we just keep generating more and
+
+00:24:30.880 --> 00:24:33.430
+more random data sets, calculating the
+
+00:24:33.440 --> 00:24:35.790
+sums of squares, plugging them into our
+
+00:24:35.800 --> 00:24:38.350
+equation for F, and plotting the results
+
+00:24:38.360 --> 00:24:40.270
+on our histogram.
+
+00:24:40.280 --> 00:24:43.430
+Now, imagine we did that hundreds, if
+
+00:24:43.440 --> 00:24:45.990
+not millions, of times.
+
+00:24:46.000 --> 00:24:47.830
+When we're all done with our random data
+
+00:24:47.840 --> 00:24:50.350
+sets, we return to our original data
+
+00:24:50.360 --> 00:24:52.070
+set.
+
+00:24:52.080 --> 00:24:54.030
+We then plug the numbers into our
+
+00:24:54.040 --> 00:24:57.950
+equation for F. In this case, we got F =
+
+00:24:57.960 --> 00:24:59.750
+6.
+
+00:24:59.760 --> 00:25:02.350
+The P value is the number of more
+
+00:25:02.360 --> 00:25:05.190
+extreme values divided by all of the
+
+00:25:05.200 --> 00:25:06.670
+values.
+
+00:25:06.680 --> 00:25:09.190
+So, in this case, we have the value at F
+
+00:25:09.200 --> 00:25:12.990
+= 6 and the value at F = 7 divided by
+
+00:25:13.000 --> 00:25:15.270
+all the other randomizations that we
+
+00:25:15.280 --> 00:25:17.270
+created originally.
+
+00:25:17.280 --> 00:25:20.070
+If this concept is confusing to you, I
+
+00:25:20.080 --> 00:25:22.870
+have a StatQuest that explains P values,
+
+00:25:22.880 --> 00:25:25.270
+so check that one out.
+
+00:25:25.280 --> 00:25:27.030
+Bam!
+
+00:25:27.040 --> 00:25:29.190
+You can approximate the histogram with a
+
+00:25:29.200 --> 00:25:30.310
+line.
+
+00:25:30.320 --> 00:25:32.990
+In practice, rather than generating tons
+
+00:25:33.000 --> 00:25:35.830
+of random data sets, people use the line
+
+00:25:35.840 --> 00:25:38.470
+to calculate the P value.
+
+00:25:38.480 --> 00:25:41.070
+Here's an example of a one standard F
+
+00:25:41.080 --> 00:25:43.190
+distribution that people use to
+
+00:25:43.200 --> 00:25:45.030
+calculate P values.
+
+00:25:45.040 --> 00:25:47.350
+The degrees of freedom determine the
+
+00:25:47.360 --> 00:25:49.590
+shape.
+
+00:25:49.600 --> 00:25:52.190
+The red line represents another standard
+
+00:25:52.200 --> 00:25:54.470
+F distribution that people use to
+
+00:25:54.480 --> 00:25:56.790
+calculate P values.
+
+00:25:56.800 --> 00:25:59.590
+In this case, the sample size used to
+
+00:25:59.600 --> 00:26:01.950
+draw the red line is smaller than the
+
+00:26:01.960 --> 00:26:05.470
+sample size used to draw the blue line.
+
+00:26:05.480 --> 00:26:08.510
+Notice that when N minus P fit equals
+
+00:26:08.520 --> 00:26:13.510
+10, the distribution tapers off faster.
+
+00:26:13.520 --> 00:26:16.070
+This means that the P value will be
+
+00:26:16.080 --> 00:26:18.310
+smaller when there are more samples
+
+00:26:18.320 --> 00:26:20.550
+relative to the number of parameters in
+
+00:26:20.560 --> 00:26:22.710
+the fit equation.
+
+00:26:22.720 --> 00:26:24.830
+Triple bam!
+
+00:26:24.840 --> 00:26:27.790
+Hooray! We finally got our P value. Now,
+
+00:26:27.800 --> 00:26:31.070
+let's review the main ideas.
+
+00:26:31.080 --> 00:26:32.950
+Given some data that you think are
+
+00:26:32.960 --> 00:26:34.550
+related,
+
+00:26:34.560 --> 00:26:37.190
+linear regression quantifies the
+
+00:26:37.200 --> 00:26:39.710
+relationship in the data.
+
+00:26:39.720 --> 00:26:41.550
+This is R squared.
+
+00:26:41.560 --> 00:26:43.990
+This needs to be large.
+
+00:26:44.000 --> 00:26:46.150
+It also determines how reliable that
+
+00:26:46.160 --> 00:26:48.150
+relationship is.
+
+00:26:48.160 --> 00:26:50.350
+This is the P value that we calculated
+
+00:26:50.360 --> 00:26:51.630
+with F.
+
+00:26:51.640 --> 00:26:53.710
+This needs be small.
+
+00:26:53.720 --> 00:26:55.750
+You need both to have an interesting
+
+00:26:55.760 --> 00:26:57.710
+result.
+
+00:26:57.720 --> 00:27:00.470
+Hooray! We've made it to the end of
+
+00:27:00.480 --> 00:27:03.190
+another exciting StatQuest. Wow, this
+
+00:27:03.200 --> 00:27:04.670
+was a long one.
+
+00:27:04.680 --> 00:27:06.750
+I hope you had a good time.
+
+00:27:06.760 --> 00:27:08.670
+If you like this and want to see more
+
+00:27:08.680 --> 00:27:10.510
+StatQuests like it, why don't you
+
+00:27:10.520 --> 00:27:12.710
+subscribe to my channel? It's real easy,
+
+00:27:12.720 --> 00:27:14.790
+just click the red button.
+
+00:27:14.800 --> 00:27:17.350
+And if you have any ideas of StatQuests
+
+00:27:17.360 --> 00:27:19.230
+that you'd like me to create, just put
+
+00:27:19.240 --> 00:27:21.110
+them in the comments below. That's all
+
+00:27:21.120 --> 00:27:23.630
+there is to it. All right. Tune in next
+
+00:27:23.640 --> 00:27:25.470
+time for another really exciting
+
+00:27:25.480 --> 00:27:28.400
+StatQuest.
+

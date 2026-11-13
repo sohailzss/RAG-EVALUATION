@@ -1,0 +1,92 @@
+[
+  {
+    "id": "g001",
+    "query": "What are the three main steps in linear regression?",
+    "ideal_answer": "Linear regression has three main ideas. First, you use least squares to fit a line to the data: you measure the residuals (the distances from the line to the data), square them, add them up, and pick the line rotation with the smallest sum of squared residuals. Second, you calculate R squared to quantify how much of the variation in the variable you are predicting is explained by the fit. Third, you calculate a p-value for R squared to determine whether that R squared is statistically significant.",
+    "source": "Session 1"
+  },
+  {
+    "id": "g002",
+    "query": "Why do people report an adjusted R squared instead of the plain R squared?",
+    "ideal_answer": "Adding more parameters to an equation can never make the sum of squares around the fit worse, because least squares will simply set a useless parameter to zero. But due to random chance a silly parameter, like a coin flip, might happen to reduce the sum of squares around the fit and give a better R squared. The more silly parameters you add, the more opportunities random events have to inflate R squared, so people report an adjusted R squared that scales R squared by the number of parameters.",
+    "source": "Session 1"
+  },
+  {
+    "id": "g003",
+    "query": "How is a logistic regression curve fit to the data if it can't use least squares?",
+    "ideal_answer": "Logistic regression doesn't have the same concept of a residual, so it can't use least squares or calculate R squared. Instead it uses maximum likelihood: you pick a candidate S-shaped curve, use it to calculate the likelihood of observing each mouse given its weight, and multiply all of those likelihoods together to get the likelihood of the data. Then you shift the curve, recalculate the likelihood, and repeat, and finally the curve with the maximum likelihood is selected.",
+    "source": "Session 2"
+  },
+  {
+    "id": "g004",
+    "query": "What do bias and variance mean in machine learning?",
+    "ideal_answer": "Bias is the inability of a machine learning method to capture the true relationship in the data; for example, a straight line cannot curve to follow an arc, so it has relatively high bias. Variance is the difference in fits between datasets, such as between the training set and the testing set. A squiggly line that hugs the training data has low bias but high variance because its sums of squares are vastly different on new data, while a straight line has higher bias but low variance because it gives consistently good predictions.",
+    "source": "Session 3"
+  },
+  {
+    "id": "g005",
+    "query": "What is leave-one-out cross validation and how does it relate to 10-fold cross validation?",
+    "ideal_answer": "Cross-validation divides the data into blocks and uses each block for testing one at a time while the others are used for training. The number of blocks is arbitrary. In the extreme case each individual patient or sample is its own block, which is called leave-one-out cross validation, so each sample is tested individually. In practice it is very common to divide the data into ten blocks, which is called 10-fold cross validation.",
+    "source": "Session 4"
+  },
+  {
+    "id": "g006",
+    "query": "How does lambda change the ridge regression line and how do we choose its value?",
+    "ideal_answer": "Ridge regression minimizes the sum of squared residuals plus lambda times the slope squared, and lambda determines how severe that penalty is. Lambda can be any value from zero to positive infinity. When lambda is zero the ridge regression line is the same as the least squares line, and as lambda increases the slope gets smaller and smaller, approaching zero asymptotically, so predictions become less sensitive to weight. To choose lambda, you try a bunch of values and use cross validation, typically 10-fold, to find the one that results in the lowest variance.",
+    "source": "Session 5"
+  },
+  {
+    "id": "g007",
+    "query": "When does lasso regression work better than ridge regression?",
+    "ideal_answer": "Lasso regression can shrink parameters all the way to zero, which removes useless variables, like astrological sign or the air speed of a swallow, from the equation, while ridge regression can only shrink them asymptotically close to zero. Because of this, lasso regression is a little better than ridge regression at reducing variance in models that contain a lot of useless variables, and ridge regression tends to do a little better when most of the variables are useful.",
+    "source": "Session 6"
+  },
+  {
+    "id": "g008",
+    "query": "How do you calculate the Gini impurity for a split in a classification tree?",
+    "ideal_answer": "First you calculate the Gini impurity of each leaf as one minus the probability of yes squared minus the probability of no squared; for example, a leaf with one yes and three no gives 0.375. Because the leaves can contain different numbers of people, the total Gini impurity for the split is the weighted average of the leaf impurities, where each leaf's weight is the number of people in that leaf divided by the total number of people in both leaves. For Loves Popcorn this gave 0.405, and the feature with the lowest Gini impurity, Loves Soda at 0.214, goes at the top of the tree.",
+    "source": "Session 7"
+  },
+  {
+    "id": "g009",
+    "query": "What is the out-of-bag dataset and how is it used to evaluate a random forest?",
+    "ideal_answer": "Because a bootstrapped dataset is made by sampling with replacement, some entries are left out; typically about one third of the original data does not end up in the bootstrapped dataset, and these entries are called the out-of-bag dataset. Since the out-of-bag samples were not used to build a tree, they can be run through all the trees that were built without them, and the label with the most votes is assigned. The accuracy of the random forest is the proportion of out-of-bag samples correctly classified, and the proportion incorrectly classified is the out-of-bag error.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g010",
+    "query": "How does AdaBoost decide how much say a stump gets in the final classification?",
+    "ideal_answer": "The amount of say is based on how well the stump classified the samples. First the total error is calculated as the sum of the sample weights of the incorrectly classified samples, which is always between zero and one. Then amount of say equals one half times the log of one minus the total error divided by the total error. A stump with a small total error gets a large positive amount of say, a stump that is no better than a coin flip (total error 0.5) gets zero, and a stump with total error close to one gets a large negative amount of say. For example, a total error of 1/8 gives an amount of say of 0.97.",
+    "source": "Session 9"
+  },
+  {
+    "id": "g011",
+    "query": "How does AdaBoost change the sample weights after building a stump?",
+    "ideal_answer": "AdaBoost increases the sample weights of the incorrectly classified samples and decreases the weights of the correctly classified ones, so the next stump focuses on the mistakes. The new weight for a misclassified sample is the old sample weight times e raised to the amount of say, and the new weight for a correctly classified sample is the old weight times e raised to the negative amount of say. With an amount of say of 0.97, the misclassified sample goes from 1/8 to about 0.33 and the others go to about 0.05. Finally the new weights are normalized so they add up to one.",
+    "source": "Session 9"
+  },
+  {
+    "id": "g012",
+    "query": "What is the first prediction in gradient boost for regression and what does the learning rate do?",
+    "ideal_answer": "Gradient boost starts with a single leaf that is the initial guess for every sample, and when predicting a continuous value like weight that guess is the average value, 71.2 kg in the example. Each new tree is fit to the pseudo residuals, and its contribution is scaled by a learning rate between zero and one, such as 0.1, so the prediction becomes 71.2 plus 0.1 times 16.8, or 72.9. Without the learning rate the model would fit the training data too well and have high variance; scaling each tree means taking many small steps in the right direction, which empirically gives better predictions on testing data.",
+    "source": "Session 10"
+  },
+  {
+    "id": "g013",
+    "query": "How does XGBoost use similarity scores and gain to decide where to split a tree?",
+    "ideal_answer": "XGBoost calculates a similarity score for the residuals in each node as the sum of the residuals, squared, divided by the number of residuals plus lambda. Because the residuals are added before squaring, very different residuals cancel out and give a small score, while similar residuals give a large score. For a candidate split, the gain equals the similarity of the left leaf plus the similarity of the right leaf minus the similarity of the root. XGBoost tries every threshold between adjacent observations and picks the one with the largest gain; in the example, dosage less than 15 had the largest gain, 120.33.",
+    "source": "Session 11"
+  },
+  {
+    "id": "g014",
+    "query": "What is gamma in XGBoost and how is it used to prune a tree?",
+    "ideal_answer": "Gamma is a user-defined tree complexity parameter used for pruning. Starting with the lowest branch, you calculate the gain minus gamma: if the difference is negative the branch is removed, and if it is positive the branch is kept and pruning stops. With gamma equal to 130 the lowest branch (gain 140.17) is kept, so the root is kept too; with gamma equal to 150 that branch is removed and then the root (gain 120.33) is removed as well, leaving only the original prediction. Setting gamma to zero does not turn off pruning, because with lambda greater than zero a branch can have negative gain.",
+    "source": "Session 11"
+  },
+  {
+    "id": "g015",
+    "query": "What is the kernel trick in support vector machines?",
+    "ideal_answer": "Support vector machines use kernel functions to systematically find support vector classifiers in higher dimensions. Kernel functions only calculate the relationships between every pair of points as if they were in the higher dimensions; they don't actually transform the data. Calculating these high-dimensional relationships without actually transforming the data is called the kernel trick. It reduces the amount of computation required and makes it possible to calculate the relationships in the infinite dimensions used by the radial kernel.",
+    "source": "Session 12"
+  }
+]
